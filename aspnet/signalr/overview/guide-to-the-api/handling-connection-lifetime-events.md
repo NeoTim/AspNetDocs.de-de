@@ -1,6 +1,6 @@
 ---
 uid: signalr/overview/guide-to-the-api/handling-connection-lifetime-events
-title: Verstehen und behandeln von Verbindungs Lebensdauer-Ereignissen in signalr | Microsoft-Dokumentation
+title: Grundlegendes und Behandeln von Verbindungslebensdauerereignissen in SignalR | Microsoft Docs
 author: bradygaster
 description: In diesem Artikel wird beschrieben, wie die von der Hubs-API verfügbar gemachten Ereignisse verwendet werden.
 ms.author: bradyg
@@ -9,252 +9,252 @@ ms.assetid: 03960de2-8d95-4444-9169-4426dcc64913
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 msc.type: authoredcontent
 ms.openlocfilehash: 5bdf20549fccab5d644e35fdf4ce351540c8620d
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78467421"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675826"
 ---
 # <a name="understanding-and-handling-connection-lifetime-events-in-signalr"></a>Überblick und Behandeln von Ereignissen im Zusammenhang mit der Verbindungslebensdauer in SignalR
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-> Dieser Artikel bietet eine Übersicht über die signalr-Verbindung, die Verbindung wiederherstellen und Verbindungs Ereignisse, die Sie behandeln können, sowie über Timeout-und KeepAlive-Einstellungen, die Sie konfigurieren können.
+> Dieser Artikel bietet einen Überblick über die SignalR-Verbindungs-, Wiederverbindungs- und Trennungsereignisse, die Sie verarbeiten können, sowie Timeout- und Keepalive-Einstellungen, die Sie konfigurieren können.
 >
-> In diesem Artikel wird davon ausgegangen, dass Sie bereits über Kenntnisse zu signalr und Verbindungs Lebensdauer-Ereignissen verfügen. Eine Einführung in signalr finden Sie unter [Introduction to signalr (Einführung in signalr](../getting-started/introduction-to-signalr.md)). Listen der Verbindungs Lebensdauer-Ereignisse finden Sie in den folgenden Ressourcen:
+> Der Artikel geht davon aus, dass Sie bereits über einige Kenntnisse von SignalR- und Verbindungslebensdauerereignissen verfügen. Eine Einführung in SignalR finden Sie unter [Einführung in SignalR](../getting-started/introduction-to-signalr.md). Listen der Ereignisse der Verbindungslebensdauer finden Sie in den folgenden Ressourcen:
 >
-> - [Behandeln von Verbindungs Lebensdauer-Ereignissen in der Hub-Klasse](hubs-api-guide-server.md#connectionlifetime)
-> - [Behandeln von Verbindungs Lebensdauer-Ereignissen in JavaScript-Clients](hubs-api-guide-javascript-client.md#connectionlifetime)
-> - [Behandeln von Verbindungs Lebensdauer-Ereignissen in .NET-Clients](hubs-api-guide-net-client.md#connectionlifetime)
+> - [Behandeln von Verbindungslebensdauerereignissen in der Hub-Klasse](hubs-api-guide-server.md#connectionlifetime)
+> - [Behandeln von Verbindungslebensdauerereignissen in JavaScript-Clients](hubs-api-guide-javascript-client.md#connectionlifetime)
+> - [Behandeln von Verbindungslebensdauerereignissen in .NET-Clients](hubs-api-guide-net-client.md#connectionlifetime)
 >
-> ## <a name="software-versions-used-in-this-topic"></a>In diesem Thema verwendete Software Versionen
+> ## <a name="software-versions-used-in-this-topic"></a>In diesem Thema verwendete Softwareversionen
 >
 >
 > - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 > - .NET 4.5
-> - Signalr Version 2
+> - SignalR Version 2
 >
 >
 >
-> ## <a name="previous-versions-of-this-topic"></a>Vorherige Versionen dieses Themas
+> ## <a name="previous-versions-of-this-topic"></a>Frühere Versionen dieses Themas
 >
-> Informationen zu früheren Versionen von signalr finden Sie unter [signalr ältere Versionen](../older-versions/index.md).
+> Informationen zu früheren Versionen von SignalR finden Sie unter [SignalR Ältere Versionen](../older-versions/index.md).
 >
 > ## <a name="questions-and-comments"></a>Fragen und Kommentare
 >
-> Bitte informieren Sie sich darüber, wie Ihnen dieses Tutorial gefallen hat und was wir in den Kommentaren unten auf der Seite verbessern konnten. Wenn Sie Fragen haben, die nicht direkt mit dem Tutorial zusammenhängen, können Sie Sie im [ASP.net signalr-Forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) oder in [StackOverflow.com](http://stackoverflow.com/)veröffentlichen.
+> Bitte hinterlassen Sie Feedback darüber, wie Ihnen dieses Tutorial gefallen hat und was wir in den Kommentaren am Ende der Seite verbessern könnten. Wenn Sie Fragen haben, die nicht direkt mit dem Tutorial zusammenhängen, können Sie sie [im ASP.NET SignalR-Forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) oder [StackOverflow.com](http://stackoverflow.com/).
 
 ## <a name="overview"></a>Übersicht
 
 Dieser Artikel enthält folgende Abschnitte:
 
-- [Terminologie und Szenarien für die Verbindungs Lebensdauer](#terminology)
+- [Terminologie und Szenarien der Verbindungslebensdauer](#terminology)
 
-    - [Signalr-Verbindungen, Transportverbindungen und physische Verbindungen](#signalrvstransport)
-    - [Übertragungs Szenarien für Transport Unterbrechung](#transportdisconnect)
-    - [Szenarios zur Trennung von Clients](#clientdisconnect)
-    - [Szenarios zur Server Trennung](#serverdisconnect)
-- [Timeout-und KeepAlive-Einstellungen](#timeoutkeepalive)
+    - [SignalR-Verbindungen, Transportverbindungen und physikalische Verbindungen](#signalrvstransport)
+    - [Transporttrennungsszenarien](#transportdisconnect)
+    - [Client-Trennungsszenarien](#clientdisconnect)
+    - [Servertrennungsszenarien](#serverdisconnect)
+- [Timeout- und Keepalive-Einstellungen](#timeoutkeepalive)
 
-    - [ConnectionTimeout](#connectiontimeout)
-    - ["Disconnecttimeout"](#disconnecttimeout)
+    - [Connectiontimeout](#connectiontimeout)
+    - [DisconnectTimeout](#disconnecttimeout)
     - [KeepAlive](#keepalive)
-    - [Ändern der Timeout-und KeepAlive-Einstellungen](#changetimeout)
-- [Benachrichtigen des Benutzers über Trennungen](#notifydisconnect)
-- [Fortlaufende Wiederherstellung der Verbindung](#continuousreconnect)
-- [Trennen einer Verbindung zwischen einem Client und Servercode](#disconnectclientfromserver)
-- [Erkennen der Ursache für eine Verbindungs Trennung](#detectingreasonfordisconnection)
+    - [So ändern Sie Timeout- und Keepalive-Einstellungen](#changetimeout)
+- [So benachrichtigen Sie den Benutzer über Trennungen](#notifydisconnect)
+- [Wie man sich kontinuierlich wieder verbindet](#continuousreconnect)
+- [Trennen eines Clients im Servercode](#disconnectclientfromserver)
+- [Erkennen des Grunds für eine Trennung](#detectingreasonfordisconnection)
 
-Links zu API-Referenz Themen beziehen sich auf die .NET 4,5-Version der API. Wenn Sie .NET 4 verwenden, finden Sie weitere Informationen unter [.NET 4-Version der API-Themen](https://msdn.microsoft.com/library/jj891075(v=vs.100).aspx).
+Links zu API-Referenzthemen beziehen sich auf die .NET 4.5-Version der API. Wenn Sie .NET 4 verwenden, lesen Sie [die .NET 4-Version der API-Themen](https://msdn.microsoft.com/library/jj891075(v=vs.100).aspx).
 
 <a id="terminology"></a>
 
-## <a name="connection-lifetime-terminology-and-scenarios"></a>Terminologie und Szenarien für die Verbindungs Lebensdauer
+## <a name="connection-lifetime-terminology-and-scenarios"></a>Terminologie und Szenarien der Verbindungslebensdauer
 
-Der `OnReconnected`-Ereignishandler in einem signalr-Hub kann direkt nach `OnConnected` ausgeführt werden, aber nicht nach `OnDisconnected` für einen bestimmten Client. Der Grund, warum Sie eine erneute Verbindung ohne eine Verbindung herstellen können, besteht darin, dass es verschiedene Möglichkeiten gibt, wie das Wort "Connection" in signalr verwendet wird.
+Der `OnReconnected` Ereignishandler in einem SignalR `OnConnected` Hub kann `OnDisconnected` direkt nach, aber nicht nach einem bestimmten Client ausgeführt werden. Der Grund, warum Sie eine wiederhergestellte Verbindung ohne Trennung haben können, ist, dass es mehrere Möglichkeiten gibt, wie das Wort "Verbindung" in SignalR verwendet wird.
 
 <a id="signalrvstransport"></a>
 
-### <a name="signalr-connections-transport-connections-and-physical-connections"></a>Signalr-Verbindungen, Transportverbindungen und physische Verbindungen
+### <a name="signalr-connections-transport-connections-and-physical-connections"></a>SignalR-Verbindungen, Transportverbindungen und physikalische Verbindungen
 
-In diesem Artikel wird zwischen *signalr-Verbindungen*, *Transportverbindungen*und *physischen Verbindungen*unterschieden:
+In diesem Artikel wird zwischen *SignalR-Verbindungen*, *Verkehrsverbindungen*und *physischen Verbindungen*unterschieden:
 
-- Die **signalr-Verbindung** bezieht sich auf eine logische Beziehung zwischen einem Client und einer Server-URL, die von der signalr-API verwaltet und durch eine Verbindungs-ID eindeutig identifiziert wird. Die Daten über diese Beziehung werden von signalr verwaltet und zum Herstellen einer Transport Verbindung verwendet. Die Beziehung wird beendet, und signalr gibt die Daten frei, wenn der Client die `Stop` Methode aufruft, oder ein Timeout Limit erreicht wird, während signalr versucht, eine verlorene Transport Verbindung wiederherzustellen.
-- **Transport Verbindung** bezieht sich auf eine logische Beziehung zwischen einem Client und einem Server, der von einer der vier Transport-APIs verwaltet wird: websockets, vom Server gesendete Ereignisse, der dauerhafte Frame oder das lange abrufen. Signalr verwendet die Transport-API, um eine Transport Verbindung herzustellen, und die Transport-API hängt davon ab, ob eine physische Netzwerkverbindung vorhanden ist, um die Transport Verbindung herzustellen. Die Transport Verbindung wird beendet, wenn signalr Sie beendet oder wenn die Transport-API erkennt, dass die physische Verbindung getrennt ist.
-- Die **physische Verbindung** bezieht sich auf die physischen Netzwerkverbindungen--Drähte, drahtlos Signale, Router usw., die die Kommunikation zwischen einem Client Computer und einem Server Computer vereinfachen. Die physische Verbindung muss vorhanden sein, um eine Transport Verbindung herzustellen, und es muss eine Transport Verbindung hergestellt werden, um eine signalr-Verbindung herzustellen. Das Abbrechen der physischen Verbindung beendet jedoch nicht immer sofort die Transport Verbindung oder die signalr-Verbindung, wie weiter unten in diesem Thema erläutert wird.
+- **Die SignalR-Verbindung** bezieht sich auf eine logische Beziehung zwischen einem Client und einer Server-URL, die von der SignalR-API verwaltet und durch eine Verbindungs-ID eindeutig identifiziert wird. Die Daten über diese Beziehung werden von SignalR verwaltet und zum Herstellen einer Transportverbindung verwendet. Die Beziehung endet, und SignalR verfügt über `Stop` die Daten, wenn der Client die Methode aufruft oder ein Timeoutlimit erreicht wird, während SignalR versucht, eine verlorene Transportverbindung wiederherzustellen.
+- **Transportverbindung** bezieht sich auf eine logische Beziehung zwischen einem Client und einem Server, die von einer der vier Transport-APIs verwaltet wird: WebSockets, servergesendete Ereignisse, für immer Frame oder lange Abfragen. SignalR verwendet die Transport-API, um eine Transportverbindung zu erstellen, und die Transport-API hängt vom Vorhandensein einer physischen Netzwerkverbindung ab, um die Transportverbindung zu erstellen. Die Transportverbindung endet, wenn SignalR sie beendet oder wenn die Transport-API erkennt, dass die physische Verbindung unterbrochen ist.
+- **Physische Verbindung** bezieht sich auf die physischen Netzwerkverbindungen -- Drähte, drahtlose Signale, Router usw. -- die die Kommunikation zwischen einem Clientcomputer und einem Servercomputer erleichtern. Die physische Verbindung muss vorhanden sein, um eine Transportverbindung herzustellen, und es muss eine Transportverbindung hergestellt werden, um eine SignalR-Verbindung herzustellen. Wenn Sie jedoch die physische Verbindung aufbrechen, wird die Transportverbindung oder die SignalR-Verbindung nicht sofort beendet, wie weiter unten in diesem Thema erläutert wird.
 
-Im folgenden Diagramm wird die signalr-Verbindung durch die Hubs-API und die persistentconnection-API signalr-Schicht dargestellt. die Transport Verbindung wird von der Transportschicht dargestellt, und die physische Verbindung wird durch die Linien zwischen dem Server dargestellt. und die Clients.
+Im folgenden Diagramm wird die SignalR-Verbindung durch die Hubs-API und die PersistentConnection-API-SignalR-Schicht dargestellt, die Transportverbindung wird durch die Layer Transports dargestellt, und die physische Verbindung wird durch die Leitungen zwischen dem Server und den Clients dargestellt.
 
-![Signalr-Architektur Diagramm](handling-connection-lifetime-events/_static/image1.png)
+![SignalR-Architekturdiagramm](handling-connection-lifetime-events/_static/image1.png)
 
-Wenn Sie die `Start`-Methode in einem signalr-Client aufzurufen, stellen Sie dem signalr-Client Code alle Informationen bereit, die er benötigt, um eine physische Verbindung mit einem Server herzustellen. Der signalr-Client Code verwendet diese Informationen, um eine HTTP-Anforderung zu erstellen und eine physische Verbindung herzustellen, die eine der vier Transportmethoden verwendet. Wenn die Transport Verbindung fehlschlägt oder der Server ausfällt, wird die signalr-Verbindung nicht sofort entfernt, da der Client weiterhin über die Informationen verfügt, die er benötigt, um automatisch eine neue Transport Verbindung mit derselben signalr-URL wiederherzustellen. In diesem Szenario ist kein Eingreifen der Benutzeranwendung beteiligt, und wenn der signalr-Client Code eine neue Transport Verbindung herstellt, wird keine neue signalr-Verbindung gestartet. Die Kontinuität der signalr-Verbindung wird in der Tatsache widergespiegelt, dass sich die Verbindungs-ID, die beim aufruft der `Start`-Methode erstellt wird, nicht ändert.
+Wenn Sie `Start` die Methode in einem SignalR-Client aufrufen, stellen Sie SignalR-Clientcode alle Informationen zur Verfügung, die zum Herstellen einer physischen Verbindung zu einem Server erforderlich sind. SignalR-Clientcode verwendet diese Informationen, um eine HTTP-Anforderung zu stellen und eine physische Verbindung herzustellen, die eine der vier Transportmethoden verwendet. Wenn die Transportverbindung ausfällt oder der Server ausfällt, wird die SignalR-Verbindung nicht sofort getrennt, da der Client immer noch über die Informationen verfügt, die er benötigt, um automatisch eine neue Transportverbindung zur gleichen SignalR-URL wiederherzustellen. In diesem Szenario ist kein Eingriff der Benutzeranwendung beteiligt, und wenn der SignalR-Clientcode eine neue Transportverbindung herstellt, startet er keine neue SignalR-Verbindung. Die Kontinuität der SignalR-Verbindung spiegelt sich in der Tatsache wider, dass `Start` sich die Verbindungs-ID, die beim Aufrufen der Methode erstellt wird, nicht ändert.
 
-Der `OnReconnected`-Ereignishandler auf dem Hub wird ausgeführt, wenn eine Transport Verbindung nach dem Verlust der Verbindung automatisch wieder hergestellt wird. Der `OnDisconnected`-Ereignishandler wird am Ende einer signalr-Verbindung ausgeführt. Eine signalr-Verbindung kann auf eine der folgenden Arten enden:
+Der `OnReconnected` Ereignishandler auf dem Hub wird ausgeführt, wenn eine Transportverbindung nach einem Verlust automatisch wiederhergestellt wird. Der `OnDisconnected` Ereignishandler wird am Ende einer SignalR-Verbindung ausgeführt. Eine SignalR-Verbindung kann auf eine der folgenden Arten enden:
 
-- Wenn der Client die `Stop`-Methode aufruft, wird eine Nachricht zum Beenden an den Server gesendet, und sowohl der Client als auch der Server beenden die signalr-Verbindung sofort.
-- Nachdem die Konnektivität zwischen Client und Server verloren gegangen ist, versucht der Client, die Verbindung wiederherzustellen, und der Server wartet darauf, dass der Client erneut eine Verbindung herstellt. Wenn die Versuche, die Verbindung wiederherzustellen, nicht erfolgreich sind und das Timeout für die Trennung endet, beenden sowohl der Client als auch der Server die signalr-Verbindung. Der Client versucht nicht mehr, die Verbindung wiederherzustellen, und der Server verwirft seine Darstellung der signalr-Verbindung.
-- Wenn der Client nicht mehr ausgeführt werden kann, ohne dass die Möglichkeit besteht, die `Stop`-Methode aufzurufen, wartet der Server, bis der Client erneut eine Verbindung herstellt, und beendet dann die signalr-Verbindung nach dem Timeout Zeitraum für die Verbindung.
-- Wenn der Server nicht mehr ausgeführt wird, versucht der Client, die Verbindung wiederherzustellen (die Transport Verbindung neu zu erstellen), und beendet dann die signalr-Verbindung nach dem Timeout Zeitraum für die Verbindung.
+- Wenn der Client `Stop` die Methode aufruft, wird eine Stoppnachricht an den Server gesendet, und sowohl Client als auch Server beenden die SignalR-Verbindung sofort.
+- Nachdem die Verbindung zwischen Client und Server unterbrochen wurde, versucht der Client erneut eine Verbindung herzustellen, und der Server wartet, bis der Client die Verbindung wieder herstellt. Wenn die Versuche, die Verbindung wiederherzustellen, fehlschlagen und der Zeittimeoutzeitraum für die Trennung endet, beenden sowohl Client als auch Server die SignalR-Verbindung. Der Client versucht nicht mehr, die Verbindung wiederherzustellen, und der Server verfügt über seine Darstellung der SignalR-Verbindung.
+- Wenn der Client nicht mehr ausgeführt `Stop` wird, ohne die Methode aufrufen zu können, wartet der Server, bis der Client die Verbindung wieder herstellt, und beendet dann die SignalR-Verbindung nach dem Zeittimeout.-
+- Wenn der Server nicht mehr ausgeführt wird, versucht der Client erneut eine Verbindung herzustellen (die Transportverbindung neu zu erstellen) und beendet dann die SignalR-Verbindung nach dem Zeittimeout.-
 
-Wenn keine Verbindungsprobleme vorliegen und die Benutzeranwendung die signalr-Verbindung beendet, indem Sie die `Stop`-Methode aufrufen, wird die signalr-Verbindung und die Transport Verbindung zum gleichen Zeitpunkt gestartet und beendet. In den folgenden Abschnitten werden die anderen Szenarien ausführlicher beschrieben.
+Wenn keine Verbindungsprobleme auftreten und die Benutzeranwendung die SignalR-Verbindung durch Aufrufen der `Stop` Methode beendet, beginnen und enden die SignalR-Verbindung und die Transportverbindung ungefähr zur gleichen Zeit. In den folgenden Abschnitten werden die anderen Szenarien ausführlicher beschrieben.
 
 <a id="transportdisconnect"></a>
 
-### <a name="transport-disconnection-scenarios"></a>Übertragungs Szenarien für Transport Unterbrechung
+### <a name="transport-disconnection-scenarios"></a>Transporttrennungsszenarien
 
-Physische Verbindungen können langsam sein, oder es können Unterbrechungen bei der Konnektivität auftreten. Abhängig von Faktoren wie z. b. der Länge der Unterbrechung, wird die Transport Verbindung möglicherweise verworfen. Signalr versucht dann, die Transport Verbindung wiederherzustellen. Manchmal erkennt die Transport Verbindungs-API die Unterbrechung und löscht die Transport Verbindung. signalr findet sofort heraus, dass die Verbindung verloren geht. In anderen Szenarien wird weder die Transport Verbindungs-API noch signalr sofort darauf hingewiesen, dass die Konnektivität verloren gegangen ist. Für alle Transporte außer Long-Abruf verwendet der signalr-Client eine Funktion mit dem Namen *KeepAlive* , um den Verlust der Konnektivität zu überprüfen, die von der Transport-API nicht erkannt werden kann. Weitere Informationen zu langen Abruf Verbindungen finden Sie unter [Timeout-und KeepAlive-Einstellungen](#timeoutkeepalive) weiter unten in diesem Thema.
+Physische Verbindungen sind möglicherweise langsam oder es kommt zu Verbindungsunterbrechungen. Abhängig von Faktoren wie der Länge der Unterbrechung kann die Transportverbindung unterbrochen werden. SignalR versucht dann, die Transportverbindung wiederherzustellen. Manchmal erkennt die Transportverbindungs-API die Unterbrechung und löscht die Transportverbindung, und SignalR stellt sofort fest, dass die Verbindung verloren geht. In anderen Szenarien werden weder die Transportverbindungs-API noch SignalR sofort darauf aufmerksam, dass die Konnektivität verloren gegangen ist. Für alle Transporte außer Long Polling verwendet der SignalR-Client eine Funktion namens *keepalive,* um den Verbindungsverlust zu überprüfen, den die Transport-API nicht erkennen kann. Informationen zu langen Abrufverbindungen finden Sie weiter unten in diesem Thema unter [Timeout- und Keepalive-Einstellungen.](#timeoutkeepalive)
 
-Wenn eine Verbindung inaktiv ist, sendet der Server in regelmäßigen Abständen ein KeepAlive-Paket an den Client. Ab dem Zeitpunkt, an dem dieser Artikel geschrieben wurde, beträgt die Standard Häufigkeit alle 10 Sekunden. Wenn Sie diese Pakete überwachen, können Clients erkennen, ob ein Verbindungsproblem vorliegt. Wenn ein KeepAlive-Paket nicht erwartungsgemäß empfangen wird, geht der Client nach kurzer Zeit davon aus, dass Verbindungsprobleme vorliegen, z. b. verlangsamtheit oder Unterbrechungen. Wenn KeepAlive nach längerer Zeit immer noch nicht empfangen wird, nimmt der Client an, dass die Verbindung getrennt wurde, und versucht, erneut eine Verbindung herzustellen.
+Wenn eine Verbindung inaktiv ist, sendet der Server in regelmäßigen Abständen ein Keepalive-Paket an den Client. Ab dem Datum, an dem dieser Artikel geschrieben wird, ist die Standardhäufigkeit alle 10 Sekunden. Wenn Sie auf diese Pakete warten, können Clients feststellen, ob ein Verbindungsproblem vorliegt. Wenn ein Keepalive-Paket nicht empfangen wird, wenn es erwartet wird, geht der Client nach kurzer Zeit von Verbindungsproblemen wie Langsamkeit oder Unterbrechungen aus. Wenn das Keepalive nach längerer Zeit immer noch nicht empfangen wird, geht der Client davon aus, dass die Verbindung getrennt wurde, und versucht, die Verbindung wiederherzustellen.
 
-Das folgende Diagramm veranschaulicht die Client-und Server Ereignisse, die in einem typischen Szenario ausgelöst werden, wenn Probleme mit der physischen Verbindung auftreten, die von der Transport-API nicht sofort erkannt werden. Das Diagramm gilt für die folgenden Umstände:
+Das folgende Diagramm veranschaulicht die Client- und Serverereignisse, die in einem typischen Szenario ausgelöst werden, wenn Probleme mit der physischen Verbindung auftreten, die von der Transport-API nicht sofort erkannt werden. Das Diagramm gilt für folgende Umstände:
 
-- Der Transport ist ein websockets, ein unbenes Frame oder Ereignisse, die vom Server gesendet werden.
-- Es gibt unterschiedliche Zeiträume der Unterbrechung der physischen Netzwerkverbindung.
-- Die Transport-API erkennt die Unterbrechungen nicht, sodass signalr die KeepAlive-Funktionalität verwendet, um Sie zu erkennen.
+- Der Transport ist WebSockets, forever frame oder server-sent-Ereignisse.
+- Die physische Netzwerkverbindung ist in unterschiedlichen Unterbrechungsphasen unterbrochen.
+- Die Transport-API wird nicht auf die Unterbrechungen aufmerksam, daher verlässt sich SignalR auf die Keepalive-Funktionalität, um sie zu erkennen.
 
-![Transport Trennungen](handling-connection-lifetime-events/_static/image2.png)
+![Verkehrstrennungen](handling-connection-lifetime-events/_static/image2.png)
 
-Wenn der Client in den Modus zum erneuten Herstellen der Verbindung wechselt, aber keine Transport Verbindung innerhalb des Limits für den Trennungs Timeout herstellen kann, beendet der Server die signalr-Verbindung. Wenn dies der Fall ist, führt der Server die `OnDisconnected` Methode des Hubs aus und fügt eine Disconnect-Nachricht in eine Warteschlange ein, die an den Client gesendet wird, wenn der Client eine spätere Verbindung herstellt. Wenn der Client dann erneut eine Verbindung herstellt, empfängt er den Disconnect-Befehl und ruft die `Stop`-Methode auf. In diesem Szenario wird `OnReconnected` nicht ausgeführt, wenn der Client erneut eine Verbindung herstellt, und `OnDisconnected` wird nicht ausgeführt, wenn der Client `Stop`aufruft. Dieses Szenario wird im folgenden Diagramm veranschaulicht.
+Wenn der Client in den Wiederverbindungsmodus wechselt, aber keine Transportverbindung innerhalb des Trennzeitlimits herstellen kann, beendet der Server die SignalR-Verbindung. In diesem Fall führt der Server `OnDisconnected` die Methode des Hubs aus und stellt eine Trennnachricht in die Warteschlange, die an den Client gesendet werden soll, falls der Client später eine Verbindung herstellen kann. Wenn der Client dann die Verbindung wieder herstellt, `Stop` empfängt er den Befehl "Disconnect" und ruft die Methode auf. In diesem `OnReconnected` Szenario wird nicht ausgeführt, wenn `OnDisconnected` der Client erneut eine `Stop`Verbindung herstellt, und wird nicht ausgeführt, wenn der Client aufruft. Das folgende Diagramm veranschaulicht dieses Szenario.
 
-![Transport Unterbrechungen-Server Timeout](handling-connection-lifetime-events/_static/image3.png)
+![Transportunterbrechungen - Servertimeout](handling-connection-lifetime-events/_static/image3.png)
 
-Die signalr-Verbindungs Lebensdauer Ereignisse, die möglicherweise auf dem Client ausgelöst werden, lauten wie folgt:
+Die SignalR-Verbindungslebensdauerereignisse, die auf dem Client ausgelöst werden können, sind die folgenden:
 
-- `ConnectionSlow` Client Ereignis.
+- `ConnectionSlow`Client-Ereignis.
 
-    Wird ausgelöst, wenn ein vordefinierter Anteil des KeepAlive-Timeout Zeitraums seit dem Empfang der letzten Nachricht oder KeepAlive-Ping abgelaufen ist. Der standardmäßige KeepAlive-Timeout-Zeitraum ist 2/3 des KeepAlive-Timeouts. Der KeepAlive-Timeout Wert beträgt 20 Sekunden, sodass die Warnung bei ungefähr 13 Sekunden auftritt.
+    Wird ausgelöst, wenn ein voreingestellter Anteil des Keepalive-Timeoutzeitraums seit dem Eingang der letzten Nachricht oder des Keepalive-Pings verstrichen ist. Der standardmäßige Keepalive-Timeout-Warnzeitraum beträgt 2/3 des Keepalive-Timeouts. Das Keepalive-Timeout beträgt 20 Sekunden, die Warnung erfolgt also bei etwa 13 Sekunden.
 
-    Standardmäßig sendet der Server Keepalive-Pings alle 10 Sekunden, und der Client prüft ca. 2 Sekunden auf KeepAlive-Pings (ein Drittel der Differenz zwischen dem KeepAlive-Timeout Wert und dem KeepAlive-Timeout-Warn Wert).
+    Standardmäßig sendet der Server alle 10 Sekunden Keepalive-Pings, und der Client überprüft etwa alle 2 Sekunden auf Keepalive-Pings (ein Drittel der Differenz zwischen dem Keepalive-Timeoutwert und dem Keepalive-Timeout-Warnungswert).
 
-    Wenn die Transport-API eine Trennung erkennt, wird signalr möglicherweise über die Trennung informiert, bevor der Zeitraum für das KeepAlive-Timeout überschritten wird. In diesem Fall würde das Ereignis `ConnectionSlow` nicht ausgelöst, und signalr würde direkt zum `Reconnecting` Ereignis gehen.
-- `Reconnecting` Client Ereignis.
+    Wenn der Transport-API eine Trennung bekannt wird, wird SignalR möglicherweise über die Trennung informiert, bevor die Keepalive-Timeout-Warnzeit verstrichen ist. In diesem Fall `ConnectionSlow` würde das Ereignis nicht ausgelöst, und `Reconnecting` SignalR würde direkt an das Ereignis gehen.
+- `Reconnecting`Client-Ereignis.
 
-    Wird ausgelöst, wenn (a) die Transport-API erkennt, dass die Verbindung unterbrochen wurde, oder (b) der KeepAlive-Timeout Zeitraum seit dem Empfang der letzten Nachricht oder KeepAlive-Ping verstrichen ist. Der signalr-Client Code versucht, erneut eine Verbindung herzustellen. Sie können dieses Ereignis behandeln, wenn die Anwendung eine Aktion ausführen soll, wenn eine Transport Verbindung unterbrochen wird. Der standardmäßige KeepAlive-Timeout Zeitraum beträgt derzeit 20 Sekunden.
+    Wird ausgelöst, wenn (a) die Transport-API erkennt, dass die Verbindung verloren geht, oder (b) der Keepalive-Timeout-Zeitraum seit dem Erhalt der letzten Nachricht oder des Keepalive-Pings verstrichen ist. Der SignalR-Clientcode versucht, die Verbindung wiederherzustellen. Sie können dieses Ereignis behandeln, wenn Ihre Anwendung etwas unternehmen soll, wenn eine Transportverbindung unterbrochen wird. Der standardmäßige Keepalive-Timeout-Zeitraum beträgt derzeit 20 Sekunden.
 
-    Wenn der Client Code versucht, eine Hub-Methode aufzurufen, während signalr sich im Modus für die erneute Verbindungs Herstellung befindet, versucht signalr, den Befehl zu senden. In den meisten Fällen schlagen solche Versuche fehl, aber in einigen Fällen können Sie erfolgreich ausgeführt werden. Für die vom Server gesendeten Ereignisse, den dauerhaften Rahmen und lange Abruf Transporte verwendet signalr zwei Kommunikationskanäle: einen, den der Client zum Senden von Nachrichten verwendet, und einen, den der Client zum Empfangen von Nachrichten verwendet. Der für den Empfang verwendete Kanal ist das dauerhaft geöffnete, und das ist das, das geschlossen wird, wenn die physische Verbindung unterbrochen wird. Der zum Senden verwendete Kanal bleibt verfügbar. Wenn also die physische Konnektivität wieder hergestellt wird, kann ein Methodenaufrufe vom Client zum Server erfolgreich sein, bevor der Empfangskanal wieder hergestellt wird. Der Rückgabewert wird erst empfangen, wenn signalr den Kanal erneut öffnet, der für den Empfang verwendet wird.
-- `Reconnected` Client Ereignis.
+    Wenn Ihr Clientcode versucht, eine Hub-Methode aufzurufen, während sich SignalR im Wiederherstellungsmodus befindet, versucht SignalR, den Befehl zu senden. Meistens werden solche Versuche scheitern, aber unter bestimmten Umständen könnten sie erfolgreich sein. Für die vom Server gesendeten Ereignisse, den Rahmen für immer und lange Abfragetransporte verwendet SignalR zwei Kommunikationskanäle, einen, den der Client zum Senden von Nachrichten verwendet, und einen, den er zum Empfangen von Nachrichten verwendet. Der Kanal, der für den Empfang verwendet wird, ist der permanent geöffnete Kanal, und das ist der Kanal, der geschlossen wird, wenn die physische Verbindung unterbrochen wird. Der für das Senden verwendete Kanal bleibt verfügbar, sodass bei Wiederherstellung der physischen Konnektivität ein Methodenaufruf vom Client zum Server erfolgreich sein kann, bevor der Empfangskanal wiederhergestellt wird. Der Rückgabewert wird erst empfangen, wenn SignalR den für den Empfang verwendeten Kanal wieder öffnet.
+- `Reconnected`Client-Ereignis.
 
-    Wird ausgelöst, wenn die Transport Verbindung wieder hergestellt wird. Der `OnReconnected`-Ereignishandler im Hub wird ausgeführt.
-- `Closed` Client Ereignis (`disconnected`-Ereignis in JavaScript).
+    Wird ausgelöst, wenn die Transportverbindung wiederhergestellt wird. Der `OnReconnected` Ereignishandler im Hub wird ausgeführt.
+- `Closed`Clientereignis`disconnected` (Ereignis in JavaScript).
 
-    Wird ausgelöst, wenn das Trennungs Timeout abgelaufen ist, während der signalr-Client Code versucht, die Verbindung nach dem Verlust der Transport Verbindung wiederherzustellen. Der Standardwert für das Trennen der Verbindung beträgt 30 Sekunden. (Dieses Ereignis wird auch ausgelöst, wenn die Verbindung beendet wird, da die `Stop`-Methode aufgerufen wird.)
+    Wird ausgelöst, wenn der Zeitverlustzeitraum für die Trennung abläuft, während der SignalR-Clientcode versucht, nach dem Verlust der Transportverbindung die Verbindung wiederherzustellen. Das standardmäßige Zeittimeout für die Trennung beträgt 30 Sekunden. (Dieses Ereignis wird auch ausgelöst, `Stop` wenn die Verbindung beendet wird, da die Methode aufgerufen wird.)
 
-Transport Verbindungsunterbrechungen, die nicht von der Transport-API erkannt werden und den Empfang von KeepAlive-Pings vom Server für einen längeren Zeitraum als das KeepAlive-Timeout nicht verzögern, bewirken möglicherweise nicht, dass Ereignisse der Verbindungs Lebensdauer ausgelöst werden.
+Transportverbindungsunterbrechungen, die von der Transport-API nicht erkannt werden und den Empfang von Keepalive-Pings vom Server nicht länger verzögern als der Keepalive-Timeout-Warnzeitraum, führen möglicherweise nicht dazu, dass Ereignisse der Verbindungslebensdauer ausgelöst werden.
 
-In einigen Netzwerkumgebungen werden Verbindungen im Leerlauf absichtlich geschlossen, und eine weitere Funktion der KeepAlive-Pakete besteht darin, dies zu verhindern, da diese Netzwerke wissen, dass eine signalr-Verbindung verwendet wird. In Extremfällen ist die Standard Häufigkeit von KeepAlive-Pings möglicherweise nicht ausreichend, um geschlossene Verbindungen zu verhindern. In diesem Fall können Sie Keepalive-Pings so konfigurieren, dass Sie häufiger gesendet werden. Weitere Informationen finden Sie weiter unten in diesem Thema unter [Timeout-und KeepAlive-Einstellungen](#timeoutkeepalive) .
+Einige Netzwerkumgebungen schließen absichtlich Leerlaufverbindungen, und eine weitere Funktion der Keepalive-Pakete besteht darin, dies zu verhindern, indem diese Netzwerke darüber informiert werden, dass eine SignalR-Verbindung verwendet wird. In extremen Fällen reicht die Standardhäufigkeit von Keepalive-Pings möglicherweise nicht aus, um geschlossene Verbindungen zu verhindern. In diesem Fall können Sie Keepalive-Pings so konfigurieren, dass sie häufiger gesendet werden. Weitere Informationen finden Sie unter [Timeout- und Keepalive-Einstellungen](#timeoutkeepalive) weiter unten in diesem Thema.
 
 > [!NOTE]
 >
-> **Wichtig**: die hier beschriebene Abfolge von Ereignissen ist nicht sichergestellt. Mit signalr wird jeder Versuch unternommen, Verbindungs Lebensdauer-Ereignisse gemäß diesem Schema auf vorhersagbare Weise zu lösen. es gibt jedoch viele Variationen von Netzwerk Ereignissen und viele Möglichkeiten, wie die zugrunde liegenden Kommunikations Frameworks wie Transport-APIs diese verarbeiten. Beispielsweise wird das `Reconnected` Ereignis möglicherweise nicht ausgelöst, wenn der Client erneut eine Verbindung herstellt, oder der `OnConnected` Handler auf dem Server wird möglicherweise ausgeführt, wenn der Versuch, eine Verbindung herzustellen, nicht erfolgreich ist. In diesem Thema werden nur die Auswirkungen beschrieben, die normalerweise in bestimmten typischen Fällen entstehen würden.
+> **Wichtig**: Die hier beschriebene Abfolge der Ereignisse ist nicht garantiert. SignalR unternimmt jeden Versuch, Verbindungslebensdauerereignisse in vorhersehbarer Weise gemäß diesem Schema zu erhöhen, aber es gibt viele Variationen von Netzwerkereignissen und viele Möglichkeiten, wie zugrunde liegende Kommunikationsframeworks wie Transport-APIs sie behandeln. Beispielsweise wird `Reconnected` das Ereignis möglicherweise nicht ausgelöst, wenn `OnConnected` der Client erneut eine Verbindung herstellt, oder der Handler auf dem Server wird ausgeführt, wenn der Versuch, eine Verbindung herzustellen, fehlschlägt. In diesem Thema werden nur die Effekte beschrieben, die normalerweise durch bestimmte typische Umstände erzeugt werden.
 
 <a id="clientdisconnect"></a>
 
-### <a name="client-disconnection-scenarios"></a>Szenarios zur Trennung von Clients
+### <a name="client-disconnection-scenarios"></a>Client-Trennungsszenarien
 
-In einem Browser Client wird der signalr-Client Code, der eine signalr-Verbindung verwaltet, im JavaScript-Kontext einer Webseite ausgeführt. Aus diesem Grund muss die signalr-Verbindung beendet werden, wenn Sie von einer Seite zu einer anderen navigieren, und das ist der Grund dafür, dass Sie mehrere Verbindungen mit mehreren Verbindungs-IDs haben, wenn Sie eine Verbindung über mehrere Browserfenster oder-Registerkarten herstellen. Wenn der Benutzer ein Browserfenster oder eine Registerkarte schließt oder zu einer neuen Seite navigiert oder die Seite aktualisiert, wird die signalr-Verbindung sofort beendet, da der signalr-Client Code dieses Browser Ereignis für Sie behandelt und die `Stop` Methode aufruft. In diesen Szenarien oder auf einer beliebigen Client Plattform, wenn Ihre Anwendung die `Stop`-Methode aufruft, wird der `OnDisconnected`-Ereignishandler sofort auf dem Server ausgeführt, und der Client löst das `Closed`-Ereignis aus (das Ereignis wird in JavaScript als `disconnected` bezeichnet).
+In einem Browserclient wird der SignalR-Clientcode, der eine SignalR-Verbindung verwaltet, im JavaScript-Kontext einer Webseite ausgeführt. Aus diesem Grund muss die SignalR-Verbindung beendet werden, wenn Sie von einer Seite zur anderen navigieren, und deshalb haben Sie mehrere Verbindungen mit mehreren Verbindungs-IDs, wenn Sie eine Verbindung über mehrere Browserfenster oder -registerkarten herstellen. Wenn der Benutzer ein Browserfenster oder eine Registerkarte schließt oder zu einer neuen Seite navigiert oder die Seite aktualisiert, wird die `Stop` SignalR-Verbindung sofort beendet, da SignalR-Clientcode dieses Browserereignis für Sie verarbeitet und die Methode aufruft. In diesen Szenarien oder auf einer beliebigen `Stop` Clientplattform, `OnDisconnected` wenn Ihre Anwendung die Methode aufruft, wird der Ereignishandler sofort auf dem Server ausgeführt, und der Client löst das `Closed` Ereignis aus (das Ereignis wird in JavaScript benannt). `disconnected`
 
-Wenn eine Client Anwendung oder der Computer, auf dem Sie ausgeführt wird, abstürzen oder in den Standbymodus wechselt (z. b. wenn der Benutzer den Laptop schließt), wird der Server nicht informiert, was passiert ist. Wenn der Server weiß, kann der Verlust des Clients auf eine Verbindungsunterbrechung zurückzuführen sein, und der Client versucht möglicherweise, die Verbindung wiederherzustellen. Daher wartet der Server in diesen Szenarien darauf, dem Client die Möglichkeit zu geben, erneut eine Verbindung herzustellen, und `OnDisconnected` wird erst ausgeführt, wenn das Timeout für die Trennung abläuft (standardmäßig ca. 30 Sekunden). Dieses Szenario wird im folgenden Diagramm veranschaulicht.
+Wenn eine Clientanwendung oder der Computer, auf dem sie ausgeführt wird, abstürzt oder in den Ruhezustand wechselt (z. B. wenn der Benutzer den Laptop schließt), wird der Server nicht über den Vorfall informiert. Soweit der Server weiß, kann der Verlust des Clients auf verbindungsunterbrechungen zurückzuführen sein, und der Client versucht möglicherweise, die Verbindung wiederherzustellen. Daher wartet der Server in diesen Szenarien darauf, dem Client `OnDisconnected` eine erneute Verbindung zu geben, und wird erst nach Ablauf des Zeittimeouts für die Trennung ausgeführt (standardmäßig ca. 30 Sekunden). Das folgende Diagramm veranschaulicht dieses Szenario.
 
-![Client Computerfehler](handling-connection-lifetime-events/_static/image4.png)
+![Clientcomputerfehler](handling-connection-lifetime-events/_static/image4.png)
 
 <a id="serverdisconnect"></a>
 
-### <a name="server-disconnection-scenarios"></a>Szenarios zur Server Trennung
+### <a name="server-disconnection-scenarios"></a>Servertrennungsszenarien
 
-Wenn ein Server offline geschaltet wird, wird er neu gestartet, schlägt fehl, die APP-Domäne wird wieder verwendet usw.--das Ergebnis könnte einer verlorenen Verbindung ähneln, oder die Transport-API und signalr wissen, dass der Server nicht mehr verfügbar ist, und signalr versucht möglicherweise, die Verbindung wiederherzustellen, ohne das `ConnectionSlow` Ereignis zu erhöhen. Wenn der Client in den Modus zum erneuten Verbinden wechselt und der Server wieder hergestellt oder neu gestartet wird oder ein neuer Server vor Ablauf des Trennungs Timeouts online geschaltet wird, stellt der Client erneut eine Verbindung mit dem wiederhergestellten oder neuen Server her. In diesem Fall wird die signalr-Verbindung auf dem Client fortgesetzt, und das `Reconnected`-Ereignis wird ausgelöst. Auf dem ersten Server wird `OnDisconnected` nie ausgeführt, und auf dem neuen Server wird `OnReconnected` ausgeführt, obwohl `OnConnected` zuvor nie für diesen Client auf diesem Server ausgeführt wurde. (Der Effekt ist derselbe, wenn der Client nach einem Neustart oder der Wiederverwendung der APP-Domäne erneut eine Verbindung mit dem gleichen Server herstellt, denn wenn der Server neu gestartet wird, hat er keinen Speicher für vorherige Verbindungs Aktivitäten.) Im folgenden Diagramm wird davon ausgegangen, dass die Transport-API die verlorene Verbindung sofort erkennt, sodass das `ConnectionSlow`-Ereignis nicht ausgelöst wird.
+Wenn ein Server offline geht -- er startet neu, schlägt fehl, die App-Domäne recycelt sich usw. -- kann das Ergebnis einer verlorenen Verbindung ähneln, oder die `ConnectionSlow` Transport-API und SignalR wissen möglicherweise sofort, dass der Server verschwunden ist, und SignalR versucht möglicherweise, die Verbindung wieder herzustellen, ohne das Ereignis zu erhöhen. Wenn der Client in den Wiederherstellungsmodus wechselt und der Server wiederhergestellt oder neu gestartet wird oder ein neuer Server vor Ablauf des Trennungstimeouts online geschaltet wird, stellt der Client erneut eine Verbindung mit dem wiederhergestellten oder neuen Server her. In diesem Fall wird die SignalR-Verbindung `Reconnected` auf dem Client fortgesetzt, und das Ereignis wird ausgelöst. Auf dem ersten `OnDisconnected` Server wird nie ausgeführt, und `OnReconnected` auf dem `OnConnected` neuen Server wird ausgeführt, obwohl noch nie für diesen Client auf diesem Server ausgeführt wurde. (Der Effekt ist derselbe, wenn der Client nach einem Neustart oder der Wiederverwendung der App-Domäne erneut eine Verbindung mit demselben Server herstellt, da er beim Neustart des Servers über keinen Speicher für frühere Verbindungsaktivitäten verfügt.) Das folgende Diagramm geht davon aus, dass die Transport-API sofort auf die verlorene Verbindung aufmerksam wird, sodass das `ConnectionSlow` Ereignis nicht ausgelöst wird.
 
-![Server Fehler und erneute Verbindung](handling-connection-lifetime-events/_static/image5.png)
+![Serverausfall und wiederherstellende Verbindung](handling-connection-lifetime-events/_static/image5.png)
 
-Wenn ein Server innerhalb des Trennungs Timeouts nicht verfügbar wird, wird die signalr-Verbindung beendet. In diesem Szenario wird das `Closed` Ereignis (`disconnected` in JavaScript-Clients) auf dem Client ausgelöst, `OnDisconnected` jedoch nie auf dem Server aufgerufen wird. Im folgenden Diagramm wird davon ausgegangen, dass die Transport-API die verlorene Verbindung nicht erkennt, sodass Sie von der signalr KeepAlive-Funktionalität erkannt wird und das `ConnectionSlow`-Ereignis ausgelöst wird.
+Wenn ein Server innerhalb des Trennungstimeoutzeitraums nicht verfügbar wird, wird die SignalR-Verbindung beendet. In diesem Szenario `Closed` wird`disconnected` das Ereignis (in JavaScript-Clients) auf dem Client ausgelöst, aber `OnDisconnected` nie auf dem Server aufgerufen. Das folgende Diagramm geht davon aus, dass die Transport-API nicht auf die verlorene `ConnectionSlow` Verbindung aufmerksam wird, daher wird sie von der SignalR-Keepalive-Funktionalität erkannt, und das Ereignis wird ausgelöst.
 
-![Server Fehler und-Timeout](handling-connection-lifetime-events/_static/image6.png)
+![Serverausfall und Timeout](handling-connection-lifetime-events/_static/image6.png)
 
 <a id="timeoutkeepalive"></a>
 
-## <a name="timeout-and-keepalive-settings"></a>Timeout-und KeepAlive-Einstellungen
+## <a name="timeout-and-keepalive-settings"></a>Timeout- und Keepalive-Einstellungen
 
-Die Standardwerte für `ConnectionTimeout`, `DisconnectTimeout`und `KeepAlive` sind für die meisten Szenarien geeignet, können aber geändert werden, wenn Ihre Umgebung besondere Anforderungen hat. Wenn in Ihrer Netzwerkumgebung beispielsweise Verbindungen geschlossen werden, die 5 Sekunden lang im Leerlauf sind, müssen Sie den KeepAlive-Wert möglicherweise verringern.
+Die `ConnectionTimeout`Standardwerte `DisconnectTimeout` `KeepAlive` , und Werte sind für die meisten Szenarien geeignet, können jedoch geändert werden, wenn Ihre Umgebung besondere Anforderungen hat. Wenn Ihre Netzwerkumgebung z. B. Verbindungen schließt, die sich 5 Sekunden lang im Leerlauf befinden, müssen Sie möglicherweise den Keepalive-Wert verringern.
 
 <a id="connectiontimeout"></a>
 
 ### <a name="connectiontimeout"></a>ConnectionTimeout
 
-Diese Einstellung gibt an, wie lange eine Transport Verbindung geöffnet bleiben und auf eine Antwort gewartet werden soll, bevor Sie geschlossen und eine neue Verbindung geöffnet wird. Der Standardwert ist 110 Sekunden.
+Diese Einstellung stellt die Zeit dar, die eine Transportverbindung geöffnet lässt und auf eine Antwort wartet, bevor sie geschlossen und eine neue Verbindung geöffnet wird. Der Standardwert ist 110 Sekunden.
 
-Diese Einstellung gilt nur, wenn die KeepAlive-Funktionalität deaktiviert ist. Dies gilt normalerweise nur für den langen Abruf Transport. Das folgende Diagramm veranschaulicht die Auswirkung dieser Einstellung auf eine lange Abruf Transport Verbindung.
+Diese Einstellung gilt nur, wenn die Keepalive-Funktionalität deaktiviert ist, was normalerweise nur für den langen Abfragetransport gilt. Das folgende Diagramm veranschaulicht die Auswirkungen dieser Einstellung auf eine lange Abruftransportverbindung.
 
-![Lange Abruf Transport Verbindung](handling-connection-lifetime-events/_static/image7.png)
+![Lange Polling-Transportverbindung](handling-connection-lifetime-events/_static/image7.png)
 
 <a id="disconnecttimeout"></a>
 
-### <a name="disconnecttimeout"></a>"Disconnecttimeout"
+### <a name="disconnecttimeout"></a>DisconnectTimeout
 
-Diese Einstellung gibt die Zeitspanne an, die gewartet wird, nachdem eine Transport Verbindung unterbrochen wurde, bevor das `Disconnected` Ereignis erhöht wird. Der Standardwert ist 30 Sekunden. Wenn Sie `DisconnectTimeout`festlegen, wird `KeepAlive` automatisch auf 1/3 des `DisconnectTimeout` Werts festgelegt.
+Diese Einstellung stellt die Zeit dar, die gewartet wird, nachdem eine Transportverbindung vor dem Aufhesetzen des `Disconnected` Ereignisses unterbrochen wurde. Der Standardwert beträgt 30 Sekunden. Wenn Sie `DisconnectTimeout` `KeepAlive` setzen, wird automatisch auf `DisconnectTimeout` 1/3 des Wertes gesetzt.
 
 <a id="keepalive"></a>
 
 ### <a name="keepalive"></a>KeepAlive
 
-Diese Einstellung gibt die Zeitspanne an, die gewartet werden soll, bevor ein KeepAlive-Paket über eine Verbindung im Leerlauf gesendet wird. Der Standardwert beträgt 10 Sekunden. Dieser Wert darf nicht größer als 1/3 des `DisconnectTimeout` Werts sein.
+Diese Einstellung stellt die Wartezeit dar, bevor ein Keepalive-Paket über eine Verbindung im Leerlauf gesendet wird. Der Standardwert beträgt 10 Sekunden. Dieser Wert darf nicht mehr als `DisconnectTimeout` 1/3 des Wertes betragen.
 
-Wenn Sie sowohl `DisconnectTimeout` als auch `KeepAlive`festlegen möchten, legen Sie `KeepAlive` nach `DisconnectTimeout`fest. Andernfalls wird die `KeepAlive` Einstellung überschrieben, wenn `DisconnectTimeout` automatisch `KeepAlive` auf 1/3 des Timeout Werts festlegt.
+Wenn `DisconnectTimeout` Sie sowohl und `KeepAlive`, `KeepAlive` `DisconnectTimeout`sondern nach festlegen möchten. Andernfalls `KeepAlive` wird Ihre Einstellung `DisconnectTimeout` überschrieben, wenn sie automatisch auf 1/3 des Timeoutwerts festgelegt `KeepAlive` wird.
 
-Wenn Sie die KeepAlive-Funktion deaktivieren möchten, legen Sie `KeepAlive` auf NULL fest. Die KeepAlive-Funktion wird für den langen Abruf Transport automatisch deaktiviert.
+Wenn Sie die Keepalive-Funktionalität `KeepAlive` deaktivieren möchten, setzen Sie auf null. Die Keepalive-Funktionalität wird für den langen Abfragetransport automatisch deaktiviert.
 
 <a id="changetimeout"></a>
 
-### <a name="how-to-change-timeout-and-keepalive-settings"></a>Ändern der Timeout-und KeepAlive-Einstellungen
+### <a name="how-to-change-timeout-and-keepalive-settings"></a>So ändern Sie Timeout- und Keepalive-Einstellungen
 
-Um die Standardwerte für diese Einstellungen zu ändern, legen Sie diese in `Application_Start` in der Datei *Global. asax* fest, wie im folgenden Beispiel gezeigt. Die Werte, die im Beispielcode angezeigt werden, entsprechen den Standardwerten.
+Um die Standardwerte für diese Einstellungen `Application_Start` zu ändern, legen Sie sie in Ihrer *Datei Global.asax* fest, wie im folgenden Beispiel gezeigt. Die im Beispielcode angezeigten Werte entsprechen den Standardwerten.
 
 [!code-csharp[Main](handling-connection-lifetime-events/samples/sample1.cs)]
 
 <a id="notifydisconnect"></a>
 
-## <a name="how-to-notify-the-user-about-disconnections"></a>Benachrichtigen des Benutzers über Trennungen
+## <a name="how-to-notify-the-user-about-disconnections"></a>So benachrichtigen Sie den Benutzer über Trennungen
 
-In einigen Anwendungen können Sie dem Benutzer eine Meldung anzeigen, wenn Konnektivitätsprobleme vorliegen. Sie haben mehrere Möglichkeiten, wie und wann dies zu tun ist. Die folgenden Codebeispiele gelten für einen JavaScript-Client, der den generierten Proxy verwendet.
+In einigen Anwendungen möchten Sie dem Benutzer möglicherweise eine Meldung anzeigen, wenn Verbindungsprobleme auftreten. Sie haben mehrere Möglichkeiten, wie und wann Sie dies tun können. Die folgenden Codebeispiele beziehen sich auf einen JavaScript-Client, der den generierten Proxy verwendet.
 
-- Behandeln Sie das `connectionSlow` Ereignis, um eine Meldung anzuzeigen, sobald signalr Verbindungsprobleme erkennt, bevor es in den erneuten Verbindungs Modus wechselt.
+- Behandeln `connectionSlow` Sie das Ereignis, um eine Meldung anzuzeigen, sobald SignalR Verbindungsprobleme kennt, bevor es in den Wiederherstellungsmodus wechselt.
 
     [!code-javascript[Main](handling-connection-lifetime-events/samples/sample2.js)]
-- Behandeln Sie das `reconnecting`-Ereignis, um eine Meldung anzuzeigen, wenn signalr eine Trennung der Verbindung erkennt und den Modus für die erneute Verbindung wiederherstellt.
+- Behandeln `reconnecting` Sie das Ereignis, um eine Meldung anzuzeigen, wenn SignalR von einer Trennung kenntnis und in den Wiederverbindungsmodus wechselt.
 
     [!code-javascript[Main](handling-connection-lifetime-events/samples/sample3.js)]
-- Behandeln Sie das `disconnected`-Ereignis, um eine Meldung anzuzeigen, wenn beim Versuch, die Verbindung wiederherzustellen, ein Timeout aufgetreten ist In diesem Szenario ist die einzige Möglichkeit, erneut eine Verbindung mit dem Server herzustellen, die signalr-Verbindung neu zu starten, indem Sie die `Start`-Methode aufrufen, mit der eine neue Verbindungs-ID erstellt wird. Im folgenden Codebeispiel wird mithilfe eines Flags sichergestellt, dass die Benachrichtigung nur nach einem Timeout der erneuten Verbindungs Herstellung ausgegeben wird, nicht nach einem normalen Ende der signalr-Verbindung, die durch den Aufruf der `Stop`-Methode verursacht wurde.
+- Behandeln `disconnected` Sie das Ereignis, um eine Meldung anzuzeigen, wenn ein Erneutverbindungsversuch ein Timeout aufgetreten ist. In diesem Szenario besteht die einzige Möglichkeit, eine Verbindung mit dem Server wiederherzustellen, darin, die SignalR-Verbindung neu zu starten, indem Sie die `Start` Methode aufrufen, wodurch eine neue Verbindungs-ID erstellt wird. Im folgenden Codebeispiel wird ein Flag verwendet, um sicherzustellen, dass Sie die Benachrichtigung erst nach einem Timeout `Stop` für eine erneute Verbindung ausstellen, nicht nach einem normalen Ende der SignalR-Verbindung, das durch den Aufruf der Methode verursacht wurde.
 
     [!code-javascript[Main](handling-connection-lifetime-events/samples/sample4.js)]
 
 <a id="continuousreconnect"></a>
 
-## <a name="how-to-continuously-reconnect"></a>Fortlaufende Wiederherstellung der Verbindung
+## <a name="how-to-continuously-reconnect"></a>Wie man sich kontinuierlich wieder verbindet
 
-In einigen Anwendungen möchten Sie möglicherweise automatisch eine Verbindung wiederherstellen, nachdem Sie verloren gegangen ist und der Versuch, eine Verbindung herzustellen, einen Timeout verursacht hat. Zu diesem Zweck können Sie die `Start`-Methode von Ihrem `Closed`-Ereignishandler (`disconnected`-Ereignishandler auf JavaScript-Clients) abrufen. Möglicherweise möchten Sie eine gewisse Zeit warten, bevor Sie `Start` aufrufen, um dies zu vermeiden, wenn der Server oder die physische Verbindung nicht verfügbar ist. Das folgende Codebeispiel gilt für einen JavaScript-Client, der den generierten Proxy verwendet.
+In einigen Anwendungen möchten Sie möglicherweise automatisch eine Verbindung wiederherstellen, nachdem sie verloren gegangen ist und der Versuch, die Verbindung wiederherzustellen, ein Timeout aufgetreten ist. Dazu können Sie die `Start` Methode von `Closed` Ihrem`disconnected` Ereignishandler aufrufen (Ereignishandler auf JavaScript-Clients). Möglicherweise möchten Sie vor dem Anruf `Start` eine gewisse Zeit warten, um zu vermeiden, dass dies zu häufig geschieht, wenn der Server oder die physische Verbindung nicht verfügbar sind. Das folgende Codebeispiel ist für einen JavaScript-Client mit dem generierten Proxy.
 
 [!code-javascript[Main](handling-connection-lifetime-events/samples/sample5.js)]
 
-Ein potenzielles Problem, das bei mobilen Clients zu beachten ist, besteht darin, dass bei einem kontinuierlichen erneuten Verbindungsversuch, wenn der Server oder die physische Verbindung nicht verfügbar ist, eine unnötige Akku Ableitung verursachen
+Ein potenzielles Problem bei mobilen Clients besteht darin, dass kontinuierliche Wiederverbindungsversuche, wenn der Server oder die physische Verbindung nicht verfügbar ist, zu einem unnötigen Batterieverbrauch führen können.
 
 <a id="disconnectclientfromserver"></a>
 
-## <a name="how-to-disconnect-a-client-in-server-code"></a>Trennen einer Verbindung zwischen einem Client und Servercode
+## <a name="how-to-disconnect-a-client-in-server-code"></a>Trennen eines Clients im Servercode
 
-Signalr Version 2 verfügt über keine integrierte Server-API zum Trennen der Verbindung von Clients. Es gibt [Pläne, diese Funktionalität in Zukunft hinzuzufügen](https://github.com/SignalR/SignalR/issues/2101). In der aktuellen signalr-Version ist die einfachste Möglichkeit, einen Client vom Server zu trennen, eine Disconnect-Methode auf dem Client zu implementieren und diese Methode vom Server aus aufzurufen. Das folgende Codebeispiel zeigt eine Disconnect-Methode für einen JavaScript-Client unter Verwendung des generierten Proxys.
+SignalR Version 2 verfügt nicht über eine integrierte Server-API zum Trennen von Clients. Es gibt [Pläne, diese Funktionalität in Zukunft hinzuzufügen.](https://github.com/SignalR/SignalR/issues/2101) In der aktuellen SignalR-Version besteht die einfachste Möglichkeit, einen Client vom Server zu trennen, darin, eine Trennmethode auf dem Client zu implementieren und diese Methode vom Server aufzurufen. Das folgende Codebeispiel zeigt eine Trennmethode für einen JavaScript-Client, der den generierten Proxy verwendet.
 
 [!code-javascript[Main](handling-connection-lifetime-events/samples/sample6.js)]
 
 > [!WARNING]
-> Sicherheit: weder diese Methode zum Trennen der Verbindung von Clients noch die vorgeschlagene integrierte API adressiert das Szenario von gehackten Clients, die bösartigen Code ausführen, da die Clients erneut eine Verbindung herstellen können, oder der Hacker Code die `stopClient` Methode entfernen oder ändern kann. Der geeignete Ort zum Implementieren des Zustands behafteten Denial-of-Service (DOS)-Schutzes ist nicht im Framework oder auf der Serverebene, sondern in der Front-End-Infrastruktur.
+> Sicherheit - Weder diese Methode zum Trennen von Clients noch die vorgeschlagene integrierte API werden das Szenario von gehackten Clients `stopClient` behandeln, die bösartigen Code ausführen, da die Clients eine erneute Verbindung herstellen könnten oder der gehackte Code die Methode entfernen oder ändern könnte, was sie tut. Der geeignete Ort zum Implementieren des doS-Schutzes (Stateful Denial-of-Service) liegt nicht im Framework oder auf der Serverebene, sondern in der Front-End-Infrastruktur.
 
 <a id="detectingreasonfordisconnection"></a>
-## <a name="detecting-the-reason-for-a-disconnection"></a>Erkennen der Ursache für eine Verbindungs Trennung
+## <a name="detecting-the-reason-for-a-disconnection"></a>Erkennen des Grunds für eine Trennung
 
-Signalr 2,1 fügt dem Server eine Überladung hinzu `OnDisconnect` Ereignis, das angibt, ob der Client absichtlich getrennt wurde, anstatt ein Timeout festzustellen. Der `StopCalled`-Parameter ist true, wenn die Verbindung vom Client explizit geschlossen wurde. Wenn der Client in JavaScript aufgrund eines Server Fehlers die Verbindung getrennt hat, werden die Fehlerinformationen als `$.connection.hub.lastError`an den Client übermittelt.
+SignalR 2.1 fügt dem Serverereignis `OnDisconnect` eine Überladung hinzu, die angibt, ob der Client absichtlich die Verbindung getrennt hat, anstatt ein Timeout zu setzen. Der `StopCalled` Parameter ist true, wenn der Client die Verbindung explizit geschlossen hat. Wenn in JavaScript ein Serverfehler dazu geführt hat, dass der Client `$.connection.hub.lastError`die Verbindung trennt, werden die Fehlerinformationen als an den Client übergeben.
 
-**C#Servercode: `stopCalled`-Parameter**
+**Servercode: `stopCalled` Parameter**
 
 [!code-csharp[Main](handling-connection-lifetime-events/samples/sample7.cs?highlight=1,3)]
 
-**JavaScript-Client Code: Zugriff auf `lastError` im `disconnect`-Ereignis.**
+**JavaScript-Clientcode: `lastError` Zugriff `disconnect` im Ereignis.**
 
 [!code-javascript[Main](handling-connection-lifetime-events/samples/sample8.js?highlight=2-3)]

@@ -1,26 +1,26 @@
 ---
 uid: webhooks/diagnostics/logging
-title: ASP.net webhooks-Protokollierung | Microsoft-Dokumentation
+title: ASP.NET WebHooks-Protokollierung | Microsoft Docs
 author: rick-anderson
-description: 'Gewusst wie: Protokollieren in ASP.net webhooks'
+description: So protokollieren Sie ASP.NET WebHooks.
 ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: f71bc442-5f80-481b-a32c-a0ec18dee9d6
-ms.openlocfilehash: a05b32c4a8f9577bcf6170bd19a9e440b1aeb75b
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 350732acbd3a73bddb8f8b20dcd50c225d89be82
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78440907"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675340"
 ---
-# <a name="aspnet-webhooks-logging"></a>ASP.net webhooks-Protokollierung
+# <a name="aspnet-webhooks-logging"></a>ASP.NET WebHooks-Protokollierung
 
-Microsoft ASP.net webhooks verwendet die Protokollierung, um Probleme und Probleme zu melden. Standardmäßig werden Protokolle mithilfe von [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) geschrieben, wo Sie mithilfe von Ablaufverfolgungslistenern [wie jeder](https://msdn.microsoft.com/library/system.diagnostics.tracelistener.aspx) andere Protokolldaten Strom geändert werden können.
+Microsoft ASP.NET WebHooks verwendet Protokollierung als Möglichkeit, Probleme und Probleme zu melden. Standardmäßig werden Protokolle mit [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) geschrieben, wo sie wie jeder andere Protokollstream mit [Trace Listenern](https://msdn.microsoft.com/library/system.diagnostics.tracelistener.aspx) verarbeitet werden können.
 
-Wenn Sie Ihre Webanwendung als Azure-Web-App bereitstellen, werden die Protokolle automatisch übernommen und können mit jeder anderen [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) -Protokollierung verwaltet werden. Weitere Informationen finden Sie [unter Aktivieren der Diagnoseprotokollierung für Web-Apps in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/)
+Bei der Bereitstellung Ihrer Webanwendung als Azure Web App werden die Protokolle automatisch erfasst und können zusammen mit jeder anderen [System.Diagnostics.Trace-Protokollierung](https://msdn.microsoft.com/library/system.diagnostics.trace) verwaltet werden. Weitere Informationen finden Sie unter Aktivieren der [Diagnoseprotokollierung für Web-Apps in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/)
 
-Außerdem können Protokolle direkt aus Visual Studio abgerufen werden, wie unter Problembehandlung für [eine Web-App in Azure App Service mithilfe von Visual Studio](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs)beschrieben.
+Darüber hinaus können Protokolle direkt aus Visual Studio abgerufen werden, wie unter [Fehlerbehebung einer Web-App in Azure App Service mit Visual Studio](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs)beschrieben.
 
 ## <a name="redirecting-logs"></a>Umleiten von Protokollen
 
-Anstatt Protokolle in [System. Diagnostics. Trace](https://msdn.microsoft.com/library/system.diagnostics.trace)zu schreiben, ist es möglich, eine Alternative Protokollierungs Implementierung bereitzustellen, die sich direkt bei einem Protokoll-Manager wie [log4net](http://logging.apache.org/log4net/) und [nlog](http://nlog-project.org/)anmelden kann. Stellen Sie einfach eine Implementierung von [ILogger](https://github.com/aspnet/AspNetWebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Common/Diagnostics/ILogger.cs) bereit, und registrieren Sie Sie mit einem Abhängigkeits Injection-Modul Ihrer Wahl, und es wird von Microsoft ASP.net webhooks übernommen. Weitere Informationen finden Sie [unter Abhängigkeitsinjektion in ASP.net-Web-API 2](https://www.asp.net/web-api/overview/advanced/dependency-injection) .
+Anstatt Protokolle in [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace)zu schreiben, ist es möglich, eine alternative Protokollierungsimplementierung bereitzustellen, die sich direkt an einen Protokollmanager wie [Log4Net](http://logging.apache.org/log4net/) und [NLog](http://nlog-project.org/)protokollieren kann. Geben Sie einfach eine Implementierung von [ILogger](https://github.com/aspnet/AspNetWebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Common/Diagnostics/ILogger.cs) und registrieren Sie es mit einer Abhängigkeit Injektion Saum Ihrer Wahl und es wird von Microsoft ASP.NET WebHooks abgeholt werden. Weitere Informationen finden Sie [unter Dependency Injection in ASP.NET Web API 2.](https://www.asp.net/web-api/overview/advanced/dependency-injection)

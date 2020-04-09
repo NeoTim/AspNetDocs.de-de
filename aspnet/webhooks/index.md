@@ -1,39 +1,39 @@
 ---
 uid: webhooks/index
-title: Übersicht über ASP.net webhooks | Microsoft-Dokumentation
+title: ASP.NET WebHooks Übersicht | Microsoft Docs
 author: rick-anderson
-description: Eine Einführung in ASP.net webhooks.
+description: Eine Einführung in ASP.NET WebHooks.
 ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: 5e2843f0-f499-448f-a712-33d4e9858321
-ms.openlocfilehash: 1e21c92e950893c0ff87c63f03f4710a158441fd
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: aa5fa190386ec803a6801de2d815c948677fe1f5
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78517533"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675440"
 ---
-# <a name="aspnet-webhooks-overview"></a>Übersicht über ASP.net webhooks
+# <a name="aspnet-webhooks-overview"></a>ASP.NET WebHooks im Überblick
 
-Webhooks ist ein einfaches http-Muster, das ein einfaches Pub/Sub-Modell zum Verbinden von Web-APIs und Saas-Diensten bereitstellt. Wenn ein Ereignis in einem Dienst auftritt, wird eine Benachrichtigung in Form einer HTTP POST-Anforderung an registrierte Abonnenten gesendet. Die Post-Anforderung enthält Informationen zum Ereignis, das es dem Empfänger ermöglicht, entsprechend zu agieren.
+WebHooks ist ein einfaches HTTP-Muster, das ein einfaches Pub-/Untermodell zum Verdrahten von Web-APIs und SaaS-Diensten bereitstellt. Wenn ein Ereignis in einem Dienst auftritt, wird eine Benachrichtigung in Form einer HTTP-POST-Anforderung an registrierte Abonnenten gesendet. Die POST-Anfrage enthält Informationen über das Ereignis, die es dem Empfänger ermöglichen, entsprechend zu handeln.
 
-Aus Gründen der Einfachheit sind webhooks bereits durch eine große Anzahl von Diensten verfügbar, wie z. b. [Dropbox](http://dropbox.com/), [GitHub](https://www.github.com/), [Bitbucket](https://bitbucket.org/), [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [trello](http://www.trello.com/)und viele mehr. Ein webhook kann z. b. angeben, dass eine Datei in [Dropbox](http://dropbox.com/)geändert wurde oder für eine Codeänderung in GitHub ein Commit ausgeführt wurde oder eine Zahlung in [PayPal](http://www.paypal.com/)initiiert wurde oder eine Karte in [trello](http://www.trello.com/)erstellt wurde. Die Möglichkeiten sind unendlich.
+Aufgrund ihrer Einfachheit, WebHooks sind bereits von einer großen Anzahl von Diensten wie [Dropbox,](http://dropbox.com/) [GitHub](https://www.github.com/), [Bitbucket,](https://bitbucket.org/) [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [Trello](http://www.trello.com/)und viele mehr ausgesetzt. Ein WebHook kann z. B. angeben, dass sich eine Datei in [Dropbox](http://dropbox.com/)geändert hat oder eine Codeänderung in GitHub festgeschrieben wurde oder eine Zahlung in [PayPal](http://www.paypal.com/)initiiert wurde oder eine Karte in [Trello](http://www.trello.com/)erstellt wurde. Die Möglichkeiten sind endlos!
 
-Microsoft ASP.net webhooks erleichtert das Senden und empfangen von webhooks als Teil Ihrer ASP.NET-Anwendung:
+Microsoft ASP.NET WebHooks erleichtert das Senden und Empfangen von WebHooks als Teil Ihrer ASP.NET Anwendung:
 
-* Auf der Empfangsseite wird ein gängiges Modell zum empfangen und Verarbeiten von webhooks von einer beliebigen Anzahl von webhostinganbietern bereitstellt. Es ist standardmäßig mit Unterstützung für [Dropbox](http://dropbox.com/), [GitHub](https://www.github.com/), [Bitbucket](https://bitbucket.org/), [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Pusher](http://www.pusher.com), [Salesforce](http://www.salesforce.com), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [trello](http://www.trello.com/),[WordPress](http://www.wordpress.com) und [Zendesk](https://www.zendesk.com/) erhältlich, aber es ist einfach, Unterstützung für weitere Funktionen hinzuzufügen.
+* Auf der empfangenden Seite bietet es ein gemeinsames Modell für den Empfang und die Verarbeitung von WebHooks von einer beliebigen Anzahl von WebHook-Anbietern. Es kommt aus dem Kasten mit Unterstützung für [Dropbox](http://dropbox.com/), [GitHub](https://www.github.com/), [Bitbucket](https://bitbucket.org/), [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Pusher](http://www.pusher.com), [Salesforce](http://www.salesforce.com), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [Trello](http://www.trello.com/),[WordPress](http://www.wordpress.com) und [Zendesk,](https://www.zendesk.com/) aber es ist einfach, Unterstützung für mehr hinzuzufügen.
 
-* Auf der sendenden Seite bietet Sie Unterstützung für das Verwalten und Speichern von Abonnements sowie das Senden von Ereignis Benachrichtigungen an die richtige Gruppe von Abonnenten. Dies ermöglicht es Ihnen, einen eigenen Satz von Ereignissen zu definieren, den Abonnenten abonnieren können, und diese Benachrichtigen, wenn ein Problem auftritt.
+* Auf der sendenden Seite bietet es Unterstützung für die Verwaltung und Speicherung von Abonnements sowie für das Senden von Ereignisbenachrichtigungen an die richtige Gruppe von Abonnenten. Auf diese Weise können Sie Ihre eigenen Ereignisse definieren, die Abonnenten abonnieren können, und sie benachrichtigen, wenn etwas passiert.
 
-Die beiden Teile können abhängig von Ihrem Szenario unabhängig voneinander verwendet werden. Wenn Sie nur webhooks von anderen Diensten empfangen müssen, können Sie nur den Empfänger Teil verwenden. Wenn Sie für andere Benutzer nur webhooks verfügbar machen möchten, können Sie dies tun.
+Die beiden Teile können je nach Szenario zusammen oder getrennt verwendet werden. Wenn Sie nur WebHooks von anderen Diensten empfangen müssen, können Sie nur das Empfängerteil verwenden. Wenn Sie WebHooks nur für andere verfügbar machen möchten, können Sie genau das tun.
 
-Der Code zielt auf ASP.net-Web-API 2 und ASP.NET MVC 5 ab und steht als [OSS auf GitHub](https://github.com/aspnet/WebHooks)zur Verfügung.
+Der Code zielt auf ASP.NET Web-API 2 und ASP.NET MVC 5 ab und ist als [OSS auf GitHub](https://github.com/aspnet/WebHooks)verfügbar.
 
-## <a name="webhooks-overview"></a>Übersicht über webhooks
+## <a name="webhooks-overview"></a>WebHooks Übersicht
 
-Webhooks ist ein Muster, das bedeutet, dass es sich auf die Verwendung von Service to Service, aber die grundlegende Idee unterscheidet. Sie können sich webhooks als einfaches Pub/Sub-Modell vorstellen, in dem ein Benutzer Ereignisse abonnieren kann, die an anderer Stelle ausgeführt werden. Die Ereignis Benachrichtigungen werden als HTTP POST-Anforderungen weitergegeben, die Informationen über das Ereignis selbst enthalten.
+WebHooks ist ein Muster, das bedeutet, dass es variiert, wie es von Dienst zu Dienst verwendet wird, aber die Grundidee ist die gleiche. Sie können sich WebHooks als einfaches Pub-/Untermodell vorstellen, bei dem ein Benutzer Ereignisse abonnieren kann, die an anderer Stelle stattfinden. Die Ereignisbenachrichtigungen werden als HTTP-POST-Anforderungen weitergegeben, die Informationen über das Ereignis selbst enthalten.
 
-In der Regel enthält die HTTP POST-Anforderung ein JSON-Objekt oder HTML-Formulardaten, die vom Absender des webhooks bestimmt werden, einschließlich Informationen zu dem Ereignis, das den webhook auslöst. Beispielsweise sieht ein webhook-Post-Anforderungs Text von [GitHub](https://www.github.com/) wie folgt aus, weil ein neues Problem in einem bestimmten Repository geöffnet wird:
+In der Regel enthält die HTTP-POST-Anforderung ein JSON-Objekt oder HTML-Formulardaten, die vom WebHook-Absender bestimmt werden, einschließlich Informationen über das Ereignis, das den WebHook auslösen wird. Ein WebHook POST-Anforderungstext von [GitHub](https://www.github.com/) sieht z. B. aufgrund eines neuen Problems, das in einem bestimmten Repository geöffnet wird, wie folgt aus:
 
 ```json
 {
@@ -61,34 +61,34 @@ In der Regel enthält die HTTP POST-Anforderung ein JSON-Objekt oder HTML-Formul
 }
 ```
 
-Um sicherzustellen, dass der webhook tatsächlich vom vorgesehenen Absender ist, wird die Post-Anforderung auf irgendeine Weise gesichert und dann vom Empfänger überprüft. [GitHub-webhooks](https://developer.github.com/webhooks/) enthalten beispielsweise einen *X-Hub-Signature-http-* Header mit einem Hash des Anforderungs Texts, der von der Empfänger Implementierung geprüft wird, damit Sie sich keine Gedanken machen müssen.
+Um sicherzustellen, dass der WebHook tatsächlich vom beabsichtigten Absender stammt, wird die POST-Anforderung in irgendeiner Weise gesichert und dann vom Empfänger überprüft. [GitHub WebHooks](https://developer.github.com/webhooks/) enthält beispielsweise einen *X-Hub-Signature* HTTP-Header mit einem Hash des Anforderungstexts, der von der Empfängerimplementierung überprüft wird, sodass Sie sich keine Gedanken darüber machen müssen.
 
-Der webhook-Flow wird in der Regel in etwa wie folgt aussehen:
+Der WebHook-Fluss geht in der Regel in etwa wie folgt:
 
-* Der Absender des webhooks macht Ereignisse verfügbar, die von einem Client abonniert werden können. Die Ereignisse beschreiben Observable-Änderungen am System, z. b. Wenn ein neues Datenelement eingefügt, ein Prozess abgeschlossen wurde oder etwas anderes.
+* Der WebHook-Absender macht Ereignisse verfügbar, die ein Client abonnieren kann. Die Ereignisse beschreiben beobachtbare Änderungen am System, z. B. dass ein neues Datenelement eingefügt wurde, dass ein Prozess abgeschlossen wurde oder etwas anderes.
 
-* Der webhook-Empfänger abonniert durch Registrieren eines webhooks, der aus vier Dingen besteht:
+* Der WebHook-Empfänger abonniert sich durch die Registrierung eines WebHook, der aus vier Dingen besteht:
 
-     1. Ein URI für den Speicherort, an dem die Ereignis Benachrichtigung in Form einer HTTP POST-Anforderung gepostet werden soll.
+     1. Ein URI für den Ort, an dem die Ereignisbenachrichtigung in Form einer HTTP-POST-Anforderung gebucht werden soll.
 
-     2. Eine Reihe von Filtern, die die spezifischen Ereignisse beschreiben, für die der webhook ausgelöst werden soll.
+     2. Eine Reihe von Filtern, die die einzelnen Ereignisse beschreiben, für die der WebHook ausgelöst werden soll.
 
-     3. Ein geheimer Schlüssel, der zum Signieren der HTTP POST-Anforderung verwendet wird.
+     3. Ein geheimer Schlüssel, der zum Signieren der HTTP-POST-Anforderung verwendet wird;
 
-     4. Zusätzliche Daten, die in die HTTP POST-Anforderung eingeschlossen werden sollen. Dies kann z. b. zusätzliche HTTP-Header Felder oder-Eigenschaften sein, die im Text der HTTP POST-Anforderung enthalten sind.
+     4. Zusätzliche Daten, die in die HTTP-POST-Anforderung aufgenommen werden sollen. Dies können z. B. zusätzliche HTTP-Headerfelder oder Eigenschaften sein, die im HTTP POST-Anforderungstext enthalten sind.
 
-* Sobald ein Ereignis eintritt, werden die übereinstimmenden webhook-Registrierungen gefunden und HTTP POST-Anforderungen übermittelt. In der Regel wird die Generierung der HTTP POST-Anforderungen mehrmals wiederholt, wenn der Empfänger aus irgendeinem Grund nicht antwortet oder die HTTP POST-Anforderung zu einer Fehler Antwort führt.
+* Sobald ein Ereignis eintritt, werden die übereinstimmenden WebHook-Registrierungen gefunden und HTTP-POST-Anforderungen gesendet. In der Regel wird die Generierung der HTTP-POST-Anforderungen mehrmals wiederholt, wenn der Empfänger aus irgendeinem Grund nicht antwortet oder die HTTP-POST-Anforderung zu einer Fehlerantwort führt.
 
-## <a name="webhooks-processing-pipeline"></a>Webhooks-Verarbeitungs Pipeline
+## <a name="webhooks-processing-pipeline"></a>WebHooks-Verarbeitungspipeline
 
-Die Microsoft ASP.net webhooks-Verarbeitungs Pipeline für eingehende webhooks sieht wie folgt aus:
+Die Microsoft ASP.NET WebHooks-Verarbeitungspipeline für eingehende WebHooks sieht wie folgt aus:
 
-![ASP.net webhooks-Verarbeitungs Pipeline](_static/WebHookReceivers.png)
+![ASP.NET WebHooks-Verarbeitungspipeline](_static/WebHookReceivers.png)
 
-Dabei handelt es sich um die beiden wichtigsten Konzepte von *Empfängern* und *Handlern*:
+Die beiden Schlüsselkonzepte sind *Receiver* und *Handler:*
 
-* *Empfänger* sind dafür verantwortlich, die besondere webhook-Konfiguration von einem bestimmten Absender aus zu verarbeiten und Sicherheitsüberprüfungen zu erzwingen, um sicherzustellen, dass die webhook-Anforderung tatsächlich von dem vorgesehenen Absender abgeleitet ist.
+* *Receiver* sind für die Verarbeitung der besonderen Variante von WebHook von einem bestimmten Absender und für das Erzwingen von Sicherheitsüberprüfungen verantwortlich, um sicherzustellen, dass die WebHook-Anforderung tatsächlich vom beabsichtigten Absender stammt.
 
-* *Handler* werden in der Regel von Benutzercode ausgeführt, der den jeweiligen webhook verarbeitet.
+* *Handler* sind in der Regel dort, wo Benutzercode ausgeführt wird, der den jeweiligen WebHook verarbeitet.
 
 In den folgenden Knoten werden diese Konzepte ausführlicher beschrieben.
