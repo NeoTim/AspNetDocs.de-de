@@ -1,122 +1,122 @@
 ---
 uid: mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb
-title: 'Iterations #3 – Formular Validierung hinzufügen (VB) | Microsoft-Dokumentation'
-author: microsoft
-description: In der dritten Iterationen fügen wir die grundlegende Formular Validierung hinzu. Wir hindern Personen daran, ein Formular zu senden, ohne die erforderlichen Formularfelder abzuschließen. Wir überprüfen auch EMAI...
+title: 'Iteration #3 – Formularvalidierung hinzufügen (VB) | Microsoft Docs'
+author: rick-anderson
+description: In der dritten Iteration fügen wir eine grundlegende Formularvalidierung hinzu. Wir verhindern, dass Personen ein Formular einreichen, ohne die erforderlichen Formularfelder ausfüllen zu müssen. Wir validieren auch emai...
 ms.author: riande
 ms.date: 02/20/2009
 ms.assetid: 4805e75a-7911-46e3-b11b-229a6eed245e
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 73b307f53875abe84b592c75b1ff614ffd9d8b82
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 3ee2f40996873a7af2eaa255edd5f157c3fefb29
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78437967"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542390"
 ---
-# <a name="iteration-3--add-form-validation-vb"></a>Iterations #3 – Formular Validierung hinzufügen (VB)
+# <a name="iteration-3--add-form-validation-vb"></a>Iteration 3 – Hinzufügen der Formularüberprüfung (VB)
 
 von [Microsoft](https://github.com/microsoft)
 
 [Code herunterladen](iteration-3-add-form-validation-vb/_static/contactmanager_3_vb1.zip)
 
-> In der dritten Iterationen fügen wir die grundlegende Formular Validierung hinzu. Wir hindern Personen daran, ein Formular zu senden, ohne die erforderlichen Formularfelder abzuschließen. Wir überprüfen auch die e-Mail-Adressen und Telefonnummern.
+> In der dritten Iteration fügen wir eine grundlegende Formularvalidierung hinzu. Wir verhindern, dass Personen ein Formular einreichen, ohne die erforderlichen Formularfelder ausfüllen zu müssen. Wir validieren auch E-Mail-Adressen und Telefonnummern.
 
-## <a name="building-a-contact-management-aspnet-mvc-application-vb"></a>Aufbauen einer Kontakt Verwaltung ASP.NET MVC-Anwendung (VB)
+## <a name="building-a-contact-management-aspnet-mvc-application-vb"></a>Erstellen einer Kontaktverwaltungs- ASP.NET MVC-Anwendung (VB)
 
-In dieser Reihe von Tutorials erstellen wir von Anfang bis Ende eine gesamte Kontakt Verwaltungs Anwendung. Mithilfe der Kontakt-Manager-Anwendung können Sie Kontaktinformationen (Namen, Telefonnummern und e-Mail-Adressen) für eine Liste von Personen speichern.
+In dieser Reihe von Tutorials erstellen wir eine gesamte Contact Management-Anwendung von Anfang bis Ende. Mit der Kontakt-Manager-Anwendung können Sie Kontaktinformationen - Namen, Telefonnummern und E-Mail-Adressen - für eine Personenliste speichern.
 
-Die Anwendung wird über mehrere Iterationen erstellt. Bei jeder Iterationen verbessern wir die Anwendung allmählich. Das Ziel dieses mehrfaches Iterations Ansatzes besteht darin, Ihnen zu ermöglichen, den Grund für jede Änderung zu verstehen.
+Wir erstellen die Anwendung über mehrere Iterationen. Mit jeder Iteration verbessern wir die Anwendung schrittweise. Das Ziel dieses Ansatzes mit mehreren Iterationen besteht darin, den Grund für jede Änderung zu verstehen.
 
-- Iterations #1: Erstellen Sie die Anwendung. In der ersten Iterationen erstellen wir den Kontakt-Manager auf einfachste Art und Weise. Wir fügen Unterstützung für grundlegende Daten Bank Vorgänge hinzu: Create, Read, Update und DELETE (CRUD).
+- Iteration #1 - Erstellen Sie die Anwendung. In der ersten Iteration erstellen wir den Contact Manager auf einfachste Weise. Wir fügen Unterstützung für grundlegende Datenbankvorgänge hinzu: Erstellen, Lesen, Aktualisieren und Löschen (CRUD).
 
-- Iterations #2: machen Sie das Aussehen der Anwendung schön. In dieser Iterationen verbessern wir die Darstellung der Anwendung durch Ändern der standardmäßigen ASP.NET-MVC-Ansichts Master Seite und des Cascading Stylesheets.
+- Iteration #2 - Machen Sie die Anwendung schön aussehen. In dieser Iteration verbessern wir das Erscheinungsbild der Anwendung, indem wir die Standard-ASP.NET MVC-Ansichtsmasterseite und des kaskadierenden Stylesheets ändern.
 
-- Iterations #3: Formular Validierung hinzufügen. In der dritten Iterationen fügen wir die grundlegende Formular Validierung hinzu. Wir hindern Personen daran, ein Formular zu senden, ohne die erforderlichen Formularfelder abzuschließen. Wir überprüfen auch die e-Mail-Adressen und Telefonnummern.
+- Iteration #3 - Formularüberprüfung hinzufügen. In der dritten Iteration fügen wir eine grundlegende Formularvalidierung hinzu. Wir verhindern, dass Personen ein Formular einreichen, ohne die erforderlichen Formularfelder ausfüllen zu müssen. Wir validieren auch E-Mail-Adressen und Telefonnummern.
 
-- Iterations #4: Legen Sie die Anwendung lose gekoppelt. In dieser vierten Iterationen nutzen wir mehrere Software Entwurfsmuster, um die Verwaltung und Änderung der Contact Manager-Anwendung zu vereinfachen. Beispielsweise können wir unsere Anwendung so umgestalten, dass Sie das Repository-Muster und das Muster für die Abhängigkeitsinjektion verwendet.
+- Iteration #4 - Machen Sie die Anwendung lose gekoppelt. In dieser vierten Iteration nutzen wir mehrere Softwareentwurfsmuster, um die Wartung und Änderung der Contact Manager-Anwendung zu vereinfachen. Beispielsweise gestalten wir unsere Anwendung so um, dass sie das Repository-Muster und das Abhängigkeitsinjektionsmuster verwendet.
 
-- Iterations #5: Erstellen von Komponententests. In der fünften Iterationen wird die Wartung und Änderung unserer Anwendung durch Hinzufügen von Komponententests vereinfacht. Wir simulieren unsere Datenmodell Klassen und erstellen Komponententests für unsere Controller und Validierungs Logik.
+- Iteration #5 - Erstellen von Komponententests. In der fünften Iteration erleichtern wir die Wartung und Änderung unserer Anwendung durch Hinzufügen von Komponententests. Wir verspotten unsere Datenmodellklassen und erstellen Komponententests für unsere Controller und Validierungslogik.
 
-- Iterations #6: Verwenden Sie die Test gesteuerte Entwicklung. In dieser sechsten Iterationen fügen wir der Anwendung neue Funktionen hinzu, indem wir zuerst Komponententests schreiben und Code für die Komponententests schreiben. In dieser Iterationen fügen wir Kontaktgruppen hinzu.
+- Iteration #6 - Verwenden Sie die testgesteuerte Entwicklung. In dieser sechsten Iteration fügen wir unserer Anwendung neue Funktionen hinzu, indem wir zuerst Komponententests schreiben und Code für die Komponententests schreiben. In dieser Iteration fügen wir Kontaktgruppen hinzu.
 
-- Iterations #7: Hinzufügen von AJAX-Funktionen. In der siebten Iterationen verbessern wir die Reaktionsfähigkeit und Leistung unserer Anwendung durch Hinzufügen von Unterstützung für AJAX.
+- Iteration #7 - Ajax-Funktionalität hinzufügen. In der siebten Iteration verbessern wir die Reaktionsfähigkeit und Leistung unserer Anwendung, indem wir Unterstützung für Ajax hinzufügen.
 
-## <a name="this-iteration"></a>Diese Iterations
+## <a name="this-iteration"></a>Diese Iteration
 
-In dieser zweiten Iterations Anwendung der Kontakt-Manager-Anwendung fügen wir die grundlegende Formular Validierung hinzu. Wir hindern Personen daran, einen Kontakt zu senden, ohne die Werte für die erforderlichen Formularfelder einzugeben. Wir überprüfen auch Telefonnummern und e-Mail-Adressen (siehe Abbildung 1).
+In dieser zweiten Iteration der Contact Manager-Anwendung fügen wir eine grundlegende Formularvalidierung hinzu. Wir verhindern, dass Personen einen Kontakt einreichen, ohne Werte für die erforderlichen Formularfelder einzugeben. Wir validieren auch Telefonnummern und E-Mail-Adressen (siehe Abbildung 1).
 
-[![des Dialog Felds "Neues Projekt"](iteration-3-add-form-validation-vb/_static/image1.jpg)](iteration-3-add-form-validation-vb/_static/image1.png)
+[![Dialogfeld „New Project“ (Neues Projekt)](iteration-3-add-form-validation-vb/_static/image1.jpg)](iteration-3-add-form-validation-vb/_static/image1.png)
 
-**Abbildung 01**: ein Formular mit Validierung ([Klicken Sie, um das Bild in voller Größe anzuzeigen](iteration-3-add-form-validation-vb/_static/image2.png))
+**Abbildung 01**: Ein Formular mit Validierung ([Klicken Sie hier, um das Bild in voller Größe anzuzeigen](iteration-3-add-form-validation-vb/_static/image2.png))
 
-In dieser Iterationen fügen wir die Validierungs Logik den Controller Aktionen direkt hinzu. Im Allgemeinen ist dies nicht die empfohlene Vorgehensweise zum Hinzufügen von Validierungen zu einer ASP.NET MVC-Anwendung. Ein besserer Ansatz besteht darin, die Validierungs Logik einer Anwendung in einer separaten [Dienst Schicht](http://martinfowler.com/eaaCatalog/serviceLayer.html)zu platzieren. In der nächsten Iterationen wird die Kontakt-Manager-Anwendung umgestalten, um die Wartung der Anwendung zu vereinfachen.
+In dieser Iteration fügen wir die Validierungslogik direkt zu den Controlleraktionen hinzu. Im Allgemeinen ist dies nicht die empfohlene Methode, um einer ASP.NET MVC-Anwendung eine Validierung hinzuzufügen. Ein besserer Ansatz besteht darin, die Validierungslogik einer Anwendung in einer separaten [Dienstschicht](http://martinfowler.com/eaaCatalog/serviceLayer.html)zu platzieren. In der nächsten Iteration gestalten wir die Contact Manager-Anwendung um, um die Anwendung wartungsfähiger zu machen.
 
-In dieser Iterationen wird der gesamte Validierungscode von Hand geschrieben, um die Dinge einfach zu halten. Anstatt den Validierungscode selbst zu schreiben, könnten wir ein Validierungs Framework nutzen. Beispielsweise können Sie den Microsoft Enterprise Library Validation Application Block (VAB) verwenden, um die Validierungs Logik für Ihre ASP.NET MVC-Anwendung zu implementieren. Weitere Informationen zum Validierungs Anwendungs Block finden Sie unter:
+Um die Dinge einfach zu halten, schreiben wir in dieser Iteration den gesamten Validierungscode von Hand. Anstatt den Validierungscode selbst zu schreiben, könnten wir ein Validierungsframework nutzen. Sie können z. B. den Microsoft Enterprise Library Validation Application Block (VAB) verwenden, um die Validierungslogik für Ihre ASP.NET MVC-Anwendung zu implementieren. Weitere Informationen zum Validierungsanwendungsblock finden Sie unter:
 
 [*http://msdn.microsoft.com/library/dd203099.aspx*](https://msdn.microsoft.com/library/dd203099.aspx)
 
-## <a name="adding-validation-to-the-create-view"></a>Hinzufügen der Validierung zur CREATE VIEW
+## <a name="adding-validation-to-the-create-view"></a>Hinzufügen von Validierung zur Ansicht Erstellen
 
-Beginnen Sie, indem Sie der CREATE VIEW eine Validierungs Logik hinzufügen. Da wir nun die CREATE VIEW mit Visual Studio generiert haben, enthält die CREATE VIEW bereits die erforderliche Benutzeroberflächen Logik, um Validierungs Meldungen anzuzeigen. Die CREATE-Sicht ist in der Liste 1 enthalten.
+Beginnen wir mit dem Hinzufügen von Validierungslogik zur Ansicht Erstellen. Da wir die Ansicht Erstellen mit Visual Studio generiert haben, enthält die Ansicht Erstellen glücklicherweise bereits die gesamte erforderliche Benutzeroberflächenlogik zum Anzeigen von Validierungsmeldungen. Die Ansicht Erstellen ist in Liste 1 enthalten.
 
-**Codebeispiel 1: \views\contact\kreate.aspx**
+**Eintrag 1 - ,,Ansichten", "Kontakt" und "Create.aspx"**
 
 [!code-aspx[Main](iteration-3-add-form-validation-vb/samples/sample1.aspx)]
 
-Die Field-Validation-Error-Klasse wird verwendet, um die Ausgabe zu formatieren, die vom HTML. validationmessage ()-Hilfsprogramm gerendert wird Die Input-Validation-Error-Klasse wird verwendet, um das Textfeld (Eingabe) zu formatieren, das vom HTML. Textfeld ()-Hilfsprogramm gerendert wird. Die Validation-Summary-Errors-Klasse wird verwendet, um die ungeordnete Liste zu formatieren, die vom HTML. ValidationSummary ()-Hilfsprogramm gerendert wird.
+Die field-validation-error-Klasse wird verwendet, um die vom Html.ValidationMessage()-Hilfsfeld gerenderte Ausgabe zu formatieren. Die Eingabe-Validierung-Fehler-Klasse wird verwendet, um das Textfeld (Eingabe) zu formatieren, das vom Html.TextBox()-Hilfsfeld gerendert wird. Die Klasse validation-summary-errors wird verwendet, um die ungeordnete Liste zu formatieren, die vom Html.ValidationSummary()-Hilfser gerendert wird.
 
 > [!NOTE] 
 > 
-> Sie können die in diesem Abschnitt beschriebenen Stylesheet-Klassen ändern, um die Darstellung von Validierungs Fehlermeldungen anzupassen.
+> Sie können die in diesem Abschnitt beschriebenen Stylesheetklassen ändern, um die Darstellung von Validierungsfehlermeldungen anzupassen.
 
-## <a name="adding-validation-logic-to-the-create-action"></a>Hinzufügen von Validierungs Logik zur CREATE-Aktion
+## <a name="adding-validation-logic-to-the-create-action"></a>Hinzufügen von Validierungslogik zur Erstellungsaktion
 
-Zurzeit zeigt die CREATE-Sicht keine Validierungs Fehlermeldungen an, da wir die Logik zum Generieren von Nachrichten nicht geschrieben haben. Um Validierungs Fehlermeldungen anzuzeigen, müssen Sie die Fehlermeldungen modelstate hinzufügen.
+Im Moment zeigt die Ansicht Erstellen niemals Validierungsfehlermeldungen an, da wir die Logik zum Generieren von Nachrichten nicht geschrieben haben. Um Validierungsfehlermeldungen anzuzeigen, müssen Sie die Fehlermeldungen zu ModelState hinzufügen.
 
 > [!NOTE] 
 > 
-> Die updatemodel ()-Methode fügt automatisch Fehlermeldungen zu modelstate hinzu, wenn ein Fehler beim Zuweisen des Werts eines Formular Felds zu einer Eigenschaft vorliegt. Wenn Sie z. b. versuchen, die Zeichenfolge "Apple" einer BirthDate-Eigenschaft zuzuweisen, die DateTime-Werte akzeptiert, fügt die updatemodel ()-Methode "modelstate" einen Fehler hinzu.
+> Die UpdateModel()-Methode fügt ModelState automatisch Fehlermeldungen hinzu, wenn ein Fehler beim Zuweisen des Werts eines Formularfelds zu einer Eigenschaft vorliegt. Wenn Sie beispielsweise versuchen, die Zeichenfolge "apple" einer BirthDate-Eigenschaft zuzuweisen, die DateTime-Werte akzeptiert, fügt die UpdateModel()-Methode ModelState einen Fehler hinzu.
 
-Die geänderte Create ()-Methode in der Liste 2 enthält einen neuen Abschnitt, in dem die Eigenschaften der Contact-Klasse überprüft werden, bevor der neue Kontakt in die Datenbank eingefügt wird.
+Die geänderte Create()-Methode in Liste 2 enthält einen neuen Abschnitt, der die Eigenschaften der Contact-Klasse überprüft, bevor der neue Kontakt in die Datenbank eingefügt wird.
 
-**Codebeispiel 2: controllers\contactcontroller.vb (Create with Validation)**
+**Auflistung 2 - Controllers-ContactController.vb (Erstellen mit Validierung)**
 
 [!code-vb[Main](iteration-3-add-form-validation-vb/samples/sample2.vb)]
 
-Der Abschnitt Validate erzwingt vier verschiedene Validierungsregeln:
+Der Abschnitt "Validierung" erzwingt vier unterschiedliche Validierungsregeln:
 
-- Die FirstName-Eigenschaft muss eine Länge größer als 0 (null) aufweisen (und darf nicht ausschließlich aus Leerzeichen bestehen).
-- Die LastName-Eigenschaft muss eine Länge größer als 0 (null) aufweisen (und darf nicht ausschließlich aus Leerzeichen bestehen).
-- Wenn die Phone-Eigenschaft einen Wert hat (hat eine Länge größer als 0), muss die Phone-Eigenschaft einem regulären Ausdruck entsprechen.
-- Wenn die e-Mail-Eigenschaft einen Wert hat (hat eine Länge größer als 0), muss die e-Mail-Eigenschaft einem regulären Ausdruck entsprechen.
+- Die FirstName-Eigenschaft muss eine Länge größer als Null haben (und sie darf nicht nur aus Leerzeichen bestehen)
+- Die LastName-Eigenschaft muss eine Länge größer als Null haben (und sie darf nicht nur aus Leerzeichen bestehen)
+- Wenn die Phone-Eigenschaft einen Wert hat (hat eine Länge größer als 0), muss die Phone-Eigenschaft mit einem regulären Ausdruck übereinstimmen.
+- Wenn die Email-Eigenschaft einen Wert hat (hat eine Länge größer als 0), muss die Email-Eigenschaft mit einem regulären Ausdruck übereinstimmen.
 
-Bei einem Verstoß gegen die Validierungs Regel wird modelstate mithilfe der addmodelerror ()-Methode eine Fehlermeldung hinzugefügt. Wenn Sie modelstate eine Nachricht hinzufügen, geben Sie den Namen einer Eigenschaft und den Text einer Validierungs Fehlermeldung an. Diese Fehlermeldung wird in der Ansicht von den Hilfsmethoden HTML. ValidationSummary () und HTML. validationmessage () angezeigt.
+Wenn eine Validierungsregelverletzung vorliegt, wird ModelState mit Hilfe der AddModelError()-Methode eine Fehlermeldung hinzugefügt. Wenn Sie ModelState eine Nachricht hinzufügen, geben Sie den Namen einer Eigenschaft und den Text einer Validierungsfehlermeldung an. Diese Fehlermeldung wird in der Ansicht von den Hilfsmethoden Html.ValidationSummary() und Html.ValidationMessage() angezeigt.
 
-Nachdem die Validierungsregeln ausgeführt wurden, wird die IsValid-Eigenschaft von modelstate überprüft. Die IsValid-Eigenschaft gibt false zurück, wenn dem modelstate-Objekt Validierungs Fehlermeldungen hinzugefügt wurden. Wenn die Validierung fehlschlägt, wird das Formular erstellen mit den Fehlermeldungen erneut angezeigt.
+Nachdem die Validierungsregeln ausgeführt wurden, wird die IsValid-Eigenschaft von ModelState überprüft. Die IsValid-Eigenschaft gibt false zurück, wenn ModelState Validierungsfehlermeldungen hinzugefügt wurden. Wenn die Überprüfung fehlschlägt, wird das Formular Erstellen mit den Fehlermeldungen erneut angezeigt.
 
 > [!NOTE] 
 > 
-> Ich habe die regulären Ausdrücke zum Überprüfen der Telefonnummer und e-Mail-Adresse aus dem Repository für reguläre Ausdrücke unter [ *http://regexlib.com* ](http://regexlib.com)
+> Ich habe die regulären Ausdrücke für die Überprüfung der Telefonnummer und E-Mail-Adresse aus dem Repository für reguläre Ausdrucke unter[*http://regexlib.com*](http://regexlib.com)
 
-## <a name="adding-validation-logic-to-the-edit-action"></a>Hinzufügen von Validierungs Logik zur Bearbeitungsaktion
+## <a name="adding-validation-logic-to-the-edit-action"></a>Hinzufügen von Validierungslogik zur Bearbeitungsaktion
 
-Die Aktion bearbeiten () aktualisiert einen Kontakt. Die Edit ()-Aktion muss genau dieselbe Validierung wie die Create ()-Aktion ausführen. Anstatt denselben Validierungscode zu duplizieren, sollten wir den Kontakt Controller so umgestalten, dass sowohl die Create ()-als auch die Edit ()-Aktion dieselbe Validierungsmethode aufruft.
+Die Aktion Bearbeiten() aktualisiert einen Kontakt. Die Edit()-Aktion muss genau die gleiche Validierung wie die Aktion Create() durchführen. Anstatt denselben Validierungscode zu duplizieren, sollten wir den Contact-Controller so umgestalten, dass sowohl die Aktionen Create() als auch Edit() dieselbe Validierungsmethode aufrufen.
 
-Die geänderte Contact Controller-Klasse ist in der Liste 3 enthalten. Diese Klasse verfügt über eine neue validatecontact ()-Methode, die in den Aktionen Create () und Edit () aufgerufen wird.
+Die geänderte Contact-Controller-Klasse ist in Liste 3 enthalten. Diese Klasse verfügt über eine neue ValidateContact()-Methode, die sowohl innerhalb der Aktionen Create() als auch Edit() aufgerufen wird.
 
-**Codebeispiel 3-controllers\contactcontroller.vb**
+**Auflisten 3 - Controller-KontaktController.vb**
 
 [!code-vb[Main](iteration-3-add-form-validation-vb/samples/sample3.vb)]
 
 ## <a name="summary"></a>Zusammenfassung
 
-In dieser Iterationen haben wir der Contact Manager-Anwendung eine grundlegende Formular Validierung hinzugefügt. Mit unserer Validierungs Logik wird verhindert, dass Benutzer einen neuen Kontakt einreichen oder einen vorhandenen Kontakt bearbeiten, ohne die Werte für die Eigenschaften FirstName und LastName anzugeben. Außerdem müssen Benutzer gültige Telefonnummern und e-Mail-Adressen angeben.
+In dieser Iteration haben wir unserer Contact Manager-Anwendung eine grundlegende Formularvalidierung hinzugefügt. Unsere Validierungslogik verhindert, dass Benutzer einen neuen Kontakt senden oder einen vorhandenen Kontakt bearbeiten, ohne Werte für die Eigenschaften FirstName und LastName angeben zu müssen. Darüber hinaus müssen Benutzer gültige Telefonnummern und E-Mail-Adressen angeben.
 
-In dieser Iterationen haben wir die Validierungs Logik unserer Contact Manager-Anwendung so einfach wie möglich hinzugefügt. Das Mischen unserer Validierungs Logik in unsere Controller Logik führt jedoch langfristig zu Problemen. Unsere Anwendung wird im Laufe der Zeit schwieriger zu warten und zu ändern.
+In dieser Iteration haben wir unserer Contact Manager-Anwendung die Validierungslogik auf einfachste Weise hinzugefügt. Das Mischen unserer Validierungslogik in unsere Controller-Logik wird uns jedoch langfristig Probleme bereiten. Unsere Anwendung wird im Laufe der Zeit schwieriger zu warten und zu modifizieren sein.
 
-In der nächsten Iterationen werden unsere Validierungs Logik und Datenbankzugriffs Logik von unseren Controllern umgestalten. Wir nutzen mehrere Software Entwurfs Prinzipien, damit wir eine lose gekoppelte und besser verwaltbare Anwendung erstellen können.
+In der nächsten Iteration werden wir unsere Validierungslogik und Datenbankzugriffslogik aus unseren Controllern umgestalten. Wir werden mehrere Software-Design-Prinzipien nutzen, um eine losere gekoppelte und wartungsfähigere Anwendung zu erstellen.
 
 > [!div class="step-by-step"]
 > [Zurück](iteration-2-make-the-application-look-nice-vb.md)

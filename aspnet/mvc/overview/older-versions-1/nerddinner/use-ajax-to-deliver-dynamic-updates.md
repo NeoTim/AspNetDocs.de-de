@@ -1,19 +1,19 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates
-title: Verwenden von AJAX zum übermitteln dynamischer Updates | Microsoft-Dokumentation
-author: microsoft
-description: Schritt 10 implementiert die Unterstützung für angemeldete Benutzer, um Ihr Interesse an der Teilnahme an einem Dinner mit einem AJAX-basierten Ansatz zu übernehmen, der in das Dinner-Detail integriert ist...
+title: Verwenden von AJAX zum Bereitstellen dynamischer Updates | Microsoft Docs
+author: rick-anderson
+description: Schritt 10 implementiert Unterstützung für eingeloggte Benutzer, um IHR Interesse an einem Abendessen zu erreichen, indem ein Ajax-basierter Ansatz verwendet wird, der in das Dinner-Detail integriert ist...
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 18700815-8e6c-4489-91af-7ea9dab6529e
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates
 msc.type: authoredcontent
-ms.openlocfilehash: 3edc02fec546609505b5e085440fa684abe7acd0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 13680b91edc665852fd4af56e4fc79551e6de15e
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78486309"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541246"
 ---
 # <a name="use-ajax-to-deliver-dynamic-updates"></a>Bereitstellen von dynamischen Updates mithilfe von AJAX
 
@@ -21,133 +21,133 @@ von [Microsoft](https://github.com/microsoft)
 
 [PDF herunterladen](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> Dies ist Schritt 10 des kostenlosen ["nerddinner"](introducing-the-nerddinner-tutorial.md) -Lernprogramms, in dem erläutert wird, wie eine kleine, aber komplette Webanwendung mit ASP.NET MVC 1 erstellt wird.
+> Dies ist Schritt 10 eines kostenlosen ["NerdDinner" Anwendungs-Tutorials,](introducing-the-nerddinner-tutorial.md) das durch die Erstellung einer kleinen, aber vollständigen Webanwendung mit ASP.NET MVC 1 führt.
 > 
-> Schritt 10 implementiert die Unterstützung für angemeldete Benutzer, um Ihr Interesse an der Teilnahme an einem Dinner mit einem AJAX-basierten Ansatz zu übernehmen, der auf der Seite Dinner Details integriert ist.
+> Schritt 10 implementiert Unterstützung für eingeloggte Benutzer, um IHR Interesse an einem Abendessen zu nutzen, indem ein Ajax-basierter Ansatz verwendet wird, der in die Dinner-Details-Seite integriert ist.
 > 
-> Wenn Sie ASP.NET MVC 3 verwenden, empfiehlt es sich, die Tutorials " [Getting Started with MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) " oder " [MVC Music Store](../../older-versions/mvc-music-store/mvc-music-store-part-1.md) " zu befolgen.
+> Wenn Sie ASP.NET MVC 3 verwenden, empfehlen wir Ihnen, die Tutorials [Erste Schritte mit MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) oder [MVC Music Store](../../older-versions/mvc-music-store/mvc-music-store-part-1.md) zu befolgen.
 
-## <a name="nerddinner-step-10-ajax-enabling-rsvps-accepts"></a>Nerddinner Step 10: AJAX-Aktivierung von RSVPs akzeptiert
+## <a name="nerddinner-step-10-ajax-enabling-rsvps-accepts"></a>NerdDinner Schritt 10: AJAX ermöglicht RSVPs akzeptiert
 
-Nun implementieren wir die Unterstützung für angemeldete Benutzer, um Ihr Interesse an der Teilnahme an Dinner zu übernehmen. Wir aktivieren dies mithilfe eines AJAX-basierten Ansatzes, der in die Dinner Details-Seite integriert ist.
+Lassen Sie uns nun Unterstützung für eingeloggte Benutzer implementieren, um IHR Interesse an einem Abendessen zu nutzen. Wir ermöglichen dies mithilfe eines AJAX-basierten Ansatzes, der in die Details des Abendessens integriert ist.
 
-### <a name="indicating-whether-the-user-is-rsvpd"></a>Angeben, ob der Benutzer RSVP
+### <a name="indicating-whether-the-user-is-rsvpd"></a>Geben an, ob der Benutzer RSVP'd ist
 
-Benutzer können die URL */Dinners/Details/[ID*] besuchen, um Details zu einem bestimmten Dinner anzuzeigen:
+Benutzer können die URL */Dinners/Details/[id*] besuchen, um Details zu einem bestimmten Abendessen zu sehen:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image1.png)
 
-Die "Details ()"-Aktionsmethode wird wie folgt implementiert:
+Die Aktionsmethode Details() wird wie folgt implementiert:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample1.cs)]
 
-Der erste Schritt bei der Implementierung der RSVP-Unterstützung besteht darin, dem Dinner-Objekt (innerhalb der zuvor erstellten partiellen Dinner.cs partiellen Klasse) eine "isuserregistrierte (username)"-Hilfsmethode hinzuzufügen. Diese Hilfsmethode gibt "true" oder "false" zurück, je nachdem, ob der Benutzer zurzeit ein RSVP für das Dinner hat:
+Unser erster Schritt zur Implementierung der RSVP-Unterstützung besteht darin, unserem Dinner-Objekt eine "IsUserRegistered(username)"-Hilfsmethode hinzuzufügen (innerhalb der Dinner.cs Teilklasse, die wir zuvor erstellt haben). Diese Hilfsmethode gibt true oder false zurück, je nachdem, ob der Benutzer derzeit RSVP'd für das Dinner ist:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample2.cs)]
 
-Wir können dann der Ansicht "Details. aspx" den folgenden Code hinzufügen, um eine entsprechende Meldung anzuzeigen, die angibt, ob der Benutzer für das Ereignis registriert ist oder nicht:
+Anschließend können wir den folgenden Code zu unserer Detail.aspx-Ansichtsvorlage hinzufügen, um eine entsprechende Meldung anzuzeigen, die angibt, ob der Benutzer für das Ereignis registriert ist oder nicht:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample3.html)]
 
-Und wenn ein Benutzer nun ein Dinner besucht, wird die Meldung angezeigt:
+Und jetzt, wenn ein Benutzer ein Abendessen besucht, werden sie für sie registriert werden, wird diese Meldung angezeigt:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image2.png)
 
-Und wenn Sie ein Dinner besuchen, werden Sie nicht für Sie registriert. die folgende Meldung wird angezeigt:
+Und wenn sie ein Dinner besuchen, sind sie nicht registriert für sie sehen die folgende Nachricht:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image3.png)
 
-### <a name="implementing-the-register-action-method"></a>Implementieren der Register Action-Methode
+### <a name="implementing-the-register-action-method"></a>Implementieren der Registeraktionsmethode
 
-Nun fügen wir die Funktionalität hinzu, die erforderlich ist, um Benutzern die RSVP für ein Dinner auf der Seite "Details" zu ermöglichen.
+Fügen wir nun die Funktionen hinzu, die erforderlich sind, um Benutzern RSVP für ein Abendessen auf der Detailseite zu ermöglichen.
 
-Um dies zu implementieren, erstellen Sie eine neue Klasse "rsvpcontroller", indem Sie mit der rechten Maustaste auf das Verzeichnis "\controllers" klicken und den Menübefehl Add-&gt;Controller auswählen.
+Um dies zu implementieren, erstellen wir eine neue "RSVPController"-Klasse, indem wir&gt;mit der rechten Maustaste auf das Verzeichnis "Controller" klicken und den Menübefehl "Add- Controller" auswählen.
 
-Wir implementieren in der neuen rsvpcontroller-Klasse eine "Register"-Aktionsmethode, die eine ID für ein Dinner als Argument annimmt, das entsprechende Dinner-Objekt abruft, prüft, ob der angemeldete Benutzer aktuell in der Liste der Benutzer enthalten ist, die sich registriert haben, und wenn Fügt kein RSVP-Objekt für Sie hinzu:
+Wir implementieren eine "Register"-Aktionsmethode innerhalb der neuen RSVPController-Klasse, die eine ID für ein Dinner als Argument annimmt, das entsprechende Dinner-Objekt abruft, überprüft, ob sich der angemeldete Benutzer derzeit in der Liste der Benutzer befindet, die sich dafür registriert haben, und wenn nicht, fügt er ein RSVP-Objekt für sie hinzu:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample4.cs)]
 
-Beachten Sie, dass eine einfache Zeichenfolge als Ausgabe der Aktionsmethode zurückgegeben wird. Wir könnten diese Nachricht in eine Ansichts Vorlage eingebettet haben – aber da Sie so klein ist, verwenden wir einfach die Content ()-Hilfsmethode für die Controller-Basisklasse und geben eine Zeichen folgen Nachricht wie oben zurück.
+Beachten Sie oben, wie wir eine einfache Zeichenfolge als Ausgabe der Aktionsmethode zurückgeben. Wir hätten diese Nachricht in eine Ansichtsvorlage einbetten können – aber da sie so klein ist, verwenden wir einfach die Content()-Hilfsmethode für die Controller-Basisklasse und geben eine Zeichenfolgennachricht wie oben zurück.
 
-### <a name="calling-the-rsvpforevent-action-method-using-ajax"></a>Aufrufen der rsvpforevent-Aktionsmethode mithilfe von AJAX
+### <a name="calling-the-rsvpforevent-action-method-using-ajax"></a>Aufrufen der RSVPForEvent-Aktionsmethode mithilfe von AJAX
 
-Wir verwenden AJAX zum Aufrufen der Register Action-Methode aus der Detailansicht. Diese Implementierung ist ziemlich einfach. Zuerst fügen wir zwei Skript Bibliotheks Verweise hinzu:
+Wir verwenden AJAX, um die Registrierungsaktionsmethode aus unserer Detailansicht aufzurufen. Dies zu implementieren ist ziemlich einfach. Zuerst fügen wir zwei Skriptbibliotheksverweise hinzu:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample5.html)]
 
-Die erste Bibliothek verweist auf die Client seitige Core ASP.NET AJAX-Skript Bibliothek. Diese Datei ist ungefähr rund um die Uhr groß (komprimiert) und enthält die Client seitigen Kernfunktionen von AJAX. Die zweite Bibliothek enthält Hilfsprogrammfunktionen, die in die integrierten AJAX-Hilfsmethoden von ASP.NET MVC integriert werden (die wir in Kürze verwenden werden).
+Die erste Bibliothek verweist auf die kernASP.NET Client-seitige Skriptbibliothek von AJAX. Diese Datei hat eine Größe von ca. 24k (komprimiert) und enthält die clientseitige AJAX-Kernfunktionalität. Die zweite Bibliothek enthält Dienstprogrammfunktionen, die in die integrierten AJAX-Hilfsmethoden von ASP.NET MVC integriert werden (die wir in Kürze verwenden werden).
 
-Wir können dann den zuvor hinzugefügten Ansichts Vorlagen Code aktualisieren, sodass anstelle der Meldung "Sie sind nicht für dieses Ereignis registriert" einen Link zu erstellen, der bei einem Pushvorgang einen AJAX-Aufruf ausführt, der unsere rsvpforevent-Aktionsmethode auf unserem RSVP-Controller aufruft. und RSVPs:
+Wir können dann den zuvor hinzugefügten Ansichtsvorlagencode aktualisieren, sodass wir anstelle einer Meldung "Sie sind nicht für dieses Ereignis registriert" stattdessen einen Link rendern, der bei einem Push-Aufruf einen AJAX-Aufruf ausführt, der unsere RSVPForEvent-Aktionsmethode auf unserem RSVP-Controller und RSVPs-Benutzer aufruft:
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample6.aspx)]
 
-Die oben verwendete AJAX. Action Link ()-Hilfsmethode ist in ASP.NET MVC integriert und ähnelt der "HTML. Action Link ()"-Hilfsmethode, mit der Ausnahme, dass anstelle einer Standard Navigation ein AJAX-Aufrufe an die Aktionsmethode erfolgt, wenn auf den Link geklickt wird. Oben rufen wir die "Register"-Aktionsmethode auf dem "RSVP"-Controller auf und übergeben die dinnerid als "ID"-Parameter an ihn. Der endgültige Parameter "ajaxoptions", den wir übergeben, gibt an, dass der von der Aktionsmethode zurückgegebene Inhalt übernommen und das HTML-&lt;div&gt;-Element auf der Seite aktualisiert werden soll, deren ID "rsvpmsg" lautet.
+Die oben verwendete Ajax.ActionLink()-Hilfsmethode ist integriert ASP.NET MVC und ähnelt der Html.ActionLink()-Hilfsmethode, mit der Ausnahme, dass sie anstelle einer Standardnavigation einen AJAX-Aufruf der Aktionsmethode ausführt, wenn auf den Link geklickt wird. Oben rufen wir die Aktionsmethode "Registrieren" auf dem "RSVP"-Controller auf und übergeben die DinnerID als "id"-Parameter. Der letzte AjaxOptions-Parameter, den wir übergeben, zeigt an, dass wir &lt;&gt; den von der Aktionsmethode zurückgegebenen Inhalt übernehmen und das HTML-div-Element auf der Seite aktualisieren möchten, dessen ID "rsvpmsg" ist.
 
-Wenn ein Benutzer nun zu einem Dinner sucht, ist er noch nicht registriert, und es wird ein Link zur RSVP dafür angezeigt:
+Und jetzt, wenn ein Benutzer zu einem Abendessen surft, sind sie noch nicht registriert, noch sehen sie einen Link zu RSVP dafür:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image4.png)
 
-Wenn Sie auf den Link "RSVP für dieses Ereignis" klicken, wird ein AJAX-Rückruf der Register Action-Methode auf dem RSVP-Controller ausgeführt, und wenn Sie abgeschlossen ist, wird eine aktualisierte Meldung wie die folgende angezeigt:
+Wenn sie auf den Link "RSVP für dieses Ereignis" klicken, werden Sie einen AJAX-Aufruf an die Register-Aktionsmethode auf dem RSVP-Controller ausführen, und wenn sie abgeschlossen ist, wird eine aktualisierte Meldung wie folgt angezeigt:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image5.png)
 
-Die Netzwerkbandbreite und der Datenverkehr bei der Erstellung dieses AJAX-Aufrufes ist wirklich einfach. Wenn der Benutzer auf den Link "RSVP für dieses Ereignis" klickt, wird eine kleine HTTP Post-Netzwerk Anforderung an die */Dinners/Register/1* -URL gesendet, die wie unten gezeigt aussieht:
+Die Netzwerkbandbreite und der Datenverkehr, die bei diesem AJAX-Aufruf erforderlich sind, sind wirklich leicht. Wenn der Benutzer auf den Link "RSVP für dieses Ereignis" klickt, wird eine kleine HTTP-POST-Netzwerkanforderung an die */Dinners/Register/1-URL* gestellt, die wie unten auf dem Draht aussieht:
 
 [!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample7.cmd)]
 
-Die Antwort von der Register Aktionsmethode ist einfach:
+Und die Antwort unserer Register-Aktionsmethode lautet einfach:
 
 [!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample8.cmd)]
 
-Dieser Lightweight-Rückruf ist schnell und funktioniert sogar über ein langsames Netzwerk.
+Dieser leichte Anruf ist schnell und funktioniert auch über ein langsames Netzwerk.
 
 ### <a name="adding-a-jquery-animation"></a>Hinzufügen einer jQuery-Animation
 
-Die von uns implementierte AJAX-Funktionalität funktioniert gut und schnell. Manchmal kann es so schnell vorkommen, dass ein Benutzer möglicherweise nicht bemerkt, dass der RSVP-Link durch neuen Text ersetzt wurde. Um das Ergebnis etwas deutlicher zu machen, können wir eine einfache Animation hinzufügen, um auf die Aktualisierungs Nachricht aufmerksam zu machen.
+Die von uns implementierte AJAX-Funktionalität funktioniert gut und schnell. Manchmal kann es jedoch so schnell gehen, dass ein Benutzer möglicherweise nicht bemerkt, dass der RSVP-Link durch neuen Text ersetzt wurde. Um das Ergebnis etwas offensichtlicher zu machen, können wir eine einfache Animation hinzufügen, um die Aufmerksamkeit auf die Update-Nachricht zu lenken.
 
-Die standardmäßige ASP.NET-MVC-Projektvorlage enthält jQuery – eine ausgezeichnete (und sehr beliebte) Open Source-JavaScript-Bibliothek, die auch von Microsoft unterstützt wird. jQuery bietet eine Reihe von Features, einschließlich einer netten HTML-DOM-Auswahl-und-Effekte-Bibliothek.
+Die Standardvorlage ASP.NET MVC-Projektenthältumfasst umfasst jQuery – eine ausgezeichnete (und sehr beliebte) Open-Source-JavaScript-Bibliothek, die auch von Microsoft unterstützt wird. jQuery bietet eine Reihe von Funktionen, einschließlich einer schönen HTML-DOM-Auswahl und Effektbibliothek.
 
-Zur Verwendung von jQuery fügen wir zuerst einen Skript Verweis hinzu. Da wir jQuery innerhalb verschiedener Orte innerhalb unserer Website verwenden werden, fügen wir den Skript Verweis innerhalb unserer Website-Masterseiten Datei hinzu, damit Sie von allen Seiten verwendet werden kann.
+Um jQuery zu verwenden, fügen wir zuerst einen Skriptverweis hinzu. Da wir jQuery an einer Vielzahl von Stellen innerhalb unserer Website verwenden werden, fügen wir den Skriptverweis in unserer Site.master-Master-Seitendatei hinzu, damit alle Seiten ihn verwenden können.
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample9.html)]
 
-*Tipp: Stellen Sie sicher, dass Sie den JavaScript IntelliSense-Hotfix für VS 2008 SP1 installiert haben, der eine umfassendere IntelliSense-Unterstützung für JavaScript-Dateien (einschließlich jQuery) ermöglicht. Sie können Sie von: http://tinyurl.com/vs2008javascripthotfix*
+*Tipp: Stellen Sie sicher, dass Sie den JavaScript-Hotfix intellisense für VS 2008 SP1 installiert haben, der eine umfassendere intellisense-Unterstützung für JavaScript-Dateien (einschließlich jQuery) ermöglicht. Sie können es herunterladen von:http://tinyurl.com/vs2008javascripthotfix*
 
-Mit jQuery geschriebener Code verwendet häufig eine globale "$ ()"-JavaScript-Methode, die ein oder mehrere HTML-Elemente mithilfe eines CSS-Selektor abruft. Beispielsweise wählt *$ ("#rsvpmsg")* alle HTML-Elemente mit der ID rsvpmsg aus, während *$ (". Something")* alle Elemente mit dem CSS-Klassennamen "etwas" auswählen würde. Sie können auch erweiterte Abfragen wie "alle aktivierten Options Felder zurückgeben" mit einer Auswahl Abfrage schreiben, z. b.: *$ ("input [@type= Radio] [@checked]")* .
+Code, der mit JQuery geschrieben wurde, verwendet häufig eine globale JavaScript-Methode ,,,,,die ein oder mehrere HTML-Elemente mithilfe eines CSS-Selektors abruft. Zum Beispiel wählt *"#rsvpmsg")* ein beliebiges HTML-Element mit der ID rsvpmsg aus, während *"(".something"* alle Elemente mit dem CSS-Klassennamen "something" auswählen würde. Sie können auch erweiterte Abfragen wie "Alle überprüften Optionsfelder zurückgeben" mit einer Selektorabfrage schreiben, z. B.: *."input[@type@checked=radio][ ]")*.
 
-Nachdem Sie Elemente ausgewählt haben, können Sie Methoden für diese Methoden zum Ausführen von Aktionen (z. b. ausblenden) aufzurufen: *$ ("#rsvpmsg"). Hide ();*
+Nachdem Sie Elemente ausgewählt haben, können Sie Methoden aufrufen, um Maßnahmen zu ergreifen, wie z. B. das Ausblenden von Elementen: *"#rsvpmsg").*
 
-In unserem RSVP-Szenario definieren wir eine einfache JavaScript-Funktion mit dem Namen "animatersvpmessage", die den &lt;div-&gt; "rsvpmsg" auswählt und die Größe des Text Inhalts animiert. Der folgende Code startet den Text "Small" und bewirkt dann, dass er sich über einen Zeitraum von 400 Millisekunden vergrößert:
+Für unser RSVP-Szenario definieren wir eine einfache JavaScript-Funktion namens "AnimateRSVPMessage", die &lt;&gt; die "rsvpmsg" div auswählt und die Größe des Textinhalts animiert. Der folgende Code startet den Text klein und bewirkt dann, dass er über einen Zeitraum von 400 Millisekunden zunimmt:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample10.html)]
 
-Anschließend können Sie diese JavaScript-Funktion nach erfolgreichem Abschluss des AJAX-Aufrufs verbinden, indem Sie Ihren Namen an unsere AJAX. Action Link ()-Hilfsmethode übergeben (über die "onSuccess"-Ereignis Eigenschaft "ajaxoptions"):
+Wir können dann diese JavaScript-Funktion verdrahten, die aufgerufen werden soll, nachdem unser AJAX-Aufruf erfolgreich abgeschlossen wurde, indem wir seinen Namen an unsere Ajax.ActionLink()-Hilfsmethode übergeben (über die AjaxOptions "OnSuccess"-Ereigniseigenschaft):
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample11.aspx)]
 
-Wenn Sie nun auf den Link "RSVP für diesen Ereignis" klicken und der AJAX-Befehl erfolgreich abgeschlossen wird, wird die zurück gesendete Inhalts Nachricht animiert und vergrößert:
+Und jetzt, wenn auf den Link "RSVP für dieses Ereignis" geklickt wird und unser AJAX-Aufruf erfolgreich abgeschlossen wird, wird die zurückgesendete Inhaltsnachricht animiert und groß werden:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image6.png)
 
-Zusätzlich zur Bereitstellung eines onSuccess-Ereignisses macht das ajaxoptions-Objekt OnBegin-, OnFailure-und OnComplete-Ereignisse verfügbar, die Sie behandeln können (zusammen mit einer Reihe von anderen Eigenschaften und nützlichen Optionen).
+Zusätzlich zur Bereitstellung eines "OnSuccess"-Ereignisses macht das AjaxOptions-Objekt OnBegin-, OnFailure- und OnComplete-Ereignisse verfügbar, die Sie verarbeiten können (zusammen mit einer Vielzahl anderer Eigenschaften und nützlicher Optionen).
 
-### <a name="cleanup---refactor-out-a-rsvp-partial-view"></a>Bereinigen: umgestalten einer RSVP-Teilansicht
+### <a name="cleanup---refactor-out-a-rsvp-partial-view"></a>Bereinigung - Refactor out einer RSVP-Teilansicht
 
-Die Vorlage für die Detailansicht beginnt mit einem gewissen Zeitraum, und die Überstunden machen es etwas schwerer zu verstehen. Um die Lesbarkeit des Codes zu verbessern, erstellen Sie zunächst eine Teilansicht – rsvpstatus. ascx –, die den gesamten RSVP-Ansichts Code für unsere Detailseite Kapseln.
+Unsere Detailansichtsvorlage beginnt ein wenig lang zu werden, was Überstunden machen es ein wenig schwieriger zu verstehen. Um die Lesbarkeit des Codes zu verbessern, erstellen wir abschließend eine Teilansicht – RSVPStatus.ascx –, die den gesamten RSVP-Ansichtscode für unsere Detailseite kapselt.
 
-Klicken Sie hierzu mit der rechten Maustaste auf den Ordner "\views\dinners", und wählen Sie dann den Menübefehl Add-&gt;View aus. Wir haben ein Dinner-Objekt als stark typisiertes ViewModel. Anschließend können wir den RSVP-Inhalt aus der Ansicht "Details. aspx" Kopieren und einfügen.
+Wir können dies tun, indem Wir mit der rechten Maustaste&gt;auf den Ordner "Views"-Dinners klicken und dann den Menübefehl "Hinzufügen" auswählen. Wir lassen es ein Dinner-Objekt als sein stark typisiertes ViewModel nehmen. Wir können dann die RSVP-Inhalte aus unserer Details.aspx-Ansicht kopieren/einfügen.
 
-Anschließend erstellen wir eine weitere Teilansicht – editanddelta etelinert. ascx, die den Code für den Link zum Bearbeiten und Löschen der Verknüpfung kapselt. Außerdem wird ein Dinner-Objekt als stark typisiertes ViewModel übernommen, und die Bearbeitungs-und Lösch Logik wird aus der Ansicht "Details. aspx" kopiert und eingefügt.
+Sobald wir dies getan haben, erstellen wir auch eine weitere Teilansicht – EditAndDeleteLinks.ascx –, die unseren Linkansichtscode bearbeiten und löschen kapselt. Wir haben auch ein Dinner-Objekt als sein stark typisiertes ViewModel und kopieren/einfügen der Befolgende Edit and Delete-Logik aus unserer Details.aspx-Ansicht.
 
-Die Vorlage für die Detailansicht kann dann einfach zwei HTML. renderpartial ()-Methodenaufrufe im unteren Bereich einschließen:
+Unsere Detailansichtsvorlage kann dann nur zwei Html.RenderPartial()-Methodenaufrufe unten enthalten:
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample12.aspx)]
 
-Dadurch wird der Code sauberer zu lesen und zu warten.
+Dadurch wird der Code sauberer zu lesen und zu verwalten.
 
 ### <a name="next-step"></a>Nächster Schritt
 
-Sehen wir uns nun an, wie wir Ajax noch weiter verwenden und der Anwendung interaktive zuordnungsunterstützung hinzufügen können.
+Sehen wir uns nun an, wie wir AJAX noch weiter nutzen können, und fügen Sie unserer Anwendung interaktive Mapping-Unterstützung hinzu.
 
 > [!div class="step-by-step"]
 > [Zurück](secure-applications-using-authentication-and-authorization.md)

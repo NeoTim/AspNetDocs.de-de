@@ -1,163 +1,163 @@
 ---
 uid: mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs
-title: Verbessern der Leistung mit AusgabeC#Zwischenspeicherung () | Microsoft-Dokumentation
-author: microsoft
-description: In diesem Tutorial erfahren Sie, wie Sie die Leistung Ihrer ASP.NET-MVC-Webanwendungen drastisch verbessern können, indem Sie die Ausgabe Zwischenspeicherung nutzen. ...
+title: Verbesserung der Leistung mit Output Caching (C)| Microsoft Docs
+author: rick-anderson
+description: In diesem Tutorial erfahren Sie, wie Sie die Leistung Ihrer ASP.NET MVC-Webanwendungen erheblich verbessern können, indem Sie die Ausgabezwischenspeicherung nutzen. Sie...
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: 521c9117-81cd-4d8d-9d96-0256dc7bf50f
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 548c5bea2e9cf26e0574e72d2c0ea204dbd90f9c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: a6dd43320117e235d12a13aa894302bbc767727c
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78486669"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542715"
 ---
 # <a name="improving-performance-with-output-caching-c"></a>Verbessern der Leistung mit Ausgabezwischenspeicherung (C#)
 
 von [Microsoft](https://github.com/microsoft)
 
-> In diesem Tutorial erfahren Sie, wie Sie die Leistung Ihrer ASP.NET-MVC-Webanwendungen drastisch verbessern können, indem Sie die Ausgabe Zwischenspeicherung nutzen. Sie erfahren, wie Sie das von einer Controller Aktion zurückgegebene Ergebnis Zwischenspeichern, sodass derselbe Inhalt nicht jedes Mal erstellt werden muss, wenn ein neuer Benutzer die Aktion aufruft.
+> In diesem Tutorial erfahren Sie, wie Sie die Leistung Ihrer ASP.NET MVC-Webanwendungen erheblich verbessern können, indem Sie die Ausgabezwischenspeicherung nutzen. Sie erfahren, wie Sie das von einer Controlleraktion zurückgegebene Ergebnis zwischenspeichern, sodass nicht jedes Mal, wenn ein neuer Benutzer die Aktion aufruft, derselbe Inhalt erstellt werden muss.
 
-In diesem Tutorial wird erläutert, wie Sie die Leistung einer ASP.NET MVC-Anwendung erheblich verbessern können, indem Sie den Ausgabe Cache nutzen. Mit dem Ausgabe Cache können Sie den von einer Controller Aktion zurückgegebenen Inhalt zwischenspeichern. Auf diese Weise muss derselbe Inhalt nicht jedes Mal generiert werden, wenn dieselbe Controller Aktion aufgerufen wird.
+Das Ziel dieses Tutorials besteht darin, zu erklären, wie Sie die Leistung einer ASP.NET MVC-Anwendung durch Die Nutzung des Ausgabecache erheblich verbessern können. Mit dem Ausgabecache können Sie den von einer Controlleraktion zurückgegebenen Inhalt zwischenspeichern. Auf diese Weise muss derselbe Inhalt nicht jedes Mal generiert werden, wenn dieselbe Controlleraktion aufgerufen wird.
 
-Stellen Sie sich beispielsweise vor, dass Ihre ASP.NET MVC-Anwendung eine Liste von Datenbankdaten Sätzen in einer Sicht namens "index" anzeigt. Jedes Mal, wenn ein Benutzer die Controller Aktion aufruft, die die Index Ansicht zurückgibt, muss der Satz von Datenbankdaten Sätzen aus der Datenbank abgerufen werden, indem eine Datenbankabfrage ausgeführt wird.
+Stellen Sie sich z. B. vor, dass Ihre ASP.NET MVC-Anwendung eine Liste von Datenbankdatensätzen in einer Ansicht mit dem Namen Index anzeigt. Normalerweise muss jedes Mal, wenn ein Benutzer die Controlleraktion aufruft, die die Indexansicht zurückgibt, der Satz von Datenbankdatensätzen aus der Datenbank abgerufen werden, indem eine Datenbankabfrage ausgeführt wird.
 
-Wenn Sie auf der anderen Seite den Ausgabe Cache nutzen, können Sie die Ausführung einer Datenbankabfrage vermeiden, wenn ein Benutzer dieselbe Controller Aktion aufruft. Die Sicht kann aus dem Cache abgerufen werden, anstatt erneut von der Controller Aktion generiert zu werden. Mithilfe von Caching können Sie keine redundante Arbeit auf dem Server ausführen.
+Wenn Sie hingegen den Ausgabecache nutzen, können Sie die Ausführung einer Datenbankabfrage vermeiden, wenn ein Benutzer dieselbe Controlleraktion aufruft. Die Ansicht kann aus dem Cache abgerufen werden, anstatt von der Controlleraktion regeneriert zu werden. Durch das Zwischenspeichern können Sie redundante Arbeiten auf dem Server vermeiden.
 
-## <a name="enabling-output-caching"></a>Aktivieren der Ausgabe Zwischenspeicherung
+## <a name="enabling-output-caching"></a>Aktivieren der Ausgangszwischenspeicherung
 
-Sie aktivieren das Zwischenspeichern von Ausgaben, indem Sie ein [OutputCache]-Attribut entweder einer einzelnen Controller Aktion oder einer gesamten Controller Klasse hinzufügen. Der Controller in der Liste 1 macht beispielsweise eine Aktion mit dem Namen Index () verfügbar. Die Ausgabe der Index ()-Aktion wird 10 Sekunden lang zwischengespeichert.
+Sie aktivieren die Ausgabezwischenspeicherung, indem Sie entweder einer einzelnen Controlleraktion oder einer gesamten Controllerklasse ein [OutputCache]-Attribut hinzufügen. Beispielsweise macht der Controller in Listing 1 eine Aktion mit dem Namen Index() verfügbar. Die Ausgabe der Index()-Aktion wird für 10 Sekunden zwischengespeichert.
 
-**Codebeispiel 1 – controllers\homecontroller.cs**
+**Auflisten 1 – Controllers-HomeController.cs**
 
 [!code-csharp[Main](improving-performance-with-output-caching-cs/samples/sample1.cs)]
 
-In den Beta Versionen von ASP.NET MVC funktioniert die Ausgabe Zwischenspeicherung für eine URL wie [http://www.MySite.com/](http://www.mysite.com/)nicht. Stattdessen müssen Sie eine URL wie [http://www.MySite.com/Home/Index](http://www.mysite.com/Home/Index)eingeben. 
+In den Betaversionen von ASP.NET MVC funktioniert die Ausgabezwischenspeicherung für eine URL wie [http://www.MySite.com/](http://www.mysite.com/)nicht . Stattdessen müssen Sie eine [http://www.MySite.com/Home/Index](http://www.mysite.com/Home/Index)URL wie eingeben. 
 
-In der Liste 1 wird die Ausgabe der Index ()-Aktion 10 Sekunden lang zwischengespeichert. Wenn Sie möchten, können Sie eine wesentlich längere Cache Dauer angeben. Wenn Sie z. b. die Ausgabe einer Controller Aktion für einen Tag zwischenspeichern möchten, können Sie eine Cache Dauer von 86400 Sekunden angeben (60 Sekunden \* 60 Minuten \* 24 Stunden).
+In Listing 1 wird die Ausgabe der Index()-Aktion für 10 Sekunden zwischengespeichert. Wenn Sie möchten, können Sie eine viel längere Cachedauer angeben. Wenn Sie beispielsweise die Ausgabe einer Controlleraktion für einen Tag zwischenspeichern möchten, können Sie eine Cachedauer \* von \* 86400 Sekunden (60 Sekunden 60 Minuten und 24 Stunden) angeben.
 
-Es gibt keine Garantie, dass der Inhalt für die von Ihnen angegebene Zeitspanne zwischengespeichert wird. Wenn die Arbeitsspeicher Ressourcen gering sind, startet der Cache die automatische Überprüfung von Inhalt.
+Es gibt keine Garantie dafür, dass Inhalte für den von Ihnen angegebenen Zeitraum zwischengespeichert werden. Wenn die Speicherressourcen niedrig werden, beginnt der Cache automatisch mit dem Entfernen von Inhalten.
 
-Der Home-Controller in der Liste 1 gibt die Index Ansicht in der Liste 2 zurück. Es gibt keine besonderen Informationen zu dieser Ansicht. Die Index Sicht zeigt einfach die aktuelle Uhrzeit an (siehe Abbildung 1).
+Der Home-Controller in Listing 1 gibt die Indexansicht in Listing 2 zurück. Es gibt nichts Besonderes an dieser Ansicht. In der Indexansicht wird einfach die aktuelle Uhrzeit angezeigt (siehe Abbildung 1).
 
-**Codebeispiel 2 – views\home\index.aspx**
+**Auflisten 2 – Ansichten, Home, Index.aspx**
 
 [!code-aspx[Main](improving-performance-with-output-caching-cs/samples/sample2.aspx)]
 
-**Abbildung 1 – zwischengespeicherte Index Sicht**
+**Abbildung 1 – Ansicht zwischengespeicherter Index**
 
 ![clip_image002](improving-performance-with-output-caching-cs/_static/image1.jpg)
 
-Wenn Sie die Index ()-Aktion mehrmals aufrufen, indem Sie die URL/Home/Index in der Adressleiste des Browsers eingeben und die Schaltfläche Aktualisieren/erneut laden in Ihrem Browser wiederholt drücken, wird die von der Index Ansicht angezeigte Zeit 10 Sekunden lang nicht geändert. Die gleiche Zeit wird angezeigt, da die Ansicht zwischengespeichert wird.
+Wenn Sie die Index()-Aktion mehrmals aufrufen, indem Sie die URL /Home/Index in die Adressleiste Ihres Browsers eingeben und wiederholt auf die Schaltfläche Aktualisieren/Erneut laden in Ihrem Browser klicken, ändert sich die von der Indexansicht angezeigte Zeit 10 Sekunden lang nicht. Die gleiche Zeit wird angezeigt, da die Ansicht zwischengespeichert wird.
 
-Es ist wichtig zu verstehen, dass für alle Benutzer, die Ihre Anwendung besuchen, dieselbe Ansicht zwischengespeichert wird. Jeder Benutzer, der die Index ()-Aktion aufruft, erhält dieselbe zwischengespeicherte Version der Index Sicht. Dies bedeutet, dass der Arbeitsaufwand, den der Webserver ausführen muss, um die Index Ansicht zu erfüllen, drastisch reduziert wird.
+Es ist wichtig zu verstehen, dass die gleiche Ansicht für alle Benutzer, die Ihre Anwendung besuchen, zwischengespeichert wird. Jeder, der die Index()-Aktion aufruft, erhält dieselbe zwischengespeicherte Version der Indexansicht. Dies bedeutet, dass der Arbeitsaufwand, den der Webserver ausführen muss, um die Indexansicht zu bedienen, drastisch reduziert wird.
 
-Die Ansicht in der Liste 2 bewirkt, dass etwas ganz einfach ist. Die Ansicht zeigt nur die aktuelle Zeit an. Allerdings können Sie eine Sicht, die eine Reihe von Datenbankdaten Sätzen anzeigt, genauso einfach Zwischenspeichern. In diesem Fall muss der Satz von Datenbankdaten Sätzen nicht jedes Mal aus der Datenbank abgerufen werden, und jedes Mal, wenn die Controller Aktion, die die Sicht zurückgibt, aufgerufen wird. Durch die Zwischenspeicherung kann der Arbeitsaufwand reduziert werden, der von Ihrem Webserver und Datenbankserver ausgeführt werden muss.
+Die Ansicht in Listing 2 geschieht, etwas wirklich einfaches zu tun. In der Ansicht wird nur die aktuelle Uhrzeit angezeigt. Sie können jedoch genauso einfach eine Ansicht zwischenspeichern, die eine Reihe von Datenbankdatensätzen anzeigt. In diesem Fall muss der Satz von Datenbankdatensätzen nicht jedes Mal aus der Datenbank abgerufen werden, wenn die Controlleraktion aufgerufen wird, die die Ansicht zurückgibt. Zwischenspeichern kann den Arbeitsaufwand reduzieren, den sowohl der Webserver als auch der Datenbankserver ausführen müssen.
 
-Verwenden Sie die Seite &lt;% @ OutputCache%&gt;-Direktive in einer MVC-Ansicht nicht. Diese Direktive wird von der Web Forms Welt überströmt und sollte nicht in einer ASP.NET MVC-Anwendung verwendet werden.
+Verwenden Sie in &lt;einer MVC-Ansicht nicht die Direktive "Seite %" "OutputCache %".&gt; Diese Direktive blutet aus der Web Forms-Welt aus und sollte nicht in einer ASP.NET MVC-Anwendung verwendet werden.
 
-## <a name="where-content-is-cached"></a>Inhalt zwischengespeichert
+## <a name="where-content-is-cached"></a>Wo Inhalte zwischengespeichert werden
 
-Wenn Sie das Attribut [OutputCache] verwenden, wird der Inhalt standardmäßig an dreispeicher Orten zwischengespeichert: Webserver, beliebige Proxy Server und Webbrowser. Sie können genau steuern, wo der Inhalt zwischengespeichert wird, indem Sie die Location-Eigenschaft des [OutputCache]-Attributs ändern.
+Wenn Sie das Attribut [OutputCache] verwenden, werden Inhalte standardmäßig an drei Speicherorten zwischengespeichert: dem Webserver, allen Proxyservern und dem Webbrowser. Sie können genau steuern, wo Inhalte zwischengespeichert werden, indem Sie die Location-Eigenschaft des [OutputCache]-Attributs ändern.
 
 Sie können die Location-Eigenschaft auf einen der folgenden Werte festlegen:
 
-> · Irgendeiner
+> · jegliche
 > 
-> · Ent
+> · Kunde
 > 
-> · Tete
+> · Nachgeschaltete
 > 
-> · Servers
+> · Server
 > 
-> · Gar
+> · nichts
 > 
 > · ServerAndClient
 
-Standardmäßig hat die Location-Eigenschaft den Wert any. Es gibt jedoch Situationen, in denen Sie möglicherweise nur im Browser oder nur auf dem Server zwischenspeichern möchten. Wenn Sie z. b. Informationen zwischenspeichern, die für jeden Benutzer personalisiert werden, sollten Sie die Informationen auf dem Server nicht zwischenspeichern. Wenn Sie für verschiedene Benutzer unterschiedliche Informationen anzeigen, sollten Sie die Informationen nur auf dem Client zwischenspeichern.
+Standardmäßig hat die Location-Eigenschaft den Wert Any. Es gibt jedoch Situationen, in denen Sie möglicherweise nur im Browser oder nur auf dem Server zwischenspeichern möchten. Wenn Sie z. B. Informationen zwischenspeichern, die für jeden Benutzer personalisiert sind, sollten Sie die Informationen nicht auf dem Server zwischenspeichern. Wenn Sie verschiedenen Benutzern unterschiedliche Informationen anzeigen, sollten Sie die Informationen nur auf dem Client zwischenspeichern.
 
-Beispielsweise macht der Controller in der Liste 3 eine Aktion mit dem Namen GetName () verfügbar, die den aktuellen Benutzernamen zurückgibt. Wenn sich Jack bei der Website anmeldet und die GetName ()-Aktion aufruft, gibt die Aktion die Zeichenfolge "Hi Jack" zurück. Wenn sich dann Jill bei der Website anmeldet und die GetName ()-Aktion aufruft, erhält Sie auch die Zeichenfolge "Hi Jack". Die Zeichenfolge wird auf dem Webserver für alle Benutzer zwischengespeichert, nachdem Jack die Controller Aktion anfänglich aufgerufen hat.
+Beispielsweise macht der Controller in Listing 3 eine Aktion mit dem Namen GetName(verfügbar, die den aktuellen Benutzernamen zurückgibt. Wenn Jack sich bei der Website anmeldet und die GetName()-Aktion aufruft, gibt die Aktion die Zeichenfolge "Hi Jack" zurück. Wenn sich Jill anschließend bei der Website anmeldet und die GetName()-Aktion aufruft, erhält sie auch die Zeichenfolge "Hi Jack". Die Zeichenfolge wird auf dem Webserver für alle Benutzer zwischengespeichert, nachdem Jack die Controlleraktion zunächst aufgerufen hat.
 
-**Codebeispiel 3 – controllers\badusercontroller.cs**
+**Auflisten 3 – Controllers-BadUserController.cs**
 
 [!code-csharp[Main](improving-performance-with-output-caching-cs/samples/sample3.cs)]
 
-Höchstwahrscheinlich funktioniert der Controller in der Liste 3 nicht wie gewünscht. Sie möchten die Meldung "Hi Jack" nicht an Jill anzeigen.
+Höchstwahrscheinlich funktioniert der Controller in Listing 3 nicht so, wie Sie möchten. Sie möchten Jill nicht die Meldung "Hi Jack" anzeigen.
 
-Sie sollten niemals personalisierte Inhalte im Server Cache Zwischenspeichern. Möglicherweise möchten Sie jedoch die personalisierten Inhalte im Browser Cache Zwischenspeichern, um die Leistung zu verbessern. Wenn Sie Inhalte im Browser Zwischenspeichern und ein Benutzer mehrmals dieselbe Controller Aktion aufruft, kann der Inhalt nicht auf dem Server, sondern aus dem Browser Cache abgerufen werden.
+Sie sollten niemals personalisierte Inhalte im Servercache zwischenspeichern. Sie können jedoch den personalisierten Inhalt im Browsercache zwischenspeichern, um die Leistung zu verbessern. Wenn Sie Inhalte im Browser zwischenspeichern und ein Benutzer dieselbe Controlleraktion mehrmals aufruft, kann der Inhalt aus dem Browsercache anstelle des Servers abgerufen werden.
 
-Der geänderte Controller in der Liste 4 speichert die Ausgabe der GetName ()-Aktion zwischen. Der Inhalt wird jedoch nur im Browser und nicht auf dem Server zwischengespeichert. Wenn mehrere Benutzer die Methode GetName () aufrufen, erhält jede Person ihren eigenen Benutzernamen und keinen Benutzernamen einer anderen Person.
+Der geänderte Controller in Listing 4 speichert die Ausgabe der GetName()-Aktion zwischen. Der Inhalt wird jedoch nur im Browser und nicht auf dem Server zwischengespeichert. Auf diese Weise erhält jede Person, wenn mehrere Benutzer die GetName()-Methode aufrufen, ihren eigenen Benutzernamen und nicht den Benutzernamen einer anderen Person.
 
-**Codebeispiel 4 – controllers\usercontroller.cs**
+**Auflisten 4 – Controllers-UserController.cs**
 
 [!code-csharp[Main](improving-performance-with-output-caching-cs/samples/sample4.cs)]
 
-Beachten Sie, dass das [OutputCache]-Attribut in der Liste 4 eine Location-Eigenschaft enthält, die auf den Wert outputcacheloation. Client festgelegt ist. Das [OutputCache]-Attribut enthält auch eine NoStore-Eigenschaft. Die NoStore-Eigenschaft wird verwendet, um Proxy Server und Browser darüber zu informieren, dass Sie keine permanente Kopie des zwischengespeicherten Inhalts speichern sollten.
+Beachten Sie, dass das [OutputCache]-Attribut in Listing 4 eine Location-Eigenschaft enthält, die auf den Wert OutputCacheLocation.Client festgelegt ist. Das [OutputCache]-Attribut enthält auch eine NoStore-Eigenschaft. Die NoStore-Eigenschaft wird verwendet, um Proxyserver und Browser darüber zu informieren, dass keine permanente Kopie des zwischengespeicherten Inhalts gespeichert werden soll.
 
-## <a name="varying-the-output-cache"></a>Variieren des Ausgabe Caches
+## <a name="varying-the-output-cache"></a>Ändern des Ausgabecache
 
-In einigen Fällen möchten Sie möglicherweise verschiedene zwischengespeicherte Versionen des gleichen Inhalts. Stellen Sie sich beispielsweise vor, dass Sie eine Master-/Detailseite erstellen. Die Master Seite zeigt eine Liste mit Filmtiteln an. Wenn Sie auf einen Titel klicken, erhalten Sie Details für den ausgewählten Film.
+In einigen Situationen möchten Sie möglicherweise unterschiedliche zwischengespeicherte Versionen desselben Inhalts. Stellen Sie sich beispielsweise vor, dass Sie eine Master-/Detailseite erstellen. Auf der Masterseite wird eine Liste der Filmtitel angezeigt. Wenn Sie auf einen Titel klicken, erhalten Sie Details für den ausgewählten Film.
 
-Wenn Sie die Detailseite Zwischenspeichern, werden die Details für denselben Film unabhängig von dem Film angezeigt, auf den Sie klicken. Der erste Film, der vom ersten Benutzer ausgewählt wird, wird allen zukünftigen Benutzern angezeigt.
+Wenn Sie die Detailseite zwischenspeichern, werden die Details für denselben Film unabhängig davon angezeigt, auf welchen Film Sie klicken. Der erste Film, der vom ersten Benutzer ausgewählt wurde, wird allen zukünftigen Benutzern angezeigt.
 
-Sie können dieses Problem beheben, indem Sie die VaryByParam-Eigenschaft des [OutputCache]-Attributs nutzen. Diese Eigenschaft ermöglicht es Ihnen, verschiedene zwischengespeicherte Versionen desselben Inhalts zu erstellen, wenn ein Formular Parameter oder ein Parameter für die Abfrage Zeichenfolge variiert.
+Sie können dieses Problem beheben, indem Sie die VaryByParam-Eigenschaft des Attributs [OutputCache] nutzen. Mit dieser Eigenschaft können Sie verschiedene zwischengespeicherte Versionen desselben Inhalts erstellen, wenn ein Formularparameter oder Abfragezeichenfolgenparameter variiert.
 
-Der Controller in der Liste 5 stellt z. b. zwei Aktionen namens Master () und Details () zur Verfügung. Die Master ()-Aktion gibt eine Liste von Filmtiteln zurück, und die Details ()-Aktion gibt die Details für den ausgewählten Film zurück.
+Beispielsweise macht der Controller in Listing 5 zwei Aktionen mit dem Namen Master() und Details() verfügbar. Die Master()-Aktion gibt eine Liste von Filmtiteln zurück, und die Aktion Details() gibt die Details für den ausgewählten Film zurück.
 
-**Codebeispiel 5 – controllers\moviescontroller.cs**
+**Auflisten 5 – Controller-MoviesController.cs**
 
 [!code-csharp[Main](improving-performance-with-output-caching-cs/samples/sample5.cs)]
 
-Die Master ()-Aktion enthält eine VaryByParam-Eigenschaft mit dem Wert "None". Wenn die Master ()-Aktion aufgerufen wird, wird dieselbe zwischengespeicherte Version der Master Ansicht zurückgegeben. Alle Formular Parameter oder Abfrage Zeichenfolgen-Parameter werden ignoriert (siehe Abbildung 2).
+Die Master()-Aktion enthält eine VaryByParam-Eigenschaft mit dem Wert "none". Wenn die Master()-Aktion aufgerufen wird, wird dieselbe zwischengespeicherte Version der Masteransicht zurückgegeben. Alle Formularparameter oder Abfragezeichenfolgenparameter werden ignoriert (siehe Abbildung 2).
 
-**Abbildung 2 – die/Movies/Master-Sicht**
+**Abbildung 2 – Die Ansicht /Movies/Master**
 
 ![clip_image004](improving-performance-with-output-caching-cs/_static/image2.jpg)
 
-**Abbildung 3 – die/Movies/Details-Sicht**
+**Abbildung 3 : Die Ansicht /Movies/Details**
 
 ![clip_image006](improving-performance-with-output-caching-cs/_static/image3.jpg)
 
-Die Aktion Details () enthält eine VaryByParam-Eigenschaft mit dem Wert "ID". Wenn verschiedene Werte des ID-Parameters an die Controller Aktion übergeben werden, werden unterschiedliche zwischengespeicherte Versionen der Detailansicht generiert.
+Die Aktion Details() enthält eine VaryByParam-Eigenschaft mit dem Wert "Id". Wenn unterschiedliche Werte des Id-Parameters an die Controlleraktion übergeben werden, werden verschiedene zwischengespeicherte Versionen der Detailansicht generiert.
 
-Es ist wichtig zu verstehen, dass die Verwendung der VaryByParam-Eigenschaft zu einer größeren Zwischenspeicherung und nicht zu einer geringeren Anzahl führt. Eine andere zwischengespeicherte Version der Detailansicht wird für jede andere Version des ID-Parameters erstellt.
+Es ist wichtig zu verstehen, dass die Verwendung der VaryByParam-Eigenschaft zu mehr Zwischenspeicherung und nicht weniger führt. Für jede unterschiedliche Version des Id-Parameters wird eine andere zwischengespeicherte Version der Detailansicht erstellt.
 
 Sie können die VaryByParam-Eigenschaft auf die folgenden Werte festlegen:
 
-> \* = eine andere zwischengespeicherte Version erstellen, wenn ein Formular-oder Abfrage Zeichenfolgen-Parameter variiert.
+> \*= Erstellen Sie eine andere zwischengespeicherte Version, wenn ein Formular- oder Abfragezeichenfolgenparameter variiert.
 > 
-> None = nie unterschiedliche zwischengespeicherte Versionen erstellen
+> none = Niemals verschiedene zwischengespeicherte Versionen erstellen
 > 
-> Semikolons Liste von Parametern = unterschiedliche zwischengespeicherte Versionen erstellen, wenn eines der Formulare oder Abfrage Zeichenfolgen-Parameter in der Liste variiert
+> Semikolon-Liste der Parameter = Erstellen Sie verschiedene zwischengespeicherte Versionen, wenn sich die Parameter des Formulars oder der Abfragezeichenfolgen in der Liste ändern.
 
-## <a name="creating-a-cache-profile"></a>Erstellen eines Cache Profils
+## <a name="creating-a-cache-profile"></a>Erstellen eines Cacheprofils
 
-Als Alternative zum Konfigurieren von Ausgabe Cache Eigenschaften durch Ändern der Eigenschaften des [OutputCache]-Attributs können Sie ein Cache Profil in der Webkonfigurationsdatei (Web. config) erstellen. Das Erstellen eines Cache Profils in der Webkonfigurationsdatei bietet einige wichtige Vorteile.
+Alternativ zum Konfigurieren von Ausgabecacheeigenschaften durch Ändern der Eigenschaften des Attributs [OutputCache] können Sie ein Cacheprofil in der Webkonfigurationsdatei (web.config) erstellen. Das Erstellen eines Cacheprofils in der Webkonfigurationsdatei bietet einige wichtige Vorteile.
 
-Zunächst können Sie durch Konfigurieren der Ausgabe Zwischenspeicherung in der Webkonfigurationsdatei steuern, wie Controller Aktionen Inhalte an einem zentralen Ort Zwischenspeichern. Sie können ein Cache Profil erstellen und es auf mehrere Controller oder Controller Aktionen anwenden.
+Erstens können Sie durch Konfigurieren der Ausgabezwischenspeicherung in der Webkonfigurationsdatei steuern, wie Controlleraktionen Inhalte an einem zentralen Speicherort zwischenspeichern. Sie können ein Cacheprofil erstellen und das Profil auf mehrere Controller oder Controlleraktionen anwenden.
 
-Zweitens können Sie die Webkonfigurationsdatei ändern, ohne die Anwendung neu kompilieren zu müssen. Wenn Sie das Zwischenspeichern für eine Anwendung deaktivieren müssen, die bereits in der Produktionsumgebung bereitgestellt wurde, können Sie einfach die in der Webkonfigurationsdatei definierten Cache Profile ändern. Alle Änderungen an der Webkonfigurationsdatei werden automatisch erkannt und angewendet.
+Zweitens können Sie die Webkonfigurationsdatei ändern, ohne die Anwendung neu zu kompilieren. Wenn Sie die Zwischenspeicherung für eine Anwendung deaktivieren müssen, die bereits in der Produktion bereitgestellt wurde, können Sie einfach die in der Webkonfigurationsdatei definierten Cacheprofile ändern. Alle Änderungen an der Webkonfigurationsdatei werden automatisch erkannt und angewendet.
 
-Beispielsweise wird im Abschnitt &lt;Caching&gt; Webkonfiguration in der Liste 6 ein Cache Profil mit dem Namen Cache1Hour definiert. Der Abschnitt &lt;Caching&gt; muss innerhalb des Abschnitts &lt;System. Web&gt; einer Webkonfigurationsdatei angezeigt werden.
+Der Abschnitt &lt;zwischen&gt; der Webkonfiguration in Liste 6 definiert beispielsweise ein Cacheprofil mit dem Namen Cache1Hour. Der &lt;Caching-Abschnitt&gt; muss &lt;im&gt; Abschnitt system.web einer Webkonfigurationsdatei angezeigt werden.
 
-**Codebeispiel 6 – Abschnitt zum Zwischenspeichern für "Web. config"**
+**Auflistung 6 – Caching-Bereich für web.config**
 
 [!code-xml[Main](improving-performance-with-output-caching-cs/samples/sample6.xml)]
 
-Der Controller in der Liste 7 veranschaulicht, wie Sie das Cache1Hour-Profil auf eine Controller Aktion mit dem [OutputCache]-Attribut anwenden können.
+Der Controller in Liste 7 veranschaulicht, wie Sie das Cache1Hour-Profil auf eine Controlleraktion mit dem Attribut [OutputCache] anwenden können.
 
-**Codebeispiel 7 – controllers\profilecontroller.cs**
+**Auflisten 7 – Controller-ProfileController.cs**
 
 [!code-csharp[Main](improving-performance-with-output-caching-cs/samples/sample7.cs)]
 
-Wenn Sie die vom Controller verfügbar gemachte Index ()-Aktion in der Liste 7 aufrufen, wird für eine Stunde dieselbe Zeit zurückgegeben.
+Wenn Sie die Index()-Aktion aufrufen, die vom Controller in Liste 7 verfügbar gemacht wird, wird die gleiche Zeit für 1 Stunde zurückgegeben.
 
 ## <a name="summary"></a>Zusammenfassung
 
-Die Ausgabe Zwischenspeicherung bietet eine sehr einfache Methode, um die Leistung Ihrer ASP.NET-MVC-Anwendungen drastisch zu verbessern. In diesem Tutorial haben Sie gelernt, wie Sie das [OutputCache]-Attribut verwenden, um die Ausgabe von Controller Aktionen zwischenzuspeichern. Außerdem haben Sie erfahren, wie Sie die Eigenschaften des [OutputCache]-Attributs ändern, wie z. b. die Eigenschaften Duration und VaryByParam, um die Zwischenspeicherung von Inhalt zu ändern. Schließlich haben Sie erfahren, wie Sie Cache Profile in der Webkonfigurationsdatei definieren.
+Die Ausgangszwischenspeicherung bietet Ihnen eine sehr einfache Methode, um die Leistung Ihrer ASP.NET MVC-Anwendungen drastisch zu verbessern. In diesem Tutorial haben Sie gelernt, wie Sie das [OutputCache]-Attribut verwenden, um die Ausgabe von Controlleraktionen zwischenzuspeichern. Außerdem haben Sie gelernt, wie Sie Eigenschaften des [OutputCache]-Attributs ändern, z. B. die Eigenschaften Duration und VaryByParam, um zu ändern, wie Inhalte zwischengespeichert werden. Schließlich haben Sie gelernt, wie Sie Cacheprofile in der Webkonfigurationsdatei definieren.
 
 > [!div class="step-by-step"]
 > [Zurück](understanding-action-filters-cs.md)

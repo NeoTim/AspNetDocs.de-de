@@ -1,19 +1,19 @@
 ---
 uid: mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
-title: Übergeben von Daten an Ansichts MasterC#Seiten () | Microsoft-Dokumentation
-author: microsoft
-description: In diesem Tutorial wird erläutert, wie Sie Daten von einem Controller an eine Ansichts Master Seite übergeben können. Wir untersuchen zwei Strategien zum Übergeben von Daten an eine Sicht m...
+title: Übergeben von Daten zum Anzeigen von Masterseiten (C) | Microsoft Docs
+author: rick-anderson
+description: Das Ziel dieses Tutorials besteht darin, zu erklären, wie Sie Daten von einem Controller an eine Ansichtsmasterseite übergeben können. Wir untersuchen zwei Strategien für die Weitergabe von Daten an eine Ansicht m...
 ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: 5fee879b-8bde-42a9-a434-60ba6b1cf747
 msc.legacyurl: /mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 1492175812b0a092cd1594a770e348efe9b4122b
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7a934f93d89e6530becc114fe455c8b3ab2968de
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78485703"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542481"
 ---
 # <a name="passing-data-to-view-master-pages-c"></a>Übergeben von Daten an Ansichtsmasterseiten (C#)
 
@@ -21,91 +21,91 @@ von [Microsoft](https://github.com/microsoft)
 
 [PDF herunterladen](https://download.microsoft.com/download/e/f/3/ef3f2ff6-7424-48f7-bdaa-180ef64c3490/ASPNET_MVC_Tutorial_13_CS.pdf)
 
-> In diesem Tutorial wird erläutert, wie Sie Daten von einem Controller an eine Ansichts Master Seite übergeben können. Wir untersuchen zwei Strategien zum Übergeben von Daten an eine Ansichts Master Seite. Zuerst wird eine einfache Lösung erläutert, die zu einer Anwendung führt, die schwer zu verwalten ist. Als nächstes untersuchen wir eine viel bessere Lösung, die etwas mehr anfängliche Arbeit erfordert, aber zu einer viel besser verwaltbaren Anwendung führt.
+> Das Ziel dieses Tutorials besteht darin, zu erklären, wie Sie Daten von einem Controller an eine Ansichtsmasterseite übergeben können. Wir untersuchen zwei Strategien zum Übergeben von Daten an eine Ansichtsmasterseite. Zunächst wird eine einfache Lösung erläutert, die zu einer Anwendung führt, die schwer zu warten ist. Als Nächstes untersuchen wir eine viel bessere Lösung, die etwas mehr Anfängliche Arbeit erfordert, aber zu einer viel besser verwaltbaren Anwendung führt.
 
-## <a name="passing-data-to-view-master-pages"></a>Übergeben von Daten an Ansichts Master Seiten
+## <a name="passing-data-to-view-master-pages"></a>Übergeben von Daten zum Anzeigen von Masterseiten
 
-In diesem Tutorial wird erläutert, wie Sie Daten von einem Controller an eine Ansichts Master Seite übergeben können. Wir untersuchen zwei Strategien zum Übergeben von Daten an eine Ansichts Master Seite. Zuerst wird eine einfache Lösung erläutert, die zu einer Anwendung führt, die schwer zu verwalten ist. Als nächstes untersuchen wir eine viel bessere Lösung, die etwas mehr anfängliche Arbeit erfordert, aber zu einer viel besser verwaltbaren Anwendung führt.
+Das Ziel dieses Tutorials besteht darin, zu erklären, wie Sie Daten von einem Controller an eine Ansichtsmasterseite übergeben können. Wir untersuchen zwei Strategien zum Übergeben von Daten an eine Ansichtsmasterseite. Zunächst wird eine einfache Lösung erläutert, die zu einer Anwendung führt, die schwer zu warten ist. Als Nächstes untersuchen wir eine viel bessere Lösung, die etwas mehr Anfängliche Arbeit erfordert, aber zu einer viel besser verwaltbaren Anwendung führt.
 
 ### <a name="the-problem"></a>Problemstellung
 
-Stellen Sie sich vor, dass Sie eine Movie Database-Anwendung entwickeln und die Liste der Film Kategorien auf jeder Seite in der Anwendung anzeigen möchten (siehe Abbildung 1). Stellen Sie sich außerdem vor, dass die Liste der Film Kategorien in einer Datenbanktabelle gespeichert wird. In diesem Fall wäre es sinnvoll, die Kategorien aus der Datenbank abzurufen und die Liste der Film Kategorien innerhalb einer Ansichts Master Seite zu erstellen.
+Stellen Sie sich vor, Sie erstellen eine Filmdatenbankanwendung und möchten die Liste der Filmkategorien auf jeder Seite Ihrer Anwendung anzeigen (siehe Abbildung 1). Stellen Sie sich außerdem vor, dass die Liste der Filmkategorien in einer Datenbanktabelle gespeichert ist. In diesem Fall wäre es sinnvoll, die Kategorien aus der Datenbank abzurufen und die Liste der Filmkategorien innerhalb einer Ansichtsmasterseite zu rendern.
 
-[![Anzeigen von Film Kategorien auf einer Ansichts Master Seite](passing-data-to-view-master-pages-cs/_static/image2.png)](passing-data-to-view-master-pages-cs/_static/image1.png)
+[![Anzeigen von Filmkategorien in einer Ansichtsmasterseite](passing-data-to-view-master-pages-cs/_static/image2.png)](passing-data-to-view-master-pages-cs/_static/image1.png)
 
-**Abbildung 01**: Anzeigen von Film Kategorien in einer Ansichts Master Seite ([Klicken Sie, um das Bild in voller Größe anzuzeigen](passing-data-to-view-master-pages-cs/_static/image3.png))
+**Abbildung 01**: Anzeigen von Filmkategorien auf einer Ansichtsmasterseite ([Klicken Sie hier, um das Bild in voller Größe anzuzeigen](passing-data-to-view-master-pages-cs/_static/image3.png))
 
-Hier ist das Problem. Wie rufen Sie die Liste der Film Kategorien auf der Master Seite ab? Es ist verlockend, Methoden ihrer Modellklassen direkt auf der Master Seite aufzurufen. Anders ausgedrückt: Es ist verlockend, den Code zum Abrufen der Daten aus der Datenbank direkt auf der Master Seite einzuschließen. Die Umgehung ihrer MVC-Controller für den Zugriff auf die Datenbank würde jedoch gegen eine saubere Trennung der Belange verstoßen, die einer der Hauptvorteile des Aufbaus einer MVC-Anwendung ist.
+Hier ist das Problem. Wie ruft man die Liste der Filmkategorien auf der Masterseite ab? Es ist verlockend, Methoden Ihrer Modellklassen direkt auf der Masterseite aufzurufen. Mit anderen Worten, es ist verlockend, den Code zum Abrufen der Daten aus der Datenbank direkt in Ihre Masterseite aufzunehmen. Wenn Sie jedoch Ihre MVC-Controller für den Zugriff auf die Datenbank umgehen, würde dies gegen die saubere Trennung von Bedenken verstoßen, die einer der Hauptvorteile beim Erstellen einer MVC-Anwendung ist.
 
-In einer MVC-Anwendung möchten Sie, dass alle Interaktionen zwischen ihren MVC-Ansichten und Ihrem MVC-Modell von ihren MVC-Controllern verarbeitet werden. Diese Trennung von Anliegen führt zu einer besser verwaltbaren, anpassbaren und Test fähigen Anwendung.
+In einer MVC-Anwendung soll die gesamte Interaktion zwischen Ihren MVC-Ansichten und Ihrem MVC-Modell von Ihren MVC-Controllern verarbeitet werden. Diese Trennung von Anliegen führt zu einer behaltebareren, anpassungsfähigeren und testbareren Anwendung.
 
-In einer MVC-Anwendung sollten alle Daten, die an eine Sicht – einschließlich einer Ansichts Master Seite –, an eine Ansicht durch eine Controller Aktion übermittelt werden. Außerdem sollten die Daten weitergegeben werden, indem Sie die Vorteile von Ansichts Daten nutzen. Im restlichen Teil dieses Tutorials werden zwei Methoden zum Übergeben von Ansichts Daten an eine Ansichts Master Seite untersucht.
+In einer MVC-Anwendung sollten alle Daten, die an eine Ansicht übergeben werden – einschließlich einer Ansichtmasterseite – durch eine Controlleraktion an eine Ansicht übergeben werden. Darüber hinaus sollten die Daten unter Nutzung von Ansichtsdaten übergeben werden. Im weiteren Verlauf dieses Tutorials betrachte ich zwei Methoden zum Übergeben von Ansichtsdaten an eine Ansichtsmasterseite.
 
 ### <a name="the-simple-solution"></a>Die einfache Lösung
 
-Wir beginnen mit der einfachsten Lösung, Ansichts Daten von einem Controller an eine Ansichts Master Seite zu übergeben. Die einfachste Lösung besteht darin, die Ansichts Daten für die Master Seite in den einzelnen Controller Aktionen zu übergeben.
+Beginnen wir mit der einfachsten Lösung zum Übergeben von Ansichtsdaten von einem Controller an eine Ansichtsmasterseite. Die einfachste Lösung besteht darin, die Ansichtsdaten für die Masterseite in jeder einzelnen Controlleraktion zu übergeben.
 
-Beachten Sie den Controller in der Liste 1. Es macht zwei Aktionen mit dem Namen `Index()` und `Details()`verfügbar. Die `Index()`-Aktionsmethode gibt jeden Film in der Movies-Datenbanktabelle zurück. Die `Details()` Aktionsmethode gibt jeden Film in einer bestimmten Filmkategorie zurück.
+Betrachten Sie den Controller in Listing 1. Es macht zwei `Index()` Aktionen `Details()`mit dem Namen und verfügbar. Die `Index()` Aktionsmethode gibt jeden Film in der Tabelle Filme-Datenbank zurück. Die `Details()` Aktionsmethode gibt jeden Film in einer bestimmten Filmkategorie zurück.
 
-**Codebeispiel 1 – `Controllers\HomeController.cs`**
+**Auflistung 1 –`Controllers\HomeController.cs`**
 
 [!code-csharp[Main](passing-data-to-view-master-pages-cs/samples/sample1.cs)]
 
-Beachten Sie, dass die Aktionen Index () und Details () zwei Elemente zum Anzeigen von Daten hinzufügen. Die Aktion Index () fügt zwei Schlüssel hinzu: Kategorien und Filme. Der kategorieschlüssel stellt die Liste der Film Kategorien dar, die auf der Seite Master anzeigen angezeigt werden. Der Schlüssel Movies stellt die Liste der Filme dar, die auf der Seite Index Ansicht angezeigt werden.
+Beachten Sie, dass sowohl die Aktionen Index() als auch Details() zwei Elemente zum Anzeigen von Daten hinzufügen. Die Aktion Index() fügt zwei Schlüssel hinzu: Kategorien und Filme. Der Kategorieschlüssel stellt die Liste der Filmkategorien dar, die auf der Ansichtsmasterseite angezeigt werden. Der Filmschlüssel stellt die Liste der Filme dar, die auf der Seite Indexansicht angezeigt werden.
 
-Mit der Aktion Details () werden auch zwei Schlüssel namens Kategorien und Filme hinzugefügt. Die kategorietaste stellt wiederum die Liste der Film Kategorien dar, die von der Ansichts Master Seite angezeigt werden. Der Schlüssel Movies stellt die Liste der Filme in einer bestimmten Kategorie dar, die auf der Seite Detailansicht angezeigt wird (siehe Abbildung 2).
+Die Aktion Details() fügt außerdem zwei Schlüssel mit den Namen Kategorien und Filme hinzu. Der Kategorienschlüssel stellt erneut die Liste der Filmkategorien dar, die von der Ansichtsmasterseite angezeigt werden. Der Filmschlüssel stellt die Liste der Filme in einer bestimmten Kategorie dar, die auf der Seite Details angezeigt werden (siehe Abbildung 2).
 
-[![der Detailansicht](passing-data-to-view-master-pages-cs/_static/image5.png)](passing-data-to-view-master-pages-cs/_static/image4.png)
+[![Die Detailansicht](passing-data-to-view-master-pages-cs/_static/image5.png)](passing-data-to-view-master-pages-cs/_static/image4.png)
 
-**Abbildung 02**: Ansicht "Details" ([Klicken Sie, um das Bild in voller Größe anzuzeigen](passing-data-to-view-master-pages-cs/_static/image6.png))
+**Abbildung 02**: Die Detailansicht ([Klicken Sie hier, um das Bild in voller Größe anzuzeigen](passing-data-to-view-master-pages-cs/_static/image6.png))
 
-Die Index Sicht ist in der Liste 2 enthalten. Sie durchläuft einfach die Liste der Filme, die durch das "Movies"-Element in "Daten anzeigen" dargestellt werden.
+Die Indexansicht ist in Listing 2 enthalten. Es iteriert einfach durch die Liste der Filme durch das Filmelement in Ansicht Daten dargestellt.
 
-**Codebeispiel 2 – `Views\Home\Index.aspx`**
+**Auflistung 2 –`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](passing-data-to-view-master-pages-cs/samples/sample2.aspx)]
 
-Die Seite Master anzeigen ist in der Liste 3 enthalten. Die Seite Master anzeigen durchläuft alle Film Kategorien, die durch das Kategorieelement dargestellt werden, aus den Ansichts Daten.
+Die Ansichtsmasterseite ist in Liste 3 enthalten. Die Ansichtsmasterseite iteriert und rendert alle Filmkategorien, die durch das Kategorienelement aus Ansichtsdaten dargestellt werden.
 
-**Codebeispiel 3 – `Views\Shared\Site.master`**
+**Auflistung 3 –`Views\Shared\Site.master`**
 
 [!code-aspx[Main](passing-data-to-view-master-pages-cs/samples/sample3.aspx)]
 
-Alle Daten werden über die Ansichts Daten an die Ansicht und die Master Seite der Ansicht übermittelt. Das ist die korrekte Methode, Daten an die Master Seite zu übergeben.
+Alle Daten werden über Ansichtsdaten an die Ansicht und die Ansichtsmasterseite übergeben. Das ist der richtige Weg, um Daten an die Masterseite zu übergeben.
 
-Was ist also mit dieser Lösung falsch? Das Problem besteht darin, dass diese Lösung gegen das trockene Prinzip (Don't repeat yourself) verstößt. Jede Controller Aktion muss dieselbe Liste von Film Kategorien hinzufügen, um Daten anzuzeigen. Durch Duplizieren von Code in der Anwendung wird die Wartung, Anpassung und Änderung Ihrer Anwendung erheblich erschwert.
+Also, was ist falsch an dieser Lösung? Das Problem ist, dass diese Lösung gegen das DRY-Prinzip (Don't Repeat Yourself) verstößt. Jede Controlleraktion muss dieselbe Liste von Filmkategorien hinzufügen, um Daten anzuzeigen. Durch das Verfügen mit doppeltem Code in der Anwendung wird die Wartung, Anpassung und Änderung der Anwendung erheblich erschwert.
 
 ### <a name="the-good-solution"></a>Die gute Lösung
 
-In diesem Abschnitt untersuchen wir eine Alternative und bessere Lösung für das Übergeben von Daten aus einer Controller Aktion an eine Ansichts Master Seite. Anstatt die Film Kategorien für die Master Seite in den einzelnen Controller Aktionen hinzuzufügen, fügen wir die Film Kategorien nur einmal zu den Ansichts Daten hinzu. Alle Ansichts Daten, die von der Ansichts Master Seite verwendet werden, werden in einem Anwendungs Controller hinzugefügt.
+In diesem Abschnitt untersuchen wir eine alternative und bessere Lösung zum Übergeben von Daten von einer Controlleraktion an eine Ansichtsmasterseite. Anstatt die Filmkategorien für die Masterseite in jeder einzelnen Controlleraktion hinzuzufügen, fügen wir die Filmkategorien nur einmal zu den Ansichtsdaten hinzu. Alle Ansichtsdaten, die von der Ansichtsmasterseite verwendet werden, werden in einem Anwendungscontroller hinzugefügt.
 
-Die ApplicationController-Klasse ist in der Liste 4 enthalten.
+Die ApplicationController-Klasse ist in Liste 4 enthalten.
 
-**Codebeispiel 4 – `Controllers\ApplicationController.cs`**
+**Auflistung 4 –`Controllers\ApplicationController.cs`**
 
 [!code-csharp[Main](passing-data-to-view-master-pages-cs/samples/sample4.cs)]
 
-Es gibt drei Dinge, die Sie über den Anwendungs Controller in der Liste 4 bemerken sollten. Beachten Sie zunächst, dass die-Klasse von der System. Web. MVC. Controller-Basisklasse erbt. Der Anwendungs Controller ist eine Controller Klasse.
+Es gibt drei Dinge, die Sie über den Anwendungscontroller in Listing 4 beachten sollten. Beachten Sie zunächst, dass die Klasse von der Basisklasse System.Web.Mvc.Controller erbt. Der Anwendungscontroller ist eine Controllerklasse.
 
-Beachten Sie, dass die Application Controller-Klasse eine abstrakte Klasse ist. Eine abstrakte Klasse ist eine Klasse, die von einer konkreten Klasse implementiert werden muss. Da der Anwendungs Controller eine abstrakte Klasse ist, können Sie keine in der-Klasse definierten Methoden direkt aufrufen. Wenn Sie versuchen, die Anwendungsklasse direkt aufzurufen, erhalten Sie die Fehlermeldung "Ressource wurde nicht gefunden".
+Beachten Sie zweitens, dass die Application-Controller-Klasse eine abstrakte Klasse ist. Eine abstrakte Klasse ist eine Klasse, die von einer konkreten Klasse implementiert werden muss. Da der Anwendungscontroller eine abstrakte Klasse ist, können Sie keine In der Klasse definierten Methoden direkt aufrufen. Wenn Sie versuchen, die Application-Klasse direkt aufzurufen, wird die Fehlermeldung Resource Cannot Be Found angezeigt.
 
-Beachten Sie, dass der Anwendungs Controller einen Konstruktor enthält, mit dem die Liste der Film Kategorien zum Anzeigen von Daten hinzugefügt wird. Jede Controller Klasse, die vom Anwendungs Controller erbt, Ruft den Konstruktor des Anwendungs Controllers automatisch auf. Jedes Mal, wenn Sie eine Aktion auf einem Controller, der vom Anwendungs Controller erbt, aufgerufen wird, sind die Film Kategorien automatisch in den Ansichts Daten enthalten.
+Beachten Sie drittens, dass der Anwendungscontroller einen Konstruktor enthält, der die Liste der Filmkategorien zum Anzeigen von Daten hinzufügt. Jede Controllerklasse, die vom Anwendungscontroller erbt, ruft den Konstruktor des Anwendungscontrollers automatisch auf. Wenn Sie eine Aktion auf einem Controller aufrufen, der vom Anwendungscontroller erbt, werden die Filmkategorien automatisch in die Ansichtsdaten einbezogen.
 
-Der Filme Controller in der Liste 5 erbt vom Anwendungs Controller.
+Der Movies-Controller in Liste 5 erbt vom Anwendungscontroller.
 
-**Codebeispiel 5 – `Controllers\MoviesController.cs`**
+**Auflistung 5 –`Controllers\MoviesController.cs`**
 
 [!code-csharp[Main](passing-data-to-view-master-pages-cs/samples/sample5.cs)]
 
-Der Filme Controller macht genau wie der Home Controller, der im vorherigen Abschnitt erläutert wurde, zwei Aktionsmethoden mit dem Namen `Index()` und `Details()`verfügbar. Beachten Sie, dass die Liste der Film Kategorien, die auf der Seite Master anzeigen angezeigt werden, nicht zum Anzeigen von Daten in der `Index()`-oder `Details()`-Methode hinzugefügt wird. Da der Filme Controller vom Anwendungs Controller erbt, wird die Liste der Film Kategorien hinzugefügt, um Daten automatisch anzuzeigen.
+Der Movies-Controller macht, genau wie der im vorherigen Abschnitt `Index()` besprochene Home-Controller, zwei Aktionsmethoden mit dem Namen und `Details()`verfügbar. Beachten Sie, dass die Liste der Filmkategorien, die von der `Index()` `Details()` Ansichtmasterseite angezeigt werden, nicht hinzugefügt wird, um Daten in der oder-Methode anzuzeigen. Da der Movies-Controller vom Anwendungscontroller erbt, wird die Liste der Filmkategorien hinzugefügt, um Daten automatisch anzuzeigen.
 
-Beachten Sie, dass diese Lösung zum Hinzufügen von Ansichts Daten für eine Ansichts Master Seite nicht gegen das Dry-Prinzip (Don't repeat yourself) verstößt. Der Code zum Hinzufügen der Liste der Film Kategorien zum Anzeigen von Daten ist nur an einem Speicherort enthalten: dem Konstruktor für den Anwendungs Controller.
+Beachten Sie, dass diese Lösung zum Hinzufügen von Ansichtsdaten für eine Ansichtsmasterseite nicht gegen das DRY-Prinzip (Wiederholen Sie sich selbst) verstößt. Der Code zum Hinzufügen der Liste der Filmkategorien zum Anzeigen von Daten ist nur an einem Speicherort enthalten: dem Konstruktor für den Anwendungscontroller.
 
 ### <a name="summary"></a>Zusammenfassung
 
-In diesem Tutorial haben wir zwei Ansätze erläutert, um Ansichts Daten von einem Controller an eine Ansichts Master Seite zu übergeben. Zuerst haben wir eine einfache, aber schwer zu verwaltende Methode untersucht. Im ersten Abschnitt wurde erläutert, wie Sie Ansichts Daten für eine Ansichts Master Seite in jeder Controller Aktion in Ihrer Anwendung hinzufügen können. Wir haben festgestellt, dass dies ein fehlerhafter Ansatz ist, weil er gegen das trockene (Don't repeat yourself) Prinzip verstößt.
+In diesem Tutorial wurden zwei Ansätze zum Übergeben von Ansichtsdaten von einem Controller an eine Ansichtsmasterseite erläutert. Zunächst haben wir einen einfachen, aber schwer aufrechtzuerhaltenden Ansatz untersucht. Im ersten Abschnitt wurde erläutert, wie Sie Ansichtsdaten für eine Ansichtsmasterseite in jeder Controlleraktion in Ihrer Anwendung hinzufügen können. Wir kamen zu dem Schluss, dass dies ein schlechter Ansatz war, weil er gegen das DRY-Prinzip (Don't Repeat Yourself) verstößt.
 
-Als nächstes haben wir eine viel bessere Strategie zum Hinzufügen von Daten untersucht, die für eine Ansichts Master Seite erforderlich sind, um Daten anzuzeigen Anstatt die Ansichts Daten in den einzelnen Controller Aktionen hinzuzufügen, haben wir die Ansichts Daten nur einmal innerhalb eines Anwendungs Controllers hinzugefügt. Auf diese Weise können Sie doppelten Code vermeiden, wenn Sie Daten an eine Ansichts Master Seite in einer ASP.NET MVC-Anwendung übergeben.
+Als Nächstes haben wir eine viel bessere Strategie zum Hinzufügen von Daten untersucht, die von einer Ansichtsmasterseite zum Anzeigen von Daten benötigt werden. Anstatt die Ansichtsdaten in jeder einzelnen Controlleraktion hinzuzufügen, haben wir die Ansichtsdaten nur einmal innerhalb eines Anwendungscontrollers hinzugefügt. Auf diese Weise können Sie doppelten Code vermeiden, wenn Sie Daten an eine Ansichtsmasterseite in einer ASP.NET MVC-Anwendung übergeben.
 
 > [!div class="step-by-step"]
 > [Zurück](creating-page-layouts-with-view-master-pages-cs.md)

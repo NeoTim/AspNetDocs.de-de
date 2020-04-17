@@ -1,26 +1,26 @@
 ---
 uid: web-pages/index
-title: ASP.net Web Pages | Microsoft-Dokumentation
+title: ASP.NET Webseiten | Microsoft Docs
 author: rick-anderson
-description: Webmatrix herunterladen & erfahren Sie, wie Sie schnell Webseiten auf eine einfachere Weise erstellen, um Servercode mit HTML zu kombinieren.
+description: Laden Sie WebMatrix herunter & erfahren Sie, wie Sie Webseiten schnell auf einfache Weise erstellen, um Servercode mit HTML zu kombinieren.
 ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: 5418ba96-ff49-4a43-9cbb-09dea4949d23
 msc.legacyurl: /web-pages
 msc.type: categoryindex
-ms.openlocfilehash: 56bf82e22b3562893ef842a90d42aa7b6ff5858f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: d767325a376e5daa0ea4236f67c88e6b97ae71a7
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78520671"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543521"
 ---
 # <a name="aspnet-web-pages"></a>ASP.NET Web Pages
 
 > [!NOTE] 
-> Webmatrix wird nicht mehr als integrierte Entwicklungsumgebung für ASP.net Web Pages empfohlen. Verwenden Sie [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) oder [Visual Studio Code](https://code.visualstudio.com/).
+> WebMatrix wird nicht mehr als integrierte Entwicklungsumgebung für ASP.NET Webseiten empfohlen. Verwenden Sie [Visual Studio](xref:web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) oder Visual [Studio Code](https://code.visualstudio.com/).
 
-- [Empfehlungen](overview/index.md)
+- [Leitfaden](overview/index.md)
 
     - [Erste Schritte](overview/getting-started/index.md)
 
@@ -50,7 +50,7 @@ ms.locfileid: "78520671"
         - [Überprüfen der Benutzereingabe in ASP.NET Web Pages-Websites](overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites.md)
         - [Erstellen einer konsistenten Gestaltung](overview/ui-layouts-and-themes/3-creating-a-consistent-look.md)
         - [Anpassen des Verhaltens von Websiteseiten](overview/ui-layouts-and-themes/18-customizing-site-wide-behavior.md)
-        - [Working with Images (Arbeiten mit Bildern)](overview/ui-layouts-and-themes/9-working-with-images.md)
+        - [Arbeiten mit Bildern](overview/ui-layouts-and-themes/9-working-with-images.md)
         - [Arbeiten mit Videos](overview/ui-layouts-and-themes/10-working-with-video.md)
         - [Erstellen und Verwenden eines Hilfsprogramms in einer ASP.NET Web Pages-Website](overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site.md)
         - [Installieren eines Hilfsprogramms](overview/ui-layouts-and-themes/installing-helpers.md)
@@ -68,7 +68,7 @@ ms.locfileid: "78520671"
 
         - [Einführung zum Debugging](overview/testing-and-debugging/introduction-to-debugging.md)
         - [Leitfaden zur Behandlung von Problemen mit ASP.NET Web Pages (Razor)](overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide.md)
-    - [Sicherheit](overview/security/index.md)
+    - [Security](overview/security/index.md)
 
         - [Erweiterung der Sicherheits- und Mitgliedschaftsberechtigungen](overview/security/16-adding-security-and-membership.md)
         - [Aktivieren der Anmeldung über externe Websites einer ASP.NET Web Pages-Website](overview/security/enabling-login-from-external-sites-in-an-aspnet-web-pages-site.md)
@@ -81,7 +81,7 @@ ms.locfileid: "78520671"
     - [API-Referenz](overview/api-reference/index.md)
 
         - [ASP.NET-API-Kurzübersicht](overview/api-reference/asp-net-web-pages-api-reference.md)
-    - [Freigaben](overview/releases/index.md)
+    - [Releases](overview/releases/index.md)
 
         - [Neue Funktionen in ASP.NET Web Pages 3.2](overview/releases/whats-new-in-aspnet-web-pages-32.md)
         - [Neue Funktionen in ASP.NET Web Pages 3.1](overview/releases/whats-new-aspnet-web-pages-31.md)
@@ -102,7 +102,7 @@ ms.locfileid: "78520671"
         - [Erstellen einer Seite zum Bearbeiten von Daten in WebMatrix](videos/introduction/create-an-edit-data-page-in-webmatrix.md)
         - [Erstellen einer Seite zum Löschen von Daten in WebMatrix](videos/introduction/create-a-delete-data-page-in-webmatrix.md)
         - [Veröffentlichen einer Website im Internet mithilfe von WebMatrix](videos/introduction/publish-a-website-to-the-internet-using-webmatrix.md)
-    - [ASP.net Razor Pages](videos/aspnet-razor-pages/index.md)
+    - [ASP.NET Razor-Seiten](videos/aspnet-razor-pages/index.md)
 
         - [Erste Schritte mit WebMatrix und ASP.NET Web Pages](videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.md)
         - [Einführung zur Programmierung von ASP.NET-Webseiten mit der Razor-Syntax](videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.md)
@@ -116,7 +116,7 @@ ms.locfileid: "78520671"
         - [Anzeigen von Daten in einem Diagramm (Teil 1)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1.md)
         - [Anzeigen von Daten in einem Diagramm (Teil 2)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-2.md)
         - [Working with Files (Arbeiten mit Dateien)](videos/aspnet-razor-pages/working-with-files.md)
-        - [Working with Images (Arbeiten mit Bildern)](videos/aspnet-razor-pages/working-with-images.md)
+        - [Arbeiten mit Bildern](videos/aspnet-razor-pages/working-with-images.md)
         - [Arbeiten mit Videos](videos/aspnet-razor-pages/working-with-video.md)
         - [Hinzufügen der Funktion zum Senden von E-Mails zu Ihrer Website](videos/aspnet-razor-pages/adding-email-to-your-web-site.md)
         - [Hinzufügen der Suchfunktion zu Ihrer Website](videos/aspnet-razor-pages/adding-search-to-your-web-site.md)

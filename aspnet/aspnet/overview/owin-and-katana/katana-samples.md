@@ -1,19 +1,19 @@
 ---
 uid: aspnet/overview/owin-and-katana/katana-samples
-title: Katana-Beispiele | Microsoft-Dokumentation
-author: microsoft
+title: Katana Proben | Microsoft Docs
+author: rick-anderson
 description: ''
 ms.author: riande
 ms.date: 01/17/2014
 ms.assetid: bec04f5d-2638-4417-b288-97c58c8d6379
 msc.legacyurl: /aspnet/overview/owin-and-katana/katana-samples
 msc.type: authoredcontent
-ms.openlocfilehash: 1238f7d09492a6856d49dece5de75184ccfa4838
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 15cc1084b16db2619f2295ee21dec4f49eb2e354
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78472347"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81540440"
 ---
 # <a name="katana-samples"></a>Katana-Beispiele
 
@@ -21,32 +21,32 @@ von [Microsoft](https://github.com/microsoft)
 
 ## <a name="katana-samples"></a>Katana-Beispiele
 
-**ASP.net Routes-Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/AspNetRoutes)  
-In einigen Anwendungen möchten Sie owin-Komponenten in der ASP.NET-Routing Tabelle nebeneinander mit nicht-owin-Komponenten verbinden. In diesem Beispiel wird gezeigt, wie die RouteCollection-Erweiterungs Methoden mapowinpath und mapowinroute verwendet werden, die von Microsoft. owin. Host. systemWeb bereitgestellt werden.
+**ASP.NET Routen** | [Beispiel-Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/AspNetRoutes)  
+In einigen Anwendungen sollten Sie OWIN-Komponenten im Asp.Net-Routing-Tabelle seite an Seite mit Nicht-OWIN-Komponenten anschließen. In diesem Beispiel wird gezeigt, wie die RouteCollection-Erweiterungsmethoden MapOwinPath und MapOwinRoute verwendet werden, die von Microsoft.Owin.Host.SystemWeb bereitgestellt werden.
 
-**Beispiel für Verzweigungs Pipelines** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/BranchingPipelines)  
-Owin-Anforderungs Verarbeitungs Pipelines müssen nicht linear sein, Sie können so verzweigt werden, dass Anforderungen auf unterschiedliche Weise verarbeitet werden. In diesem Beispiel wird gezeigt, wie eine Verzweigungs Pipeline basierend auf Anforderungs Pfaden oder anderen Anforderungs Daten, z. b. Headern, erstellt wird. Diese Komponenten sind im nuget-Paket Microsoft. owin. Mapping verfügbar.
+**Verzweigen von Pipelines** | [Beispiel-Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/BranchingPipelines)  
+OWIN-Anforderungsverarbeitungspipelines müssen nicht linear sein, sie können verzweigt werden, um Anforderungen auf unterschiedliche Weise zu verarbeiten. Dieses Beispiel zeigt, wie eine Verzweigungspipeline basierend auf Anforderungspfaden oder anderen Anforderungsdaten wie Headern erstellt wird. Diese Komponenten sind im Paket Microsoft.Owin.Mapping nuget verfügbar.
 
-**Beispiel für benutzerdefinierte Server** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/CustomServer)   
-Zeigt, wie ein benutzerdefinierter owin-Server verwendet wird, wenn das selbst Hosting von owin verwendet wird.
+**Benutzerdefinierter Server-Beispiel-Quellcode** | [Source Code](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/CustomServer)   
+Zeigt, wie sie beim Selbsthosting von OWIN einen benutzerdefinierten OWIN-Server verwenden.
 
-**Eingebetteter Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/Embedded)  
-Einige owin-Server können in Ihrem eigenen Prozess ausgeführt werden (&quot;selbstgeh ostete&quot;). In diesem Beispiel wird gezeigt, wie eine owin-Anwendung mit den Tools gestartet wird, die vom Microsoft. owin. Hosting-nuget-Paket bereitgestellt werden.
+**Eingebetteter** | [Beispiel-Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/Embedded)  
+Einige OWIN-Server können innerhalb Ihres&quot;eigenen Prozesses&quot;ausgeführt werden ( selbst gehostet ). In diesem Beispiel wird gezeigt, wie Sie eine OWIN-Anwendung mit den Tools starten, die vom Microsoft.Owin.Hosting-Nuget-Paket bereitgestellt werden.
 
-**HelloWorld-Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/HelloWorld)  
-Owin ist eine HTTP-Server-API-Abstraktion, die die Portabilität von Anwendungen auf verschiedenen Servern ermöglicht. In diesem Beispiel wird veranschaulicht, wie Sie eine Hallo Welt Anwendung mit einigen **einfachen Wrappern** für die unformatierte owin-Abstraktion schreiben und Sie auf einem Webserver wie ASP.net ausführen.
+**HelloWorld-Beispiel-Quellcode** | [Source Code](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/HelloWorld)  
+OWIN ist eine HTTP-Server-API-Abstraktion, die die Anwendungsportabilität auf verschiedenen Servern ermöglicht. In diesem Beispiel wird veranschaulicht, wie Sie eine Hello World-Anwendung mit einigen **einfachen Wrappern** um die unformatierte OWIN-Abstraktion schreiben und auf einem Webserver wie ASP.NET ausführen.
 
-Hallo Welt unformatierte **owin-Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/HelloWorldRawOwin)  
-In diesem Beispiel wird veranschaulicht, wie Sie eine Hallo Welt Anwendung **mit der** unformatierten owin-Abstraktion schreiben und Sie auf einem Webserver wie ASP.net ausführen.
+**Hello World Raw OWIN** | [Beispiel-Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/HelloWorldRawOwin)  
+In diesem Beispiel wird veranschaulicht, wie Sie eine Hello World-Anwendung mithilfe der **unformatierten** OWIN-Abstraktion schreiben und auf einem Webserver wie Asp.Net ausführen.
 
-**Signalr-Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/SignalR)  
-Zeigt, wie Sie signalr mithilfe von owin/Katana selbst hosten können. Weitere Informationen zum Selbsthosting von signalr finden Sie unter [Tutorial: signalr Self-Host](../../../signalr/overview/deployment/tutorial-signalr-self-host.md).
+**SignalR-Beispiel-Quellcode** | [Source Code](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/SignalR)  
+Zeigt, wie SignalR mit OWIN / Katana selbst hosten wird. Weitere Informationen zum Selbsthosting von SignalR finden Sie unter [Tutorial: SignalR Self-Host](../../../signalr/overview/deployment/tutorial-signalr-self-host.md).
 
-**Beispiel für statische Dateien** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/StaticFilesSample)   
-Zeigt, wie HTTP-Anforderungen für statische Dateien mit owin/Katana unterstützt werden.
+**Static Files Sample** | [Beispielfürst-Quellcode für](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/StaticFilesSample) statische Dateien   
+Zeigt, wie HTTP-Anforderungen für statische Dateien mit OWIN / Katana unterstützt werden.
 
-**Web-API** - | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/WebApi)   
-Dieses Beispiel zeigt, wie Sie owin in IIS hosten und der owin-Pipeline eine Web-API hinzufügen.
+**Web-API-Quellcode** | [Source Code](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/WebApi)   
+In diesem Beispiel wird gezeigt, wie OWIN in IIS hosten und der OWIN-Pipeline eine Web-API hinzugefügt werden.
 
-**WebSocket-Beispiel** | [Quellcode](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/WebSocketSample)   
-Zeigt, wie websockets in owin mithilfe der [System .net. websockets. WebSocket](https://msdn.microsoft.com/library/system.net.websockets.websocket(v=vs.110).aspx) -Klasse unterstützt werden.
+**Web Socket-Beispiel-Quellcode** | [Source Code](https://github.com/aspnet/samples/tree/master/samples/aspnet/Katana/WebSocketSample)   
+Zeigt, wie Websockets in OWIN mithilfe der [System.Net.WebSockets.WebSockets.WebSocket-Klasse](https://msdn.microsoft.com/library/system.net.websockets.websocket(v=vs.110).aspx) unterstützt werden.

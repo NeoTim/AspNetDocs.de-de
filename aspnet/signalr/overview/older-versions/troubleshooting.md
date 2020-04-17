@@ -1,19 +1,19 @@
 ---
 uid: signalr/overview/older-versions/troubleshooting
-title: Problembehandlung bei signalr (signalr 1. x) | Microsoft-Dokumentation
+title: SignalR Fehlerbehebung (SignalR 1.x) | Microsoft Docs
 author: bradygaster
-description: In diesem Artikel werden häufige Probleme beim Entwickeln von signalr-Anwendungen beschrieben.
+description: In diesem Artikel werden häufige Probleme bei der Entwicklung von SignalR-Anwendungen beschrieben.
 ms.author: bradyg
 ms.date: 06/05/2013
 ms.assetid: 347210ba-c452-4feb-886f-b51d89f58971
 msc.legacyurl: /signalr/overview/older-versions/troubleshooting
 msc.type: authoredcontent
-ms.openlocfilehash: 3dbf091ac2daa4da477b405852bb4d1316584fcd
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: e65ce086d28cff2a36c609f47a05af632081be63
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78468099"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543092"
 ---
 # <a name="signalr-troubleshooting-signalr-1x"></a>Problembehandlung für SignalR (SignalR 1.x)
 
@@ -21,112 +21,112 @@ von [Patrick Fletcher](https://github.com/pfletcher)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-> In diesem Dokument werden häufige Probleme bei der Problembehandlung in signalr beschrieben.
+> In diesem Dokument werden häufige Probleme bei der Problembehandlung mit SignalR beschrieben.
 
 Dieses Dokument enthält die folgenden Abschnitte.
 
-- [Aufrufen von Methoden zwischen Client und Server im Hintergrund fehlgeschlagen](#connection)
+- [Aufrufmethoden zwischen Client und Server fehlschlägt im Hintergrund](#connection)
 - [Andere Verbindungsprobleme](#other)
 - [Kompilierung und serverseitige Fehler](#server)
 - [Visual Studio-Probleme](#vs)
-- [Internetinformationsdienste Probleme](#iis)
+- [Probleme mit Internetinformationsdiensten](#iis)
 - [Azure-Probleme](#azure)
 
 <a id="connection"></a>
 
-## <a name="calling-methods-between-the-client-and-server-silently-fails"></a>Aufrufen von Methoden zwischen Client und Server im Hintergrund fehlgeschlagen
+## <a name="calling-methods-between-the-client-and-server-silently-fails"></a>Aufrufmethoden zwischen Client und Server fehlschlägt im Hintergrund
 
-In diesem Abschnitt werden mögliche Ursachen für den Fehler eines Methoden Aufrufes zwischen Client und Server beschrieben, ohne dass eine sinnvolle Fehlermeldung vorliegt. In einer signalr-Anwendung enthält der Server keine Informationen zu den Methoden, die vom Client implementiert werden. Wenn der Server eine Client Methode aufruft, werden der Methodenname und die Parameterdaten an den Client gesendet, und die Methode wird nur ausgeführt, wenn Sie in dem vom Server angegebenen Format vorhanden ist. Wenn keine übereinstimmende Methode auf dem Client gefunden wird, geschieht nichts, und auf dem Server wird keine Fehlermeldung ausgelöst.
+In diesem Abschnitt werden mögliche Ursachen für einen Methodenaufruf zwischen Client und Server beschrieben, der ohne aussagekräftige Fehlermeldung fehlschlägt. In einer SignalR-Anwendung verfügt der Server über keine Informationen über die Methoden, die der Client implementiert. Wenn der Server eine Clientmethode aufruft, werden der Methodenname und die Parameterdaten an den Client gesendet, und die Methode wird nur ausgeführt, wenn sie in dem vom Server angegebenen Format vorhanden ist. Wenn auf dem Client keine übereinstimmende Methode gefunden wird, geschieht nichts, und es wird keine Fehlermeldung auf dem Server ausgelöst.
 
-Zur weiteren Untersuchung von Client Methoden, die nicht aufgerufen werden, können Sie die Protokollierung aktivieren, bevor Sie die Start-Methode auf dem Hub aufrufen, um festzustellen, welche Aufrufe vom Server stammen. Informationen zum Aktivieren der Protokollierung in einer JavaScript-Anwendung finden Sie unter [Aktivieren der Client seitigen Protokollierung (JavaScript-Client Version)](../guide-to-the-api/hubs-api-guide-javascript-client.md#logging). Informationen zum Aktivieren der Protokollierung in einer .NET-Client Anwendung finden Sie unter [Aktivieren der Client seitigen Protokollierung (.NET-Client Version)](../guide-to-the-api/hubs-api-guide-net-client.md#logging).
+Um Clientmethoden, die nicht aufgerufen werden, weiter zu untersuchen, können Sie die Protokollierung aktivieren, bevor Sie die Startmethode auf dem Hub aufrufen, um zu sehen, welche Aufrufe vom Server kommen. Informationen zum Aktivieren der Protokollierung in einer JavaScript-Anwendung finden Sie unter Aktivieren der [clientseitigen Protokollierung (JavaScript-Clientversion)](../guide-to-the-api/hubs-api-guide-javascript-client.md#logging). Informationen zum Aktivieren der Protokollierung in einer .NET-Clientanwendung finden Sie unter Aktivieren der [clientseitigen Protokollierung (.NET Client-Version)](../guide-to-the-api/hubs-api-guide-net-client.md#logging).
 
-### <a name="misspelled-method-incorrect-method-signature-or-incorrect-hub-name"></a>Falsch geschriebene Methode, falsche Methoden Signatur oder falscher Hub-Name.
+### <a name="misspelled-method-incorrect-method-signature-or-incorrect-hub-name"></a>Falsch geschriebene Methode, falsche Methodensignatur oder falscher Hubname
 
-Wenn der Name oder die Signatur einer aufgerufenen Methode nicht genau mit einer entsprechenden Methode auf dem Client übereinstimmt, schlägt der Aufruf fehl. Vergewissern Sie sich, dass der vom Server aufgerufene Methodenname mit dem Namen der Methode auf dem Client übereinstimmt. Außerdem erstellt signalr den hubproxy mithilfe von Kamel Schreib Methoden, wie es in JavaScript angebracht ist, sodass eine Methode namens "`SendMessage`" auf dem Server im Client Proxy `sendMessage` aufgerufen wird. Wenn Sie das `HubName`-Attribut im serverseitigen Code verwenden, überprüfen Sie, ob der verwendete Name mit dem Namen übereinstimmt, der zum Erstellen des Hubs auf dem Client verwendet wurde. Wenn Sie das `HubName`-Attribut nicht verwenden, überprüfen Sie, ob der Name des Hubs in einem JavaScript-Client Kamel-Schreibweise ist, z. b. chathub anstelle von chathub.
+Wenn der Name oder die Signatur einer aufgerufenen Methode nicht genau mit einer geeigneten Methode auf dem Client übereinstimmt, schlägt der Aufruf fehl. Stellen Sie sicher, dass der vom Server aufgerufene Methodenname mit dem Namen der Methode auf dem Client übereinstimmt. Außerdem erstellt SignalR den Hub-Proxy mithilfe von Camel-Cased-Methoden, wie `SendMessage` es in JavaScript angebracht ist, sodass eine auf dem Server aufgerufene Methode im Clientproxy aufgerufen `sendMessage` wird. Wenn Sie `HubName` das Attribut in Ihrem serverseitigen Code verwenden, stellen Sie sicher, dass der verwendete Name mit dem Namen übereinstimmt, der zum Erstellen des Hubs auf dem Client verwendet wird. Wenn Sie das `HubName` Attribut nicht verwenden, stellen Sie sicher, dass der Name des Hubs in einem JavaScript-Client Kamel-Cased ist, z. B. ChatHub anstelle von ChatHub.
 
-### <a name="duplicate-method-name-on-client"></a>Doppelter Methodenname auf Client
+### <a name="duplicate-method-name-on-client"></a>Doppelte Methodenname auf dem Client
 
-Vergewissern Sie sich, dass auf dem Client keine doppelte Methode vorhanden ist Wenn Ihre Client Anwendung über eine Methode namens `sendMessage`verfügt, stellen Sie sicher, dass nicht auch eine Methode namens `SendMessage` vorhanden ist.
+Stellen Sie sicher, dass sie keine doppelte Methode auf dem Client haben, die sich nur von Fall zu Großundhälter unterscheidet. Wenn Ihre Clientanwendung über `sendMessage`eine Methode namens verfügt, stellen `SendMessage` Sie sicher, dass nicht auch eine Methode aufgerufen wird.
 
 ### <a name="missing-json-parser-on-the-client"></a>Fehlender JSON-Parser auf dem Client
 
-Für signalr muss ein JSON-Parser vorhanden sein, um Aufrufe zwischen dem Server und dem Client zu serialisieren. Wenn Ihr Client nicht über einen integrierten JSON-Parser (z. b. Internet Explorer 7) verfügt, müssen Sie einen in Ihre Anwendung einschließen. Sie können den JSON-Parser [hier](http://nuget.org/packages/json2)herunterladen.
+SignalR erfordert, dass ein JSON-Parser vorhanden ist, um Aufrufe zwischen dem Server und dem Client zu serialisieren. Wenn Ihr Client nicht über einen integrierten JSON-Parser (z. B. Internet Explorer 7) verfügt, müssen Sie einen in Ihre Anwendung aufnehmen. Sie können den JSON-Parser [hier](http://nuget.org/packages/json2)herunterladen.
 
-### <a name="mixing-hub-and-persistentconnection-syntax"></a>Mischung aus Hub und persistentconnection-Syntax
+### <a name="mixing-hub-and-persistentconnection-syntax"></a>Mixing Hub- und PersistentConnection-Syntax
 
-Signalr verwendet zwei Kommunikationsmodelle: Hubs und persistentconnections. Die Syntax zum Aufrufen dieser beiden Kommunikationsmodelle unterscheidet sich im Client Code. Wenn Sie einen Hub in Ihrem Servercode hinzugefügt haben, überprüfen Sie, ob der gesamte Client Code die richtige Hub-Syntax verwendet.
+SignalR verwendet zwei Kommunikationsmodelle: Hubs und PersistentConnections. Die Syntax zum Aufrufen dieser beiden Kommunikationsmodelle unterscheidet sich im Clientcode. Wenn Sie dem Servercode einen Hub hinzugefügt haben, stellen Sie sicher, dass der gesamte Clientcode die richtige Hubsyntax verwendet.
 
-**JavaScript-Client Code, der eine persistentconnection in einem JavaScript-Client erstellt**
+**JavaScript-Clientcode, der eine PersistentConnection in einem JavaScript-Client erstellt**
 
 [!code-javascript[Main](troubleshooting/samples/sample1.js)]
 
-**JavaScript-Client Code, der einen Hub-Proxy in einem JavaScript-Client erstellt**
+**JavaScript-Clientcode, der einen Hubproxy in einem Javascript-Client erstellt**
 
 [!code-javascript[Main](troubleshooting/samples/sample2.js)]
 
-**C#Servercode, der eine Route einer persistentconnection zuordnet**
+**Servercode mit dem Server code, der eine Route einer PersistentConnection zuordnet**
 
 [!code-csharp[Main](troubleshooting/samples/sample3.cs)]
 
-**C#Servercode, der eine Route zu einem Hub oder mehreren Hubs zuordnet, wenn mehrere Anwendungen vorhanden sind**
+**Servercode, der eine Route einem Hub oder mehreren Hubs zuordnet, wenn Sie über mehrere Anwendungen verfügen**
 
 [!code-csharp[Main](troubleshooting/samples/sample4.cs)]
 
 ### <a name="connection-started-before-subscriptions-are-added"></a>Verbindung gestartet, bevor Abonnements hinzugefügt werden
 
-Wenn die Verbindung des Hubs gestartet wird, bevor Methoden, die vom Server aufgerufen werden können, dem Proxy hinzugefügt werden, werden keine Nachrichten empfangen. Mit dem folgenden JavaScript-Code wird der Hub nicht ordnungsgemäß gestartet:
+Wenn die Verbindung des Hubs gestartet wird, bevor dem Proxy Methoden hinzugefügt werden, die vom Server aufgerufen werden können, werden keine Nachrichten empfangen. Der folgende JavaScript-Code startet den Hub nicht ordnungsgemäß:
 
-**Falscher JavaScript-Client Code, der nicht zulässt, dass Hubs-Nachrichten empfangen werden.**
+**Falscher JavaScript-Clientcode, der den Empfangen von Hubs-Nachrichten nicht zulässt**
 
 [!code-javascript[Main](troubleshooting/samples/sample5.js)]
 
-Fügen Sie stattdessen die-Methoden Abonnements vor dem Aufruf von Start ein:
+Fügen Sie stattdessen die Methodenabonnements hinzu, bevor Sie Start aufrufen:
 
-**JavaScript-Client Code, mit dem einem Hub ordnungsgemäß Abonnements hinzugefügt werden**
+**JavaScript-Clientcode, der einem Hub ordnungsgemäß Abonnements hinzufügt**
 
 [!code-javascript[Main](troubleshooting/samples/sample6.js)]
 
-### <a name="missing-method-name-on-the-hub-proxy"></a>Fehlender Methodenname auf dem Hub-Proxy
+### <a name="missing-method-name-on-the-hub-proxy"></a>Fehlender Methodenname auf dem Hubproxy
 
-Überprüfen Sie, ob die auf dem Server definierte Methode auf dem Client abonniert ist. Obwohl der Server die Methode definiert, muss er dem Client Proxy trotzdem hinzugefügt werden. Methoden können dem Client Proxy auf folgende Weise hinzugefügt werden (Beachten Sie, dass die-Methode dem `client`-Member des Hubs hinzugefügt wird, nicht direkt dem Hub):
+Stellen Sie sicher, dass die auf dem Server definierte Methode auf dem Client abonniert ist. Obwohl der Server die Methode definiert, muss sie dennoch dem Clientproxy hinzugefügt werden. Methoden können dem Clientproxy auf folgende Weise hinzugefügt werden (Beachten `client` Sie, dass die Methode dem Member des Hubs hinzugefügt wird, nicht dem Hub direkt):
 
-**JavaScript-Client Code zum Hinzufügen von Methoden zu einem hubproxy**
+**JavaScript-Clientcode, der einem Hubproxy Methoden hinzufügt**
 
 [!code-javascript[Main](troubleshooting/samples/sample7.js)]
 
-### <a name="hub-or-hub-methods-not-declared-as-public"></a>Hub-oder hubmethoden, die nicht als öffentlich deklariert sind
+### <a name="hub-or-hub-methods-not-declared-as-public"></a>Hub- oder Hubmethoden, die nicht als Öffentlich deklariert wurden
 
-Um auf dem Client sichtbar zu sein, müssen die hubimplementierung und-Methoden als `public`deklariert werden.
+Um auf dem Client sichtbar zu sein, müssen `public`die Hubimplementierung und -methoden als deklariert werden.
 
-### <a name="accessing-hub-from-a-different-application"></a>Zugreifen auf den Hub aus einer anderen Anwendung
+### <a name="accessing-hub-from-a-different-application"></a>Zugreifen auf Hub von einer anderen Anwendung aus
 
-Auf signalr Hubs kann nur über Anwendungen zugegriffen werden, die signalr-Clients implementieren. Signalr kann nicht mit anderen Kommunikations Bibliotheken (wie SOAP oder WCF-Webdiensten) interagieren. Wenn kein signalr-Client für die Zielplattform verfügbar ist, können Sie nicht direkt auf den Endpunkt des Servers zugreifen.
+Auf SignalR Hubs kann nur über Anwendungen zugegriffen werden, die SignalR-Clients implementieren. SignalR kann nicht mit anderen Kommunikationsbibliotheken (z. B. SOAP- oder WCF-Webdiensten) zusammenarbeiten. Wenn für Ihre Zielplattform kein SignalR-Client verfügbar ist, können Sie nicht direkt auf den Endpunkt des Servers zugreifen.
 
-### <a name="manually-serializing-data"></a>Manuelles Serialisieren von Daten
+### <a name="manually-serializing-data"></a>Manuelle sserialisierende Daten
 
-Signalr verwendet automatisch JSON, um die Methoden Parameter zu serialisieren. es ist nicht nötig, dies selbst zu tun.
+SignalR verwendet AUTOMATISCH JSON, um Ihre Methodenparameter zu serialisieren – es gibt keine Notwendigkeit, es selbst zu tun.
 
-### <a name="remote-hub-method-not-executed-on-client-in-ondisconnected-function"></a>Remotehub Methode wird nicht auf dem Client in der ongetrennte-Funktion ausgeführt
+### <a name="remote-hub-method-not-executed-on-client-in-ondisconnected-function"></a>Remote Hub-Methode wird auf Client in OnDisconnected-Funktion nicht ausgeführt
 
-Dieses Verhalten ist beabsichtigt. Wenn `OnDisconnected` aufgerufen wird, wurde der Hub bereits in den `Disconnected`-Zustand versetzt, sodass keine weiteren hubmethoden aufgerufen werden können.
+Dieses Verhalten ist beabsichtigt. Wenn `OnDisconnected` aufgerufen wird, ist der `Disconnected` Hub bereits in den Zustand eingetreten, wodurch keine weiteren Hubmethoden aufgerufen werden können.
 
-**C#Servercode, der Code im ongetrennte Ereignis ordnungsgemäß ausführt**
+**Servercode, der Code im OnDisconnected-Ereignis korrekt ausführt**
 
 [!code-csharp[Main](troubleshooting/samples/sample8.cs)]
 
-### <a name="connection-limit-reached"></a>Verbindungs Limit erreicht
+### <a name="connection-limit-reached"></a>Verbindungslimit erreicht
 
-Wenn Sie die Vollversion von IIS auf einem Client Betriebssystem wie Windows 7 verwenden, wird ein Limit von 10 Verbindungen erzwungen. Wenn Sie ein Client Betriebssystem verwenden, verwenden Sie stattdessen IIS Express, um dieses Limit zu vermeiden.
+Wenn Sie die Vollversion von IIS auf einem Clientbetriebssystem wie Windows 7 verwenden, wird ein Limit von 10 Verbindungen festgelegt. Verwenden Sie bei Verwendung eines Clientbetriebssystems stattdessen IIS Express, um dieses Limit zu vermeiden.
 
-### <a name="cross-domain-connection-not-set-up-properly"></a>Die Domänen übergreifende Verbindung wurde nicht ordnungsgemäß eingerichtet.
+### <a name="cross-domain-connection-not-set-up-properly"></a>Domänenübergreifende Verbindung nicht ordnungsgemäß eingerichtet
 
-Wenn eine Domänen übergreifende Verbindung (eine Verbindung, für die sich die signalr-URL nicht in derselben Domäne wie die Hostingseite befindet) nicht ordnungsgemäß eingerichtet ist, kann die Verbindung ohne eine Fehlermeldung fehlschlagen. Informationen dazu, wie Sie die Domänen übergreifende Kommunikation aktivieren, finden Sie unter [Einrichten einer Domänen übergreifenden Verbindung](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
+Wenn eine domänenübergreifende Verbindung (eine Verbindung, für die sich die SignalR-URL nicht in derselben Domäne wie die Hostingseite befindet) nicht ordnungsgemäß eingerichtet ist, schlägt die Verbindung möglicherweise ohne Fehlermeldung fehl. Informationen zum Aktivieren der domänenübergreifenden Kommunikation finden Sie unter [Einrichten einer domänenübergreifenden Verbindung](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
 
-### <a name="connection-using-ntlm-active-directory-not-working-in-net-client"></a>Verbindung mit NTLM (Active Directory) funktioniert nicht im .NET-Client
+### <a name="connection-using-ntlm-active-directory-not-working-in-net-client"></a>Verbindung mit NTLM (Active Directory) funktioniert nicht in .NET Client
 
-Eine Verbindung in einer .NET-Client Anwendung, die Domänen Sicherheit verwendet, kann fehlschlagen, wenn die Verbindung nicht ordnungsgemäß konfiguriert ist. Wenn Sie signalr in einer Domänen Umgebung verwenden möchten, legen Sie die erforderliche Verbindungs Eigenschaft wie folgt fest:
+Eine Verbindung in einer .NET-Clientanwendung, die Domänensicherheit verwendet, schlägt möglicherweise fehl, wenn die Verbindung nicht ordnungsgemäß konfiguriert ist. Um SignalR in einer Domänenumgebung zu verwenden, legen Sie die erforderliche Verbindungseigenschaft wie folgt fest:
 
-**C#Client Code, der Verbindungs Anmelde Informationen implementiert**
+**Clientcode für den C-Client, der Verbindungsanmeldeinformationen implementiert**
 
 [!code-csharp[Main](troubleshooting/samples/sample9.cs)]
 
@@ -134,164 +134,164 @@ Eine Verbindung in einer .NET-Client Anwendung, die Domänen Sicherheit verwende
 
 ## <a name="other-connection-issues"></a>Andere Verbindungsprobleme
 
-In diesem Abschnitt werden die Gründe und Lösungen für bestimmte Symptome oder Fehlermeldungen beschrieben, die während einer Verbindung auftreten.
+In diesem Abschnitt werden die Ursachen und Lösungen für bestimmte Symptome oder Fehlermeldungen beschrieben, die während einer Verbindung auftreten.
 
 ### <a name="start-must-be-called-before-data-can-be-sent-error"></a>Fehler "Start muss aufgerufen werden, bevor Daten gesendet werden können"
 
-Dieser Fehler tritt häufig auf, wenn der Code auf signalr-Objekte verweist, bevor die Verbindung gestartet wird. Das wireup für Handler und die Like-Methode, die Methoden aufruft, die auf dem Server definiert sind, müssen hinzugefügt werden, nachdem die Verbindung abgeschlossen wurde. Beachten Sie, dass der-`Start` asynchron ist, sodass Code nach dem-Vorgang möglicherweise ausgeführt wird, bevor er abgeschlossen wird. Die beste Möglichkeit zum Hinzufügen von Handlern, nachdem eine Verbindung vollständig gestartet wurde, besteht darin, Sie in eine Rückruffunktion einzufügen, die als Parameter an die Start Methode übergeben wird:
+Dieser Fehler tritt häufig auf, wenn Code auf SignalR-Objekte verweist, bevor die Verbindung gestartet wird. Das Wireup für Handler und dergleichen, die auf dem Server definierte Methoden aufrufen, muss nach Abschluss der Verbindung hinzugefügt werden. Beachten Sie, `Start` dass der Aufruf asynchron ist, sodass Code nach dem Aufruf ausgeführt werden kann, bevor er abgeschlossen wird. Die beste Möglichkeit, Handler hinzuzufügen, nachdem eine Verbindung vollständig gestartet wurde, besteht darin, sie in eine Rückruffunktion zu setzen, die als Parameter an die start-Methode übergeben wird:
 
-**JavaScript-Client Code, der ordnungsgemäß Ereignishandler hinzufügt, die auf signalr-Objekte verweisen**
+**JavaScript-Clientcode, der Ereignishandler korrekt hinzufügt, die auf SignalR-Objekte verweisen**
 
 [!code-javascript[Main](troubleshooting/samples/sample10.js?highlight=1)]
 
-Dieser Fehler wird auch angezeigt, wenn eine Verbindung beendet wird, während auf signalr-Objekte noch verwiesen wird.
+Dieser Fehler wird auch angezeigt, wenn eine Verbindung beendet wird, während SignalR-Objekte noch referenziert werden.
 
-### <a name="301-moved-permanently-or-302-moved-temporarily-error"></a>Fehler "301 wurde verschoben" oder "302 verschoben temporär"
+### <a name="301-moved-permanently-or-302-moved-temporarily-error"></a>Fehler "301 dauerhaft verschoben" oder "302 vorübergehend verschoben"
 
-Dieser Fehler wird möglicherweise angezeigt, wenn das Projekt einen Ordner namens signalr enthält, der den automatisch erstellten Proxy beeinträchtigt. Um diesen Fehler zu vermeiden, verwenden Sie keinen Ordner mit dem Namen `SignalR` in Ihrer Anwendung, oder schalten Sie die automatische Proxy Generierung aus. Weitere Informationen finden [Sie im generierten Proxy und in den Ausführungen zu diesem](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy) Vorgang.
+Dieser Fehler kann angezeigt werden, wenn das Projekt einen Ordner namens SignalR enthält, der den automatisch erstellten Proxy beeinträchtigt. Um diesen Fehler zu vermeiden, `SignalR` verwenden Sie keinen Ordner, der in Ihrer Anwendung aufgerufen wird, oder deaktivieren Sie die automatische Proxygenerierung. Weitere Informationen finden Sie unter [Der generierte Proxy und weitere Informationen dazu.](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy)
 
-### <a name="403-forbidden-error-in-net-or-silverlight-client"></a>Fehler "403 verboten" im .net-oder Silverlight-Client
+### <a name="403-forbidden-error-in-net-or-silverlight-client"></a>"403 Forbidden"-Fehler in .NET- oder Silverlight-Client
 
-Dieser Fehler kann in Domänen übergreifenden Umgebungen auftreten, in denen die Domänen übergreifende Kommunikation nicht ordnungsgemäß aktiviert ist. Informationen dazu, wie Sie die Domänen übergreifende Kommunikation aktivieren, finden Sie unter [Einrichten einer Domänen übergreifenden Verbindung](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain). Informationen zum Herstellen einer Domänen übergreifenden Verbindung in einem Silverlight-Client finden Sie unter [Domänen übergreifende Verbindungen von Silverlight-Clients](../guide-to-the-api/hubs-api-guide-net-client.md#slcrossdomain).
+Dieser Fehler kann in domänenübergreifenden Umgebungen auftreten, in denen die domänenübergreifende Kommunikation nicht ordnungsgemäß aktiviert ist. Informationen zum Aktivieren der domänenübergreifenden Kommunikation finden Sie unter [Einrichten einer domänenübergreifenden Verbindung](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain). Informationen zum Herstellen einer domänenübergreifenden Verbindung in einem Silverlight-Client finden Sie unter [Domänenübergreifende Verbindungen von Silverlight-Clients](../guide-to-the-api/hubs-api-guide-net-client.md#slcrossdomain).
 
-### <a name="404-not-found-error"></a>Fehler "404 nicht gefunden"
+### <a name="404-not-found-error"></a>Fehler "404 Nicht gefunden"
 
-Für dieses Problem gibt es mehrere Gründe. Überprüfen Sie Folgendes:
+Es gibt mehrere Ursachen für dieses Problem. Überprüfen Sie alle folgenden Punkte:
 
-- Der **Hub-Proxy Adress Verweis ist nicht korrekt formatiert:** Dieser Fehler tritt häufig auf, wenn der Verweis auf die generierte Hub-Proxy Adresse nicht ordnungsgemäß formatiert ist. Überprüfen Sie, ob der Verweis auf die Hub-Adresse ordnungsgemäß erstellt wurde. Weitere Informationen finden Sie unter Gewusst [wie: verweisen auf den dynamisch generierten Proxy](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) .
-- **Hinzufügen von Routen zur Anwendung vor dem Hinzufügen der Hub-Route:** Wenn Ihre Anwendung andere Routen verwendet, vergewissern Sie sich, dass die erste hinzugefügte Route der `MapHubs`aufgerufen wird.
+- **Hubproxy-Adressverweis nicht korrekt formatiert:** Dieser Fehler tritt häufig auf, wenn der Verweis auf die generierte Hubproxyadresse nicht korrekt formatiert ist. Stellen Sie sicher, dass der Verweis auf die Hubadresse ordnungsgemäß vorgenommen wurde. Weitere Informationen finden Sie unter [Verweisen auf den dynamisch generierten Proxy.](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy)
+- **Hinzufügen von Routen zur Anwendung vor dem Hinzufügen der Hubroute:** Wenn Ihre Anwendung andere Routen verwendet, stellen Sie `MapHubs`sicher, dass die erste hinzugefügte Route der Aufruf von ist.
 
-### <a name="500-internal-server-error"></a>"interner Server Fehler 500"
+### <a name="500-internal-server-error"></a>"500 Interner Serverfehler"
 
-Dies ist ein sehr allgemeiner Fehler, der eine Vielzahl von Gründen aufweisen könnte. Die Details des Fehlers sollten im Ereignisprotokoll des Servers angezeigt werden oder durch Debuggen des Servers gefunden werden. Ausführlichere Fehlerinformationen können Sie durch das Aktivieren detaillierter Fehler auf dem Server erhalten. Weitere Informationen finden Sie unter [Behandeln von Fehlern in der Hub-Klasse](../guide-to-the-api/hubs-api-guide-server.md#handleErrors).
+Dies ist ein sehr generischer Fehler, der eine Vielzahl von Ursachen haben könnte. Die Details des Fehlers sollten im Ereignisprotokoll des Servers angezeigt werden oder über das Debuggen des Servers gefunden werden. Detailliertere Fehlerinformationen können durch Aktivieren detaillierter Fehler auf dem Server abgerufen werden. Weitere Informationen finden Sie unter [Behandeln von Fehlern in der Hub-Klasse](../guide-to-the-api/hubs-api-guide-server.md#handleErrors).
 
-### <a name="typeerror-lthubtypegt-is-undefined-error"></a>Fehler "TypeError: &lt;hubtype&gt; ist nicht definiert"
+### <a name="typeerror-lthubtypegt-is-undefined-error"></a>Fehler &lt;"TypeError:&gt; hubType ist nicht definiert"
 
-Dieser Fehler wird zurückgegeben, wenn der `MapHubs` nicht ordnungsgemäß ausgeführt wird. Weitere Informationen finden [Sie unter Registrieren der signalr-Route und Konfigurieren von signalr-Optionen](../guide-to-the-api/hubs-api-guide-server.md#route) .
+Dieser Fehler tritt auf, `MapHubs` wenn der Aufruf nicht ordnungsgemäß erfolgt. Weitere Informationen finden Sie unter [Registrieren der SignalR-Route und Konfigurieren von SignalR-Optionen.](../guide-to-the-api/hubs-api-guide-server.md#route)
 
-### <a name="jsonserializationexception-was-unhandled-by-user-code"></a>Jsonserializationexception wurde nicht von Benutzercode behandelt.
+### <a name="jsonserializationexception-was-unhandled-by-user-code"></a>JsonSerializationException wurde vom Benutzercode nicht behandelt
 
-Überprüfen Sie, ob die Parameter, die Sie an ihre Methoden senden, nicht serialisierbare Typen enthalten (z. b. Datei Handles oder Datenbankverbindungen). Wenn Sie Member für ein serverseitiges Objekt verwenden müssen, das nicht an den Client gesendet werden soll (aus Sicherheitsgründen oder aus Gründen der Serialisierung), verwenden Sie das `JSONIgnore`-Attribut.
+Stellen Sie sicher, dass die Parameter, die Sie an Ihre Methoden senden, keine nicht serialisierbaren Typen (z. B. Dateihandles oder Datenbankverbindungen) enthalten. Wenn Sie Member für ein serverseitiges Objekt verwenden müssen, das nicht an den Client gesendet werden soll `JSONIgnore` (entweder aus Sicherheitsgründen oder aus Gründen der Serialisierung), verwenden Sie das Attribut.
 
 ### <a name="protocol-error-unknown-transport-error"></a>Fehler "Protokollfehler: Unbekannter Transport"
 
-Dieser Fehler kann auftreten, wenn der Client die von signalr verwendeten Transporte nicht unterstützt. Informationen dazu, welche Browser mit signalr verwendet werden können, finden Sie unter [Transporte und Fallbacks](../getting-started/introduction-to-signalr.md#transports) .
+Dieser Fehler kann auftreten, wenn der Client die von SignalR verwendeten Transporte nicht unterstützt. Informationen dazu, welche Browser mit SignalR verwendet werden können, finden Sie unter [Transporte und Fallbacks.](../getting-started/introduction-to-signalr.md#transports)
 
-### <a name="javascript-hub-proxy-generation-has-been-disabled"></a>"Die Erstellung des JavaScript-Hub-Proxys wurde deaktiviert."
+### <a name="javascript-hub-proxy-generation-has-been-disabled"></a>"Die JavaScript Hub-Proxygenerierung wurde deaktiviert."
 
-Dieser Fehler tritt auf, wenn `DisableJavaScriptProxies` festgelegt wird, während Sie auch einen Verweis auf den dynamisch generierten Proxy bei `signalr/hubs`einschließen. Weitere Informationen zum manuellen Erstellen des Proxys finden [Sie unter der generierte Proxy und dessen](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy)Funktionsweise.
+Dieser Fehler tritt `DisableJavaScriptProxies` auf, wenn festgelegt wird, während `signalr/hubs`auch ein Verweis auf den dynamisch generierten Proxy bei enthält. Weitere Informationen zum manuellen Erstellen des Proxys finden Sie unter [Der generierte Proxy und was er für Sie tut.](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy)
 
-### <a name="the-connection-id-is-in-the-incorrect-format-or-the-user-identity-cannot-change-during-an-active-signalr-connection-error"></a>"Die Verbindungs-ID weist das falsche Format auf, oder die Benutzeridentität kann während einer aktiven signalr-Verbindung nicht geändert werden."
+### <a name="the-connection-id-is-in-the-incorrect-format-or-the-user-identity-cannot-change-during-an-active-signalr-connection-error"></a>"Die Verbindungs-ID ist im falschen Format" oder "Die Benutzeridentität kann sich während einer aktiven SignalR-Verbindung nicht ändern" Fehler
 
-Dieser Fehler wird möglicherweise angezeigt, wenn die Authentifizierung verwendet wird und der Client vor dem Beenden der Verbindung abgemeldet wird. Die Lösung besteht darin, die signalr-Verbindung anzuhalten, bevor der Client protokolliert wird.
+Dieser Fehler kann angezeigt werden, wenn die Authentifizierung verwendet wird und der Client abgemeldet wird, bevor die Verbindung beendet wird. Die Lösung besteht darin, die SignalR-Verbindung zu beenden, bevor der Client protokolliert wird.
 
-### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Nicht abgefangener Fehler: signalr: jQuery nicht gefunden. Stellen Sie sicher, dass auf "jQuery" vor der Datei "signalr. js" verwiesen wird.
+### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Uncaught Error: SignalR: jQuery nicht gefunden. Stellen Sie sicher, dass auf jQuery vor dem SignalR.js-Dateifehler verwiesen wird.
 
-Für den signalr-JavaScript-Client muss jQuery ausgeführt werden. Vergewissern Sie sich, dass der Verweis auf jQuery korrekt ist, dass der verwendete Pfad gültig ist und dass der Verweis auf jQuery vor dem Verweis auf signalr liegt.
+Der SignalR JavaScript-Client erfordert die Ausführung von jQuery. Stellen Sie sicher, dass Ihr Verweis auf jQuery korrekt ist, dass der verwendete Pfad gültig ist und dass der Verweis auf jQuery vor dem Verweis auf SignalR liegt.
 
-### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>"Nicht abgefangene TypeError: die Eigenschaft"&lt;-Eigenschaft&gt;"nicht definierter Fehler" kann nicht gelesen werden.
+### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>Fehler "Uncaught TypeError:&lt;Cannot&gt;read property ' property ' of undefined"
 
-Dieser Fehler führt dazu, dass jQuery oder der hubproxy nicht ordnungsgemäß referenziert ist. Vergewissern Sie sich, dass der Verweis auf jQuery und der Hubs-Proxy richtig sind, dass der verwendete Pfad gültig ist und der Verweis auf jQuery vor dem Verweis auf den Hubs-Proxy steht. Der Standard Verweis auf den Hubs-Proxy sollte wie folgt aussehen:
+Dieser Fehler resultiert, dass jQuery oder der Hubs-Proxy nicht ordnungsgemäß referenziert wurde. Stellen Sie sicher, dass Ihr Verweis auf jQuery und den Hubs-Proxy korrekt ist, dass der verwendete Pfad gültig ist und dass der Verweis auf jQuery vor dem Verweis auf den Hubs-Proxy liegt. Der Standardverweis auf den Hubs-Proxy sollte wie folgt aussehen:
 
-**Client seitiger HTML-Code, der ordnungsgemäß auf den Hubs-Proxy verweist**
+**HTML-Client-side-Code, der korrekt auf den Hubs-Proxy verweist**
 
 [!code-html[Main](troubleshooting/samples/sample11.html)]
 
 ### <a name="runtimebinderexception-was-unhandled-by-user-code-error"></a>Fehler "RuntimeBinderException wurde vom Benutzercode nicht behandelt"
 
-Dieser Fehler kann auftreten, wenn die falsche Überladung von `Hub.On` verwendet wird. Wenn die Methode über einen Rückgabewert verfügt, muss der Rückgabetyp als generischer Typparameter angegeben werden:
+Dieser Fehler kann auftreten, wenn `Hub.On` die falsche Überladung von verwendet wird. Wenn die Methode einen Rückgabewert hat, muss der Rückgabetyp als generischer Typparameter angegeben werden:
 
 **Auf dem Client definierte Methode (ohne generierten Proxy)**
 
 [!code-html[Main](troubleshooting/samples/sample12.html?highlight=1)]
 
-### <a name="connection-id-is-inconsistent-or-connection-breaks-between-page-loads"></a>Verbindungs-ID ist inkonsistent oder Verbindungsunterbrechungen zwischen Seiten Ladevorgängen
+### <a name="connection-id-is-inconsistent-or-connection-breaks-between-page-loads"></a>Verbindungs-ID ist inkonsistent oder Verbindungsunterbrechungen zwischen Seitenladevorgängen
 
-Dieses Verhalten ist beabsichtigt. Da das Hub-Objekt im Seiten Objekt gehostet wird, wird der Hub zerstört, wenn die Seite aktualisiert wird. Eine Anwendung mit mehreren Seiten muss die Zuordnung zwischen Benutzern und Verbindungs-IDs aufrechterhalten, damit Sie zwischen den Seiten Ladevorgängen konsistent werden. Die Verbindungs-IDs können auf dem Server entweder in einem `ConcurrentDictionary` Objekt oder in einer Datenbank gespeichert werden.
+Dieses Verhalten ist beabsichtigt. Da das Hubobjekt im Seitenobjekt gehostet wird, wird der Hub beim Aktualisieren der Seite zerstört. Eine mehrseitige Anwendung muss die Zuordnung zwischen Benutzern und Verbindungs-IDs beibehalten, damit sie zwischen Seitenladevorgängen konsistent sind. Die Verbindungs-IDs können auf dem `ConcurrentDictionary` Server entweder in einem Objekt oder in einer Datenbank gespeichert werden.
 
-### <a name="value-cannot-be-null-error"></a>Fehler "der Wert darf nicht NULL sein"
+### <a name="value-cannot-be-null-error"></a>Fehler "Wert kann nicht null sein"
 
-Server seitige Methoden mit optionalen Parametern werden zurzeit nicht unterstützt. Wenn der optionale Parameter weggelassen wird, schlägt die Methode fehl. Weitere Informationen finden Sie unter [optionale Parameter](https://github.com/SignalR/SignalR/issues/324).
+Serverseitige Methoden mit optionalen Parametern werden derzeit nicht unterstützt. Wenn der optionale Parameter weggelassen wird, schlägt die Methode fehl. Weitere Informationen finden Sie unter [Optionale Parameter](https://github.com/SignalR/SignalR/issues/324).
 
-### <a name="firefox-cant-establish-a-connection-to-the-server-at-ltaddressgt-error-in-firebug"></a>"Firefox kann keine Verbindung mit dem Server bei &lt;Adresse herstellen&gt;" Fehler in Firebug
+### <a name="firefox-cant-establish-a-connection-to-the-server-at-ltaddressgt-error-in-firebug"></a>"Firefox kann keine Verbindung zum Server &lt;&gt;unter Adresse herstellen " Fehler in Firebug
 
 Diese Fehlermeldung kann in Firebug angezeigt werden, wenn die Aushandlung des WebSocket-Transports fehlschlägt und stattdessen ein anderer Transport verwendet wird. Dieses Verhalten ist beabsichtigt.
 
-### <a name="the-remote-certificate-is-invalid-according-to-the-validation-procedure-error-in-net-client-application"></a>Fehler "das Remote Zertifikat ist gemäß der Überprüfungs Prozedur ungültig" in der .NET-Client Anwendung.
+### <a name="the-remote-certificate-is-invalid-according-to-the-validation-procedure-error-in-net-client-application"></a>Fehler "Das Remotezertifikat ist gemäß dem Validierungsverfahren ungültig" in der .NET-Clientanwendung
 
-Wenn für Ihren Server benutzerdefinierte Client Zertifikate erforderlich sind, können Sie der Verbindung ein X509Certificate hinzufügen, bevor die Anforderung erfolgt. Fügen Sie das Zertifikat mit `Connection.AddClientCertificate`der Verbindung hinzu.
+Wenn Ihr Server benutzerdefinierte Clientzertifikate benötigt, können Sie der Verbindung ein x509-Zertifikat hinzufügen, bevor die Anforderung gestellt wird. Fügen Sie das Zertifikat `Connection.AddClientCertificate`der Verbindung mithilfe von hinzu.
 
-### <a name="connection-drops-after-authentication-times-out"></a>Verbindung wird nach dem Timeout der Authentifizierung getrennt
+### <a name="connection-drops-after-authentication-times-out"></a>Verbindung fällt nach Demauthentifizierungszeit
 
-Dieses Verhalten ist beabsichtigt. Anmelde Informationen für die Authentifizierung können nicht geändert werden, während eine Verbindung aktiv ist. zum Aktualisieren von Anmelde Informationen muss die Verbindung beendet und neu gestartet werden.
+Dieses Verhalten ist beabsichtigt. Authentifizierungsanmeldeinformationen können nicht geändert werden, während eine Verbindung aktiv ist. Um Anmeldeinformationen zu aktualisieren, muss die Verbindung beendet und neu gestartet werden.
 
-### <a name="onconnected-gets-called-twice-when-using-jquery-mobile"></a>"Onconnected" wird bei Verwendung von jQuery Mobile zweimal aufgerufen.
+### <a name="onconnected-gets-called-twice-when-using-jquery-mobile"></a>OnConnected wird zweimal aufgerufen, wenn jQuery Mobile verwendet wird
 
-die `initializePage` Funktion von jQuery Mobile erzwingt die erneute Ausführung der Skripts auf jeder Seite und somit eine zweite Verbindung. Lösungen für dieses Problem sind:
+Die Funktion von `initializePage` jQuery Mobile erzwingt die erneute Ausführung der Skripts auf jeder Seite und erstellt so eine zweite Verbindung. Zu den Lösungen für dieses Problem gehören:
 
-- Fügen Sie den Verweis auf "jQuery Mobile" vor der JavaScript-Datei ein.
-- Deaktivieren Sie die `initializePage` Funktion durch Festlegen von `$.mobile.autoInitializePage = false`.
-- Warten Sie, bis die Seite vor dem Starten der Verbindung initialisiert wurde.
+- Fügen Sie den Verweis auf jQuery Mobile vor Ihrer JavaScript-Datei ein.
+- Deaktivieren `initializePage` Sie die `$.mobile.autoInitializePage = false`Funktion, indem Sie .
+- Warten Sie, bis die Initialisierung der Seite abgeschlossen ist, bevor Sie die Verbindung starten.
 
-### <a name="messages-are-delayed-in-silverlight-applications-using-server-sent-events"></a>Nachrichten werden in Silverlight-Anwendungen verzögert, die Server gesendete Ereignisse verwenden
+### <a name="messages-are-delayed-in-silverlight-applications-using-server-sent-events"></a>Nachrichten werden in Silverlight-Anwendungen mithilfe von Server-Gesendeten Ereignissen verzögert
 
-Nachrichten werden verzögert, wenn die Server gesendeten Ereignisse in Silverlight verwendet werden. Wenn Sie stattdessen die Verwendung eines langen Abrufs erzwingen möchten, verwenden Sie beim Starten der Verbindung Folgendes:
+Nachrichten werden verzögert, wenn Server-gesendete Ereignisse auf Silverlight verwendet werden. Um stattdessen die Verwendung langer Abfragen zu erzwingen, verwenden Sie beim Starten der Verbindung Folgendes:
 
 [!code-css[Main](troubleshooting/samples/sample13.css)]
 
-### <a name="permission-denied-using-forever-frame-protocol"></a>"Berechtigung verweigert" mithilfe des Forever-Frame Protokolls
+### <a name="permission-denied-using-forever-frame-protocol"></a>"Berechtigung verweigert" mit Forever Frame-Protokoll
 
-Dies ist ein bekanntes Problem, das [hier](https://github.com/SignalR/SignalR/issues/1963)beschrieben wird. Dieses Symptom kann mit der neuesten jQuery-Bibliothek verwendet werden. das Problem kann umgangen werden, indem Sie die Anwendung auf jQuery 1.8.2 herabstufen.
+Dies ist ein bekanntes Problem, [das hier](https://github.com/SignalR/SignalR/issues/1963)beschrieben wird. Dieses Symptom kann mit der neuesten JQuery-Bibliothek angezeigt werden. Die Problemumgehung besteht darin, Ihre Anwendung auf JQuery 1.8.2 herabzustufen.
 
 <a id="server"></a>
 
 ## <a name="compilation-and-server-side-errors"></a>Kompilierung und serverseitige Fehler
 
- Der folgende Abschnitt enthält mögliche Lösungen für Compiler-und serverseitige Laufzeitfehler. 
+ Der folgende Abschnitt enthält mögliche Lösungen für Compiler- und serverseitige Laufzeitfehler. 
 
-### <a name="reference-to-hub-instance-is-null"></a>Der Verweis auf die Hub-Instanz ist NULL.
+### <a name="reference-to-hub-instance-is-null"></a>Verweis auf Hub-Instanz ist null
 
-Da für jede Verbindung eine Hub-Instanz erstellt wird, können Sie selbst keine Instanz eines Hubs im Code erstellen. Weitere Informationen zum Abrufen eines Verweises auf den hubkontext finden Sie unter So rufen Sie Methoden auf einem Hub von außerhalb der Hub [-Klasse](../guide-to-the-api/hubs-api-guide-server.md#callfromoutsidehub) auf.
+Da für jede Verbindung eine Hubinstanz erstellt wird, können Sie selbst keine Instanz eines Hubs in Ihrem Code erstellen. Informationen zum Aufrufen von Methoden für einen Hub von außerhalb des Hubs selbst finden Sie unter [Aufrufen von Clientmethoden und Verwalten von Gruppen von außerhalb der Hubklasse,](../guide-to-the-api/hubs-api-guide-server.md#callfromoutsidehub) um einen Verweis auf den Hubkontext zu erhalten.
 
-### <a name="httpcontextcurrentsession-is-null"></a>HttpContext. Current. Session ist NULL
+### <a name="httpcontextcurrentsession-is-null"></a>HTTPContext.Current.Session ist null
 
-Dieses Verhalten ist beabsichtigt. Signalr unterstützt den ASP.NET-Sitzungs Status nicht, da das Aktivieren des Sitzungs Zustands Duplex Nachrichten unterbrechen würde.
+Dieses Verhalten ist beabsichtigt. SignalR unterstützt den ASP.NET Sitzungsstatus nicht, da das Aktivieren des Sitzungsstatus die Duplex-Messaging unterbrechen würde.
 
 ### <a name="no-suitable-method-to-override"></a>Keine geeignete Methode zum Überschreiben
 
-Dieser Fehler wird möglicherweise angezeigt, wenn Sie Code aus älteren Dokumentationen oder Blogs verwenden. Vergewissern Sie sich, dass Sie nicht auf Namen von Methoden verweisen, die geändert oder veraltet sind (z. b. `OnConnectedAsync`).
+Dieser Fehler wird möglicherweise angezeigt, wenn Sie Code aus älteren Dokumentationen oder Blogs verwenden. Stellen Sie sicher, dass Sie nicht auf Namen von Methoden verweisen, die geändert oder veraltet wurden (z. `OnConnectedAsync`B. ).
 
-### <a name="hostcontextextensionswebsocketserverurl-is-null"></a>"Hostcontextextensions. WebSocketServerUrl" ist NULL.
+### <a name="hostcontextextensionswebsocketserverurl-is-null"></a>HostContextExtensions.WebSocketServerUrl ist null
 
 Dieses Verhalten ist beabsichtigt. Dieser Member ist veraltet und sollte nicht verwendet werden.
 
-### <a name="a-route-named-signalrhubs-is-already-in-the-route-collection-error"></a>"Eine Route mit dem Namen ' signalr. Hubs ' ist bereits in der Routen Sammlung vorhanden".
+### <a name="a-route-named-signalrhubs-is-already-in-the-route-collection-error"></a>Fehler "Eine Route mit dem Namen 'signalr.hubs' ist bereits in der Routensammlung vorhanden"
 
-Dieser Fehler wird angezeigt, wenn `MapHubs` von Ihrer Anwendung zweimal aufgerufen wird. Einige Beispielanwendungen nennen `MapHubs` direkt in der globalen Anwendungsdatei. andere nehmen den-Befehl in einer Wrapper Klasse auf. Stellen Sie sicher, dass Ihre Anwendung nicht beides tut.
+Dieser Fehler wird `MapHubs` angezeigt, wenn sie zweimal von Ihrer Anwendung aufgerufen wird. Einige Beispielanwendungen `MapHubs` rufen direkt in der globalen Anwendungsdatei auf. andere rufen in einer Wrapperklasse auf. Stellen Sie sicher, dass Ihre Anwendung nicht beides tut.
 
 <a id="vs"></a>
 
 ## <a name="visual-studio-issues"></a>Visual Studio-Probleme
 
-In diesem Abschnitt werden die in Visual Studio auftretenden Probleme beschrieben.
+In diesem Abschnitt werden Probleme beschrieben, die in Visual Studio aufgetreten sind.
 
-### <a name="script-documents-node-does-not-appear-in-solution-explorer"></a>Der Knoten "Skript Dokumente" wird nicht in Projektmappen-Explorer angezeigt.
+### <a name="script-documents-node-does-not-appear-in-solution-explorer"></a>Skriptdokumentknoten wird nicht im Projektmappen-Explorer angezeigt
 
-Einige unserer Tutorials leiten Sie beim Debuggen auf den Knoten "Skript Dokumente" in Projektmappen-Explorer. Dieser Knoten wird vom JavaScript-Debugger erstellt und wird nur beim Debuggen von Browser Clients in Internet Explorer angezeigt. der Knoten wird nicht angezeigt, wenn Chrome oder Firefox verwendet werden. Der JavaScript-Debugger wird auch dann nicht ausgeführt, wenn ein anderer Client Debugger ausgeführt wird, z. b. der Silverlight-Debugger.
+Einige unserer Tutorials leiten Sie während des Debuggens zum Knoten "Skriptdokumente" im Projektmappen-Explorer. Dieser Knoten wird vom JavaScript-Debugger erstellt und wird nur beim Debuggen von Browserclients in Internet Explorer angezeigt. Der Knoten wird nicht angezeigt, wenn Chrome oder Firefox verwendet werden. Der JavaScript-Debugger wird auch nicht ausgeführt, wenn ein anderer Clientdebugger ausgeführt wird, z. B. der Silverlight-Debugger.
 
-### <a name="signalr-does-not-work-on-visual-studio-2008-or-earlier"></a>Signalr funktioniert nicht in Visual Studio 2008 oder früher.
+### <a name="signalr-does-not-work-on-visual-studio-2008-or-earlier"></a>SignalR funktioniert nicht auf Visual Studio 2008 oder früher
 
-Dieses Verhalten ist beabsichtigt. Für signalr ist .NET Framework 4 oder höher erforderlich. Dies erfordert, dass signalr-Anwendungen in Visual Studio 2010 oder höher entwickelt werden.
+Dieses Verhalten ist beabsichtigt. SignalR erfordert .NET Framework 4 oder höher; Dies erfordert, dass SignalR-Anwendungen in Visual Studio 2010 oder höher entwickelt werden.
 
 <a id="iis"></a>
 
 ## <a name="iis-issues"></a>IIS-Probleme
 
-Dieser Abschnitt enthält Probleme mit Internetinformationsdienste.
+Dieser Abschnitt enthält Probleme mit Internetinformationsdiensten.
 
-### <a name="web-site-crashes-after-maphubs-call"></a>Website Abstürze nach maphubs-Rückruf
+### <a name="web-site-crashes-after-maphubs-call"></a>Website stürzt nach MapHubs-Aufruf ab
 
-Dieses Problem wurde in der aktuellen Version von signalr behoben. Vergewissern Sie sich, dass Sie die neueste veröffentlichte Version von signalr verwenden, indem Sie Ihre Installation mithilfe von nuget aktualisieren.
+Dieses Problem wurde in der neuesten Version von SignalR behoben. Stellen Sie sicher, dass Sie die neueste version von SignalR verwenden, indem Sie Ihre Installation mit NuGet aktualisieren.
 
 <a id="azure"></a>
 
@@ -299,6 +299,6 @@ Dieses Problem wurde in der aktuellen Version von signalr behoben. Vergewissern 
 
 Dieser Abschnitt enthält Probleme mit Microsoft Azure.
 
-### <a name="messages-are-not-received-through-the-azure-backplane-after-altering-topic-names"></a>Nach dem Ändern von Themen Namen werden keine Nachrichten über die Azure-Rückwand empfangen.
+### <a name="messages-are-not-received-through-the-azure-backplane-after-altering-topic-names"></a>Nachrichten werden nicht über die Azure-Backebene empfangen, nachdem die Themennamen geändert wurden.
 
-Die von der Azure-Rückwand verwendeten Themen sollen nicht vom Benutzer konfiguriert werden können.
+Die von der Azure-Backplane verwendeten Themen sind nicht benutzerkonfigurierbar.

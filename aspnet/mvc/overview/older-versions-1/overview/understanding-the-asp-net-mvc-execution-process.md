@@ -1,57 +1,57 @@
 ---
 uid: mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process
-title: Grundlegendes zum ASP.NET MVC-Ausführungsprozess | Microsoft-Dokumentation
-author: microsoft
-description: Erfahren Sie, wie das ASP.NET MVC-Framework eine Browser Anforderung Schritt für Schritt verarbeitet.
+title: Verstehen des ASP.NET MVC-Ausführungsprozesses | Microsoft Docs
+author: rick-anderson
+description: Erfahren Sie, wie das ASP.NET MVC-Framework eine Browseranforderung Schritt für Schritt verarbeitet.
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: d1608db3-660d-4079-8c15-f452ff01f1db
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process
 msc.type: authoredcontent
-ms.openlocfilehash: 28940947253e0af43886cf1231f8aaf4615526cc
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 48afbbe7349b80e0ed0b9bab987ae3ccda493aca
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78435453"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541025"
 ---
 # <a name="understanding-the-aspnet-mvc-execution-process"></a>Grundlegendes zum ASP.NET MVC-Ausführungsprozess
 
 von [Microsoft](https://github.com/microsoft)
 
-> Erfahren Sie, wie das ASP.NET MVC-Framework eine Browser Anforderung Schritt für Schritt verarbeitet.
+> Erfahren Sie, wie das ASP.NET MVC-Framework eine Browseranforderung Schritt für Schritt verarbeitet.
 
-Anforderungen an eine ASP.NET MVC-basierte Webanwendung durchlaufen zunächst das **UrlRoutingModule** -Objekt, bei dem es sich um ein HTTP-Modul handelt. Dieses Modul analysiert die Anforderung und führt die Routenauswahl aus. Das **UrlRoutingModule** -Objekt wählt das erste Routen Objekt aus, das mit der aktuellen Anforderung übereinstimmt. (Ein Routen Objekt ist eine Klasse, die **RouteBase**implementiert, und ist in der Regel eine Instanz der **Route** -Klasse.) Wenn keine Routen gefunden werden, bewirkt das **UrlRoutingModule** -Objekt nichts, und die Anforderung kann auf die reguläre ASP.net-oder IIS-Anforderungs Verarbeitung zurückgreifen.
+Anforderungen an eine ASP.NET MVC-basierte Webanwendung übergeben zuerst das **UrlRoutingModule-Objekt,** das ein HTTP-Modul ist. Dieses Modul analysiert die Anforderung und führt die Routenauswahl aus. Das **UrlRoutingModule-Objekt** wählt das erste Routenobjekt aus, das der aktuellen Anforderung entspricht. (Ein Routenobjekt ist eine Klasse, die **RouteBase**implementiert und in der Regel eine Instanz der **Route-Klasse** ist.) Wenn keine Routen übereinstimmen, führt das **UrlRoutingModule-Objekt** nichts aus und lässt die Anforderung auf die reguläre ASP.NET oder IIS-Anforderungsverarbeitung zurückfallen.
 
-Vom ausgewählten **Routen** Objekt erhält das **UrlRoutingModule** -Objekt das **IRouteHandler** -Objekt, das dem **Routen** Objekt zugeordnet ist. In einer MVC-Anwendung handelt es sich in der Regel um eine Instanz von **MvcRouteHandler**. Die **IRouteHandler** -Instanz erstellt ein **IHttpHandler** -Objekt und übergibt es an das **ihttpcontext** -Objekt. Standardmäßig ist die **IHttpHandler** -Instanz für MVC das **MvcHandler** -Objekt. Das **MvcHandler** -Objekt wählt dann den Controller aus, der letztendlich die Anforderung verarbeitet.
+Aus dem ausgewählten **Route-Objekt** ruft das **UrlRoutingModule-Objekt** das **IRouteHandler-Objekt** ab, das dem **Route-Objekt** zugeordnet ist. In der Regel ist dies in einer MVC-Anwendung eine Instanz von **MvcRouteHandler**. Die **IRouteHandler-Instanz** erstellt ein **IHttpHandler-Objekt** und übergibt ihm das **IHttpContext-Objekt.** Standardmäßig ist die **IHttpHandler-Instanz** für MVC das **MvcHandler-Objekt.** Das **MvcHandler-Objekt** wählt dann den Controller aus, der die Anforderung letztendlich verarbeitet.
 
 > [!NOTE]
-> Wenn eine ASP.NET MVC-Webanwendung in IIS 7,0 ausgeführt wird, ist für MVC-Projekte keine Dateinamenerweiterung erforderlich. In IIS 6,0 erfordert der Handler jedoch, dass Sie die MVC-Dateinamenerweiterung der ASP.NET ISAPI-DLL zuordnen.
+> Wenn eine ASP.NET-MVC-Webanwendung in IIS 7.0 ausgeführt wird, ist keine Dateinamenerweiterung für MVC-Projekte erforderlich. In IIS 6.0 erfordert der Handler jedoch, dass Sie der ISAPI-DLL von ASP.NET die Dateinamenerweiterung .mvc zuordnen.
 
-Das Modul und der Handler sind die Einstiegspunkte zum ASP.NET-MVC-Framework. Sie führen die folgenden Aktionen aus:
+Das Modul und der Handler sind die Einstiegspunkte für das ASP.NET MVC-Framework. Sie führen die folgenden Aktionen aus:
 
-- Wählen Sie den entsprechenden Controller in einer MVC-Webanwendung aus.
-- Abrufen einer bestimmten Controller Instanz.
-- Ruft die **Execute** -Methode des Controllers auf.
+- Auswählen des richtigen Controllers in einer MVC-Webanwendung.
+- Abrufen einer bestimmten Controllerinstanz.
+- Rufen Sie die **Execute-Methode** des Controllers auf.
 
-Im folgenden finden Sie eine Liste der Ausführungsphasen für ein MVC-Webprojekt:
+Im Folgenden werden die Ausführungsphasen für ein MVC-Webprojekt aufgeführt:
 
-- Erste Anforderung für die Anwendung empfangen 
+- Empfangen der ersten Anforderung für die Anwendung. 
 
-    - In der Datei Global. asax werden **Routen** Objekte dem **RouteTable** -Objekt hinzugefügt.
-- Routing ausführen 
+    - In der Datei Global.asax werden **Route-Objekte** zum **RouteTable-Objekt** hinzugefügt.
+- Ausführen des Routings 
 
-    - Das Modul **UrlRoutingModule** verwendet das erste übereinstimmende **Routen** Objekt in der **RouteTable** -Auflistung, um das **RouteData** -Objekt zu erstellen, das dann verwendet wird, um ein **RequestContext** -Objekt (**ihttpcontext**) zu erstellen.
-- MVC-Anforderungs Handler erstellen 
+    - Das **UrlRoutingModule-Modul** verwendet das erste übereinstimmende **Route-Objekt** in der **RouteTable-Auflistung,** um das **RouteData-Objekt** zu erstellen, das es dann zum Erstellen eines **RequestContext** -**IHttpContext**) -Objekts verwendet.
+- Erstellen eines MVC-Anforderungshandlers 
 
-    - Das **MvcRouteHandler** -Objekt erstellt eine Instanz der **MvcHandler** -Klasse und übergibt sie an die **RequestContext** -Instanz.
-- Controller erstellen 
+    - Das **MvcRouteHandler-Objekt** erstellt eine Instanz der **MvcHandler-Klasse** und übergibt ihr die **RequestContext-Instanz.**
+- Erstellen des Controllers 
 
-    - Das **MvcHandler** -Objekt verwendet die **RequestContext** -Instanz, um das **IControllerFactory** -Objekt zu identifizieren (in der Regel eine Instanz der **defaultcontrollerfactory** -Klasse), mit der die Controller Instanz erstellt werden soll.
-- Controller ausführen: die **MvcHandler** -Instanz Ruft die **Execute** -Methode des Controllers auf. |
-- Aktion aufrufen 
+    - Das **MvcHandler-Objekt** verwendet die **RequestContext-Instanz,** um das **IControllerFactory-Objekt** (in der Regel eine Instanz der **DefaultControllerFactory-Klasse)** zu identifizieren, mit dem die Controllerinstanz erstellt werden soll.
+- Execute controller - Die **MvcHandler-Instanz** ruft die Controller-S-Execute-Methode auf. **Execute** |
+- Aufrufen der Aktion 
 
-    - Die meisten Controller erben von der **Controller** -Basisklasse. Für Controller, die dies tun, bestimmt das **ControllerAction Invoker** -Objekt, das dem Controller zugeordnet ist, welche Aktionsmethode der Controller Klasse aufgerufen werden soll, und ruft dann diese Methode auf.
-- Ergebnis ausführen 
+    - Die meisten Controller erben von der **Controller-Basisklasse.** Bei Controllern, die dies tun, bestimmt das **ControllerActionInvoker-Objekt,** das dem Controller zugeordnet ist, welche Aktionsmethode der aufzurufenden Controllerklasse und ruft diese Methode dann auf.
+- Ausführen des Ergebnisses 
 
-    - Eine typische Aktionsmethode empfängt möglicherweise Benutzereingaben, bereitet die entsprechenden Antwortdaten vor und führt das Ergebnis aus, indem ein Ergebnistyp zurückgegeben wird. Folgende integrierte Ergebnistypen können ausgeführt werden: **ViewResult** (das eine Ansicht rendert und der am häufigsten verwendete Ergebnistyp ist), **redirecttorouteresult**, **redirectresult**, **ContentResult**, **jsonresult**und **EmptyResult**.
+    - Eine typische Aktionsmethode kann Benutzereingaben empfangen, die entsprechenden Antwortdaten vorbereiten und dann das Ergebnis ausführen, indem ein Ergebnistyp zurückgegeben wird. Zu den integrierten Ergebnistypen, die ausgeführt werden können, gehören: **ViewResult** (das eine Ansicht rendert und der am häufigsten verwendete Ergebnistyp ist), **RedirectToRouteResult**, **RedirectResult**, **ContentResult**, **JsonResult**und **EmptyResult**.

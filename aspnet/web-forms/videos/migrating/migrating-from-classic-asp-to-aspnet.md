@@ -1,27 +1,27 @@
 ---
 uid: web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet
-title: '[Migrieren von] Klassisches ASP zu ASP.net | Microsoft-Dokumentation'
-author: microsoft
-description: Planen Sie die Migration von klassischem ASP zu Microsoft ASP.NET 2,0? In dieser Webcast Reihe werden Sie durch die wichtigsten Überlegungen zum Architekturentwurf geführt...
+title: '[Migrieren von] Klassische ASP zu ASP.NET | Microsoft Docs'
+author: rick-anderson
+description: Planen Sie die Migration von klassischem ASP zu Microsoft ASP.NET 2.0? Diese Webcast-Serie führt Sie durch die wichtige architektonische Gestaltungsüberlegungen...
 ms.author: riande
 ms.date: 07/25/2006
 ms.assetid: af5736dd-e01d-45d6-8ac0-01ec0fe49023
 msc.legacyurl: /web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet
 msc.type: video
-ms.openlocfilehash: 52d3c4814a4896c3aa0134ea87c8fac2f5995017
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: c1e9988ce7f21b7342177f156b3825405166aa49
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78521283"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543365"
 ---
 # <a name="migrating-from-classic-asp-to-aspnet"></a>[Migration von] Classic ASP zu ASP.NET
 
 von [Microsoft](https://github.com/microsoft)
 
-Planen Sie die Migration von klassischem ASP zu Microsoft ASP.NET 2,0? Diese Webcast Reihe führt Sie durch die wichtigen Überlegungen zum Entwurf von Architekturen, die Sie beim Planen Ihrer Migrationsstrategie berücksichtigen sollten.
+Planen Sie die Migration von klassischem ASP zu Microsoft ASP.NET 2.0? Diese Webcast-Serie führt Sie durch die wichtigen Architektonischen Entwurfsüberlegungen, die Sie bei der Planung Ihrer Migrationsstrategie berücksichtigen sollten.
 
-[&#9654;Video ansehen (78 Minuten)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/migrating-from-classic-asp-to-aspnet)
+[&#9654; Video ansehen (78 Minuten)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/migrating-from-classic-asp-to-aspnet)
 
 > [!div class="step-by-step"]
 > [Zurück](intro-to-aspnet-20-user-interface-elements.md)

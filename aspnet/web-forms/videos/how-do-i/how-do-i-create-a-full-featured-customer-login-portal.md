@@ -1,24 +1,24 @@
 ---
 uid: web-forms/videos/how-do-i/how-do-i-create-a-full-featured-customer-login-portal
-title: '[Gewusst wie:] Erstellen eines Kunden Anmelde Portals mit vollem Funktionsumfang | Microsoft-Dokumentation'
-author: microsoft
-description: Befolgen Sie die Schritte zur Erstellung eines fiktiven Kundenportals, um mehr über Masterseiten, Designs, Mitgliedschaft, Rollen, Website Navigation, Benutzerprofile und...
+title: '[Wie kann ich:] Erstellen Sie ein vollständiges Kunden-Anmeldeportal? | Microsoft-Dokumentation'
+author: rick-anderson
+description: Folgen Sie der Erstellung eines fiktiven Kundenportals, um mehr über Masterseiten, Themen, Mitgliedschaft, Rollen, Websitenavigation, Benutzerprofile und...
 ms.author: riande
 ms.date: 01/05/2006
 ms.assetid: dfaffea8-c71c-4fa0-9f97-585c9ac95529
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-full-featured-customer-login-portal
 msc.type: video
-ms.openlocfilehash: 05922d973e6390088ff0ef270513a7b4f60e36c0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 8e81ce462d44e47e091d356d29a72f8d84ed48b5
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78420099"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542910"
 ---
-# <a name="how-do-i-create-a-full-featured-customer-login-portal"></a>[Gewusst wie:] Erstellen eines Kunden Anmelde Portals mit vollem Funktionsumfang
+# <a name="how-do-i-create-a-full-featured-customer-login-portal"></a>[Wie kann ich:] Erstellen Sie ein vollständiges Kunden-Anmeldeportal?
 
 von [Microsoft](https://github.com/microsoft)
 
-Befolgen Sie die Schritte zur Erstellung eines fiktiven Kundenportals, um mehr über Masterseiten, Designs, Mitgliedschaft, Rollen, Website Navigation, Benutzerprofile und das Websiteverwaltungs-Tool zu erfahren.
+Folgen Sie der Erstellung eines fiktiven Kundenportals, um mehr über Masterseiten, Themen, Mitgliedschaft, Rollen, Websitenavigation, Benutzerprofile und das Websiteverwaltungstool zu erfahren.
 
-[&#9654;Video ansehen (27 Minuten)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-full-featured-customer-login-portal)
+[&#9654; Video ansehen (27 Minuten)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-full-featured-customer-login-portal)
