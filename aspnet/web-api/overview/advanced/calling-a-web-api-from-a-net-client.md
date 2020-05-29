@@ -1,6 +1,6 @@
 ---
 uid: web-api/overview/advanced/calling-a-web-api-from-a-net-client
-title: Web-API über einen .NET-Client (C#)-ASP.NET 4. x abrufen
+title: Aufruft eine Web-API von einem .NET-Client (c#)-ASP.NET 4. x
 author: MikeWasson
 description: In diesem Tutorial wird gezeigt, wie Sie eine Web-API aus einer .NET 4. x-Anwendung abrufen.
 ms.author: riande
@@ -8,14 +8,14 @@ ms.date: 11/24/2017
 ms.custom: seoapril2019
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 msc.type: authoredcontent
-ms.openlocfilehash: ab3ba71839123e848dffaa59871f9dac8c1a88d0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 484d927eeb0ba49f5f00d476f4658ebc081d0a4a
+ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78504957"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84172938"
 ---
-# <a name="call-a-web-api-from-a-net-client-c"></a>Web-API über einen .NET-Client (C#) aufgerufen
+# <a name="call-a-web-api-from-a-net-client-c"></a>Aufruft eine Web-API über einen .NET-Client (c#).
 
 von [Mike Wasson](https://github.com/MikeWasson) und [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -27,7 +27,7 @@ In diesem Tutorial wird eine Client-App geschrieben, die die folgende Web-API nu
 
 | Aktion | HTTP-Methode | Relativer URI |
 | --- | --- | --- |
-| Produkt nach ID erhalten | GET | /API/Products/-*ID* |
+| Abrufen eines Produkts nach ID | GET | /API/Products/-*ID* |
 | Erstellen eines neuen Produkts | POST | /api/products |
 | Aktualisieren eines Produkts | PUT | /API/Products/-*ID* |
 | Löschen eines Produkts | Delete | /API/Products/-*ID* |
@@ -36,6 +36,11 @@ Informationen dazu, wie Sie diese API mit ASP.net-Web-API implementieren, finden
 ).
 
 Der Einfachheit halber handelt es sich bei der Client Anwendung in diesem Tutorial um eine Windows-Konsolenanwendung. **HttpClient** wird auch für Windows Phone-und Windows Store-Apps unterstützt. Weitere Informationen finden Sie unter [Schreiben von Web-API-Client Code für mehrere Plattformen mit portablen Bibliotheken](https://blogs.msdn.com/b/webdev/archive/2013/07/19/writing-web-api-client-code-for-multiple-platforms-using-portable-libraries.aspx)
+
+**Hinweis:** Wenn Sie Basis-URLs und relative URIs als hart codierte Werte übergeben, beachten Sie die Regeln für die Verwendung der `HttpClient` API. Die- `HttpClient.BaseAddress` Eigenschaft sollte auf eine Adresse mit einem nachstehenden Schrägstrich () festgelegt werden `/` . Wenn Sie z. b. hart codierte Ressourcen-URIs an die- `HttpClient.GetAsync` Methode übergeben, schließen Sie keinen führenden Schrägstrich ein. So erhalten Sie eine `Product` nach ID:
+
+1. Set`client.BaseAddress = new Uri("https://localhost:5001/");`
+1. Anfordern einer `Product` . Beispiel: `client.GetAsync<Product>("api/products/4");`.
 
 <a id="CreateConsoleApp"></a>
 ## <a name="create-the-console-application"></a>Erstellen der Konsolenanwendung
@@ -46,7 +51,7 @@ Erstellen Sie in Visual Studio eine neue Windows-Konsolen-App mit dem Namen " **
 
 Der vorangehende Code ist die komplette Client-App.
 
-`RunAsync` wird ausgeführt, bis der Vorgang abgeschlossen ist. Die meisten **HttpClient** -Methoden sind asynchron, da Sie Netzwerk-e/a-Vorgänge durchführen. Alle asynchronen Aufgaben werden innerhalb `RunAsync`ausgeführt. Normalerweise blockiert eine APP den Haupt Thread nicht, aber diese APP lässt keine Interaktion zu.
+`RunAsync`wird ausgeführt, bis der Vorgang abgeschlossen ist. Die meisten **HttpClient** -Methoden sind asynchron, da Sie Netzwerk-e/a-Vorgänge durchführen. Alle asynchronen Aufgaben werden innerhalb von durchgeführt `RunAsync` . Normalerweise blockiert eine APP den Haupt Thread nicht, aber diese APP lässt keine Interaktion zu.
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_run)]
 
@@ -55,13 +60,13 @@ Der vorangehende Code ist die komplette Client-App.
 
 Verwenden Sie den nuget-Paket-Manager zum Installieren des Web-API-Client Bibliotheks Pakets.
 
-Öffnen Sie das Menü **Extras**, und wählen Sie **NuGet-Paket-Manager** > **Paket-Manager-Konsole** aus. Geben Sie in der Paket-Manager-Konsole (PMC) den folgenden Befehl ein:
+Wählen Sie im Menü **Extras** die Optionen **NuGet-Paket-Manager** > **Paket-Manager-Konsole** aus. Geben Sie in der Paket-Manager-Konsole (PMC) den folgenden Befehl ein:
 
 `Install-Package Microsoft.AspNet.WebApi.Client`
 
 Mit dem vorangehenden Befehl werden dem Projekt die folgenden nuget-Pakete hinzugefügt:
 
-* Microsoft.AspNet.WebApi.Client
+* Microsoft. Aspnet. WebAPI. Client
 * Newtonsoft.Json
 
 Netwonsoft. JSON (auch als JSON.net bezeichnet) ist ein gängiges hochleistungsfähiges JSON-Framework für .net.
@@ -73,7 +78,7 @@ Netwonsoft. JSON (auch als JSON.net bezeichnet) ist ein gängiges hochleistungsf
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
-Diese Klasse entspricht dem Datenmodell, das von der Web-API verwendet wird. Eine APP kann **HttpClient** verwenden, um eine `Product` Instanz aus einer HTTP-Antwort zu lesen. Die APP muss keinen Deserialisierungscode schreiben.
+Diese Klasse entspricht dem Datenmodell, das von der Web-API verwendet wird. Eine APP kann **HttpClient** verwenden, um eine- `Product` Instanz aus einer HTTP-Antwort zu lesen. Die APP muss keinen Deserialisierungscode schreiben.
 
 <a id="InitClient"></a>
 ## <a name="create-and-initialize-httpclient"></a>Erstellen und Initialisieren von httpclient
@@ -105,9 +110,9 @@ Der folgende Code sendet eine GET-Anforderung für ein Produkt:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_GetProductAsync)]
 
-Die **getasync** -Methode sendet die HTTP GET-Anforderung. Wenn die Methode abgeschlossen ist, gibt Sie eine **httpresponanmessage** zurück, die die HTTP-Antwort enthält. Wenn der Statuscode in der Antwort ein Erfolgs Code ist, enthält der Antworttext die JSON-Darstellung eines Produkts. Aufrufen von "read **asasync** ", um die JSON-Nutzlast in eine `Product` Instanz zu deserialisieren. Die "read **asasync** "-Methode ist asynchron, da der Antworttext beliebig groß sein kann.
+Die **getasync** -Methode sendet die HTTP GET-Anforderung. Wenn die Methode abgeschlossen ist, gibt Sie eine **httpresponanmessage** zurück, die die HTTP-Antwort enthält. Wenn der Statuscode in der Antwort ein Erfolgs Code ist, enthält der Antworttext die JSON-Darstellung eines Produkts. Aufrufen von "read **asasync** " zum Deserialisieren der JSON-Nutzlast in eine- `Product` Instanz. Die "read **asasync** "-Methode ist asynchron, da der Antworttext beliebig groß sein kann.
 
-**HttpClient** löst keine Ausnahme aus, wenn die HTTP-Antwort einen Fehlercode enthält. Stattdessen ist die **issuccess Statuscode** -Eigenschaft **false** , wenn der Status ein Fehlercode ist. Wenn Sie HTTP-Fehlercodes als Ausnahmen behandeln möchten, rufen Sie [HttpResponseMessage. ensuresuccmestatuscode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) für das Response-Objekt auf. `EnsureSuccessStatusCode` löst eine Ausnahme aus, wenn der Statuscode außerhalb des Bereichs 200&ndash;299 liegt. Beachten Sie, dass **HttpClient** Ausnahmen aus anderen Gründen auslösen kann &mdash; z. b. bei einem Timeout der Anforderung.
+**HttpClient** löst keine Ausnahme aus, wenn die HTTP-Antwort einen Fehlercode enthält. Stattdessen ist die **issuccess Statuscode** -Eigenschaft **false** , wenn der Status ein Fehlercode ist. Wenn Sie HTTP-Fehlercodes als Ausnahmen behandeln möchten, rufen Sie [HttpResponseMessage. ensuresuccmestatuscode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) für das Response-Objekt auf. `EnsureSuccessStatusCode`löst eine Ausnahme aus, wenn der Statuscode außerhalb des Bereichs 200 &ndash; 299 liegt. Beachten Sie, dass **HttpClient** Ausnahmen aus anderen Gründen auslösen kann &mdash; , z. b. bei einem Timeout der Anforderung.
 
 <a id="MediaTypeFormatters"></a>
 ### <a name="media-type-formatters-to-deserialize"></a>Zu deserialisierende Medientyp-Formatierer
@@ -129,7 +134,7 @@ Weitere Informationen finden Sie unter [Media Formatters in ASP.net-Web-API 2](.
 
 ## <a name="sending-a-post-request-to-create-a-resource"></a>Senden einer POST-Anforderung zum Erstellen einer Ressource
 
-Der folgende Code sendet eine Post-Anforderung, die eine `Product` Instanz im JSON-Format enthält:
+Der folgende Code sendet eine Post-Anforderung, die eine- `Product` Instanz im JSON-Format enthält:
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_CreateProductAsync)]
 
@@ -165,7 +170,7 @@ Wie bei Get hat eine Löschanforderung keinen Anforderungs Text. Sie müssen das
 
 So testen Sie die Client-App:
 
-1. [Herunterladen](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server) und Ausführen der Server-app. [Anweisungen zum Download.](/aspnet/core/#how-to-download-a-sample) Überprüfen Sie, ob die Server-APP funktioniert. Beispielsweise sollte `http://localhost:64195/api/products` eine Liste der Produkte zurückgeben.
+1. [Herunterladen](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server) und Ausführen der Server-app. [Anweisungen zum Download.](/aspnet/core/#how-to-download-a-sample) Überprüfen Sie, ob die Server-APP funktioniert. Beispielsweise `http://localhost:64195/api/products` sollte eine Liste der Produkte zurückgeben.
 2. Legen Sie den Basis-URI für HTTP-Anforderungen fest. Ändern Sie die Portnummer in den Port, der in der Server-App verwendet wird.
     [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 
