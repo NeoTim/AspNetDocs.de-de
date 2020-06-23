@@ -8,12 +8,12 @@ ms.date: 01/28/2011
 ms.assetid: 1febce65-cdd4-47da-bdb5-1e6022ccd20a
 msc.legacyurl: /mobile
 msc.type: content
-ms.openlocfilehash: 7f631f5052060b3523a23fb8ee7799cc07a68e1c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 769484ee505599eef48ff4a106ddd4f7ec7d99af
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78471561"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240730"
 ---
 # <a name="mobile-apps--sites-with-aspnet"></a>Mobile Apps & Sites mit ASP.net
 
@@ -61,6 +61,6 @@ In diesem Thema werden verschiedene Möglichkeiten zum Verarbeiten von Seiten be
 
 Scott Hanselman erläutert in diesem Vortrag auf der Microsoft Mix-Konferenz, wie Sie mit ASP.NET MVC benutzerfreundliche Websites für mobile Geräte erstellen können.
 
-### <a name="develop-iphone-applications-with-aspnet"></a>[Entwickeln von iPhone-Anwendungen mit ASP.net](http://labs.componentone.com/iPhone/)
+### <a name="develop-iphone-applications-with-aspnet"></a>[Entwickeln von iPhone-Anwendungen mit ASP.net](https://www.componentsource.com/product/componentone-studio-for-iphone)
 
 ComponentOne Studio for iPhone ist eine Sammlung von ASP.NET-Steuerelementen, die das Aussehen und das Erscheinungsbild der iPhone-und iPod-Touchscreen-Benutzeroberflächen beim Rendern in mobile Safari imitieren.

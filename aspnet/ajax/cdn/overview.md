@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 27b1ca8567e29fa4bca0ae9f32e0c904ad54ba8f
-ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
+ms.openlocfilehash: b66e812f0324be95effdd8d232baa6a59302b9df
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84172951"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240601"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft AJAX Content Delivery Network
 
@@ -48,7 +48,7 @@ ms.locfileid: "84172951"
  [Antworten auf Releases im CDN](#Respond_Releases_on_the_CDN_13)  
  [Bootstrap-Releases im CDN](#Bootstrap_Releases_on_the_CDN_14)  
  [Bootstrap touchkarussell Releases auf dem CDN](#BootstrapTouchCarousel_Releases_on_the_CDN_18)  
- ["Hammer. js"-Releases im CDN](#Hammerjs_Releases_on_the_CDN_19)  
+ [Hammer.js Releases im CDN](#Hammerjs_Releases_on_the_CDN_19)  
  [ASP.net Web Forms-und AJAX-Releases im CDN](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
  [ASP.NET MVC-Releases im CDN](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [ASP.net signalr-Releases im CDN](#ASPNET_SignalR_Releases_on_the_CDN_17)
@@ -627,6 +627,7 @@ Die folgenden Versionen der jQuery UI-Bibliothek werden auf diesem CDN gehostet.
 
 Die folgenden Versionen des [jQuery-Validierungs](https://jqueryvalidation.org/ "jQuery-Validierungs-Plugin") -Plug-ins werden auf diesem CDN gehostet. Klicken Sie auf die einzelnen Links, um die tatsächliche Liste der Dateien anzuzeigen.
 
+- [jQuery Validate 1.19.2](jquery-validate/cdnjqueryvalidate1192.md "jQuery-Validierung 1.19.2")
 - [jQuery Validate 1.19.1](jquery-validate/cdnjqueryvalidate1191.md "jQuery-Validierung 1.19.1")
 - [jQuery Validate 1.19.0](jquery-validate/cdnjqueryvalidate1190.md "jQuery-Validierung 1.19.0")
 - [jQuery Validate 1.17.0](jquery-validate/cdnjqueryvalidate1170.md "jQuery-Validierung 1.17.0")
@@ -779,7 +780,7 @@ Die folgenden Releases von [Globalize](https://github.com/jquery/globalize "Glob
     - alle Kulturen
 - https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
 
-    - Ersetzen Sie "{Culture-Code}" durch den gewünschten Kultur Code, z. b. Globalize. Culture. en-GB. js = = Microsoft-Dateien im CDN = = diese Bibliotheken wurden von Microsoft hochgeladen.
+    - Ersetzen Sie "{Culture-Code}" durch den gewünschten Kultur Code, z. b. globalize.culture.en-GB.js= = Microsoft-Dateien im CDN = = diese Bibliotheken wurden von Microsoft hochgeladen.
 
 <a id="Respond_Releases_on_the_CDN_13"></a>
 
@@ -1186,11 +1187,11 @@ Die folgenden Versionen von [https://github.com/ixisio/bootstrap-touch-carousel]
 
 <a id="Hammerjs_Releases_on_the_CDN_19"></a>
 
-### <a name="hammerjs-releases-on-the-cdn"></a>"Hammer. js"-Releases im CDN
+### <a name="hammerjs-releases-on-the-cdn"></a>Hammer.js Releases im CDN
 
-Die folgenden Versionen von " [http://hammerjs.github.io/](http://hammerjs.github.io/ "http://hammerjs.github.io/") Hammer. js"-Releases werden auf dem CDN gehostet:
+Die folgenden Releases von [http://hammerjs.github.io/](http://hammerjs.github.io/ "http://hammerjs.github.io/") Hammer.js Releases werden im CDN gehostet:
 
-#### <a name="hammerjs-version-204"></a>Hammer. js-Version 2.0.4
+#### <a name="hammerjs-version-204"></a>Hammer.js Version 2.0.4
 
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.js
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js

@@ -8,12 +8,12 @@ ms.date: 02/20/2013
 ms.assetid: a3cef801-a54b-4ebd-93c3-55764e2e14b1
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 msc.type: authoredcontent
-ms.openlocfilehash: ce98effe18dd739504fb0d5453bae8a46c3ba102
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ab75218cbe3817c14a064e9816388aebc7e431f7
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78449463"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240569"
 ---
 # <a name="windows-azure-authentication"></a>Microsoft Azure-Authentifizierung
 
@@ -25,7 +25,7 @@ von [Rick Anderson](https://twitter.com/RickAndMSFT)
 >
 > Ausführliche Informationen zum Einrichten der Synchronisierung zwischen Ihrem lokalen Active Directory und Ihrem Windows Azure Active Directory-Mandanten finden Sie [unter Verwenden von AD FS 2,0 zum Implementieren und Verwalten von Single Sign-on](https://technet.microsoft.com/library/jj205462.aspx).
 >
-> Windows Azure Active Directory ist derzeit als [kostenloser Vorschau Dienst](https://azure.microsoft.com/free/?WT.mc_id=A443DD604)verfügbar.
+> Windows Azure Active Directory ist derzeit als [kostenloser Vorschau Dienst](https://azure.microsoft.com/free/dotnet/)verfügbar.
 
 ## <a name="requirements"></a>Anforderungen:
 
@@ -65,7 +65,7 @@ Wenn Sie keine globalen Administrator Rechte für Ihren Windows Azure Active Dir
 ![](windows-azure-authentication/_static/image6.png)
 
 Im Dialogfeld werden die **Domäne**, die **Anwendungs Prinzipal-ID** und die **Antwort-URL** angezeigt, die für die Bereitstellung der Anwendung mit einem Azure Active Directory Tenet erforderlich sind. Sie müssen diese Informationen an jemanden übergeben, der über ausreichende Berechtigungen zum Bereitstellen der Anwendung verfügt. Ausführliche Informationen zur Verwendung des Cmdlets zum manuellen Erstellen des Dienst Prinzipals finden Sie unter Gewusst[wie: Implementieren von Single Sign-on mit Windows Azure Active Directory ASP.NET-Anwendung](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) .
-Nachdem die Anwendung erfolgreich bereitgestellt wurde, können Sie auf Weiter klicken, **um die Datei "Web. config" mit den ausgewählten Einstellungen zu aktualisieren**. Wenn Sie die Entwicklung der Anwendung fortsetzen möchten, während Sie auf die Bereitstellung wartet, können Sie auf Schließen klicken, **um die Einstellungen in der Projektdatei zu merken**. Wenn Sie das nächste Mal aufrufen von Windows Azure-Authentifizierung aktivieren und das Kontrollkästchen Bereitstellung deaktivieren, werden die gleichen Einstellungen angezeigt, und Sie können auf **weiter**klicken und dann auf **diese Einstellungen in Web. config anwenden**.
+Nachdem die Anwendung erfolgreich bereitgestellt wurde, können Sie auf Weiter klicken, **um web.config mit den ausgewählten Einstellungen zu aktualisieren**. Wenn Sie die Entwicklung der Anwendung fortsetzen möchten, während Sie auf die Bereitstellung wartet, können Sie auf Schließen klicken, **um die Einstellungen in der Projektdatei zu merken**. Wenn Sie das nächste Mal aufrufen von Windows Azure-Authentifizierung aktivieren und das Kontrollkästchen Bereitstellung deaktivieren, werden die gleichen Einstellungen angezeigt, und Sie können auf **weiter**klicken und dann auf **web.configanwenden **.
 
 1. Warten Sie, bis Ihre Anwendung für die Windows Azure-Authentifizierung konfiguriert und mit Windows Azure Active Directory bereitgestellt wurde.
 2. Nachdem die Windows Azure-Authentifizierung für Ihre Anwendung aktiviert wurde, klicken Sie auf **Schließen:**
@@ -85,9 +85,9 @@ Nachdem die Anwendung erfolgreich bereitgestellt wurde, können Sie auf Weiter k
 
 Durch das Aktivieren der Windows Azure-Authentifizierung werden die folgenden Änderungen an Ihrer Anwendung vorgenommen:
 
-- Dem Projekt wird eine Anti-Cross-Site Request Fälschung ([CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)))-Klasse ( *App\_start\antixsrfconfig.cs* ) hinzugefügt.
-- Die `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` nuget-Pakete werden dem Projekt hinzugefügt.
-- Windows Identity Foundation-Einstellungen in Ihrer Anwendung werden so konfiguriert, dass Sie Sicherheits Token von Ihrem Windows Azure Active Directory-Mandanten akzeptieren. Klicken Sie auf das folgende Bild, um eine erweiterte Ansicht der Änderungen an der Datei *Web. config* anzuzeigen.
+- Eine[CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))-Klasse (Anti-Cross-Site Request Fälschung) ( *App \_ start\antixsrfconfig.cs* ) wird Ihrem Projekt hinzugefügt.
+- Die nuget-Pakete werden dem `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` Projekt hinzugefügt.
+- Windows Identity Foundation-Einstellungen in Ihrer Anwendung werden so konfiguriert, dass Sie Sicherheits Token von Ihrem Windows Azure Active Directory-Mandanten akzeptieren. Klicken Sie auf das folgende Bild, um eine erweiterte Ansicht der Änderungen anzuzeigen, die an der *Web.config* Datei vorgenommen wurden.
 
      ![](windows-azure-authentication/_static/image9.png)
 - Ein Dienst Prinzipal für Ihre Anwendung in Ihrem Windows Azure Active Directory-Mandanten wird bereitgestellt.
@@ -141,7 +141,7 @@ Von der Windows Azure-Authentifizierung wird derzeit nicht der erforderliche Rol
 
 #### <a name="browsing-to-an-application-with-windows-azure-authentication-results-in-the-error-acs20016-the-domain-of-the-logged-in-user-livecom-does-not-match-any-allowed-domain-of-this-sts"></a>Das Navigieren zu einer Anwendung mit Windows Azure-Authentifizierung führt zu dem Fehler "ACS20016 die Domäne des angemeldeten Benutzers (Live.com) entspricht keiner zulässigen Domäne dieses STS".
 
-Wenn Sie bereits bei einem Microsoft-Konto angemeldet sind (z. b. hotmail.com, Live.com, Outlook.com) und Sie versuchen, auf eine Anwendung zuzugreifen, für die die Windows Azure-Authentifizierung aktiviert ist, erhalten Sie möglicherweise eine 400-Fehler Antwort, weil die Domäne Ihres Microsoft-Kontos wird von Windows Azure Active Directory nicht erkannt. Melden Sie sich zunächst bei Ihrem Microsoft-Konto ab, um sich bei der Anwendung anzumelden.
+Wenn Sie bereits bei einem Microsoft-Konto angemeldet sind (z. b. hotmail.com, Live.com, Outlook.com) und Sie versuchen, auf eine Anwendung zuzugreifen, für die die Windows Azure-Authentifizierung aktiviert ist, erhalten Sie möglicherweise die Fehlermeldung 400, weil die Domäne Ihres Microsoft-Kontos von Windows Azure Active Directory nicht erkannt wird. Melden Sie sich zunächst bei Ihrem Microsoft-Konto ab, um sich bei der Anwendung anzumelden.
 
 #### <a name="logging-into-an-application-with-windows-azure-authentication-enabled-and-a-x509certificatevalidationmode-other-than-none-results-in-certificate-validation-errors-for-the-accountsaccesscontrolwindowsnet-certificate"></a>Das Anmelden bei einer Anwendung mit aktivierter Windows Azure-Authentifizierung und einer anderen X509CertificateValidationMode als "None" führt zu Zertifikat Validierungs Fehlern für das Accounts.AccessControl.Windows.net-Zertifikat.
 
@@ -155,7 +155,7 @@ Dieser Fehler wird möglicherweise angezeigt, wenn Sie sich zuvor erfolgreich mi
 
 Dies kann vorkommen, wenn Sie bereits mit einer anderen Microsoft-ID für einen der Azure-Dienste angemeldet sind. Verwenden Sie das private Browserfenster wie "InPrivate" in IE oder "inkognito" in Chrome, oder löschen Sie alle Cookies.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 - [Microsoft ASP.NET Tools für Windows Azure Active Directory – Visual Studio 2012](https://blogs.msdn.com/b/vbertocci/archive/2013/02/18/microsoft-asp-net-tools-for-windows-azure-active-directory-visual-studio-2012.aspx) – Vittorio berdecci
 - [Windows Azure-Features: Identität](https://docs.microsoft.com/azure/active-directory/)

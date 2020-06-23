@@ -8,20 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: 400db427-27af-4f2f-abf0-5486d5e024b5
 msc.legacyurl: /signalr/overview/deployment/tutorial-signalr-self-host
 msc.type: authoredcontent
-ms.openlocfilehash: 41c8c3803923e76ef238a5c5937cbe7f81e6aa82
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7470e0d6b68772ccfd979c834b7db81fbba3ca78
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78450165"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240609"
 ---
-# <a name="tutorial-signalr-self-host"></a>Tutorial: signalr-Self-Host
+# <a name="tutorial-signalr-self-host"></a>Tutorial: Selfhosten von SignalR
 
 von [Patrick Fletcher](https://github.com/pfletcher)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
-
-[Herunterladen des abgeschlossenen Projekts](https://code.msdn.microsoft.com/SignalR-Self-Host-Sample-6da0f383)
 
 > In diesem Tutorial wird gezeigt, wie Sie einen selbst gehosteten signalr 2-Server erstellen und mit einem JavaScript-Client eine Verbindung damit herstellen.
 >
@@ -72,10 +70,10 @@ Dieses Tutorial enthält die folgenden Abschnitte:
 
 In diesem Tutorial erstellen Sie einen Server, der in einer Konsolenanwendung gehostet wird. der Server kann jedoch in jeder Art von Prozess gehostet werden, z. b. in einem Windows-Dienst oder einer Azure-workerrolle. Beispielcode zum Hosting eines signalr-Servers in einem Windows-Dienst finden Sie unter [Self-Hosting von signalr in einem Windows-Dienst](https://code.msdn.microsoft.com/SignalR-self-hosted-in-6ff7e6c3).
 
-1. Öffnen Sie Visual Studio 2013 mit Administratorrechten. Wählen Sie **Datei**, **Neues Projekt**aus. Wählen Sie unter dem Knoten " **Visual C#**  " im Bereich **Vorlagen** die Option **Windows** aus, und wählen Sie die Vorlage **Konsolenanwendung** aus. Nennen Sie das neue Projekt "signalrselfhost", und klicken Sie auf **OK**.
+1. Öffnen Sie Visual Studio 2013 mit Administratorrechten. Wählen Sie **Datei**, **Neues Projekt**aus. Wählen Sie im Bereich **Vorlagen** unter dem Knoten **Visual c#** die Option **Windows** aus, und wählen Sie die Vorlage **Konsolenanwendung** aus. Nennen Sie das neue Projekt "signalrselfhost", und klicken Sie auf **OK**.
 
     ![](tutorial-signalr-self-host/_static/image1.png)
-2. Öffnen Sie die nuget-Paket-Manager-Konsole, indem Sie **Tools** > **nuget-Paket-Manager** > Paket-Manager- **Konsole**
+2. Öffnen Sie **die nuget**-Paket-Manager-Konsole, indem Sie Extras  >  **nuget Package Manager**  >  **Package Manager Console**auswählen.
 3. Geben Sie in der Paket-Manager-Konsole den folgenden Befehl ein:
 
     [!code-powershell[Main](tutorial-signalr-self-host/samples/sample1.ps1)]
@@ -92,13 +90,13 @@ In diesem Tutorial erstellen Sie einen Server, der in einer Konsolenanwendung ge
 
     Der obige Code umfasst drei Klassen:
 
-    - **Programm**, einschließlich der **Main** -Methode, die den primären Ausführungs Pfad definiert. Bei dieser Methode wird eine Webanwendung vom Typ **Startup** an der angegebenen URL (`http://localhost:8080`) gestartet. Wenn für den Endpunkt Sicherheit erforderlich ist, kann SSL implementiert werden. Weitere Informationen finden [Sie unter Vorgehensweise: Konfigurieren eines Ports mit einem SSL-Zertifikat](https://msdn.microsoft.com/library/ms733791.aspx) .
-    - **Start**: die Klasse, die die Konfiguration für den signalr-Server enthält (die einzige Konfiguration, die in diesem Tutorial verwendet wird, ist der `UseCors`) und der `MapSignalR`, der Routen für beliebige Hub-Objekte im Projekt erstellt.
+    - **Programm**, einschließlich der **Main** -Methode, die den primären Ausführungs Pfad definiert. Bei dieser Methode wird eine Webanwendung vom Typ **Startup** an der angegebenen URL ( `http://localhost:8080` ) gestartet. Wenn für den Endpunkt Sicherheit erforderlich ist, kann SSL implementiert werden. Weitere Informationen finden [Sie unter Vorgehensweise: Konfigurieren eines Ports mit einem SSL-Zertifikat](https://msdn.microsoft.com/library/ms733791.aspx) .
+    - **Startup**, die-Klasse, die die Konfiguration für den signalr-Server enthält (die einzige Konfiguration, die in diesem Tutorial verwendet wird `UseCors` ), und der-Befehl `MapSignalR` , der Routen für beliebige Hub-Objekte im Projekt erstellt.
     - **Myhub**, die signalr-Hub-Klasse, die von der Anwendung für Clients bereitgestellt wird. Diese Klasse verfügt über eine einzige Methode, **Send**, die von Clients aufgerufen wird, um eine Nachricht an alle anderen verbundenen Clients zu senden.
 6. Kompilieren Sie die Anwendung, und führen Sie sie aus. Die Adresse, die auf dem Server ausgeführt wird, sollte in einem Konsolenfenster angezeigt werden.
 
     ![](tutorial-signalr-self-host/_static/image2.png)
-7. Wenn die Ausführung mit der Ausnahme `System.Reflection.TargetInvocationException was unhandled`fehlschlägt, müssen Sie Visual Studio mit Administratorrechten neu starten.
+7. Wenn die Ausführung mit der Ausnahme fehlschlägt `System.Reflection.TargetInvocationException was unhandled` , müssen Sie Visual Studio mit Administratorrechten neu starten.
 8. Die Anwendung wird beendet, bevor mit dem nächsten Abschnitt fortgefahren wird.
 
 <a id="js"></a>
@@ -118,7 +116,7 @@ In diesem Abschnitt verwenden Sie den gleichen JavaScript-Client aus dem [Tutori
     [!code-powershell[Main](tutorial-signalr-self-host/samples/sample4.ps1)]
 
     Dieser Befehl installiert die signalr-und jQuery-Bibliotheken, die Sie auf dem Client benötigen.
-4. Klicken Sie mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen**, **Neues Element**. Wählen Sie den **webknoten** aus, und wählen Sie HTML-Seite aus. Nennen Sie die Seite **default. html**.
+4. Klicken Sie mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen**, **Neues Element**. Wählen Sie den **webknoten** aus, und wählen Sie HTML-Seite aus. Benennen Sie die Seite **Default.html**.
 
     ![](tutorial-signalr-self-host/_static/image5.png)
 5. Ersetzen Sie den Inhalt der neuen HTML-Seite durch den folgenden Code. Überprüfen Sie, ob die Skript Verweise hier mit den Skripts im Ordner "Scripts" des Projekts zu vergleichen sind.
@@ -131,6 +129,6 @@ In diesem Abschnitt verwenden Sie den gleichen JavaScript-Client aus dem [Tutori
 6. Klicken Sie mit der rechten Maustaste auf die Projekt Mappe, und wählen Sie **Start Projekte festlegen...** aus. Aktivieren Sie das Optionsfeld **mehrere Start Projekte** , und legen Sie die **Aktion** für beide Projekte auf **Start**fest.
 
     ![](tutorial-signalr-self-host/_static/image6.png)
-7. Klicken Sie mit der rechten Maustaste auf "default. html", und wählen Sie **als Start Seite festlegen**aus.
+7. Klicken Sie mit der rechten Maustaste auf "Default.html", und wählen Sie **als Start Seite festlegen**aus.
 8. Führen Sie die Anwendung aus. Der Server und die Seite werden gestartet. Möglicherweise müssen Sie die Webseite erneut laden (oder im Debugger **fortsetzen** ), wenn die Seite geladen wird, bevor der Server gestartet wird.
 9. Geben Sie im Browser einen Benutzernamen an, wenn Sie dazu aufgefordert werden. Kopieren Sie die URL der Seite in eine andere Browser Registerkarte oder ein anderes Fenster, und geben Sie einen anderen Benutzernamen Sie können Nachrichten aus einem Browserbereich an den anderen senden, wie im Lernprogramm für die ersten Schritte.

@@ -8,12 +8,12 @@ ms.date: 02/15/2013
 ms.assetid: 416438a1-3b2f-4d27-bf53-6b76223c33bf
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-production
 msc.type: authoredcontent
-ms.openlocfilehash: ddc3d15f0436c4c3a24491cf0377111768da67df
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ec025e757d00cbfbfbcda9408739d2593908bc07
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78513669"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240626"
 ---
 # <a name="aspnet-web-deployment-using-visual-studio-deploying-to-production"></a>ASP.net-Webbereitstellung mithilfe von Visual Studio: Bereitstellung in der Produktion
 
@@ -33,7 +33,7 @@ Erinnerung: Wenn Sie eine Fehlermeldung erhalten oder etwas nicht funktioniert, 
 
 ## <a name="get-a-microsoft-azure-account"></a>Microsoft Azure Konto erhalten
 
-Wenn Sie noch nicht über ein Azure-Konto verfügen, können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Ausführliche Informationen finden Sie unter [Einen Monat kostenlos testen](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+Wenn Sie noch nicht über ein Azure-Konto verfügen, können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Ausführliche Informationen finden Sie unter [Einen Monat kostenlos testen](https://azure.microsoft.com/free/dotnet/).
 
 ## <a name="create-a-staging-environment"></a>Erstellen einer Stagingumgebung
 
@@ -112,12 +112,12 @@ Nachdem Sie nun eine Web-App und eine Datenbank für die Stagingumgebung erstell
     > [!WARNING]
     > Sicherheit: die *publishsettings* -Datei enthält Ihre (unverschlüsselten) Anmelde Informationen, die zum Verwalten Ihrer Azure-Abonnements und-Dienste verwendet werden. Die bewährte Sicherheitsmethode für diese Datei besteht im vorübergehenden Speichern außerhalb Ihrer Quellcodeverzeichnisse (beispielsweise im Ordner "Libraries\Documents"). Löschen Sie sie nach Abschluss des Importvorgangs. Ein böswilliger Benutzer, der Zugriff auf die *publishsettings* -Datei erlangt, kann die Azure-Dienste bearbeiten, erstellen und löschen.
 
-### <a name="create-a-publish-profile"></a>Erstellen eines Veröffentlichungs Profils
+### <a name="create-a-publish-profile"></a>Erstellen eines Veröffentlichungsprofils
 
 1. Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt condesouniversity in **Projektmappen-Explorer** , und wählen Sie im Kontextmenü **veröffentlichen** aus.
 
     Der Assistent **Web veröffentlichen** wird geöffnet.
-2. Klicken Sie auf die Registerkarte **Profil**.
+2. Klicken Sie auf die Registerkarte **Profil** .
 3. Klicken Sie auf **Importieren**.
 4. Navigieren Sie zur Datei " *. publishsettings* ", die Sie zuvor heruntergeladen haben, und klicken Sie auf **Öffnen**.
 
@@ -130,7 +130,7 @@ Nachdem Sie nun eine Web-App und eine Datenbank für die Stagingumgebung erstell
 6. Klicken Sie auf **Weiter**.
 
     ![Symbol "Verbindung erfolgreich" und Schaltfläche "weiter" auf Verbindungs Register](deploying-to-production/_static/image8.png)
-7. Erweitern Sie auf der Registerkarte **Einstellungen** die **Option Datei Veröffentlichungs Optionen**, und wählen Sie dann **Dateien aus dem App-\_Datenordner ausschließen aus**.
+7. Erweitern Sie auf der Registerkarte **Einstellungen** die **Option Datei Veröffentlichungs Optionen**, und wählen Sie dann **Dateien aus dem \_ Ordner App-Daten ausschließen aus**.
 
     Weitere Informationen zu den anderen Optionen unter **Datei Veröffentlichungs Optionen**finden Sie im Tutorial bereitstellen [in IIS](deploying-to-iis.md) . Der Screenshot, der das Ergebnis dieses Schritts anzeigt, und die folgenden Konfigurationsschritte für die Datenbank sind am Ende der Daten Bank Konfigurationsschritte.
 8. Konfigurieren Sie im Abschnitt **Datenbanken** unter **DefaultConnection** die Daten Bank Bereitstellung für die Mitgliedschafts Datenbank.
@@ -143,7 +143,7 @@ Nachdem Sie nun eine Web-App und eine Datenbank für die Stagingumgebung erstell
       5. Schließen Sie das Dialogfeld **Daten Bank Updates konfigurieren** .
 10. Wählen Sie im Abschnitt " **School Context** " im Abschnitt " **Datenbanken** " die Option **Code First-Migrationen ausführen (wird beim Anwendungsstart ausgeführt)**
 
-    Visual Studio zeigt **Execute Code First-Migrationen** anstelle von **Update Database** für `DbContext` Klassen an. Wenn Sie den dbdacfx-Anbieter anstelle von Migrationen verwenden möchten, um eine Datenbank bereitzustellen, auf die Sie mithilfe einer `DbContext` Klasse zugreifen, finden Sie weitere Informationen unter Gewusst wie bereitstellen [einer Code First Datenbank ohne Migrationen?](https://msdn.microsoft.com/library/ee942158.aspx#deploy_code_first_without_migrations) in den häufig gestellten Fragen zur Webbereitstellung für Visual Studio und ASP.net auf MSDN
+    Visual Studio zeigt **Execute-Code First-Migrationen** anstelle von **Update Database** für `DbContext` Klassen an. Wenn Sie den dbdacfx-Anbieter anstelle von Migrationen verwenden möchten, um eine Datenbank bereitzustellen, auf die Sie mithilfe einer Klasse zugreifen, finden Sie weitere Informationen unter Gewusst wie bereitstellen `DbContext` [einer Code First Datenbank ohne Migrationen?](https://msdn.microsoft.com/library/ee942158.aspx#deploy_code_first_without_migrations) in den FAQ für die Webbereitstellung für Visual Studio und ASP.net auf MSDN.
 
     Die Registerkarte **Einstellungen** sieht nun wie im folgenden Beispiel aus:
 
@@ -160,22 +160,22 @@ Nachdem Sie nun eine Web-App und eine Datenbank für die Stagingumgebung erstell
 ### <a name="configure-a-publish-profile-transform-for-the-environment-indicator"></a>Konfigurieren einer Transformation für Veröffentlichungs Profile für den Umgebungs Indikator
 
 > [!NOTE]
-> In diesem Abschnitt wird gezeigt, wie eine Web. config-Transformation für den Umgebungs Indikator eingerichtet wird. Da der Indikator im `<appSettings>`-Element enthalten ist, haben Sie eine weitere Alternative zum Angeben der Transformation, wenn Sie in Azure App Service bereitstellen. Weitere Informationen finden Sie unter [Angeben von Web. config-Einstellungen in Azure](web-config-transformations.md#watransforms).
+> In diesem Abschnitt wird gezeigt, wie eine Web.config Transformation für den Umgebungs Indikator eingerichtet wird. Da der Indikator im-Element enthalten ist `<appSettings>` , haben Sie eine weitere Alternative zum Angeben der Transformation, wenn Sie in Azure App Service bereitstellen. Weitere Informationen finden Sie unter [Angeben von Web.config Einstellungen in Azure](web-config-transformations.md#watransforms).
 
 1. Erweitern Sie in **Projektmappen-Explorer**den Knoten **Eigenschaften**, und erweitern Sie dann **publishprofiles**.
 2. Klicken Sie mit der rechten Maustaste auf *Staging. pubxml*, und klicken Sie dann auf **Konfigurations Transformation hinzufügen**.
 
     ![Config-Transformation für Staging hinzufügen](deploying-to-production/_static/image11.png)
 
-    Visual Studio erstellt die Transformations Datei *Web. Staging. config* und öffnet diese.
-3. Fügen Sie in der Transformations Datei *Web. Staging. config* den folgenden Code direkt nach dem öffnenden `configuration`-Tag ein.
+    Visual Studio erstellt die *Web.Staging.config* Transformations Datei und öffnet sie.
+3. Fügen Sie in der *Web.Staging.config* Transformations Datei den folgenden Code direkt nach dem öffnenden `configuration` Tag ein.
 
     [!code-xml[Main](deploying-to-production/samples/sample1.xml)]
 
     Wenn Sie das Staging-Veröffentlichungs Profil verwenden, legt diese Transformation den Umgebungs Indikator auf "Prod" fest. In der bereitgestellten Web-App sehen Sie nach der H1-Überschrift "TSO University" kein Suffix wie "(dev)" oder "(Test)".
-4. Klicken Sie mit der rechten Maustaste auf die Datei *Web. Staging. config* , und klicken Sie auf **Vorschau transformieren** , um sicherzustellen, dass die von Ihnen codierte Transformation die erwarteten Änderungen
+4. Klicken Sie mit der rechten Maustaste auf die Datei *Web.Staging.config* , und klicken Sie auf **Vorschau transformieren** , um sicherzustellen, dass die von Ihnen codierte Transformation die erwarteten Änderungen
 
-    Das **Web. config-Vorschau** Fenster zeigt das Ergebnis der Anwendung der Transformationen " *Web. Release. config* " und " *Web. Staging. config* " an.
+    Das **Web.config Vorschau** Fenster zeigt das Ergebnis der Anwendung der *Web.Release.config* Transformationen und der *Web.Staging.config* Transformationen.
 
 ### <a name="prevent-public-use-of-the-test-app"></a>Verhindern der öffentlichen Verwendung der Test-App
 
@@ -183,32 +183,32 @@ Ein wichtiger Aspekt bei der Staging-APP ist, dass Sie im Internet Live ist, abe
 
 - Legen Sie Firewallregeln fest, die den Zugriff auf die Staging-app nur von IP-Adressen zulassen, die Sie zum Testen der Staging-
 - Verwenden Sie eine verborgene URL, die nicht erraten werden kann.
-- Erstellen Sie eine Datei " *robots. txt* ", um sicherzustellen, dass Suchmaschinen die Test-App nicht durchforsten und in den Suchergebnissen Links darauf melden.
+- Erstellen Sie eine *robots.txt* -Datei, um sicherzustellen, dass Suchmaschinen die Test-App nicht durchforsten und in den Suchergebnissen Links darauf melden.
 
 Die erste dieser Methoden ist die effektivste, wird aber in diesem Tutorial nicht behandelt, da es erforderlich wäre, dass Sie die Bereitstellung in einem Azure-clouddienst statt Azure App Service durchführt. Weitere Informationen zu Cloud Services-und IP-Einschränkungen in Azure finden Sie unter [von Azure bereitgestellte computehostingoptionen](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me) und [Blockieren bestimmter IP-Adressen für den Zugriff auf eine webrolle](https://msdn.microsoft.com/library/windowsazure/jj154098.aspx). Wenn Sie die Bereitstellung für einen Drittanbieter-Hostinganbieter durchführen, wenden Sie sich an den Anbieter, um herauszufinden, wie IP-Einschränkungen implementiert werden.
 
-In diesem Tutorial erstellen Sie eine Datei " *robots. txt* ".
+In diesem Tutorial erstellen Sie eine *robots.txt* -Datei.
 
 1. Klicken Sie in **Projektmappen-Explorer**mit der rechten Maustaste auf das Projekt conjesouniversity, und klicken Sie auf **Neues Element hinzufügen**.
-2. Erstellen Sie eine neue **Textdatei** mit dem Namen " *robots. txt*", und fügen Sie den folgenden Text ein:
+2. Erstellen Sie eine neue **Textdatei** mit dem Namen *robots.txt*, und fügen Sie den folgenden Text ein:
 
     [!code-console[Main](deploying-to-production/samples/sample2.cmd)]
 
-    Die `User-agent` Zeile weist Suchmaschinen an, dass sich die Regeln in der Datei auf alle Suchmaschinen-Webcrawlers (Robots) beziehen, und die `Disallow` Linie gibt an, dass keine Seiten auf der Website durchlaufen werden sollen.
+    Die `User-agent` Zeile teilt den Such Modulen mit, dass sich die Regeln in der Datei auf alle Suchmaschinen-Webcrawlers (Robots) beziehen, und die `Disallow` Zeile gibt an, dass keine Seiten auf der Website durchlaufen werden sollen.
 
     Sie möchten, dass Suchmaschinen Ihre Produktions-App katalogisieren, sodass Sie diese Datei aus der Produktions Bereitstellung ausschließen müssen. Zu diesem Zweck konfigurieren Sie eine Einstellung im Veröffentlichungs Profil für die Produktion, wenn Sie Sie erstellen.
 
 ### <a name="deploy-to-staging"></a>Bereitstellen in der Stagingumgebung
 
 1. Öffnen Sie den Assistenten zum Veröffentlichen von Web-Assistenten, indem Sie mit der **rechten Maustaste auf**das Projekt "Projekt der Projekt **Website**
-2. Stellen Sie sicher, dass das Stagingprofil ausgewählt ist.
+2. Stellen Sie sicher, **Staging** dass das Stagingprofil ausgewählt ist.
 3. Klicken Sie auf **Veröffentlichen**.
 
     Im Fenster **Ausgabe** wird angezeigt, welche Bereitstellungsaktionen ausgeführt wurden, und es wird die erfolgreiche Durchführung der Bereitstellung gemeldet. Der Standardbrowser öffnet automatisch die URL der bereitgestellten Web-App.
 
 ## <a name="test-in-the-staging-environment"></a>Testen in der Stagingumgebung
 
-Beachten Sie, dass der Umgebungs Indikator fehlt (es gibt kein "(Test)" oder "(dev)" nach der H1-Überschrift, die anzeigt, dass die *Web. config* -Transformation für den Umgebungs Indikator erfolgreich war.
+Beachten Sie, dass der Umgebungs Indikator fehlt (es gibt kein "(Test)" oder "(dev)" nach der H1-Überschrift, die anzeigt, dass die *Web.config* Transformation für den Umgebungs Indikator erfolgreich war.
 
 ![Staging der Startseite](deploying-to-production/_static/image12.png)
 
@@ -226,7 +226,7 @@ Die Anwendung, die Sie erstellt haben, wird jetzt in der Cloud in einer Web-App 
 
 ## <a name="deploy-to-production"></a>Bereitstellen für die Produktion
 
-Der Prozess zum Erstellen einer Produktions-Web-App und zum Bereitstellen in der Produktion ist identisch mit dem für das Staging, mit der Ausnahme, dass Sie die " *robots. txt* " aus der Bereitstellung ausschließen müssen Zu diesem Zweck bearbeiten Sie die Veröffentlichungs Profil Datei.
+Der Prozess zum Erstellen einer Produktions-Web-App und zum Bereitstellen in der Produktionsumgebung ist identisch mit dem für das Staging, mit der Ausnahme, dass Sie die *robots.txt* von der Bereitstellung ausschließen müssen Zu diesem Zweck bearbeiten Sie die Veröffentlichungs Profil Datei.
 
 ### <a name="create-the-production-environment-and-the-production-publish-profile"></a>Erstellen der Produktionsumgebung und des Veröffentlichungs Profils für die Produktion
 
@@ -240,9 +240,9 @@ Der Prozess zum Erstellen einer Produktions-Web-App und zum Bereitstellen in der
 4. Benennen Sie das Veröffentlichungs Profil in *Production*um.
 5. Konfigurieren Sie eine Transformation für Veröffentlichungs Profile für den Umgebungs Indikator, und befolgen Sie dabei die Prozedur, die Sie für das Staging verwendet haben.
 
-### <a name="edit-the-pubxml-file-to-exclude-robotstxt"></a>Bearbeiten Sie die pubxml-Datei, um "robots. txt" auszuschließen.
+### <a name="edit-the-pubxml-file-to-exclude-robotstxt"></a>Bearbeiten Sie die. pubxml-Datei, um Sie auszuschließen robots.txt
 
-Veröffentlichungs Profil Dateien heißen &lt;Profile Name&gt; *. pubxml* und befinden sich im Ordner *publishprofiles* . Der Ordner " *publishprofiles* " befindet sich unter dem Ordner C# "Properties" in einem Webanwendungs Projekt, unter dem Ordner " *My Project* " in einem Projekt der VB-Webanwendung oder unter dem Ordner *App\_Data* in einem Web-App-Projekt. Jede *pubxml* -Datei enthält Einstellungen, die für ein Veröffentlichungs Profil gelten. Die Werte, die Sie im Assistenten Web veröffentlichen eingeben, werden in diesen Dateien gespeichert, und Sie können Sie bearbeiten, um Einstellungen zu erstellen oder zu ändern, die nicht in der Visual Studio-Benutzeroberfläche verfügbar gemacht werden.
+Veröffentlichungs Profil Dateien heißen " &lt; Profile Name &gt; *. pubxml* " und befinden sich im Ordner " *publishprofiles* ". Der Ordner *publishprofiles* befindet sich unter dem Ordner *Properties* in einem c#-Webanwendungs Projekt, unter dem Ordner *My Project* in einem Projekt der VB-Webanwendung oder unter dem Ordner *App \_ Data* in einem Web-App-Projekt. Jede *pubxml* -Datei enthält Einstellungen, die für ein Veröffentlichungs Profil gelten. Die Werte, die Sie im Assistenten Web veröffentlichen eingeben, werden in diesen Dateien gespeichert, und Sie können Sie bearbeiten, um Einstellungen zu erstellen oder zu ändern, die nicht in der Visual Studio-Benutzeroberfläche verfügbar gemacht werden.
 
 Standardmäßig sind *pubxml* -Dateien im Projekt enthalten, wenn Sie ein Veröffentlichungs Profil erstellen, aber Sie können Sie aus dem Projekt ausschließen, aber von Visual Studio weiterhin verwendet werden. Visual Studio sucht im Ordner *publishprofiles* nach *pubxml* -Dateien, unabhängig davon, ob Sie im Projekt enthalten sind.
 
@@ -255,7 +255,7 @@ Eine *pubxml* -Datei enthält die Einstellungen, die sich auf ein bestimmtes Ver
 
     ![Öffnen Sie die pubxml-Datei.](deploying-to-production/_static/image13.png)
 3. Klicken Sie mit der rechten Maustaste auf *Production. pubxml* und dann auf **Öffnen**.
-4. Fügen Sie direkt vor dem schließenden `PropertyGroup` Element die folgenden Zeilen hinzu:
+4. Fügen Sie direkt vor dem schließenden Element die folgenden Zeilen ein `PropertyGroup` :
 
     [!code-xml[Main](deploying-to-production/samples/sample3.xml)]
 
@@ -267,16 +267,16 @@ Eine *pubxml* -Datei enthält die Einstellungen, die sich auf ein bestimmtes Ver
 
 ### <a name="deploy-to-production"></a>Bereitstellen für die Produktion
 
-1. Öffnen Sie den Assistenten **Web veröffentlichen** , stellen Sie sicher, dass das Veröffentlichungs Profil für die **Produktion** ausgewählt ist, und klicken Sie dann auf der Registerkarte **Vorschau** auf **Vorschau starten** , um zu überprüfen, ob die Datei *robots. txt* in die Produktions-App kopiert wird.
+1. Öffnen Sie den Assistenten **Web veröffentlichen** , stellen Sie sicher, dass das Veröffentlichungs Profil für die **Produktion** ausgewählt ist, und klicken Sie dann auf der Registerkarte **Vorschau** auf **Vorschau starten** , um sicherzustellen, dass die *robots.txt* Datei nicht in die Produktions-App kopiert wird.
 
     ![Vorschau der in der Produktion zu veröffentlichenden Dateien](deploying-to-production/_static/image14.png)
 
-    Überprüfen Sie die Liste der Dateien, die kopiert werden. Sie werden feststellen, dass alle *CS* -Dateien, einschließlich *aspx.cs*-, *aspx.Designer.cs*-, *Master.cs*-und *Master.Designer.cs* -Dateien, ausgelassen werden. Der gesamte Code wurde in die Dateien " *condesouniversity. dll* " und " *condesouniversity. pdb* " kompiliert, die Sie im Ordner " *bin* " finden. Da nur die *dll* -Datei zum Ausführen der Anwendung benötigt wird und Sie zuvor festgelegt haben, dass nur Dateien, die zum Ausführen der Anwendung erforderlich sind, bereitgestellt werden sollen, wurden keine *CS* -Dateien in die Zielumgebung kopiert. Der Ordner " *obj* " und die Dateien " *condesouniversity. csproj* " und " *. csproj. User* " werden aus demselben Grund weggelassen.
+    Überprüfen Sie die Liste der Dateien, die kopiert werden. Sie werden feststellen, dass alle *CS* -Dateien, einschließlich *aspx.cs*-, *aspx.Designer.cs*-, *Master.cs*-und *Master.Designer.cs* -Dateien, ausgelassen werden. Der gesamte Code wurde in die Dateien " *ContosoUniversity.dll* " und " *condesouniversity. pdb* " kompiliert, die Sie im Ordner " *bin* " finden. Da nur die *dll* -Datei zum Ausführen der Anwendung benötigt wird und Sie zuvor festgelegt haben, dass nur Dateien, die zum Ausführen der Anwendung erforderlich sind, bereitgestellt werden sollen, wurden keine *CS* -Dateien in die Zielumgebung kopiert. Der Ordner " *obj* " und die Dateien " *condesouniversity. csproj* " und " *. csproj. User* " werden aus demselben Grund weggelassen.
 
     Klicken Sie auf **veröffentlichen** , um Sie in der Produktionsumgebung bereitzustellen.
 2. Testen Sie in der Produktion, und befolgen Sie dabei die gleichen Schritte wie für das Staging.
 
-    Alles ist mit dem Staging identisch, außer die URL und das Fehlen der Datei " *robots. txt* ".
+    Alles ist mit dem Staging identisch, außer die URL und das Fehlen der *robots.txt* Datei.
 
 ## <a name="summary"></a>Zusammenfassung
 
