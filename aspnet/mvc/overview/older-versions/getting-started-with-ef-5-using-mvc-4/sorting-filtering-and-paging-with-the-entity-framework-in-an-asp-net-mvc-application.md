@@ -8,12 +8,12 @@ ms.date: 07/30/2013
 ms.assetid: 8af630e0-fffa-4110-9eca-c96e201b2724
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: b1ddb70805dcb07fb60eea895ff572c054bde5c6
-ms.sourcegitcommit: 22fbd8863672c4ad6693b8388ad5c8e753fb41a2
+ms.openlocfilehash: 48938b378a741a0f1c351c2cb1d33b5140c6cf93
+ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/28/2019
-ms.locfileid: "74595223"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85484614"
 ---
 # <a name="sorting-filtering-and-paging-with-the-entity-framework-in-an-aspnet-mvc-application-3-of-10"></a>Sortieren, Filtern und Paging mit dem Entity Framework in einer ASP.NET MVC-Anwendung (3 von 10)
 
@@ -35,23 +35,23 @@ Die folgende Abbildung zeigt, wie die Seite am Ende aussehen wird. Die Spaltenü
 
 ## <a name="add-column-sort-links-to-the-students-index-page"></a>Hinzufügen von Spaltensortierungslinks zur Studentenindexseite
 
-Um der Indexseite "Student" eine Sortierung hinzuzufügen, ändern Sie die `Index`-Methode des `Student` Controllers, und fügen Sie der `Student` Index Sicht Code hinzu.
+Um der Indexseite "Student" eine Sortierung hinzuzufügen, ändern Sie die `Index` -Methode des `Student` Controllers, und fügen Sie der `Student` Index Ansicht Code hinzu.
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>Hinzufügen von Sortierungs Funktionen zur Index Methode
 
-Ersetzen Sie in *controllers\studentcontroller.cs*die `Index`-Methode durch den folgenden Code:
+Ersetzen Sie in *controllers\studentcontroller.cs*die- `Index` Methode durch den folgenden Code:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
 Dieser Code empfängt einen `sortOrder`-Parameter aus der Abfragezeichenfolge in der URL. Der Wert der Abfrage Zeichenfolge wird von ASP.NET MVC als Parameter für die Aktionsmethode bereitgestellt. Der Parameter ist eine Zeichenfolge, entweder „Name“ oder „Date“, optional gefolgt von einem Unterstrich und der Zeichenfolge „desc“, die die absteigende Reihenfolge angibt. Standardmäßig wird eine aufsteigende Sortierreihenfolge verwendet.
 
-Bei der ersten Anforderung der Indexseite gibt es keine Abfragezeichenfolge. Die Studenten werden in aufsteigender Reihenfolge nach `LastName`angezeigt. Dies ist die Standardeinstellung, die durch den Fall-Through-Fall in der `switch`-Anweisung festgelegt wird. Wenn der Benutzer auf den Link einer Spaltenüberschrift klickt, wird der entsprechende `sortOrder`-Wert in der Abfragezeichenfolge bereitgestellt.
+Bei der ersten Anforderung der Indexseite gibt es keine Abfragezeichenfolge. Die Studenten werden in aufsteigender Reihenfolge nach angezeigt `LastName` . Dies ist der Standardwert, der durch den Fall-Through-Fall in der-Anweisung festgelegt wird `switch` . Wenn der Benutzer auf den Link einer Spaltenüberschrift klickt, wird der entsprechende `sortOrder`-Wert in der Abfragezeichenfolge bereitgestellt.
 
 Die beiden `ViewBag` Variablen werden verwendet, damit die Sicht die Spaltenüberschriften Hyperlinks mit den entsprechenden Abfrage Zeichen folgen Werten konfigurieren kann:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
 
-Hierbei handelt es sich um ternäre Anweisungen. Der erste Wert gibt an, dass `ViewBag.NameSortParm` auf "Name\_" festgelegt werden muss, wenn der `sortOrder` Parameter NULL oder leer ist. Andernfalls sollte Sie auf eine leere Zeichenfolge festgelegt werden. Durch diese beiden Anweisungen können in der Ansicht die Hyperlinks in den Spaltenüberschriften wie folgt festgelegt werden:
+Hierbei handelt es sich um ternäre Anweisungen. Der erste Wert gibt an, dass für den Fall, dass der `sortOrder` Parameter NULL oder leer ist, `ViewBag.NameSortParm` auf "Name UNSC" festgelegt werden muss \_ . andernfalls sollte er auf eine leere Zeichenfolge festgelegt werden. Diese beiden Anweisungen ermöglichen der Ansicht das Festlegen der Links für Spaltenüberschriften wie folgt:
 
 | Aktuelle Sortierreihenfolge | Hyperlink „Nachname“ | Hyperlink „Datum“ |
 | --- | --- | --- |
@@ -60,15 +60,15 @@ Hierbei handelt es sich um ternäre Anweisungen. Der erste Wert gibt an, dass `V
 | Datum (aufsteigend) | ascending | descending |
 | Datum (absteigend) | ascending | ascending |
 
-Die-Methode verwendet [LINQ to Entities](https://msdn.microsoft.com/library/bb386964.aspx) , um die Spalte anzugeben, nach der sortiert werden soll. Der Code erstellt vor der `switch` Anweisung eine [iquerable](https://msdn.microsoft.com/library/bb351562.aspx) -Variable, ändert Sie in der `switch`-Anweisung und ruft die `ToList`-Methode nach der `switch`-Anweisung auf. Es wir keine Abfrage an die Datenbank gesendet, wenn Sie die `IQueryable`-Variablen erstellen und ändern. Die Abfrage wird erst ausgeführt, wenn Sie das `IQueryable` Objekt in eine Auflistung konvertieren, indem Sie eine Methode aufrufen, z. b. `ToList`. Daher führt dieser Code zu einer einzelnen Abfrage, die bis zur `return View`-Anweisung nicht ausgeführt wird.
+Die-Methode verwendet [LINQ to Entities](https://msdn.microsoft.com/library/bb386964.aspx) , um die Spalte anzugeben, nach der sortiert werden soll. Der Code erstellt vor der-Anweisung eine [iquerable](https://msdn.microsoft.com/library/bb351562.aspx) `switch` -Variable, ändert Sie in der `switch` -Anweisung und ruft die- `ToList` Methode nach der- `switch` Anweisung auf. Es wir keine Abfrage an die Datenbank gesendet, wenn Sie die `IQueryable`-Variablen erstellen und ändern. Die Abfrage wird erst ausgeführt, wenn Sie das `IQueryable` Objekt in eine-Auflistung konvertieren, indem Sie eine Methode aufrufen, z `ToList` . b.. Daher führt dieser Code zu einer einzelnen Abfrage, die bis zur-Anweisung nicht ausgeführt wird `return View` .
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-view"></a>Hinzufügen von Links zu Spaltenüberschriften zur Index Ansicht "Student"
 
-Ersetzen Sie in *views\student\index.cshtml*die Elemente `<tr>` und `<th>` für die Kopfzeile durch den hervorgehobenen Code:
+Ersetzen Sie in *views\student\index.cshtml*das `<tr>` -Element und das- `<th>` Element für die Überschriften Zeile durch den hervorgehobenen Code:
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cshtml?highlight=5-15)]
 
-In diesem Code werden die Informationen in den `ViewBag` Eigenschaften verwendet, um Hyperlinks mit den entsprechenden Abfrage Zeichen folgen Werten einzurichten.
+Dieser Code verwendet die Informationen in den- `ViewBag` Eigenschaften, um Hyperlinks mit den entsprechenden Abfrage Zeichen folgen Werten einzurichten.
 
 Führen Sie die Seite aus **, und klicken** Sie auf die Spaltenüberschriften **Nachname** und Registrierung, um zu überprüfen, ob die Sortierung funktioniert.
 
@@ -84,18 +84,18 @@ Wenn Sie eine Filterfunktion zur Studentenindexseite hinzufügen möchten, dann 
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Hinzufügen der Filter Funktionalität zur Index Methode
 
-Ersetzen Sie in *controllers\studentcontroller.cs*die `Index`-Methode durch den folgenden Code (die Änderungen werden hervorgehoben):
+Ersetzen Sie in *controllers\studentcontroller.cs*die- `Index` Methode durch den folgenden Code (die Änderungen werden hervorgehoben):
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=1,7-11)]
 
-Sie haben einen `searchString`-Parameter zur `Index`-Methode hinzugefügt. Sie haben auch der LINQ-Anweisung eine `where`-Klausel hinzugefügt, die nur Studenten auswählt, deren Vorname oder Nachname die Such Zeichenfolge enthält. Der Wert der Such Zeichenfolge wird von einem Textfeld empfangen, das Sie der Index Ansicht hinzufügen. Die Anweisung, die die [Where](https://msdn.microsoft.com/library/bb535040.aspx) -Klausel hinzufügt, wird nur ausgeführt, wenn ein Wert vorhanden ist, nach dem gesucht werden soll.
+Sie haben einen `searchString`-Parameter zur `Index`-Methode hinzugefügt. Sie haben auch der LINQ-Anweisung eine- `where` Klausel hinzugefügt, die nur Studenten auswählt, deren Vorname oder Nachname die Such Zeichenfolge enthält. Der Wert der Such Zeichenfolge wird von einem Textfeld empfangen, das Sie der Index Ansicht hinzufügen. Die Anweisung, die die [Where](https://msdn.microsoft.com/library/bb535040.aspx) -Klausel hinzufügt, wird nur ausgeführt, wenn ein Wert vorhanden ist, nach dem gesucht werden soll.
 
 > [!NOTE]
-> In vielen Fällen können Sie dieselbe Methode entweder für eine Entity Framework Entitätenmenge oder als Erweiterungsmethode für eine Auflistung im Arbeitsspeicher aufzurufen. Die Ergebnisse sind in der Regel identisch, aber in manchen Fällen können Sie sich unterscheiden. Beispielsweise gibt die .NET Framework Implementierung der `Contains`-Methode alle Zeilen zurück, wenn Sie eine leere Zeichenfolge an Sie übergeben, aber der Entity Framework Provider für SQL Server Compact 4,0 gibt null Zeilen für leere Zeichen folgen zurück. Daher stellt der Code im Beispiel (mit der `Where`-Anweisung in einer `if`-Anweisung) sicher, dass Sie für alle Versionen von SQL Server dieselben Ergebnisse erhalten. Außerdem führt die .NET Framework Implementierung der `Contains`-Methode standardmäßig einen Vergleich mit Berücksichtigung der Groß-/Kleinschreibung durch, Entity Framework SQL Server Anbieter jedoch standardmäßig Vergleiche ohne Berücksichtigung der Groß-/Kleinschreibung ausführen. Wenn Sie die `ToUpper`-Methode aufrufen, um den Test explizit ohne Berücksichtigung der Groß-/Kleinschreibung zu machen, wird dadurch sichergestellt, dass sich die Ergebnisse nicht ändern, wenn Sie den Code später ändern, um ein Repository zu verwenden, das eine `IEnumerable` Auflistung anstelle eines `IQueryable` Objekts (Beim Aufrufen der `Contains`-Methode einer `IEnumerable`-Sammlung erhalten Sie die .NET Framework-Implementierung. Wenn Sie sie auf einem `IQueryable`-Objekt aufrufen, erhalten Sie die Implementierung des Datenanbieters.)
+> In vielen Fällen können Sie dieselbe Methode entweder für eine Entity Framework Entitätenmenge oder als Erweiterungsmethode für eine Auflistung im Arbeitsspeicher aufzurufen. Die Ergebnisse sind in der Regel identisch, aber in manchen Fällen können Sie sich unterscheiden. Beispielsweise gibt die .NET Framework Implementierung der- `Contains` Methode alle Zeilen zurück, wenn Sie eine leere Zeichenfolge an Sie übergeben, aber der Entity Framework Provider für SQL Server Compact 4,0 gibt 0 Zeilen für leere Zeichen folgen zurück. Daher stellt der Code im Beispiel (mit der- `Where` Anweisung in einer- `if` Anweisung) sicher, dass Sie für alle Versionen von SQL Server dieselben Ergebnisse erhalten. Außerdem führt die .NET Framework Implementierung der `Contains` -Methode standardmäßig einen Vergleich mit Berücksichtigung der Groß-/Kleinschreibung durch, Entity Framework SQL Server Anbieter jedoch standardmäßig Vergleiche ohne Berücksichtigung der Groß-/Kleinschreibung ausführen. `ToUpper`Wenn Sie die-Methode aufrufen, um den Test explizit ohne Berücksichtigung der Groß-/Kleinschreibung zu machen, wird daher sichergestellt, dass sich die Ergebnisse nicht ändern, wenn Sie den Code später ändern, um ein Repository zu verwenden `IEnumerable` `IQueryable` (Beim Aufrufen der `Contains`-Methode einer `IEnumerable`-Sammlung erhalten Sie die .NET Framework-Implementierung. Wenn Sie sie auf einem `IQueryable`-Objekt aufrufen, erhalten Sie die Implementierung des Datenanbieters.)
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Hinzufügen eines Suchfelds zur Studentenindexansicht
 
-Fügen Sie in *views\student\index.cshtml*den markierten Code direkt vor dem öffnenden `table`-Tag hinzu, um eine Beschriftung, ein Textfeld und eine **Such** Schaltfläche zu erstellen.
+Fügen Sie in *views\student\index.cshtml*den markierten Code direkt vor dem öffnenden Tag hinzu, `table` um eine Beschriftung, ein Textfeld und eine **Such** Schaltfläche zu erstellen.
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cshtml?highlight=5-10)]
 
@@ -107,13 +107,13 @@ Beachten Sie, dass die URL nicht die Such Zeichenfolge "a" enthält, was bedeute
 
 ## <a name="add-paging-to-the-students-index-page"></a>Hinzufügen von Paging zur Index Seite "Studenten"
 
-Um Paging zur Index Seite "Studenten" hinzuzufügen, installieren Sie zunächst das nuget-Paket " **pagedlist. MVC** ". Anschließend nehmen Sie zusätzliche Änderungen in der `Index`-Methode vor und fügen paginglinks zur `Index` Ansicht hinzu. **Pagedlist. MVC** ist eines von vielen guten Paging-und Sortierungs Paketen für ASP.NET MVC, und die Verwendung hier ist nur als Beispiel gedacht, nicht als Empfehlung für andere Optionen. In der folgenden Abbildung sind die Paging-Links dargestellt.
+Um Paging zur Index Seite "Studenten" hinzuzufügen, installieren Sie zunächst das nuget-Paket " **pagedlist. MVC** ". Anschließend nehmen Sie zusätzliche Änderungen an der `Index` -Methode vor und fügen paginglinks zur `Index` Ansicht hinzu. **Pagedlist. MVC** ist eines von vielen guten Paging-und Sortierungs Paketen für ASP.NET MVC, und die Verwendung hier ist nur als Beispiel gedacht, nicht als Empfehlung für andere Optionen. In der folgenden Abbildung sind die Paging-Links dargestellt.
 
 ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
 
 ### <a name="install-the-pagedlistmvc-nuget-package"></a>Installieren Sie das nuget-Paket "pgedlist. MVC".
 
-Das nuget-Paket " **pgedlist. MVC** " installiert automatisch das Paket " **pgedlist** " als Abhängigkeit. Das Paket " **pgedlist** " installiert einen `PagedList` Sammlungstyp und Erweiterungs Methoden für `IQueryable` und `IEnumerable` Sammlungen. Die Erweiterungs Methoden erstellen eine einzelne Datenseite in einer `PagedList` Auflistung aus Ihrem `IQueryable` oder `IEnumerable`, und die `PagedList` Auflistung bietet mehrere Eigenschaften und Methoden, die das Paging vereinfachen. Das Paket " **pagedlist. MVC** " installiert ein Paging-Hilfsprogramm, das die Pagingschaltflächen anzeigt.
+Das nuget-Paket " **pgedlist. MVC** " installiert automatisch das Paket " **pgedlist** " als Abhängigkeit. Mit dem Paket " **pgedlist** " werden ein `PagedList` Sammlungstyp und Erweiterungs Methoden für `IQueryable` -und- `IEnumerable` Sammlungen installiert. Die Erweiterungs Methoden erstellen eine einzelne Datenseite in einer Auflistung `PagedList` aus Ihrem `IQueryable` oder `IEnumerable` , und die-Auflistung `PagedList` stellt mehrere Eigenschaften und Methoden bereit, die das Paging vereinfachen. Das Paket " **pagedlist. MVC** " installiert ein Paging-Hilfsprogramm, das die Pagingschaltflächen anzeigt.
 
 Klicken Sie **im Menü** Extras auf **nuget-Paket-Manager** und dann **auf nuget-Pakete für**Projekt Mappe verwalten.
 
@@ -127,29 +127,29 @@ Klicken Sie im Feld **Projekte auswählen** auf **OK**.
 
 ### <a name="add-paging-functionality-to-the-index-method"></a>Paging-Funktionalität zur Index Methode hinzufügen
 
-Fügen Sie in *controllers\studentcontroller.cs*eine `using`-Anweisung für den `PagedList`-Namespace hinzu:
+Fügen Sie in *controllers\studentcontroller.cs*eine- `using` Anweisung für den- `PagedList` Namespace hinzu:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.cs)]
 
-Ersetzen Sie die `Index`-Methode durch folgenden Code:
+Ersetzen Sie die `Index`-Methode durch den folgenden Code:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs)]
 
-Dieser Code fügt der Methoden Signatur einen `page` Parameter, einen aktuellen Sortierreihenfolge-Parameter und einen aktuellen Filter Parameter hinzu, wie hier gezeigt:
+Dieser Code fügt `page` der Methoden Signatur einen Parameter, einen aktuellen Sortierreihenfolge-Parameter und einen aktuellen Filter Parameter hinzu, wie hier gezeigt:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.cs)]
 
-Wenn die Seite zum ersten Mal angezeigt wird oder wenn der Benutzer nicht auf einen Paging- oder Sortierlink geklickt hat, werden alle Parameter gleich 0 (null) sein. Wenn auf einen paginglink geklickt wird, enthält die `page` Variable die anzuzeigende Seitenzahl.
+Wenn die Seite zum ersten Mal angezeigt wird oder wenn der Benutzer nicht auf einen Paging- oder Sortierlink geklickt hat, werden alle Parameter gleich 0 (null) sein. Wenn auf einen Paging-Link geklickt wird, `page` enthält die Variable die anzuzeigende Seitenzahl.
 
-`A ViewBag`-Eigenschaft stellt die Ansicht mit der aktuellen Sortierreihenfolge bereit, da diese in den paginglinks enthalten sein muss, damit die Sortierreihenfolge beim Paging unverändert bleibt:
+`A ViewBag`die-Eigenschaft stellt die Ansicht mit der aktuellen Sortierreihenfolge bereit, da diese in den paginglinks enthalten sein muss, damit die Sortierreihenfolge beim Paging unverändert bleibt:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
-Eine andere Eigenschaft, `ViewBag.CurrentFilter`, stellt die Ansicht mit der aktuellen Filter Zeichenfolge bereit. Dieser Wert muss in den Paginglinks enthalten sein, damit die Filtereinstellungen während des Pagingvorgangs beibehalten werden, und er muss im Textfeld wiederhergestellt werden, wenn die Seite erneut angezeigt wird. Wenn die Suchzeichenfolge während des Pagingvorgangs geändert wird, muss die Seite auf 1 zurückgesetzt werden, da der neue Filter andere Daten anzeigen kann. Die Such Zeichenfolge wird geändert, wenn ein Wert in das Textfeld eingegeben wird und die Schaltfläche "Senden" gedrückt wird. In diesem Fall ist der `searchString`-Parameter nicht NULL.
+Eine andere Eigenschaft, `ViewBag.CurrentFilter` , stellt die Ansicht mit der aktuellen Filter Zeichenfolge bereit. Dieser Wert muss in den Paginglinks enthalten sein, damit die Filtereinstellungen während des Pagingvorgangs beibehalten werden, und er muss im Textfeld wiederhergestellt werden, wenn die Seite erneut angezeigt wird. Wenn die Suchzeichenfolge während des Pagingvorgangs geändert wird, muss die Seite auf 1 zurückgesetzt werden, da der neue Filter andere Daten anzeigen kann. Die Such Zeichenfolge wird geändert, wenn ein Wert in das Textfeld eingegeben wird und die Schaltfläche "Senden" gedrückt wird. In diesem Fall ist der- `searchString` Parameter nicht NULL.
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.cs)]
 
-Am Ende der-Methode konvertiert die `ToPagedList`-Erweiterungsmethode für das Students `IQueryable`-Objekt die Student-Abfrage in eine einzelne Seite von Studenten in einem Sammlungstyp, der Paging unterstützt. Diese einzelne Seite der Schüler/Studenten wird dann an die Ansicht weitergeleitet:
+Am Ende der-Methode konvertiert die- `ToPagedList` Erweiterungsmethode für das Students- `IQueryable` Objekt die Student-Abfrage in eine einzelne Seite von Studenten in einem Sammlungstyp, der Paging unterstützt. Diese einzelne Seite der Schüler/Studenten wird dann an die Ansicht weitergeleitet:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
@@ -163,7 +163,7 @@ Ersetzen Sie in *views\student\index.cshtml*den vorhandenen Code durch den folge
 
 Die `@model`-Anweisung am oberen Rand der Seite gibt an, dass die Ansicht nun ein `PagedList`-Objekt anstelle eines `List`-Objekts aufruft.
 
-Die `using`-Anweisung für `PagedList.Mvc` ermöglicht den Zugriff auf das MVC-Hilfsprogramm für die Paging-Schaltflächen.
+Die- `using` Anweisung für `PagedList.Mvc` ermöglicht den Zugriff auf das MVC-Hilfsprogramm für die Paging-Schaltflächen.
 
 Im Code wird eine Überladung von [BeginForm](https://msdn.microsoft.com/library/system.web.mvc.html.formextensions.beginform(v=vs.108).aspx) verwendet, mit der [FormMethod. Get angegeben werden](https://msdn.microsoft.com/library/system.web.mvc.formmethod(v=vs.100).aspx/css)kann.
 
@@ -183,13 +183,13 @@ Die aktuelle Seite und die Gesamtzahl der Seiten werden angezeigt.
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.cshtml)]
 
-Wenn keine Seiten zum Anzeigen vorhanden sind, wird "Seite 0 von 0" angezeigt. (In diesem Fall ist die Seitenzahl größer als die Seitenanzahl, da `Model.PageNumber` 1 und `Model.PageCount` 0 ist.)
+Wenn keine Seiten zum Anzeigen vorhanden sind, wird "Seite 0 von 0" angezeigt. (In diesem Fall ist die Seitenzahl größer als die Seitenanzahl `Model.PageNumber` , da 1 und `Model.PageCount` 0 ist.)
 
-Die Paging-Schaltflächen werden von der `PagedListPager`-Hilfsprogramm angezeigt:
+Die Paging-Schaltflächen werden vom Hilfsprogramm angezeigt `PagedListPager` :
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.cshtml)]
 
-Das `PagedListPager`-Hilfsprogramm bietet eine Reihe von Optionen, die Sie anpassen können, einschließlich URLs und Formatierungen. Weitere Informationen finden Sie auf der GitHub-Website unter [troygoode/pgedlist](https://github.com/TroyGoode/PagedList) .
+Das Hilfsprogramm `PagedListPager` bietet eine Reihe von Optionen, die Sie anpassen können, einschließlich URLs und Formatierungen. Weitere Informationen finden Sie auf der GitHub-Website unter [troygoode/pgedlist](https://github.com/TroyGoode/PagedList) .
 
 Führen Sie die Seite aus.
 
@@ -201,11 +201,11 @@ Klicken Sie auf die Paginglinks in verschiedenen Sortierreihenfolgen, um sicherz
 
 ## <a name="create-an-about-page-that-shows-student-statistics"></a>Erstellen einer Info-Seite mit Studenten Statistiken
 
-Die Seite "Info" der Website der Website der Website von "Website" zeigt an, wie viele Studenten sich für jedes Registrierungsdatum registriert haben. Das erfordert Gruppieren und einfache Berechnungen dieser Gruppen. Um dies zu erreichen, ist Folgendes erforderlich:
+Auf der Infoseite der Contoso University wird angezeigt, wie viele Studenten sich an welchem Datum angemeldet haben. Das erfordert Gruppieren und einfache Berechnungen dieser Gruppen. Um dies zu erreichen, ist Folgendes erforderlich:
 
 - Erstellen Sie eine Ansichtsmodellklasse für die Daten, die Sie an die Ansicht übergeben müssen.
-- Ändern Sie die `About`-Methode im `Home` Controller.
-- Ändern Sie die Ansicht `About`.
+- Ändern Sie die- `About` Methode im `Home` Controller.
+- Ändern Sie die `About` Ansicht.
 
 ### <a name="create-the-view-model"></a>Erstellen des Ansichts Modells
 
@@ -215,7 +215,7 @@ Erstellen Sie einen *ViewModels* -Ordner. Fügen Sie in diesem Ordner eine Klass
 
 ### <a name="modify-the-home-controller"></a>Ändern des Home-Controllers
 
-Fügen Sie in *HomeController.cs*die folgenden `using`-Anweisungen am Anfang der Datei hinzu:
+Fügen Sie in *HomeController.cs*am Anfang der Datei die folgenden- `using` Anweisungen hinzu:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cs)]
 
@@ -223,13 +223,13 @@ Fügen Sie eine Klassen Variable für den Daten Bank Kontext unmittelbar nach de
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.cs?highlight=3)]
 
-Ersetzen Sie die `About`-Methode durch folgenden Code:
+Ersetzen Sie die `About`-Methode durch den folgenden Code:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.cs)]
 
 Die LINQ-Anweisung gruppiert die Studentenentitäten nach Anmeldedatum, berechnet die Anzahl der Entitäten in jeder Gruppe und speichert die Ergebnisse in einer Sammlung von `EnrollmentDateGroup`-Ansichtsmodellobjekten.
 
-Fügen Sie eine `Dispose`-Methode hinzu:
+Fügen Sie eine `Dispose` Methode hinzu:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.cs)]
 
@@ -249,19 +249,19 @@ Bisher wurde Ihre Anwendung lokal in IIS Express auf dem Entwicklungs Computer a
 
 ### <a name="using-code-first-migrations-to-deploy-the-database"></a>Verwenden von Code First-Migrationen zum Bereitstellen der Datenbank
 
-Zum Bereitstellen der Datenbank verwenden Sie Code First-Migrationen. Wenn Sie das Veröffentlichungs Profil erstellen, das Sie zum Konfigurieren der Einstellungen für die Bereitstellung von Visual Studio verwenden, wählen Sie ein Kontrollkästchen mit der Bezeichnung **Execute Code First-Migrationen (wird beim Anwendungsstart ausgeführt)** aus. Diese Einstellung bewirkt, dass der Bereitstellungs Prozess die *Web. config* -Datei der Anwendung auf dem Zielserver automatisch konfiguriert, sodass Code First die `MigrateDatabaseToLatestVersion` Initialisierer-Klasse verwendet.
+Zum Bereitstellen der Datenbank verwenden Sie Code First-Migrationen. Wenn Sie das Veröffentlichungs Profil erstellen, das Sie zum Konfigurieren der Einstellungen für die Bereitstellung von Visual Studio verwenden, wählen Sie ein Kontrollkästchen mit der Bezeichnung **Execute Code First-Migrationen (wird beim Anwendungsstart ausgeführt)** aus. Diese Einstellung bewirkt, dass der Bereitstellungs Prozess die Anwendung *Web.config* Datei auf dem Zielserver automatisch konfiguriert, sodass Code First die `MigrateDatabaseToLatestVersion` Initialisiererklasse verwendet.
 
-Visual Studio führt während des Bereitstellungs Prozesses keine Aktion mit der Datenbank durch. Wenn die bereitgestellte Anwendung zum ersten Mal nach der Bereitstellung auf die Datenbank zugreift, erstellt Code First die Datenbank automatisch oder aktualisiert das Datenbankschema auf die neueste Version. Wenn die Anwendung eine Migrations `Seed`-Methode implementiert, wird die-Methode ausgeführt, nachdem die Datenbank erstellt oder das Schema aktualisiert wurde.
+Visual Studio führt während des Bereitstellungs Prozesses keine Aktion mit der Datenbank durch. Wenn die bereitgestellte Anwendung zum ersten Mal nach der Bereitstellung auf die Datenbank zugreift, erstellt Code First die Datenbank automatisch oder aktualisiert das Datenbankschema auf die neueste Version. Wenn die Anwendung eine Migrations `Seed` Methode implementiert, wird die-Methode ausgeführt, nachdem die Datenbank erstellt oder das Schema aktualisiert wurde.
 
-Die Migrations `Seed` Methode fügt Testdaten ein. Wenn Sie in einer Produktionsumgebung bereitgestellt haben, müssten Sie die `Seed`-Methode so ändern, dass nur Daten eingefügt werden, die in die Produktionsdatenbank eingefügt werden sollen. Beispielsweise können Sie in Ihrem aktuellen Datenmodell echte Kurse, aber fiktive Studenten in der Entwicklungs Datenbank haben. Sie können eine `Seed` Methode schreiben, um beide in der Entwicklung zu laden und dann die fiktiven Studenten vor der Bereitstellung in der Produktion auszukommentieren. Sie können auch eine `Seed` Methode schreiben, um nur Kurse zu laden, und die fiktiven Studenten in der Testdatenbank manuell über die Benutzeroberfläche der Anwendung eingeben.
+Die Migrations `Seed` Methode fügt Testdaten ein. Wenn Sie in einer Produktionsumgebung bereitgestellt haben, müssten Sie die- `Seed` Methode so ändern, dass nur Daten eingefügt werden, die in die Produktionsdatenbank eingefügt werden sollen. Beispielsweise können Sie in Ihrem aktuellen Datenmodell echte Kurse, aber fiktive Studenten in der Entwicklungs Datenbank haben. Sie können eine `Seed` Methode schreiben, um beide in der Entwicklung zu laden und dann die fiktiven Studenten vor der Bereitstellung in der Produktion auszukommentieren. Oder Sie können eine `Seed` Methode schreiben, um nur Kurse zu laden, und die fiktiven Studenten in der Testdatenbank manuell über die Benutzeroberfläche der Anwendung eingeben.
 
 ### <a name="get-a-windows-azure-account"></a>Windows Azure-Konto erhalten
 
-Sie benötigen ein Windows Azure-Konto. Wenn Sie noch nicht über eins verfügen, können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Weitere Informationen finden Sie unter [Kostenlose Windows Azure-Testversion](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+Sie benötigen ein Windows Azure-Konto. Wenn Sie noch nicht über eins verfügen, können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Einzelheiten hierzu finden Sie unter [Windows Azure. Testen Sie es. Kostenlos.](https://azure.microsoft.com/free/dotnet/).
 
 ### <a name="create-a-web-site-and-a-sql-database-in-windows-azure"></a>Erstellen einer Website und einer SQL-Datenbank in Windows Azure
 
-Ihre Windows Azure-Website wird in einer freigegebenen Hostingumgebung ausgeführt, was bedeutet, dass Sie auf virtuellen Computern (VMS) ausgeführt wird, die gemeinsam mit anderen Windows Azure-Clients verwendet werden. Eine freigegebene Hostingumgebung ist eine kostengünstige Möglichkeit für den Einstieg in die Cloud. Wenn der Webdatenverkehr später zunimmt, kann die Anwendung skaliert werden, um die Anforderungen zu erfüllen, indem Sie auf dedizierten VMS ausgeführt wird. Wenn Sie eine komplexere Architektur benötigen, können Sie zu einem Windows Azure-clouddienst migrieren. Clouddienste werden auf dedizierten VMS ausgeführt, die Sie entsprechend Ihren Anforderungen konfigurieren können.
+Ihre Windows Azure-Website wird in einer freigegebenen Hostingumgebung ausgeführt, was bedeutet, dass Sie auf virtuellen Computern (VMS) ausgeführt wird, die gemeinsam mit anderen Windows Azure-Clients verwendet werden. Eine freigegebene Hostingumgebung ist eine kostengünstige Möglichkeit, mit der Verwendung der Cloud zu beginnen. Später kann die Anwendung skaliert werden, sobald der Webdatenverkehr zunimmt, um die Anforderungen durch die Ausführung dedizierter virtueller Maschinen zu erfüllen. Wenn Sie eine komplexere Architektur benötigen, können Sie zu einem Windows Azure-clouddienst migrieren. Clouddienste werden auf dedizierten VMs ausgeführt, die Sie Ihren Anforderungen entsprechend konfigurieren können.
 
 Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst, der auf SQL Server-Technologien aufbaut. Tools und Anwendungen, die mit SQL Server arbeiten, funktionieren auch mit der SQL-Datenbank.
 
@@ -273,7 +273,7 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
     ![Link "mit Datenbank erstellen" in Verwaltungsportal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
 
    Der Assistent zum **Erstellen einer neuen Website** wird geöffnet.
-3. Geben Sie im Schritt **neue Website** des Assistenten eine Zeichenfolge in das Feld **URL** ein, um Sie als eindeutige URL für Ihre Anwendung zu verwenden. Die vollständige URL besteht aus den hier eingegebenen Informationen sowie dem Suffix, das neben dem Textfeld angezeigt wird. Die Abbildung zeigt "", aber diese URL wird wahrscheinlich übernommen, sodass Sie eine andere auswählen müssen.
+3. Geben Sie im Schritt **neue Website** des Assistenten eine Zeichenfolge in das Feld **URL** ein, um Sie als eindeutige URL für Ihre Anwendung zu verwenden. Die vollständige URL besteht aus der hier eingegebenen Zeichenfolge und dem Suffix, das neben dem Textfeld aufgeführt wird. Die Abbildung zeigt "", aber diese URL wird wahrscheinlich übernommen, sodass Sie eine andere auswählen müssen.
 
     ![Link "mit Datenbank erstellen" in Verwaltungsportal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
 4. Wählen Sie in der Dropdown Liste **Region** eine Region in der Nähe aus. Mit dieser Einstellung wird festgelegt, in welchem Rechenzentrum die Website ausgeführt wird.
@@ -286,7 +286,7 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
 7. Klicken Sie auf den Pfeil rechts unten im Feld. Der Assistent wechselt zum Schritt **Datenbankeinstellungen** .
 8. Geben Sie im Feld **Name den Namen** *Conto souniversitydb*ein.
 9. Wählen Sie im Feld **Server** die Option **neuer SQL-Datenbankserver**aus. Wenn Sie zuvor einen Server erstellt haben, können Sie alternativ diesen Server aus der Dropdown Liste auswählen.
-10. Geben Sie einen Administrator **Anmelde Namen** und ein **Kennwort**ein. Wenn Sie **neuer SQL-Datenbankserver** ausgewählt haben, geben Sie hier keinen vorhandenen Namen und kein Kennwort ein. Sie geben einen neuen Namen und ein Kennwort ein, die Sie jetzt definieren, um Sie später beim Zugriff auf die Datenbank zu verwenden. Wenn Sie einen Server ausgewählt haben, den Sie zuvor erstellt haben, geben Sie die Anmelde Informationen für diesen Server ein. Für dieses Tutorial aktivieren Sie das Kontrollkästchen ***erweitert*** nicht. Mit den ***erweiterten*** Optionen können Sie die Daten Bank [Sortierung](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)festlegen.
+10. Geben Sie einen Administrator **Anmelde Namen** und ein **Kennwort**ein. Wenn Sie **Neuer SQL-Datenbankserver** ausgewählt haben, geben Sie hier keinen vorhandenen Namen und kein vorhandenes Kennwort ein. Stattdessen definieren Sie jetzt einen neuen Namen und ein neues Kennwort zur späteren Verwendung beim Datenbankzugriff. Wenn Sie einen Server ausgewählt haben, den Sie zuvor erstellt haben, geben Sie die Anmelde Informationen für diesen Server ein. Für dieses Tutorial aktivieren Sie das Kontrollkästchen ***erweitert*** nicht. Mit den ***erweiterten*** Optionen können Sie die Daten Bank [Sortierung](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)festlegen.
 11. Wählen Sie die **Region** aus, die Sie für die Website ausgewählt haben.
 12. Klicken Sie auf das Häkchen unten rechts im Feld, um anzugeben, dass Sie fertig sind.   
   
@@ -300,15 +300,15 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
 
 ## <a name="deploy-the-application-to-windows-azure"></a>Bereitstellen der Anwendung in Windows Azure
 
-1. Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt in **Projektmappen-Explorer** , und wählen Sie im Kontextmenü **veröffentlichen** aus.  
+1. Klicken Sie im **Projektmappen-Explorer** von Visual Studio mit der rechten Maustaste auf das Projekt, und wählen Sie im Kontextmenü **Veröffentlichen** aus.  
   
-    ![Im Projektkontext Menü veröffentlichen](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image18.png)
+    !["Veröffentlichen" im Kontextmenü des Projekts](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image18.png)
 2. Klicken Sie im Assistenten **Web veröffentlichen** auf der Registerkarte **Profil** auf **importieren**.  
   
     ![Veröffentlichungseinstellungen importieren](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image19.png)
 3. Wenn Sie Ihr Windows Azure-Abonnement nicht bereits in Visual Studio hinzugefügt haben, führen Sie die folgenden Schritte aus. In diesen Schritten fügen Sie Ihr Abonnement hinzu, sodass die Dropdown Liste, die auf **einer Windows Azure-Website importiert** wird, Ihre Website enthält.
 
-    a. Klicken Sie im Dialogfeld **Veröffentlichungs Profil importieren** auf **aus einer Windows Azure-Website importieren**, und klicken Sie dann auf **Windows Azure-Abonnement hinzufügen**.
+    ein. Klicken Sie im Dialogfeld **Veröffentlichungs Profil importieren** auf **aus einer Windows Azure-Website importieren**, und klicken Sie dann auf **Windows Azure-Abonnement hinzufügen**.
 
     ![Windows Azure-Abonnement hinzufügen](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image20.png)
 
@@ -321,13 +321,13 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
     ![Datei ". publishsettings" herunterladen](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image22.png)
 
     > [!WARNING]
-    > Sicherheit: die *publishsettings* -Datei enthält Ihre (unverschlüsselten) Anmelde Informationen, die zum Verwalten Ihrer Windows Azure-Abonnements und-Dienste verwendet werden. Die bewährte Sicherheitsmaßnahme für diese Datei besteht darin, diese temporär außerhalb der Quellverzeichnisse (z. b. im Ordner *libraries\documents* ) zu speichern und Sie nach Abschluss des Imports zu löschen. Ein böswilliger Benutzer, der Zugriff auf die `.publishsettings`-Datei erlangt, kann Ihre Windows Azure-Dienste bearbeiten, erstellen und löschen.
+    > Sicherheit: die *publishsettings* -Datei enthält Ihre (unverschlüsselten) Anmelde Informationen, die zum Verwalten Ihrer Windows Azure-Abonnements und-Dienste verwendet werden. Die bewährte Sicherheitsmaßnahme für diese Datei besteht darin, diese temporär außerhalb der Quellverzeichnisse (z. b. im Ordner *libraries\documents* ) zu speichern und Sie nach Abschluss des Imports zu löschen. Ein böswilliger Benutzer, der Zugriff auf die Datei erhält, `.publishsettings` kann Ihre Windows Azure-Dienste bearbeiten, erstellen und löschen.
 
     d. Klicken Sie im Dialogfeld **Windows Azure-Abonnements importieren** auf **Durchsuchen** , und navigieren Sie zur Datei *publishsettings* .
 
     ![Sub herunterladen](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image23.png)
 
-    e. Klicken Sie auf **importieren**.
+    e. Klicken Sie auf **Importieren**.
 
     ![import](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image24.png)
 4. Wählen Sie im Dialogfeld **Veröffentlichungs Profil importieren** die Option **aus einer Windows Azure-Website importieren aus**, wählen Sie in der Dropdown Liste die Website aus, und klicken Sie dann auf **OK**.  
@@ -341,9 +341,9 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
     ![Verbindung erfolgreich überprüft](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image27.png)
 7. Öffnen Sie die Dropdown Liste **Remote Connection String** unter **schoolContext** , und wählen Sie die Verbindungs Zeichenfolge für die Datenbank aus, die Sie erstellt haben.
 8. Wählen Sie **Code First-Migrationen ausführen (wird beim Anwendungsstart ausgeführt) aus**.
-9. Deaktivieren Sie die Option **Diese Verbindungs Zeichenfolge zur Laufzeit** für den **userContext verwenden (DefaultConnection)** , da diese Anwendung nicht die Mitgliedschafts Datenbank verwendet.   
+9. Deaktivieren Sie die Option **Diese Verbindungs Zeichenfolge zur Laufzeit** für den **userContext verwenden (DefaultConnection)**, da diese Anwendung nicht die Mitgliedschafts Datenbank verwendet.   
   
-    ![Registerkarte „Einstellungen“](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image28.png)
+    ![Registerkarte "Einstellungen"](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image28.png)
 10. Klicken Sie auf **Weiter**.
 11. Klicken Sie auf der Registerkarte **Vorschau** auf **Vorschau starten**.  
   
@@ -354,25 +354,25 @@ Windows Azure SQL-Datenbank ist ein cloudbasierter relationaler Datenbankdienst,
     ![StartPreview-Dateiausgabe](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image30.png)
 12. Klicken Sie auf **Veröffentlichen**.  
     Visual Studio beginnt mit dem Kopieren der Dateien auf den Windows Azure-Server.
-13. Das Fenster **Ausgabe** zeigt, welche Bereitstellungs Aktionen ausgeführt wurden, und meldet einen erfolgreichen Abschluss der Bereitstellung.  
+13. Im Fenster **Ausgabe** wird angezeigt, welche Bereitstellungsaktionen ausgeführt wurden, und es wird die erfolgreiche Durchführung der Bereitstellung gemeldet.  
   
     ![Ausgabefenster für erfolgreiche Bereitstellung](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image31.png)
 14. Nach erfolgreicher Bereitstellung wird der Standardbrowser automatisch mit der URL der bereitgestellten Website geöffnet.  
-    Die Anwendung, die Sie erstellt haben, wird jetzt in der Cloud ausgeführt. Klicken Sie auf die Registerkarte Studenten.  
+    Die erstellte Anwendung wird nun in der Cloud ausgeführt. Klicken Sie auf die Registerkarte Studenten.  
   
     ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image32.png)
 
-An diesem Punkt wurde die *School Context* -Datenbank in der Windows Azure SQL-Datenbank erstellt, weil Sie die Option **Code First-Migrationen ausführen ausgewählt haben (wird beim APP-Start ausgeführt)** . Die Datei " *Web. config* " auf der bereitgestellten Website wurde geändert, sodass der [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) -Initialisierer beim ersten Lesen oder Schreiben von Daten in der Datenbank ausgeführt wird (was geschah, als Sie die Registerkarte " **Students** " ausgewählt haben):
+An diesem Punkt wurde die *School Context* -Datenbank in der Windows Azure SQL-Datenbank erstellt, weil Sie die Option **Code First-Migrationen ausführen ausgewählt haben (wird beim APP-Start ausgeführt)**. Die *Web.config* Datei auf der bereitgestellten Website wurde geändert, sodass der [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) -Initialisierer beim ersten Lesen oder Schreiben von Daten in der Datenbank ausgeführt wird (was geschah, als Sie die Registerkarte " **Students** " ausgewählt haben):
 
 ![](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image33.png)
 
-Beim Bereitstellungs Prozess wurde außerdem eine neue Verbindungs Zeichenfolge *(schoolContext\_databasepublish*) erstellt, um Code First-Migrationen zum Aktualisieren des Datenbankschemas und zum Seeding der Datenbank zu verwenden.
+Beim Bereitstellungs Prozess wurde außerdem eine neue Verbindungs Zeichenfolge *(schoolContext \_ databasepublish*) für Code First-Migrationen erstellt, die zum Aktualisieren des Datenbankschemas und zum Seeding der Datenbank verwendet werden soll.
 
 ![Verbindungs Zeichenfolge Database_Publish](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image34.png)
 
 Die *DefaultConnection* -Verbindungs Zeichenfolge ist für die Mitgliedschafts Datenbank (die in diesem Tutorial nicht verwendet wird). Die Verbindungs Zeichenfolge für den *schoolContext* ist für die Datenbank condesouniversity vorgesehen.
 
-Die bereitgestellte Version der Datei "Web. config" finden Sie auf Ihrem eigenen Computer unter *condesouniversity\obj\release\package\packagetmp\web.config*. Sie können auf die bereitgestellte *Web. config* -Datei selbst über FTP zugreifen. Anweisungen finden Sie unter [ASP.net Web Deployment using Visual Studio: Deployment a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Befolgen Sie die Anweisungen, die mit "So verwenden Sie ein FTP-Tool" beginnen: die FTP-URL, der Benutzername und das Kennwort. "
+Sie finden die bereitgestellte Version der Web.config Datei auf Ihrem eigenen Computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. Sie können auf die bereitgestellte *Web.config* Datei selbst über FTP zugreifen. Anweisungen finden Sie unter [ASP.net Web Deployment using Visual Studio: Deployment a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Befolgen Sie die Anweisungen, die mit "So verwenden Sie ein FTP-Tool" beginnen: die FTP-URL, der Benutzername und das Kennwort. "
 
 > [!NOTE]
 > Die Web-App implementiert keine Sicherheit, sodass jeder, der die URL findet, die Daten ändern kann. Anweisungen zum Sichern der Website finden Sie unter Bereitstellen [einer Secure ASP.NET MVC-App mit Mitgliedschaft, OAuth und SQL-Datenbank auf einer Windows Azure-](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data)Website. Sie können verhindern, dass andere Personen die Website verwenden, indem Sie die Windows Azure-Verwaltungsportal oder **Server-Explorer** in Visual Studio verwenden, um die Website zu unterbinden.
@@ -383,7 +383,7 @@ Die bereitgestellte Version der Datei "Web. config" finden Sie auf Ihrem eigenen
 
 Im Abschnitt Bereitstellung sehen Sie, dass der [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) -Initialisierer verwendet wird. Code First bietet auch andere Initialisierer, die Sie verwenden können, einschließlich " [kreatedatabaseifnotexists](https://msdn.microsoft.com/library/gg679221(v=vs.103).aspx) (Standard)", " [dropkreatedatabaseifmodelchanges](https://msdn.microsoft.com/library/gg679604(v=VS.103).aspx) " und " [dropkreatedatabasealways](https://msdn.microsoft.com/library/gg679506(v=VS.103).aspx)". Der `DropCreateAlways` Initialisierer kann beim Einrichten von Bedingungen für Komponententests hilfreich sein. Sie können auch eigene Initialisierer schreiben, und Sie können einen Initialisierer explizit aufzurufen, wenn Sie nicht warten möchten, bis die Anwendung aus der Datenbank liest oder in diese schreibt. Eine umfassende Erläuterung der Initialisierer finden Sie in Kapitel 6 der Buch [Programmierung Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) von Julie Lerman und Rowan Miller.
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Zusammenfassung
 
 In diesem Tutorial haben Sie erfahren, wie Sie ein Datenmodell erstellen und grundlegende CRUD-, Sortier-, Filter-, Paging-und Gruppierungsfunktionen implementieren. Im nächsten Tutorial sehen Sie sich die erweiterten Themen an, indem Sie das Datenmodell erweitern.
 

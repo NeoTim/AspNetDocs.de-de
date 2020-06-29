@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 21a3efa865e5b5498dfb0f2adec199800fc70c58
-ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
+ms.openlocfilehash: 2f3a6d57a7963eb7aafde62e344ae6b970af87e2
+ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84172969"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85484229"
 ---
 # <a name="tutorial-use-ef-migrations-in-an-aspnet-mvc-app-and-deploy-to-azure"></a>Tutorial: Verwenden von EF-Migrationen in einer ASP.NET MVC-APP und Bereitstellen in Azure
 
@@ -25,7 +25,7 @@ Bisher wurde die Beispiel-Webanwendung der Beispiel-Web-App lokal in IIS Express
 
 Es wird empfohlen, dass Sie einen Continuous Integration Prozess mit der Quell Code Verwaltung für die Bereitstellung verwenden, aber dieses Tutorial behandelt diese Themen nicht. Weitere Informationen finden Sie in der [Quell](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control) Code Verwaltung und in den [Continuous Integration](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) Kapiteln zum entwickeln [realer Cloud-apps mit Azure](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction).
 
-In diesem Tutorial:
+In diesem Tutorial führen Sie Folgendes durch:
 
 > [!div class="checklist"]
 > * Code First Migrationen aktivieren
@@ -41,10 +41,10 @@ Wenn Sie eine neue Anwendung entwickeln, ändert sich Ihr Datenmodell häufig. J
 
 Diese Methode, bei der die Datenbank mit dem Datenmodell synchron gehalten wird, funktioniert so lange, bis Sie die Anwendung für die Produktion bereitstellen. Wenn die Anwendung in der Produktionsumgebung ausgeführt wird, speichert Sie in der Regel Daten, die Sie behalten möchten, und Sie möchten nicht jedes Mal alles verlieren, wenn Sie eine Änderung vornehmen, wie z. b. das Hinzufügen einer neuen Spalte. Das [Code First-Migrationen](https://msdn.microsoft.com/data/jj591621) Feature löst dieses Problem, indem es Code First das Aktualisieren des Datenbankschemas ermöglicht, anstatt die Datenbank zu löschen und neu zu erstellen. In diesem Tutorial stellen Sie die Anwendung bereit, um die Migration zu ermöglichen.
 
-1. Deaktivieren Sie den zuvor eingerichteten Initialisierer, indem Sie das Element, das `contexts` Sie der Web. config-Datei der Anwendung hinzugefügt haben, auskommentieren oder löschen.
+1. Deaktivieren Sie den zuvor eingerichteten Initialisierer, indem Sie das Element, das `contexts` Sie der Anwendungs Web.config Datei hinzugefügt haben, auskommentieren oder löschen.
 
     [!code-xml[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=2,6)]
-2. Ändern Sie in der Datei " *Web. config* " der Anwendung auch den Namen der Datenbank in der Verbindungs Zeichenfolge in "contosouniversity2".
+2. Ändern Sie in der Anwendungs *Web.config* Datei den Namen der Datenbank in der Verbindungs Zeichenfolge in "contosouniversity2".
 
     [!code-xml[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=2)]
 
@@ -123,13 +123,13 @@ Wenn Sie die ursprüngliche Migration erstellt haben, als die Datenbank bereits 
     Der `update-database` Befehl führt die `Up` -Methode aus, um die Datenbank zu erstellen, und führt dann die- `Seed` Methode aus, um die Datenbank zu füllen. Der gleiche Prozess wird automatisch in der Produktionsumgebung ausgeführt, nachdem Sie die Anwendung bereitgestellt haben, wie im folgenden Abschnitt zu sehen ist.
 2. Verwenden Sie **Server-Explorer** , um die Datenbank wie im ersten Tutorial zu überprüfen, und führen Sie die Anwendung aus, um sicherzustellen, dass alles wie zuvor funktioniert.
 
-## <a name="deploy-to-azure"></a>In Azure bereitstellen
+## <a name="deploy-to-azure"></a>Bereitstellen in Azure
 
 Bisher wurde die Anwendung lokal in IIS Express auf dem Entwicklungs Computer ausgeführt. Um es anderen Benutzern die Verwendung über das Internet zur Verfügung zu stellen, müssen Sie Sie für einen Webhostinganbieter bereitstellen. In diesem Abschnitt des Tutorials stellen Sie die Anwendung in Azure bereit. Dieser Abschnitt ist optional. Sie können dies überspringen und mit dem folgenden Tutorial fortfahren, oder Sie können die Anweisungen in diesem Abschnitt für einen anderen Hostinganbieter Ihrer Wahl anpassen.
 
 ### <a name="use-code-first-migrations-to-deploy-the-database"></a>Verwenden von Code First Migrationen zum Bereitstellen der Datenbank
 
-Zum Bereitstellen der-Datenbank verwenden Sie Code First-Migrationen. Wenn Sie das Veröffentlichungs Profil erstellen, das Sie zum Konfigurieren der Einstellungen für die Bereitstellung von Visual Studio verwenden, wählen Sie ein Kontrollkästchen mit der Bezeichnung **Datenbank aktualisieren**aus. Diese Einstellung bewirkt, dass der Bereitstellungs Prozess die *Web. config* -Datei der Anwendung auf dem Zielserver automatisch konfiguriert, sodass Code First die `MigrateDatabaseToLatestVersion` Initialisiererklasse verwendet.
+Zum Bereitstellen der-Datenbank verwenden Sie Code First-Migrationen. Wenn Sie das Veröffentlichungs Profil erstellen, das Sie zum Konfigurieren der Einstellungen für die Bereitstellung von Visual Studio verwenden, wählen Sie ein Kontrollkästchen mit der Bezeichnung **Datenbank aktualisieren**aus. Diese Einstellung bewirkt, dass der Bereitstellungs Prozess die Anwendung *Web.config* Datei auf dem Zielserver automatisch konfiguriert, sodass Code First die `MigrateDatabaseToLatestVersion` Initialisiererklasse verwendet.
 
 Visual Studio führt während des Bereitstellungs Prozesses keine Schritte mit der Datenbank durch, während das Projekt auf den Zielserver kopiert wird. Wenn Sie die bereitgestellte Anwendung ausführen und zum ersten Mal nach der Bereitstellung auf die Datenbank zugreifen, überprüft Code First, ob die Datenbank mit dem Datenmodell übereinstimmt. Wenn keine Übereinstimmung vorliegt, erstellt Code First die Datenbank automatisch (sofern noch nicht vorhanden) oder aktualisiert das Datenbankschema auf die neueste Version (wenn eine Datenbank vorhanden ist, aber nicht mit dem Modell übereinstimmt). Wenn die Anwendung eine Migrations `Seed` Methode implementiert, wird die-Methode ausgeführt, nachdem die Datenbank erstellt oder das Schema aktualisiert wurde.
 
@@ -138,7 +138,7 @@ Die Migrations `Seed` Methode fügt Testdaten ein. Wenn Sie in einer Produktions
 ### <a name="get-an-azure-account"></a>Azure-Konto erhalten
 
 Sie benötigen ein Azure-Konto. Wenn Sie noch nicht über ein Visual Studio-Abonnement verfügen, können Sie [Ihre Abonnement Vorteile aktivieren](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/
-). Andernfalls können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Ausführliche Informationen finden Sie unter [Einen Monat kostenlos testen](https://azure.microsoft.com/free/).
+). Andernfalls können Sie in wenigen Minuten ein kostenloses Testkonto erstellen. Ausführliche Informationen finden Sie unter [Einen Monat kostenlos testen](https://azure.microsoft.com/free/dotnet/).
 
 ### <a name="create-a-web-site-and-a-sql-database-in-azure"></a>Erstellen einer Website und einer SQL-Datenbank in Azure
 
@@ -176,7 +176,7 @@ Sie stellen die Datenbank in Azure SQL-Datenbank bereit. SQL-Datenbank ist ein c
 
     Der Verwaltungsportal wird zur Seite Dashboard zurückgegeben, und im Bereich **Benachrichtigungen** oben auf der Seite wird angezeigt, dass die Website erstellt wird. Nach einer Weile (in der Regel weniger als eine Minute) gibt es eine Benachrichtigung, dass die Bereitstellung erfolgreich war. In der Navigationsleiste auf der linken Seite wird der neue APP Service im Abschnitt **App Services** angezeigt, und die neue SQL-Datenbank wird im Abschnitt **SQL-Datenbanken** angezeigt.
 
-### <a name="deploy-the-app-to-azure"></a>Bereitstellen der App in Azure
+### <a name="deploy-the-app-to-azure"></a>Bereitstellen der Anwendung in Azure
 
 1. Klicken Sie im **Projektmappen-Explorer** von Visual Studio mit der rechten Maustaste auf das Projekt, und wählen Sie im Kontextmenü **Veröffentlichen** aus.
 
@@ -196,15 +196,15 @@ Sie stellen die Datenbank in Azure SQL-Datenbank bereit. SQL-Datenbank ist ein c
 
     Ihre APP wird jetzt in der Cloud ausgeführt.
 
-An diesem Punkt wurde die *schoolContext* -Datenbank in der Azure SQL-Datenbank erstellt, weil Sie die Option **Code First-Migrationen ausführen ausgewählt haben (wird beim APP-Start ausgeführt)**. Die Datei " *Web. config* " auf der bereitgestellten Website wurde geändert, sodass der [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) -Initialisierer beim ersten Lesen oder Schreiben von Daten in der Datenbank ausgeführt wird (was geschah, als Sie die Registerkarte " **Students** " ausgewählt haben):
+An diesem Punkt wurde die *schoolContext* -Datenbank in der Azure SQL-Datenbank erstellt, weil Sie die Option **Code First-Migrationen ausführen ausgewählt haben (wird beim APP-Start ausgeführt)**. Die *Web.config* Datei auf der bereitgestellten Website wurde geändert, sodass der [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) -Initialisierer beim ersten Lesen oder Schreiben von Daten in der Datenbank ausgeführt wird (was geschah, als Sie die Registerkarte " **Students** " ausgewählt haben):
 
-![Auszug der Datei "Web. config"](https://asp.net/media/4367421/mig.png)
+![Auszug aus Web.config Datei](https://asp.net/media/4367421/mig.png)
 
 Beim Bereitstellungs Prozess wurde außerdem eine neue Verbindungs Zeichenfolge *(schoolContext \_ databasepublish*) für Code First-Migrationen erstellt, die zum Aktualisieren des Datenbankschemas und zum Seeding der Datenbank verwendet werden soll.
 
-![Verbindungs Zeichenfolge in der Datei "Web. config"](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
+![Verbindungs Zeichenfolge in Web.config Datei](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
 
-Die bereitgestellte Version der Datei "Web. config" finden Sie auf Ihrem eigenen Computer unter *condesouniversity\obj\release\package\packagetmp\web.config*. Sie können auf die bereitgestellte *Web. config* -Datei selbst über FTP zugreifen. Anweisungen finden Sie unter [ASP.net Web Deployment using Visual Studio: Deployment a Code Update](xref:web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update). Befolgen Sie die Anweisungen, die mit "So verwenden Sie ein FTP-Tool" beginnen: die FTP-URL, der Benutzername und das Kennwort. "
+Sie finden die bereitgestellte Version der Web.config Datei auf Ihrem eigenen Computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. Sie können auf die bereitgestellte *Web.config* Datei selbst über FTP zugreifen. Anweisungen finden Sie unter [ASP.net Web Deployment using Visual Studio: Deployment a Code Update](xref:web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update). Befolgen Sie die Anweisungen, die mit "So verwenden Sie ein FTP-Tool" beginnen: die FTP-URL, der Benutzername und das Kennwort. "
 
 > [!NOTE]
 > Die Web-App implementiert keine Sicherheit, sodass jeder, der die URL findet, die Daten ändern kann. Anweisungen zum Sichern der Website finden Sie unter Bereitstellen [einer Secure ASP.NET MVC-App mit Mitgliedschaft, OAuth und SQL-Datenbank in Azure](/aspnet/core/security/authorization/secure-data). Sie können verhindern, dass andere Personen die Website verwenden, indem Sie den Dienst mithilfe des Azure-Verwaltungsportal oder **Server-Explorer** in Visual Studio beenden.
@@ -213,7 +213,7 @@ Die bereitgestellte Version der Datei "Web. config" finden Sie auf Ihrem eigenen
 
 ## <a name="advanced-migrations-scenarios"></a>Erweiterte Migrations Szenarios
 
-Wenn Sie eine Datenbank bereitstellen, indem Sie wie in diesem Tutorial gezeigt automatisch Migrationen ausführen und die Bereitstellung auf einer Website durchführen, die auf mehreren Servern ausgeführt wird, können Sie mehrere Server abrufen, die versuchen, Migrationen gleichzeitig auszuführen. Migrationen sind atomarisch. Wenn also zwei Server versuchen, dieselbe Migration auszuführen, wird eine solche Migration erfolgreich ausgeführt, die andere schlägt fehl (vorausgesetzt, die Vorgänge können nicht zweimal ausgeführt werden). Wenn Sie diese Probleme vermeiden möchten, können Sie Migrationen manuell aufzurufen und ihren eigenen Code so einrichten, dass er nur einmal ausgeführt wird. Weitere Informationen finden Sie unter [ausführen und Durchführen von Skript Migrationen aus Code](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) im Blog von Rowan Miller und [Migrieren der exe](/ef/ef6/modeling/code-first/migrations/migrate-exe) -Datei (zum Ausführen von Migrationen über die Befehlszeile).
+Wenn Sie eine Datenbank bereitstellen, indem Sie wie in diesem Tutorial gezeigt automatisch Migrationen ausführen und die Bereitstellung auf einer Website durchführen, die auf mehreren Servern ausgeführt wird, können Sie mehrere Server abrufen, die versuchen, Migrationen gleichzeitig auszuführen. Migrationen sind atomarisch. Wenn also zwei Server versuchen, dieselbe Migration auszuführen, wird eine solche Migration erfolgreich ausgeführt, die andere schlägt fehl (vorausgesetzt, die Vorgänge können nicht zweimal ausgeführt werden). Wenn Sie diese Probleme vermeiden möchten, können Sie Migrationen manuell aufzurufen und ihren eigenen Code so einrichten, dass er nur einmal ausgeführt wird. Weitere Informationen finden Sie unter [ausführen und Durchführen von Skript Migrationen aus Code](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) im Blog von Rowan Miller und [Migrate.exe](/ef/ef6/modeling/code-first/migrations/migrate-exe) (zum Ausführen von Migrationen über die Befehlszeile).
 
 Weitere Informationen zu anderen Migrationsszenarien finden Sie unter [Migrationen von screencastreihen](https://blogs.msdn.com/b/adonet/archive/2014/03/12/migrations-screencast-series.aspx).
 
@@ -235,7 +235,7 @@ Im Abschnitt Bereitstellung sehen Sie, dass der [MigrateDatabaseToLatestVersion]
 
 Weitere Informationen zu Initialisierern finden Sie Untergrund Legendes zu [datenbankinitialisierern in Entity Framework Code First](http://www.codeguru.com/csharp/article.php/c19999/Understanding-Database-Initializers-in-Entity-Framework-Code-First.htm) und Kapitel 6 der Buch [Programmierung Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) von Julie Lerman und Rowan Miller.
 
-## <a name="get-the-code"></a>Beziehen des Codes
+## <a name="get-the-code"></a>Abrufen des Codes
 
 [Herunterladen des abgeschlossenen Projekts](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
@@ -245,7 +245,7 @@ Links zu anderen Entity Framework Ressourcen finden Sie unter [ASP.NET Data Acce
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-In diesem Tutorial:
+In diesem Tutorial führen Sie Folgendes durch:
 
 > [!div class="checklist"]
 > * Aktivierte Code First Migrationen
