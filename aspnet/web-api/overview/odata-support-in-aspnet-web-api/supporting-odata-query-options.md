@@ -1,188 +1,187 @@
 ---
 uid: web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
-title: Unterstützung von OData-in der ASP.NET Web API 2 - ASP.NET Abfrageoptionen 4.x
+title: Unterstützende odata-Abfrage Optionen in ASP.net-Web-API 2-ASP.NET 4. x
 author: MikeWasson
-description: Übersicht über die mit Codebeispielen zeigt unterstützenden OData-Abfrageoptionen in ASP.NET Web API 2 für ASP.NET 4.x.
+description: Übersicht mit Codebeispielen zeigt die unterstützenden odata-Abfrage Optionen in ASP.net-Web-API 2 für ASP.NET 4. x.
 ms.author: riande
 ms.date: 02/04/2013
 ms.custom: seoapril2019
 ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
-ms.openlocfilehash: 428e4942e42436585049c1e84cd7b07a4a79c0d1
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59411565"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "86188621"
 ---
-# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Unterstützung von OData-Abfrageoptionen in der ASP.NET Web API 2
+# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Unterstützen von odata-Abfrage Optionen in ASP.net-Web-API 2
 
-durch [Mike Wasson](https://github.com/MikeWasson)
+von [Mike Wasson](https://github.com/MikeWasson)
 
-In dieser Übersicht mit Codebeispielen veranschaulicht unterstützenden OData-Abfrageoptionen in ASP.NET Web API 2 für ASP.NET 4.x. 
+In dieser Übersicht mit Codebeispielen werden die unterstützenden odata-Abfrage Optionen in ASP.net-Web-API 2 für ASP.NET 4. x veranschaulicht. 
 
-OData definiert die Parameter, die zum Ändern einer OData-Abfrage verwendet werden können. Der Client sendet diese Parameter in der Abfragezeichenfolge der Anforderungs-URI. Um die Ergebnisse zu sortieren, verwendet z. B. ein Client den $orderby-Parameter an:
+Odata definiert Parameter, die verwendet werden können, um eine odata-Abfrage zu ändern. Der Client sendet diese Parameter in der Abfrage Zeichenfolge des Anforderungs-URI. Zum Sortieren der Ergebnisse verwendet ein Client z. b. den $OrderBy-Parameter:
 
 `http://localhost/Products?$orderby=Name`
 
-Die OData-Spezifikation ruft diese Parameter *Abfrageoptionen*. Sie können OData-Abfrageoptionen für alle Web-API-Controller in Ihrem Projekt &#8212; Controller muss nicht auf einen OData-Endpunkt handeln. Dies bietet Ihnen eine bequeme Möglichkeit zum Hinzufügen von Features wie beispielsweise Filterung und Sortierung für jede Web-API-Anwendung.
+Die odata-Spezifikation ruft diese Parameter *Abfrage Optionen*auf. Sie können odata-Abfrage Optionen für alle Web-API-Controller in Ihrem Projekt aktivieren, &#8212; der Controller kein odata-Endpunkt sein muss. Dies bietet Ihnen eine bequeme Möglichkeit, Features wie das Filtern und sortieren zu jeder Web-API-Anwendung hinzuzufügen.
 
-Vor dem Aktivieren der Abfrageoptionen, lesen Sie bitte das Thema [OData-Sicherheitsleitfaden](odata-security-guidance.md).
+Lesen Sie vor dem Aktivieren der Abfrage Optionen das Thema [odata-Sicherheits Leit Faden](odata-security-guidance.md).
 
-- [Aktivieren der OData-Abfrageoptionen](#enable)
-- [Beispiele für Abfragen](#examples)
-- [Servergesteuertes Paging](#server-paging)
-- [Beschränken die Abfrageoptionen](#limiting_query_options)
-- [Abfrageoptionen direkt aufrufen](#ODataQueryOptions)
-- [Abfragevalidierung](#query-validation)
+- [Aktivieren von odata-Abfrage Optionen](#enable)
+- [Beispielabfragen](#examples)
+- [Server gesteuerte Auslagerung](#server-paging)
+- [Einschränken der Abfrage Optionen](#limiting_query_options)
+- [Direktes Aufrufen von Abfrage Optionen](#ODataQueryOptions)
+- [Abfrage Validierung](#query-validation)
 
 <a id="enable"></a>
-## <a name="enabling-odata-query-options"></a>Aktivieren der OData-Abfrageoptionen
+## <a name="enabling-odata-query-options"></a>Aktivieren von odata-Abfrage Optionen
 
-Web-API unterstützt die folgenden OData-Abfrageoptionen:
+Die Web-API unterstützt die folgenden odata-Abfrage Optionen:
 
 | Option | Beschreibung |
 | --- | --- |
-| der $expand- | Wird die verknüpfte Entitäten Inline erweitert. |
-| $filter | Filtert die Ergebnisse, die auf Basis einer booleschen Bedingung. |
-| $inlinecount | Weist den Server, der die Gesamtzahl der übereinstimmenden Entitäten in der Antwort enthalten. (Hilfreich für die serverseitige Auslagerung.) |
+| $expand | Erweitert Verwandte Entitäten Inline. |
+| $filter | Filtert die Ergebnisse basierend auf einer booleschen Bedingung. |
+| $inlinecount | Weist den Server an, die Gesamtanzahl der übereinstimmenden Entitäten in der Antwort einzuschließen. (Nützlich für Serverseitiges Paging.) |
 | $orderby | Sortiert die Ergebnisse. |
-| $select | Wählt die Eigenschaften an, in der Antwort enthalten. |
+| $select | Wählt aus, welche Eigenschaften in die Antwort eingeschlossen werden sollen. |
 | $skip | Überspringt die ersten n Ergebnisse. |
-| $top | Gibt nur der ersten n Ergebnisse zurück. |
+| $top | Gibt nur die ersten n der Ergebnisse zurück. |
 
-Um die OData-Abfrageoptionen verwenden zu können, müssen Sie sie explizit aktivieren. Sie können global für die gesamte Anwendung zu aktivieren, oder für bestimmte Domänencontroller oder bestimmte Aktionen zu aktivieren.
+Um odata-Abfrage Optionen zu verwenden, müssen Sie diese explizit aktivieren. Sie können Sie für die gesamte Anwendung global aktivieren oder für bestimmte Controller oder bestimmte Aktionen aktivieren.
 
-Um OData-Abfrageoptionen global zu aktivieren, rufen **EnableQuerySupport** auf die **HttpConfiguration** Klasse beim Start:
+Um odata-Abfrage Optionen global zu aktivieren, müssen Sie **enablequerysupport** für die **httpconfiguration** -Klasse beim Start aufzurufen:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample1.cs)]
 
-Die **EnableQuerySupport** Methode können Sie Abfrageoptionen global für alle Controlleraktion, die zurückgibt ein **"IQueryable"** Typ. Wenn Sie nicht, dass die Abfrageoptionen für die gesamte Anwendung aktiviert möchten, können Sie sie für bestimmte Controlleraktionen aktivieren, durch das Hinzufügen der **[Queryable]** Attribut zur Aktionsmethode.
+Die **enablequerysupport** -Methode ermöglicht globale Abfrage Optionen für jede Controller Aktion, die einen **iquerable** -Typ zurückgibt. Wenn Sie die Abfrage Optionen für die gesamte Anwendung nicht aktivieren möchten, können Sie Sie für bestimmte Controller Aktionen aktivieren, indem Sie der Aktionsmethode das **[querable]** -Attribut hinzufügen.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample2.cs)]
 
 <a id="examples"></a>
-## <a name="example-queries"></a>Beispiele für Abfragen
+## <a name="example-queries"></a>Beispielabfragen
 
-Dieser Abschnitt zeigt die Typen von Abfragen, die mit der OData-Abfrageoptionen möglich sind. Spezifische Details zu den Abfrageoptionen, finden Sie in der OData-Dokumentation unter [www.odata.org](http://www.odata.org/).
+In diesem Abschnitt werden die Typen von Abfragen gezeigt, die mithilfe der odata-Abfrage Optionen möglich sind. Spezifische Details zu den Abfrage Optionen finden Sie in der odata-Dokumentation unter [www.odata.org](http://www.odata.org/).
 
-Informationen zu $erweitern und $select, finden Sie unter [verwenden $select, $expand, und $value in OData der ASP.NET Web API](using-select-expand-and-value.md).
+Informationen zu $Expand und $SELECT finden Sie unter [Verwenden von $SELECT, $Expand und $Value in ASP.net-Web-API odata](using-select-expand-and-value.md).
 
-**Client-gesteuerte Paging**
+**Client gesteuerte Auslagerung**
 
-Bei großen Entitätssätzen sollten der Client die Anzahl der Ergebnisse zu beschränken. Beispielsweise kann ein Client 10 Einträge jeweils mit "Weiter" Links zum Abrufen der nächsten Seite der Ergebnisse zeigen. Hierzu verwendet der Client die $top und $skip-Optionen.
+Bei großen Entitätenmengen kann es vorkommen, dass der Client die Anzahl der Ergebnisse einschränkt. Ein Client kann z. b. 10 Einträge gleichzeitig mit "Next"-Links anzeigen, um die nächste Seite mit Ergebnissen zu erhalten. Zu diesem Zweck verwendet der Client die Optionen $Top und $Skip.
 
 `http://localhost/Products?$top=10&$skip=20`
 
-$Top können die maximale Anzahl von Einträgen zurückgegeben, und die Option $skip gibt die Anzahl der zu überspringenden Einträge. Im vorherige Beispiel ruft Einträge 21 bis 30.
+Die $Top-Option gibt die maximale Anzahl von Einträgen an, die zurückgegeben werden, und die $Skip-Option gibt die Anzahl der zu über springenden Einträge an. Im vorherigen Beispiel werden die Einträge 21 bis 30 abgerufen.
 
-**Filtern**
+**Filterung**
 
-Die $filter-Option ermöglicht einen Client, der die Ergebnisse zu filtern, indem Sie einen booleschen Ausdruck anwenden. Die Filterausdrücke sind sehr leistungsstark; Sie enthalten, logische und arithmetische Operatoren, Zeichenfolgenfunktionen und Date-Funktionen.
+Die Option $Filter ermöglicht einem Client das Filtern der Ergebnisse durch Anwenden eines booleschen Ausdrucks. Die Filter Ausdrücke sind sehr leistungsstark. Dazu zählen logische und arithmetische Operatoren, Zeichen folgen Funktionen und Datumsfunktionen.
 
-| Zurückgeben Sie aller Produkte, mit der Kategorie "Toys" gleich. | `http://localhost/Products?$filter=Category` eq 'Toys' |
+| Gibt alle Produkte zurück, deren Kategorie "Toys" entspricht. | `http://localhost/Products?$filter=Category`EQ ' Toys ' |
 | --- | --- |
-| Geben Sie alle Produkte mit weniger als 10 Preis zurück. | `http://localhost/Products?$filter=Price` Lt 10 |
-| Logische Operatoren: Alle Produkte zurück, in dem Preis > = 5 und Preis < = 15. | `http://localhost/Products?$filter=Price` ge 5 und Preis le 15 |
-| Zeichenfolgenfunktionen: Gibt alle Produkte mit "Zz" in den Namen zurück. | `http://localhost/Products?$filter=substringof('zz',Name)` |
-| Datumsfunktionen: Gibt alle Produkte mit ReleaseDate nach 2005 zurück. | `http://localhost/Products?$filter=year(ReleaseDate)` Gt 2005 |
+| Gibt alle Produkte zurück, deren Preis kleiner als 10 ist. | `http://localhost/Products?$filter=Price`lt 10 |
+| Logische Operatoren: gibt alle Produkte zurück, bei denen Price >= 5 und Price <= 15 ist. | `http://localhost/Products?$filter=Price`ge 5 und Preis Le 15 |
+| Zeichen folgen Funktionen: gibt alle Produkte mit "zz" im Namen zurück. | `http://localhost/Products?$filter=substringof('zz',Name)` |
+| Datumsfunktionen: gibt alle Produkte mit ReleaseDate nach 2005 zurück. | `http://localhost/Products?$filter=year(ReleaseDate)`gt 2005 |
 
 **Sortieren**
 
-Verwenden Sie zum Sortieren der Ergebnisse der $orderby Filter ein.
+Um die Ergebnisse zu sortieren, verwenden Sie den $OrderBy Filter.
 
-| Sortieren Sie nach Preis. | `http://localhost/Products?$orderby=Price` |
+| Nach Preis sortieren. | `http://localhost/Products?$orderby=Price` |
 | --- | --- |
-| Sortieren Sie nach Preis in absteigender Reihenfolge (höchster zu niedrigster Priorität). | `http://localhost/Products?$orderby=Price desc` |
-| Sortieren Sie nach Kategorie und dann nach Preis in absteigender Reihenfolge in Kategorien zu sortieren. | `http://localhost/odata/Products?$orderby=Category,Price desc` |
+| Sortieren Sie nach Preis in absteigender Reihenfolge (höchste zum niedrigsten). | `http://localhost/Products?$orderby=Price desc` |
+| Sortieren Sie nach Kategorie, und sortieren Sie Sie nach Preis in absteigender Reihenfolge innerhalb von Kategorien. | `http://localhost/odata/Products?$orderby=Category,Price desc` |
 
 <a id="server-paging"></a>
-## <a name="server-driven-paging"></a>Servergesteuertes Paging
+## <a name="server-driven-paging"></a>Server gesteuerte Auslagerung
 
-Wenn die Datenbank von Millionen von Zeilen enthält, möchten Sie nicht senden sie alle in einer Nutzlast. Um dies zu verhindern, kann der Server die Anzahl der Einträge begrenzen, den sie in einer einzelnen Antwort sendet. Legen Sie zum Aktivieren von Serverpaging der **PageSize** -Eigenschaft in der **Queryable** Attribut. Der Wert ist die maximale Anzahl von Einträgen zurückgegeben.
+Wenn Ihre Datenbank Millionen von Datensätzen enthält, möchten Sie Sie nicht alle in einer Nutzlast senden. Um dies zu verhindern, kann der Server die Anzahl der gesendeten Einträge in einer einzelnen Antwort einschränken. Legen Sie zum **Aktivieren der Server** Auslagerung die **PageSize** -Eigenschaft im abfragbaren Attribut fest. Der Wert ist die maximale Anzahl von Einträgen, die zurückgegeben werden.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample3.cs)]
 
-Wenn Ihr Controller OData-Format zurückgibt, enthält der Antworttext einen Link zur nächsten Seite der Daten:
+Wenn Ihr Controller das odata-Format zurückgibt, enthält der Antworttext einen Link zur nächsten Seite der Daten:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample4.json?highlight=8)]
 
-Der Client kann auf diesen Link verwenden, zum Abrufen der nächsten Seite. Die Gesamtanzahl von Einträgen im Resultset zu finden, kann der Client die Abfrageoption $inlinecount, mit dem Wert "Allpages" festlegen.
+Der Client kann den Link zum Abrufen der nächsten Seite verwenden. Wenn Sie die Gesamtanzahl der Einträge im Resultset ermitteln möchten, kann der Client die $inlinecount Query-Option mit dem Wert "AllPages" festlegen.
 
 `http://localhost/Products?$inlinecount=allpages`
 
-Der Wert weist "Allpages" den Server an der Gesamtanzahl in der Antwort enthalten:
+Der Wert "AllPages" weist den Server an, die Gesamtanzahl in die Antwort einzubeziehen:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample5.json?highlight=3)]
 
 > [!NOTE]
-> Nächste Seite Links und Inlineanzahl jeweils der OData-Format erforderlich. Der Grund ist, dass OData spezielle Felder im Antworttext zurückgeben, um dem Link und die Anzahl von aufzunehmen definiert.
+> Next-Page-Links und Inline Anzahl erfordern beide das odata-Format. Der Grund hierfür ist, dass odata spezielle Felder im Antworttext definiert, um den Link und die Anzahl zu speichern.
 
-
-Für nicht-OData-Formate, ist es weiterhin möglich, Anzahl der Wechsel zur nächsten Seite Links und Inline, zu unterstützen, indem Sie umschließen die Ergebnisse der Abfrage in einem **PageResult&lt;T&gt;**  Objekt. Allerdings ist es ein wenig mehr Code erforderlich. Im Folgenden ein Beispiel:
+Bei nicht-odata-Formaten ist es weiterhin möglich, die Links der nächsten Seite und die Inline Anzahl zu unterstützen, indem die Abfrageergebnisse in ein **PageResult &lt; T &gt; ** -Objekt eingebunden werden. Es ist jedoch etwas mehr Code erforderlich. Beispiel:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample6.cs)]
 
-Hier ist ein Beispiel für JSON-Antwort:
+Hier ist ein Beispiel für eine JSON-Antwort:
 
 [!code-json[Main](supporting-odata-query-options/samples/sample7.json)]
 
 <a id="limiting_query_options"></a>
-## <a name="limiting-the-query-options"></a>Beschränken die Abfrageoptionen
+## <a name="limiting-the-query-options"></a>Einschränken der Abfrage Optionen
 
-Die Abfrageoptionen, den der Client einen Großteil der Kontrolle über die Abfrage, die auf dem Server ausgeführt wird. In einigen Fällen empfiehlt es sich um die verfügbaren Optionen aus Gründen der Sicherheit oder Leistung zu beschränken. Die **[Queryable]** Attribut verfügt über einige integrierte Eigenschaften für diese. Im Folgenden finden Sie einige Beispiele.
+Die Abfrage Optionen sorgen für eine hohe Kontrolle über die Abfrage, die auf dem Server ausgeführt wird. In einigen Fällen möchten Sie möglicherweise die verfügbaren Optionen aus Sicherheits-oder Leistungsgründen einschränken. Das **[quervable]** -Attribut verfügt über einige integrierte Eigenschaften für diesen. Die folgende Auflistung enthält einige Beispiele:
 
-Zulassen von nur $skip und $top, zur Unterstützung von Paging und nichts anderes:
+Nur $Skip und $Top zulassen, um das Paging zu unterstützen, und nichts anderes:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample8.cs)]
 
-Lassen Sie die Reihenfolge nur durch bestimmte Eigenschaften, um zu verhindern, Sortieren nach Eigenschaften, die in der Datenbank nicht indiziert werden:
+Die Sortierung wird nur nach bestimmten Eigenschaften ermöglicht, um das Sortieren von Eigenschaften zu verhindern, die nicht in der Datenbank indiziert werden:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample9.cs)]
 
-Zulassen der logischen "Eq"-Funktion, aber keine anderen logischen Funktionen:
+Ermöglicht die logische Funktion "EQ", aber keine anderen logischen Funktionen:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample10.cs)]
 
-Lassen Sie keine arithmetischen Operatoren:
+Arithmetische Operatoren dürfen nicht zugelassen werden:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample11.cs)]
 
-Sie können Optionen global einschränken, durch das Erstellen einer **queryableattribute überprüft** -Instanz und die Übergabe an die **EnableQuerySupport** Funktion:
+Sie können Optionen Global einschränken, indem Sie eine **queryableattribute** -Instanz erstellen und Sie an die **enablequerysupport** -Funktion übergeben:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample12.cs)]
 
 <a id="ODataQueryOptions"></a>
-## <a name="invoking-query-options-directly"></a>Abfrageoptionen direkt aufrufen
+## <a name="invoking-query-options-directly"></a>Direktes Aufrufen von Abfrage Optionen
 
-Anstatt die **[Queryable]** -Attribut, Sie können die Abfrageoptionen direkt in Ihrem Controller aufrufen. Fügen Sie zu diesem Zweck eine **ODataQueryOptions** Parameter für die Controllermethode. In diesem Fall müssen nicht die **[Queryable]** Attribut.
+Anstatt das **[quervable]** -Attribut zu verwenden, können Sie die Abfrage Optionen direkt in Ihrem Controller aufrufen. Fügen Sie zu diesem Zweck der Controller Methode einen **odataqueryoptions** -Parameter hinzu. In diesem Fall benötigen Sie das Attribut **[quervable]** nicht.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample13.cs)]
 
-Web-API füllt die **ODataQueryOptions** aus dem URI-Abfragezeichenfolge. Übergeben Sie zum Anwenden der Abfrage eine **"IQueryable"** auf die **ApplyTo** Methode. Die Methode wird ein anderes **"IQueryable"**.
+Die Web-API füllt **odataqueryoptions** aus der URI-Abfrage Zeichenfolge auf. Übergeben Sie zum Anwenden der Abfrage ein **iquerable** -Element an die **ApplyTo** -Methode. Die-Methode gibt eine andere **iquerable**zurück.
 
-Für erweiterte Szenarien, wenn Sie kein **"IQueryable"** -Abfrageanbieter, die Sie untersuchen die **ODataQueryOptions** und die Abfrageoptionen in eine andere Form übersetzen. (Z. B. finden Sie in RaghuRam Nadimintis Blogbeitrag [Übersetzen von OData-Abfragen in HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx), darunter auch eine [Beispiel](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt).)
+Wenn Sie für erweiterte Szenarien keinen **iquerable** -Abfrage Anbieter haben, können Sie **odataqueryoptions** untersuchen und die Abfrage Optionen in eine andere Form übersetzen. (Informationen hierzu finden Sie beispielsweise im Blogbeitrag zum über [setzen von odata-Abfragen in HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx), der auch ein [Beispiel](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt)enthält.
 
 <a id="query-validation"></a>
-## <a name="query-validation"></a>Abfragevalidierung
+## <a name="query-validation"></a>Abfrage Validierung
 
-Die **[Queryable]** Attribut überprüft, ob die Abfrage vor der Ausführung. Der Überprüfungsschritt erfolgt in der **QueryableAttribute.ValidateQuery** Methode. Sie können auch den Überprüfungsprozess anpassen.
+Das **[quervable]** -Attribut überprüft die Abfrage vor der Ausführung. Der Validierungs Schritt wird in der **queryableattribute. validatequery** -Methode ausgeführt. Sie können auch den Validierungsprozess anpassen.
 
-Siehe auch [OData-Sicherheitsleitfaden](odata-security-guidance.md).
+Siehe auch [odata-Sicherheits Leit Faden](odata-security-guidance.md).
 
-Zunächst außer Kraft setzen, die eine für das Validierungssteuerelement, Klassen definiert, der **Web.Http.OData.Query.Validators** Namespace. Beispielsweise werden die folgenden Validator-Klasse die Option 'Desc' für die $orderby-Option deaktiviert.
+Überschreiben Sie zunächst eine der Prüfungs-Klassen, die im **Web. http. odata. Query. Validators** -Namespace definiert sind. Die folgende Prüfungs-Klasse deaktiviert z. b. die Option "DESC" für die $OrderBy-Option.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample14.cs)]
 
-Unterklasse der **[Queryable]** Attribut zum Überschreiben der **ValidateQuery** Methode.
+Unterklasse das **[quervable]** -Attribut, um die **validatequery** -Methode zu überschreiben.
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample15.cs)]
 
-Legen Sie dann das benutzerdefinierte Attribut entweder global oder pro Controller:
+Legen Sie dann das benutzerdefinierte Attribut entweder global oder pro Controller fest:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample16.cs)]
 
-Bei Verwendung von **ODataQueryOptions** direkt festgelegt werden, das Validierungssteuerelement zu den Optionen:
+Wenn Sie **odataqueryoptions** direkt verwenden, legen Sie das Validierungs Steuerelement für die Optionen fest:
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample17.cs)]

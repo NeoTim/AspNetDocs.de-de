@@ -1,310 +1,299 @@
 ---
 uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
-title: Grundlegendes zu ASP.NET AJAX-Webdienste | Microsoft-Dokumentation
+title: Grundlegendes zu ASP.NET AJAX-Webdiensten | Microsoft-Dokumentation
 author: scottcate
-description: Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung für den Austausch von Daten zwischen verteilten Systemen bereitstellen. Obwohl Web...
+description: Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung zum Austauschen von Daten zwischen verteilten Systemen bereitstellen. Obwohl Web...
 ms.author: riande
 ms.date: 03/28/2008
 ms.assetid: 3332d6e7-e2e1-4144-b805-e71d51e7e415
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
 msc.type: authoredcontent
-ms.openlocfilehash: e576e11d63f940f1683ed26d217ff255a31b007c
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: eac3d53fd871d0cb5a2870488ce752c057cc5b1a
+ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59388412"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "86162807"
 ---
 # <a name="understanding-aspnet-ajax-web-services"></a>Grundlegendes zu Webdiensten von ASP.NET AJAX
 
-durch [Scott Cate](https://github.com/scottcate)
+von [Scott Cate](https://github.com/scottcate)
 
-[PDF herunterladen](http://download.microsoft.com/download/C/1/9/C19A3451-1D14-477C-B703-54EF22E197EE/AJAX_tutorial05_Web_Services_with_MS_Ajax_cs.pdf)
+[PDF herunterladen](https://download.microsoft.com/download/C/1/9/C19A3451-1D14-477C-B703-54EF22E197EE/AJAX_tutorial05_Web_Services_with_MS_Ajax_cs.pdf)
 
-> Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung für den Austausch von Daten zwischen verteilten Systemen bereitstellen. Obwohl Webdienste normalerweise verwendet werden, um verschiedene Betriebssysteme, Objektmodelle und Programmiersprachen, die zum Senden und Empfangen von Daten zu ermöglichen, können sie auch dynamisch Einfügen von Daten in einer ASP.NET AJAX-Seite, oder Senden von Daten aus einer Seite an ein Back-End-System verwendet werden. All dies kann erfolgen, ohne um postback-Vorgänge.
+> Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung zum Austauschen von Daten zwischen verteilten Systemen bereitstellen. Obwohl Webdienste normalerweise verwendet werden, um unterschiedliche Betriebssysteme, Objekt Modelle und Programmiersprachen zu ermöglichen, Daten zu senden und zu empfangen, können Sie auch zum dynamischen Einfügen von Daten in eine ASP.NET AJAX-Seite oder zum Senden von Daten von einer Seite an ein Back-End-System verwendet werden. All dies ist möglich, ohne dass auf Post Back Vorgänge zurückgegriffen wird.
 
-
-## <a name="calling-web-services-with-aspnet-ajax"></a>Aufrufen von Webdiensten mit ASP.NET-AJAX
+## <a name="calling-web-services-with-aspnet-ajax"></a>Aufrufen von Webdiensten mit ASP.NET AJAX
 
 Dan Wahlin
 
-Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung für den Austausch von Daten zwischen verteilten Systemen bereitstellen. Obwohl Webdienste normalerweise verwendet werden, um verschiedene Betriebssysteme, Objektmodelle und Programmiersprachen, die zum Senden und Empfangen von Daten zu ermöglichen, können sie auch dynamisch Einfügen von Daten in einer ASP.NET AJAX-Seite, oder Senden von Daten aus einer Seite an ein Back-End-System verwendet werden. All dies kann erfolgen, ohne um postback-Vorgänge.
+Webdienste sind ein integraler Bestandteil von .NET Framework, die eine plattformübergreifende Lösung zum Austauschen von Daten zwischen verteilten Systemen bereitstellen. Obwohl Webdienste normalerweise verwendet werden, um unterschiedliche Betriebssysteme, Objekt Modelle und Programmiersprachen zu ermöglichen, Daten zu senden und zu empfangen, können Sie auch zum dynamischen Einfügen von Daten in eine ASP.NET AJAX-Seite oder zum Senden von Daten von einer Seite an ein Back-End-System verwendet werden. All dies ist möglich, ohne dass auf Post Back Vorgänge zurückgegriffen wird.
 
-Das UpdatePanel von ASP.NET AJAX-Steuerelement eine einfache Möglichkeit zum AJAX bietet eine ASP.NET-Seite aktivieren, Sie müssen, manchmal, dynamisch auf die Daten auf dem Server zuzugreifen, ohne über ein UpdatePanel reichen möglicherweise. In diesem Artikel sehen Sie, wie Sie dies durch Erstellen und Verwenden von Webdiensten in ASP.NET AJAX-Seiten.
+Obwohl das ASP.NET AJAX-Update Panel-Steuerelement eine einfache Möglichkeit zum Aktivieren einer beliebigen ASP.NET-Seite bietet, kann es vorkommen, dass Sie dynamisch auf Daten auf dem Server zugreifen müssen, ohne ein Update Panel zu verwenden. In diesem Artikel erfahren Sie, wie Sie dies erreichen, indem Sie Webdienste in ASP.NET-AJAX-Seiten erstellen und nutzen.
 
-Dieser Artikel konzentriert sich auf Funktionen, die in die wichtigsten ASP.NET AJAX-Erweiterungen als auch für ein Steuerelement aktiviert, in dem ASP.NET AJAX-Toolkit wird aufgerufen, die AutoCompleteExtender verfügbar. Behandelten Themen gehören das Definieren von AJAX-aktivierten Webdiensten, Erstellung von Client-Proxys und Aufrufen von Webdiensten mit JavaScript. Sie werden auch sehen, wie Web-Dienst-Aufrufe direkt an ASP.NET-Seitenmethoden vorgenommen werden können.
+Dieser Artikel konzentriert sich auf die Funktionalität, die in den Core ASP.NET AJAX-Erweiterungen sowie in einem Webdienst-aktivierten Steuerelement im ASP.NET AJAX-Toolkit mit dem Namen AutoCompleteExtender verfügbar ist. Zu den behandelten Themen gehören das definieren AJAX-fähiger Webdienste, das Erstellen von Client Proxys und das Aufrufen von Webdiensten mit JavaScript Sie sehen auch, wie Webdienst Aufrufe direkt an ASP.net page-Methoden durchgeführt werden können.
 
-## <a name="web-services-configuration"></a>Web Services-Konfiguration
+## <a name="web-services-configuration"></a>Webdienst Konfiguration
 
-Wenn ein neues Projekt für die Website mit Visual Studio 2008 erstellt wird, wurde die Datei "Web.config" eine Anzahl von Ergänzungen, die möglicherweise für Benutzer von früheren Versionen von Visual Studio nicht vertraut sind. Einige dieser Änderungen zuordnen, damit sie auf Seiten verwendet werden können, während andere erforderliche HttpHandlers und HttpModules definieren das Präfix "Asp" ASP.NET AJAX-Steuerelemente. Codebeispiel 1 zeigt Änderungen an der `<httpHandlers>` Element in "Web.config", die Aufrufe des Webdiensts betroffen sind. Die Standard-HttpHandler verwendet wird, um die ASMX-Anrufe verarbeiten entfernt und durch eine ScriptHandlerFactory-Klasse befindet sich in der Assembly System.Web.Extensions.dll ersetzt. System.Web.Extensions.dll enthält alle die Kernfunktionen, die von ASP.NET AJAX verwendet wird.
+Wenn ein neues Website Projekt mit Visual Studio 2008 erstellt wird, enthält die web.config Datei eine Reihe neuer Ergänzungen, die Benutzern früherer Versionen von Visual Studio möglicherweise nicht vertraut sind. Einige dieser Änderungen ordnen das "ASP"-Präfix den ASP.NET AJAX-Steuerelementen zu, sodass Sie in Seiten verwendet werden können, während andere erforderliche httpHandlers und httpModules definieren. In der Liste 1 werden Änderungen an dem- `<httpHandlers>` Element in web.config angezeigt, die sich auf Webdienst Aufrufe auswirken. Der zum Verarbeiten von ASMX-aufrufen verwendete HttpHandler-Standard Handler wird entfernt und durch eine ScriptHandlerFactory-Klasse ersetzt, die sich in der System.Web.Extensions.dll-Assembly befindet. System.Web.Extensions.dll enthält alle Kernfunktionen, die von ASP.NET AJAX verwendet werden.
 
-**Codebeispiel 1. ASP.NET AJAX-Handlerkonfiguration des Webdiensts**
+**Codebeispiel 1. ASP.NET AJAX-webdiensthandlerkonfiguration**
 
 [!code-xml[Main](understanding-asp-net-ajax-web-services/samples/sample1.xml)]
 
-Diese Ersetzung HttpHandler wird vorgenommen, damit JavaScript Object Notation (JSON) Aufrufe von ASP.NET AJAX-Seiten vorgenommen werden, auf .NET Web Services zu ermöglichen, mit einem JavaScript-Webdienst-Proxy. ASP.NET AJAX sendet JSON-Nachrichten an Webdienste, im Gegensatz zu den standard (SOAP, Simple Object Access Protocol)-Aufrufe, die i. d. r. Webdienste zugeordnet. Dies führt zu kleineren Anforderungs- und Antwortnachrichten, die insgesamt. Außerdem ermöglicht eine effizientere Verarbeitung von clientseitigen Daten, da die ASP.NET AJAX JavaScript-Bibliothek zum Arbeiten mit JSON-Objekten optimiert ist. Auflisten von 2 und Codebeispiel 3 zeigen Beispiele für die Web Service-Anforderung und Antwort-Nachrichten in JSON-Format serialisiert. Die Anforderungsnachricht Programmausdruck 2 übergibt einen Land-Parameter mit einem Wert von "Belgien" aus, während die Antwortnachricht in Programmausdruck 3 ein Array von Customer-Objekten und deren zugeordnete Eigenschaften übergibt.
+Diese HttpHandler-Ersetzung erfolgt, um JavaScript Object Notation (JSON)-Aufrufen von ASP.NET AJAX-Seiten an .NET-Webdienste mithilfe eines JavaScript-Webdienst Proxys zuzulassen. ASP.NET AJAX sendet JSON-Nachrichten anstelle der standardmäßigen SOAP-Aufrufe (Simple Object Access Protocol), die normalerweise Webdiensten zugeordnet sind, an Webdienste. Dies führt zu kleineren Anforderungs-und Antwort Nachrichten. Außerdem ist eine effizientere Client seitige Verarbeitung von Daten möglich, da die ASP.NET AJAX-JavaScript-Bibliothek für die Arbeit mit JSON-Objekten optimiert ist. In der Liste 2 und in der Liste 3 werden Beispiele für Webdienst-Anforderungs-und-Antwort Nachrichten angezeigt, die im JSON-Format Die in der Liste 2 angezeigte Anforderungs Nachricht übergibt einen Country-Parameter mit dem Wert "Belgien", während die Antwortnachricht in der Liste 3 ein Array von Kunden Objekten und deren zugeordneten Eigenschaften übergibt.
 
-**Codebeispiel 2. Webdienst-Anforderungsnachricht in JSON serialisiert**
+**Codebeispiel 2. Nach JSON serialisierte Webdienst-Anforderungs Nachricht**
 
 [!code-json[Main](understanding-asp-net-ajax-web-services/samples/sample2.json)]
 
-> *> [!NOTE] der Name des Vorgangs wird als Teil der URL an den Webdienst definiert. Darüber hinaus werden Request-Meldungen nicht immer über JSON gesendet. Webdienste können das ScriptMethod-Attribut verwenden, mit dem UseHttpGet-Parameter auf True festgelegt, wodurch über übergeben von Parametern an eine die Abfragezeichenfolgen-Parameter.*
+> *>[!NOTE]der Vorgangs Name wird als Teil der URL zum Webdienst definiert. Darüber hinaus werden Anforderungs Nachrichten nicht immer über JSON übermittelt. Webdienste können das ScriptMethod-Attribut verwenden, bei dem der UseHttpGet-Parameter auf "true" festgelegt ist. Dadurch werden Parameter über die Abfrage Zeichenfolgen-Parameter übergeben.*
 
-
-**Codebeispiel 3. Webdienst-Antwortnachricht in JSON serialisiert**
+**Codebeispiel 3. In JSON serialisierte Webdienst-Antwortnachricht**
 
 [!code-json[Main](understanding-asp-net-ajax-web-services/samples/sample3.json)]
 
-Im nächsten Abschnitt sehen Sie, wie Sie Webdienste Verarbeiten von Nachrichten von JSON-Anforderung und antwortet mit einfachen und komplexen Typen kann erstellt werden.
+Im nächsten Abschnitt erfahren Sie, wie Sie Webdienste erstellen können, mit denen JSON-Anforderungs Nachrichten verarbeitet und sowohl mit einfachen als auch komplexen Typen beantwortet werden können.
 
 ## <a name="creating-ajax-enabled-web-services"></a>Erstellen von AJAX-aktivierten Webdiensten
 
-ASP.NET AJAX-Framework bietet mehrere Möglichkeiten, Webdienste aufzurufen. Sie können das AutoCompleteExtender-Steuerelement (verfügbar in der ASP.NET AJAX-Toolkit) oder die JavaScript verwenden. Allerdings müssen vor dem Aufrufen eines Diensts eine AJAX-Aktivierung es, damit sie von Clientskripts Code aufgerufen werden kann.
+Das ASP.NET AJAX-Framework bietet verschiedene Methoden zum Aufrufen von Webdiensten. Sie können das AutoCompleteExtender-Steuerelement (verfügbar im ASP.NET AJAX Toolkit) oder JavaScript verwenden. Vor dem Aufrufen eines Dienstanbieter müssen Sie es jedoch AJAX-aktivieren, damit es von Client-Skriptcode aufgerufen werden kann.
 
-Unabhängig davon, ob Sie mit ASP.NET Web Services vertraut sind, finden Sie es einfach zu erstellen und aktivieren Sie AJAX-Dienste. .NET Framework unterstützt die Erstellung von ASP.NET Web Services seit seiner Veröffentlichung im Jahr 2002 und den ASP.NET AJAX-Erweiterungen bieten zusätzliche AJAX-Funktionen, die auf .NET Framework Standardsatz von Features aufbaut. Visual Studio .NET 2008 Beta 2 verfügt über integrierte Unterstützung für das Erstellen von ASMX-Webdienst-Dateien und automatisch die zugehörigen Code-beside-Klassen von der System.Web.Services.WebService-Klasse abgeleitet ist. Hinzufügen von Methoden in der Klasse müssen Sie das WebMethod-Attribut in der Reihenfolge für sie von Webdienst-Consumern aufgerufen werden anwenden.
+Unabhängig davon, ob Sie noch nicht mit ASP.NET-Webdiensten vertraut sind, ist es einfach, Dienste zu erstellen und AJAX-Dienste zu aktivieren. .NET Framework hat die Erstellung von ASP.NET-Webdiensten seit der ersten Veröffentlichung in 2002 und den ASP.NET AJAX-Erweiterungen unterstützt, die zusätzliche AJAX-Funktionen bereitstellen, die auf dem Standardsatz von Features von .NET Framework aufbauen. Visual Studio .net 2008 Beta 2 verfügt über integrierte Unterstützung für das Erstellen von ASMX-Webdienst Dateien und leitet den zugeordneten Code neben Klassen aus der System. Web. Services. WebService-Klasse automatisch ab. Wenn Sie der-Klasse Methoden hinzufügen, müssen Sie das WebMethod-Attribut anwenden, damit Sie von webdienstconsumern aufgerufen werden.
 
-Programmausdruck 4 zeigt ein Beispiel für das WebMethod-Attribut auf eine Methode namens GetCustomersByCountry() angewendet.
+Codebeispiel 4 zeigt ein Beispiel für das Anwenden des WebMethod-Attributs auf eine Methode mit dem Namen getcustomersbycountry ().
 
-**Programmausdruck 4. Verwenden das WebMethod-Attribut in einem Webdienst**
+**Codebeispiel 4. Verwenden des WebMethod-Attributs in einem Webdienst**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample4.cs)]
 
-Die GetCustomersByCountry()-Methode akzeptiert einen Parameter für Land und gibt ein Kunde Objektarray. Der Wert für das Land an die Methode übergeben wird weitergeleitet, auf eine Business-Ebene-Klasse die wiederum Aufrufe eine Datenklasse-Ebene zum Abrufen der Daten aus der Datenbank, die Kunden-Objekteigenschaften mit Daten füllen, und gibt das Array zurück.
+Die getcustomersbycountry ()-Methode akzeptiert einen Country-Parameter und gibt ein Customer-Objekt Array zurück. Der an die Methode übergebenen Länder Wert wird an eine Geschäfts Schicht Klasse weitergeleitet, die wiederum eine datenebenenklasse aufruft, um die Daten aus der Datenbank abzurufen, die Eigenschaften des Kunden Objekts mit Daten füllen und das Array zurückgeben.
 
-## <a name="using-the-scriptservice-attribute"></a>Verwenden das ScriptService-Attribut
+## <a name="using-the-scriptservice-attribute"></a>Verwenden des ScriptService-Attributs
 
-Beim Hinzufügen der WebMethod-Attribut die GetCustomersByCountry()-Methode ermöglicht, die von Clients aufgerufen werden, die standard-SOAP-Nachrichten an den Webdienst zu senden, ist es JSON-Aufrufe von ASP.NET AJAX-Anwendungen standardmäßig erstellt werden, nicht möglich. Um JSON-müssen Sie die ASP.NET AJAX-Erweiterung anwenden, erfolgen Aufrufe zuzulassen `ScriptService` -Attribut auf die Webdienst-Klasse. Dies ermöglicht einen Webdienst zum Senden von Antwortnachrichten, die mithilfe von JSON formatiert und Client-seitige Skript Aufrufen eines Diensts, indem Sie JSON-Nachrichten senden.
+Beim Hinzufügen des WebMethod-Attributs kann die getcustomersbycountry ()-Methode von Clients aufgerufen werden, die Standard-SOAP-Nachrichten an den Webdienst senden. es ist nicht zulässig, dass JSON-Aufrufe von ASP.NET AJAX-Anwendungen standardmäßig durchgeführt werden. Damit JSON-Aufrufe durchgeführt werden können, müssen Sie das-Attribut der ASP.NET AJAX-Erweiterung `ScriptService` auf die Webdienst Klasse anwenden. Dies ermöglicht es einem Webdienst, mithilfe von JSON formatierte Antwort Nachrichten zu senden und Client seitiges Skript das Abrufen eines Diensts durch Senden von JSON-Nachrichten zu ermöglichen.
 
-Programmausdruck 5 zeigt ein Beispiel für das ScriptService-Attribut auf einen Webdienst-Klasse, die mit dem Namen CustomersService angewendet.
+In der Liste 5 wird ein Beispiel für das Anwenden des ScriptService-Attributs auf eine Webdienst Klasse mit dem Namen CustomersService veranschaulicht.
 
-**Programmausdruck 5 an. Verwenden das ScriptService-Attribut eine AJAX-Aktivierung eines Webdiensts**
+**Codebeispiel 5. Verwenden des ScriptService-Attributs für AJAX: Aktivieren eines Webdiensts**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample5.cs)]
 
-Das ScriptService-Attribut fungiert als ein Marker, der angibt, dass es von AJAX-Skript-Code aufgerufen werden kann. Es behandeln nicht tatsächlich die JSON-Serialisierung oder Deserialisierung Aufgaben, die hinter den Kulissen ablaufen. Führen die ScriptHandlerFactory (in "Web.config" konfiguriert) und anderen verwandten Klassen den größten Teil der JSON-Verarbeitung.
+Das ScriptService-Attribut fungiert als Marker, das angibt, dass es von AJAX-Skriptcode aufgerufen werden kann. Sie verarbeitet keine der JSON-Serialisierungs-oder deserialisierungsaufgaben, die im Hintergrund auftreten. Die ScriptHandlerFactory (in web.config konfiguriert) und andere verwandte Klassen führen den Großteil der JSON-Verarbeitung aus.
 
-## <a name="using-the-scriptmethod-attribute"></a>Verwenden das ScriptMethod-Attribut
+## <a name="using-the-scriptmethod-attribute"></a>Verwenden des ScriptMethod-Attributs
 
-Das ScriptService-Attribut ist das einzige ASP.NET AJAX-Attribut, die in einem .NET Web-Dienst in der Reihenfolge für sie von ASP.NET AJAX-Seiten verwendet werden, definiert werden. Ein weiteres Attribut mit dem Namen ScriptMethod kann jedoch auch direkt in Webmethoden in einem Dienst angewendet werden. ScriptMethod definiert drei Eigenschaften, einschließlich `UseHttpGet`, `ResponseFormat` und `XmlSerializeString`. Ändern Sie die Werte dieser Eigenschaften kann nützlich sein, in Fällen, in denen der Typ der Anforderung, die von einer Web-Methode akzeptiert muss Get, geändert werden, wenn Sie eine Webmethode unformatierte XML-Daten in Form von zurückgeben muss, ein `XmlDocument` oder `XmlElement` Objekt oder die Rückgabe von Daten aus einem  Dienst sollte immer als XML anstelle von JSON serialisiert werden.
+Das ScriptService-Attribut ist das einzige ASP.NET AJAX-Attribut, das in einem .NET-Webdienst definiert werden muss, damit es von ASP.NET AJAX-Seiten verwendet werden kann. Ein anderes Attribut mit dem Namen "ScriptMethod" kann jedoch auch direkt auf Webmethoden in einem Dienst angewendet werden. ScriptMethod definiert drei Eigenschaften `UseHttpGet` , einschließlich, `ResponseFormat` und `XmlSerializeString` . Das Ändern der Werte dieser Eigenschaften kann in Fällen nützlich sein, in denen der von einer Webmethode akzeptierte Anforderungstyp zu Get geändert werden muss, wenn eine Webmethode unformatierte XML-Daten in Form eines-oder-Objekts zurückgeben muss `XmlDocument` `XmlElement` oder wenn Daten, die von einem Dienst zurückgegeben werden, immer als XML anstelle von JSON serialisiert werden sollen.
 
-Die UseHttpGet, die Eigenschaft verwendet werden kann, wenn Sie eine Webmethode akzeptieren sollen GET-Anforderungen im Gegensatz zu POST-Anforderungen. Anforderungen werden gesendet, dass über eine URL mit dem Eingabeparameter der Webmethode QueryString-Parameter konvertiert. Die UseHttpGet, Eigenschaft ist standardmäßig auf "false" und sollte nur, festgelegt werden, um `true` wann Vorgänge sind bekanntermaßen sicher und wenn sensible Daten nicht an einen Webdienst übergeben wird. Codebeispiel 6 zeigt ein Beispiel für die UseHttpGet-Eigenschaft mit dem ScriptMethod-Attribut.
+Die UseHttpGet-Eigenschaft kann verwendet werden, wenn eine Webmethode Get-Anforderungen anstelle von Post-Anforderungen akzeptieren soll. Anforderungen werden mithilfe einer URL gesendet, bei der Eingabeparameter für die Webmethode in QueryString-Parameter konvertiert wurden. Die UseHttpGet-Eigenschaft ist standardmäßig auf false festgelegt und sollte nur auf festgelegt werden, `true` Wenn Vorgänge bekanntermaßen sicher sind und sensible Daten nicht an einen Webdienst übergeben werden. In der Liste 6 wird ein Beispiel für die Verwendung des ScriptMethod-Attributs mit der UseHttpGet-Eigenschaft gezeigt.
 
-**Codebeispiel 6. Verwenden das ScriptMethod-Attribut, mit der UseHttpGet-Eigenschaft.**
+**Codebeispiel 6. Verwenden des ScriptMethod-Attributs mit der UseHttpGet-Eigenschaft.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample6.cs)]
 
-Ein Beispiel für die Header gesendet, wenn die in Codebeispiel 6 gezeigten HttpGetEcho-Web-Methode aufgerufen wird sind weiter dargestellt:
+Ein Beispiel für die Header, die gesendet werden, wenn die in Auflistung 6 gezeigte Webmethode httpgetecho aufgerufen wird, wird als nächstes angezeigt:
 
 `GET /CustomerViewer/DemoService.asmx/HttpGetEcho?input=%22Input Value%22 HTTP/1.1`
 
-Zusätzlich zum Zulassen von Webmethoden, HTTP GET-Anforderungen zu akzeptieren, kann das ScriptMethod-Attribut auch verwendet werden, wenn XML-Antworten von einem Dienst und nicht als JSON zurückgegeben werden müssen. Beispielsweise kann einen Webdienst abrufen ein RSS-Feeds von einem Remotestandort aus und geben sie als ein XmlDocument oder XmlElement-Objekt zurück. Der XML-Verarbeitung können Daten auf dem Client durchgeführt werden.
+Das ScriptMethod-Attribut kann nicht nur zum Zulassen von HTTP GET-Anforderungen, sondern auch verwendet werden, wenn XML-Antworten von einem Dienst anstelle von JSON zurückgegeben werden müssen. Ein Webdienst kann z. b. einen RSS-Feed von einer Remote Website abrufen und als XmlDocument-oder XmlElement-Objekt zurückgeben. Die Verarbeitung der XML-Daten kann dann auf dem Client erfolgen.
 
-Codebeispiel 7 zeigt ein Beispiel für die ResponseFormat-Eigenschaft verwenden, um anzugeben, dass die XML-Daten aus einer Web-Methode zurückgegeben werden sollen.
+In der Liste 7 wird ein Beispiel für die Verwendung der Response Format-Eigenschaft verwendet, um anzugeben, dass XML-Daten von einer Webmethode zurückgegeben werden sollen.
 
-**Codebeispiel 7 an. Verwenden das ScriptMethod-Attribut, mit der ResponseFormat-Eigenschaft.**
+**Codebeispiel 7: Verwenden des ScriptMethod-Attributs mit der Response Format-Eigenschaft.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample7.cs)]
 
-Die ResponseFormat-Eigenschaft kann auch zusammen mit der XmlSerializeString-Eigenschaft verwendet werden. Die XmlSerializeString-Eigenschaft hat den Standardwert "false", was bedeutet, dass alle zurückgeben Typen mit Ausnahme von einer Web-Methode zurückgegebenen Zeichenfolgen als XML serialisiert werden bei der `ResponseFormat` -Eigenschaftensatz auf `ResponseFormat.Xml`. Wenn `XmlSerializeString` nastaven NA hodnotu `true`, werden alle Typen, die von einer Web-Methode zurückgegebenen im XML-Format, einschließlich der Zeichenfolgentypen serialisiert. Wenn die ResponseFormat-Eigenschaft einen Wert aufweist `ResponseFormat.Json` die XmlSerializeString-Eigenschaft wird ignoriert.
+Die Response Format-Eigenschaft kann auch zusammen mit der XmlSerializeString-Eigenschaft verwendet werden. Die XmlSerializeString-Eigenschaft hat den Standardwert false. Dies bedeutet, dass alle Rückgabe Typen außer Zeichen folgen, die von einer Webmethode zurückgegeben werden, als XML serialisiert werden, wenn die- `ResponseFormat` Eigenschaft auf festgelegt ist `ResponseFormat.Xml` . Wenn `XmlSerializeString` auf festgelegt ist `true` , werden alle Typen, die von einer Webmethode zurückgegeben werden, als XML-Zeichen folgen Typen serialisiert. Wenn die Response Format-Eigenschaft den Wert hat, `ResponseFormat.Json` wird die XmlSerializeString-Eigenschaft ignoriert.
 
-Codebeispiel 8 zeigt ein Beispiel für die Verwendung der XmlSerializeString-Eigenschaft zu erzwingen, dass Zeichenfolgen, die als XML serialisiert werden.
+In der Liste 8 ist ein Beispiel für die Verwendung der XmlSerializeString-Eigenschaft zum Erzwingen der Serialisierung von Zeichen folgen als XML dargestellt.
 
-**Codebeispiel 8. Verwenden das ScriptMethod-Attribut, mit der XmlSerializeString-Eigenschaft**
+**Codebeispiel 8. Verwenden des ScriptMethod-Attributs mit der XmlSerializeString-Eigenschaft**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample8.cs)]
 
-Der Rückgabewert des Aufrufs der Webmethode GetXmlString siehe Codebeispiel 8 wird weiter angezeigt:
+Der Wert, der durch Aufrufen der in der Liste 8 dargestellten getxmlstring-Webmethode zurückgegeben wird, wird als nächstes angezeigt:
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample9.cs)]
 
-Obwohl JSON-Standardformat die Gesamtgröße des Anforderungs-und Antwortnachrichten minimiert und leichter von ASP.NET AJAX-Clients in einer Browser-Weise verwendet, können die ResponseFormat und XmlSerializeString-Eigenschaften werden verwendet, wenn Clients Anwendungen, z. B. Internet Explorer 5 oder höher erwarten, dass XML-Daten aus einer Webmethode zurückgegeben wird.
+Obwohl das standardmäßige JSON-Format die Gesamtgröße der Anforderungs-und Antwort Nachrichten minimiert und leichter von ASP.NET AJAX-Clients in einem Browser übergreifenden Weise genutzt werden kann, können die Eigenschaften Response Format und XmlSerializeString verwendet werden, wenn Client Anwendungen wie Internet Explorer 5 oder höher davon ausgehen, dass XML-Daten von einer Webmethode zurückgegeben werden.
 
 ## <a name="working-with-complex-types"></a>Arbeiten mit komplexen Typen
 
-Programmausdruck 5 zeigte ein Beispiel für einen komplexen Typ mit dem Namen Customer, die von einem Webdienst zurückgegeben werden. Die Customer-Klasse definiert verschiedene einfache Typen, die intern als Eigenschaften wie Vorname und Nachname vorhanden sind. Komplexe Typen, die als Eingabeparameter verwendet, oder Rückgabetyp auf ein AJAX-fähigen Web-Methode vor dem Senden an die Client-Seite automatisch in JSON serialisiert werden. Allerdings sind geschachtelte komplexe Typen (die intern in einem anderen Typ definiert sind) nicht an dem Client als eigenständige Objekte standardmäßig verfügbar.
+In der Liste 5 wurde ein Beispiel für das Zurückgeben eines komplexen Typs mit dem Namen Customer von einem Webdienst gezeigt. Die Customer-Klasse definiert mehrere verschiedene einfache Typen intern als Eigenschaften wie "FirstName" und "LastName". Komplexe Typen, die als Eingabeparameter oder Rückgabetyp für eine AJAX-aktivierte Webmethode verwendet werden, werden automatisch in JSON serialisiert, bevor Sie an die Clientseite gesendet werden. Allerdings werden geschachtelte komplexe Typen (die intern in einem anderen Typ definiert sind) dem Client nicht standardmäßig als eigenständige Objekte zur Verfügung gestellt.
 
-In Fällen, in ein geschachtelter komplexer Typ, der von einem Webdienst verwendet auch in einer Clientseite verwendet werden muss, kann das ASP.NET AJAX GenerateScriptType-Attribut mit dem Webdienst hinzugefügt werden. Die CustomerDetails-Klasse im Codebeispiel 9 enthält beispielsweise die Adresse und Geschlecht Eigenschaften der ***geschachtelte komplexe Typen darstellen.***
+In Fällen, in denen ein von einem Webdienst verwendeter, von einem Webdienst verwendeter komplexer Typ auch auf einer Clientseite verwendet werden muss, kann das ASP.NET AJAX GenerateScriptType-Attribut zum Webdienst hinzugefügt werden. Beispielsweise enthält die in der Liste 9 angezeigte customerdetails-Klasse Adress-und Geschlecht-Eigenschaften, die die in der Liste enthaltenen ***komplexen Typen darstellen.***
 
-**Codebeispiel 9. Die hier gezeigte CustomerDetails-Klasse enthält zwei geschachtelte komplexe Typen.**
+**Codebeispiel 9. Die hier gezeigte customerdetails-Klasse enthält zwei komplexe komplexe Typen.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample10.cs)]
 
-Die Adresse und Gender-Objekte, die innerhalb der CustomerDetails-Klasse, die in Codebeispiel 9 gezeigt definiert wird nicht automatisch zur Verfügung gestellt werden für die Verwendung auf der Clientseite über JavaScript enthalten, werden geschachtelte Typen (Adresse ist eine Klasse und Geschlecht ist eine Enumeration). In Situationen, in denen ein geschachtelter Typ, der verwendet wird, innerhalb eines Webdiensts muss auf der Clientseite verfügbar, die zuvor erwähnte GenerateScriptType-Attribut verwendet werden (siehe Codebeispiel 10). Dieses Attribut kann mehrmals in Fällen hinzugefügt werden, in denen andere geschachtelte komplexe Typen von einem Dienst zurückgegeben werden. Sie können direkt an die Webdienst-Klasse oder über bestimmte Webmethoden angewendet werden.
+Die Adress-und Geschlecht-Objekte, die in der customerdetails-Klasse in der Liste 9 definiert sind, werden nicht automatisch zur Verwendung auf der Clientseite über JavaScript zur Verfügung gestellt, da es sich um geschachtelte Typen handelt (Adresse ist eine Klasse und Geschlecht ist eine Enumeration). In Fällen, in denen ein geschachtelter Typ, der in einem Webdienst verwendet wird, auf der Clientseite verfügbar sein muss, kann das zuvor erwähnte GenerateScriptType-Attribut verwendet werden (siehe Codebeispiel 10). Dieses Attribut kann mehrmals hinzugefügt werden, wenn verschiedene, komplexe komplexe Typen von einem Dienst zurückgegeben werden. Sie kann direkt auf die Webdienst Klasse oder über bestimmte Webmethoden angewendet werden.
 
-**Codebeispiel 10. Verwenden die GenerateScriptService-Attributs, um geschachtelte Typen zu definieren, die für den Client verfügbar sein sollen.**
+**Codebeispiel 10. Verwenden des generatescriptservice-Attributs zum Definieren von für den Client verfügbaren Typen.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample11.cs)]
 
-Durch Anwenden der `GenerateScriptType` Attribut, um den Webdienst, die Adresse und das Geschlecht Typen wird automatisch zur Verfügung gestellt werden für die Verwendung durch die clientseitige ASP.NET AJAX-JavaScript-Code. Ein Beispiel für das JavaScript, das automatisch generiert und an den Client gesendet werden, indem Sie die GenerateScriptType-Attribut für einen Webdienst hinzufügen, wird im Codebeispiel 11 angezeigt. Sie sehen, wie Sie geschachtelte komplexe Typen später in diesem Artikel verwenden.
+Durch Anwenden des `GenerateScriptType` -Attributs auf den Webdienst werden die Adress-und die Geschlecht-Typen automatisch zur Verwendung durch Client seitigen ASP.NET AJAX-JavaScript-Code zur Verfügung gestellt. Ein Beispiel für das JavaScript, das automatisch generiert und an den Client gesendet wird, indem das GenerateScriptType-Attribut für einen Webdienst hinzugefügt wird, wird in der Liste 11 angezeigt. Weiter unten in diesem Artikel erfahren Sie, wie Sie die folgenden komplexen Typen verwenden.
 
-**Codebeispiel 11. Geschachtelte komplexe Typen, die zu einer ASP.NET AJAX-Seite zur Verfügung gestellt.**
+**Codebeispiel 11. Die für eine ASP.NET AJAX-Seite zur Verfügung gestellten komplexen komplexen Typen.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample12.cs)]
 
-Nun, Sie, dass das Erstellen von Webdiensten und richten sie den Zugriff auf ASP.NET AJAX-Seiten gesehen haben, werfen wir einen Blick auf das Erstellen und Verwenden von JavaScript-Proxys, damit Daten abgerufen oder an Webdienste gesendet werden können.
+Nachdem Sie nun gesehen haben, wie Sie Webdienste erstellen und für ASP.NET AJAX-Seiten zugänglich machen, betrachten wir nun die Erstellung und Verwendung von JavaScript-Proxys, damit Daten abgerufen oder an Webdienste gesendet werden können.
 
-## <a name="creating-javascript-proxies"></a>Erstellen von JavaScript-Proxys
+## <a name="creating-javascript-proxies"></a>JavaScript-Proxys
 
-Aufrufen von in der Regel einen standardmäßigen Webdienst (.NET oder einer anderen Plattform) umfasst das Erstellen ein Proxyobjekt, das Sie von der Komplexität des Sendens von SOAP-Anforderung und Antwort-Nachrichten schützt. Mit ASP.NET AJAX-Webdienst aufrufen können die JavaScript-Proxys werden erstellt und Dienste ganz einfach aufrufen, ohne sich Gedanken machen zu serialisieren und Deserialisieren von JSON-Nachrichten verwendet werden. JavaScript-Proxys können automatisch generiert werden, mithilfe des ASP.NET AJAX-ScriptManager-Steuerelements.
+Das Aufrufen eines Standardweb Diensts (.net oder eine andere Plattform) umfasst in der Regel das Erstellen eines Proxy Objekts, das Sie vor den Komplexitäten zum Senden von SOAP-Anforderungs-und Antwort Nachrichten Mit ASP.NET AJAX-Webdienst aufrufen können JavaScript-Proxys erstellt und verwendet werden, um problemlos Dienste aufzurufen, ohne sich Gedanken über das Serialisieren und Deserialisieren von JSON-Nachrichten JavaScript-Proxys können automatisch mit dem ASP.NET AJAX-ScriptManager-Steuerelement generiert werden.
 
-Erstellen eines JavaScript-Proxys, das Webdienste aufrufen können, wird mithilfe ScriptManagers-Verzeichnisdiensteigenschaft erreicht. Diese Eigenschaft können Sie einen oder mehrere Dienste zu definieren, die eine ASP.NET AJAX-Seite zum Senden oder Empfangen von Daten ohne postback Vorgänge asynchron aufrufen kann. Sie definieren einen Dienst mithilfe von ASP.NET AJAX `ServiceReference` -Steuerelement und Zuweisen der Webdienst-URL des Steuerelements `Path` Eigenschaft. Codebeispiel 12 zeigt ein Beispiel der auf einen Dienst mit dem Namen CustomersService.asmx verweist.
+Das Erstellen eines JavaScript-Proxys, der Webdienste aufzurufen, erfolgt mithilfe der Services-Eigenschaft von ScriptManager. Mit dieser Eigenschaft können Sie einen oder mehrere Dienste definieren, die von einer ASP.NET AJAX-Seite asynchron aufgerufen werden können, um Daten zu senden oder zu empfangen, ohne dass Post Back Vorgänge erforderlich sind. Sie definieren einen Dienst, indem Sie das ASP.NET AJAX `ServiceReference` -Steuerelement verwenden und die Webdienst-URL der-Eigenschaft des Steuer Elements zuweisen `Path` . In der Liste 12 wird ein Beispiel für den Verweis auf einen Dienst mit dem Namen "CustomersService. asmx" veranschaulicht.
 
 [!code-aspx[Main](understanding-asp-net-ajax-web-services/samples/sample13.aspx)]
 
-**Codebeispiel 12. Definieren einen Webdienst in einer ASP.NET AJAX-Seite verwendet.**
+**Auflistung 12. Definieren eines Webdiensts, der auf einer ASP.NET AJAX-Seite verwendet wird.**
 
-Hinzufügen eines Verweises auf die CustomersService.asmx über das ScriptManager-Steuerelement wird einen JavaScript-Proxy für dynamisch generierte und von der Seite verwiesen werden. Der Proxy eingebettet ist, mit der &lt;Skript&gt; markieren und dynamisch geladen werden, indem die CustomersService.asmx-Datei aufrufen, und/js an das Ende angefügt. Das folgende Beispiel zeigt, wie der JavaScript-Proxy auf der Seite eingebettet wird, wenn in "Web.config" Debuggen muss deaktiviert sein:
+Durch das Hinzufügen eines Verweises auf "CustomersService. asmx" über das ScriptManager-Steuerelement wird ein JavaScript-Proxy dynamisch generiert und auf die Seite verwiesen. Der Proxy wird mithilfe des &lt; &gt; Skripttags eingebettet und dynamisch geladen, indem die Datei CustomersService. asmx aufgerufen und/JS am Ende der Datei angehängt wird. Im folgenden Beispiel wird gezeigt, wie der JavaScript-Proxy auf der Seite eingebettet wird, wenn das Debuggen in web.config deaktiviert ist:
 
 [!code-html[Main](understanding-asp-net-ajax-web-services/samples/sample14.html)]
 
-> *> [!NOTE] Wenn Sie möchten, um den tatsächlichen JavaScript-Proxy-Code anzuzeigen, die generiert wird, Sie geben die URL der gewünschten .NET Webdienst in Internet Explorer Adressfeld und/js an Ende anfügen können.*
+> *>[!NOTE]Wenn Sie den tatsächlich generierten JavaScript-Proxycode anzeigen möchten, können Sie die URL für den gewünschten .NET-Webdienst in das Adressfeld von Internet Explorer eingeben und/JS am Ende der Datei anfügen.*
 
-
-Wenn das Debuggen in "Web.config" aktiviert ist, die auf der Seite als eine Debugversion des JavaScript-Proxys eingebettet werden dargestellten:
+Wenn das Debuggen in aktiviert ist web.config wird eine Debugversion des JavaScript-Proxys auf der Seite eingebettet, wie im folgenden dargestellt:
 
 [!code-html[Main](understanding-asp-net-ajax-web-services/samples/sample15.html)]
 
-Die JavaScript-Proxy erstellt, die von ScriptManager können auch direkt in die Seite eingebettet werden anstatt verweisen, indem Sie die &lt;Skript&gt; Src-Attribut des Tags. Dies kann erfolgen, indem das ServiceReference-Steuerelement InlineScript-Eigenschaft auf "true" (der Standardwert ist "false"). Dies kann nützlich sein, wenn ein Proxy nicht freigegeben werden über mehrere Seiten, und wenn Sie die Anzahl der Netzwerkaufrufe an den Server zu reduzieren möchten. Wenn InlineScript festgelegt ist, auf das Skript "true" wird nicht vom Browser zwischengespeichert werden, sodass der Wert von "false" in Fällen empfohlen wird, in denen der Proxy von mehreren Seiten in einer ASP.NET AJAX-Anwendung verwendet wird. Ein Beispiel der Verwendung der InlineScript-Eigenschaft wird weiter angezeigt:
+Der von ScriptManager erstellte JavaScript-Proxy kann auch direkt in die Seite eingebettet werden, anstatt mit dem &lt; &gt; src-Attribut des Skripttags darauf zu verweisen. Dies kann erreicht werden, indem die InlineScript-Eigenschaft des servicereferenzierungssteuerelements auf true festgelegt wird (der Standardwert ist false). Dies kann hilfreich sein, wenn ein Proxy nicht über mehrere Seiten hinweg gemeinsam genutzt wird und Sie die Anzahl der Netzwerk Aufrufe verringern möchten, die an den Server gerichtet sind. Wenn InlineScript auf true festgelegt ist, wird das Proxy Skript nicht vom Browser zwischengespeichert, sodass der Standardwert false in Fällen empfohlen wird, in denen der Proxy von mehreren Seiten in einer ASP.NET AJAX-Anwendung verwendet wird. Im folgenden wird ein Beispiel für die Verwendung der InlineScript-Eigenschaft angezeigt:
 
 [!code-aspx[Main](understanding-asp-net-ajax-web-services/samples/sample16.aspx)]
 
-## <a name="using-javascript-proxies"></a>Verwenden von JavaScript-Proxys
+## <a name="using-javascript-proxies"></a>JavaScript-Proxys
 
-Nachdem Sie einen Webdienst von einer ASP.NET AJAX-Seite, die über das ScriptManager-Steuerelement verwiesen wird, an den Webdienst kann aufgerufen werden, und die zurückgegebenen Daten mithilfe von Rückruffunktionen verarbeitet werden können. Einen Webdienst wird von Verweisen auf den Namespace, (falls vorhanden), Klassennamen und Name der Webmethode aufgerufen. Alle Parameter an den Webdienst übergeben können zusammen mit einer Callback-Funktion definiert werden, die die zurückgegebenen Daten verarbeitet.
+Sobald auf einen Webdienst durch eine ASP.NET AJAX-Seite mithilfe des ScriptManager-Steuer Elements verwiesen wird, kann ein-Rückruf an den Webdienst gesendet werden, und die zurückgegebenen Daten können mithilfe von Rückruf Funktionen verarbeitet werden. Ein Webdienst wird aufgerufen, indem auf seinen Namespace (sofern vorhanden), den Klassennamen und den Namen der Webmethode verwiesen wird. Alle Parameter, die an den Webdienst übermittelt werden, können zusammen mit einer Rückruffunktion definiert werden, die die zurückgegebenen Daten verarbeitet.
 
-Ein Beispiel für ein JavaScript-Proxy zum Aufrufen einer Web-Methode, die mit dem Namen GetCustomersByCountry() wird im Codebeispiel 13 angezeigt. Die GetCustomersByCountry()-Funktion wird aufgerufen, wenn ein Endbenutzer eine Schaltfläche auf der Seite klickt.
+Ein Beispiel für die Verwendung eines JavaScript-Proxys zum Aufrufen einer Webmethode namens getcustomersbycountry () finden Sie in der Liste 13. Die getcustomersbycountry ()-Funktion wird aufgerufen, wenn ein Endbenutzer auf eine Schaltfläche auf der Seite klickt.
 
-**Codebeispiel 13. Aufrufen eines Webdiensts mit einem JavaScript-Proxy.**
+**Codebeispiel 13. Aufrufen eines Webdiensts mit einem JavaScript-Proxy**
 
 [!code-javascript[Main](understanding-asp-net-ajax-web-services/samples/sample17.js)]
 
-Dieser Aufruf verweist auf den Namespace InterfaceTraining, CustomersService-Klasse und GetCustomersByCountry Webmethode in den Dienst definiert. Sie übergibt einen Wert für Land aus einem Textfeld abgerufen als auch eine Rückruffunktion, die mit dem Namen OnWSRequestComplete, die bei Rückgabe des Aufrufs der asynchronen Webdienst aufgerufen werden soll. OnWSRequestComplete verarbeitet das Array von Customer-Objekten, die vom Dienst zurückgegebenen und wandelt sie in einer Tabelle, die auf der Seite angezeigt wird. Die Ausgabe aus dem Aufruf generiert wird, wird in Abbildung 1 dargestellt.
+Dieser Rückruf verweist auf den interfacetraining-Namespace, die CustomersService-Klasse und die getcustomersbycountry-Webmethode, die im Dienst definiert sind. Sie übergibt einen Länder Wert, der aus einem Textfeld abgerufen wurde, sowie eine Rückruffunktion mit dem Namen "onwsrequestcomplete", die aufgerufen werden soll, wenn der asynchrone Webdienst Aufruf zurückgegeben wird. Onwsrequestcomplete verarbeitet das Array von Kunden Objekten, die vom Dienst zurückgegeben werden, und konvertiert sie in eine Tabelle, die auf der Seite angezeigt wird. Die aus dem-Befehl generierte Ausgabe ist in Abbildung 1 dargestellt.
 
+[![Binden von Daten, die durch einen asynchronen AJAX-Aufrufe eines Webdiensts abgerufen werden.](understanding-asp-net-ajax-web-services/_static/image2.png)](understanding-asp-net-ajax-web-services/_static/image1.png)
 
-[![Binden von Daten, die abgerufen, indem Sie einen asynchronen AJAX-Aufruf an einen Webdienst erstellen.](understanding-asp-net-ajax-web-services/_static/image2.png)](understanding-asp-net-ajax-web-services/_static/image1.png)
+**Abbildung 1**: Binden von Daten, die durch das Ausführen eines asynchronen AJAX-Aufrufes an einen Webdienst abgerufen werden.  ([Klicken Sie, um das Bild in voller Größe anzuzeigen](understanding-asp-net-ajax-web-services/_static/image3.png))
 
-**Abbildung 1**: Binden von Daten, die abgerufen, indem Sie einen asynchronen AJAX-Aufruf an einen Webdienst erstellen.  ([Klicken Sie, um das Bild in voller Größe anzeigen](understanding-asp-net-ajax-web-services/_static/image3.png))
-
-
-JavaScript-Proxys lassen sich auch unidirektionale Aufrufe an Webdienste in Fällen, in denen eine Webmethode aufgerufen werden soll, aber der Proxy sollte nicht auf eine Antwort warten. Beispielsweise empfiehlt es sich zum Aufrufen eines Webdiensts zum Starten eines Prozesses wie ein Workflow jedoch nicht für einen Rückgabewert aus dem Dienst warten. In Fällen, in denen ein unidirektionaler Aufruf an einen Dienst erstellt werden muss, kann die Callback-Funktion, die in Codebeispiel 13 gezeigten einfach ausgelassen werden. Da keine Callback-Funktion definiert ist wartet das Proxyobjekt nicht für den Webdienst, um Daten zurückzugeben.
+JavaScript-Proxys können auch unidirektionale Aufrufe an Webdienste durchführen, wenn eine Webmethode aufgerufen werden soll, der Proxy jedoch nicht auf eine Antwort warten sollte. Beispielsweise können Sie einen Webdienst zum Starten eines Prozesses, z. b. eines Arbeits Flusses, abrufen, jedoch nicht auf einen Rückgabewert vom Dienst warten. In Fällen, in denen ein unidirektionaler Aufrufs an einen Dienst vorgenommen werden muss, kann die in der Liste 13 gezeigte Rückruffunktion einfach ausgelassen werden. Da keine Rückruffunktion definiert ist, wartet das Proxy Objekt nicht, bis der Webdienst Daten zurückgibt.
 
 ## <a name="handling-errors"></a>Behandeln von Fehlern
 
-Asynchrone Rückrufe mit Webdiensten können auftreten, verschiedene Arten von Fehlern wie z. B. das Netzwerk ausgefallen, den Webdienst nicht verfügbar ist oder eine Ausnahme zurückgegeben wird. Glücklicherweise können JavaScript-Proxy-Objekte, die vom ScriptManager generiert mehrere Rückrufe definiert werden, um Fehler und Ausfälle zusätzlich zu den oben gezeigten Erfolgsrückruf zu behandeln. Eine Fehlerrückruf-Funktion kann unmittelbar auf die standard-Callback-Funktion im Aufruf an die Webmethode definiert werden, wie in Codebeispiel 14 dargestellt.
+Asynchrone Rückrufe an Webdienste können auf unterschiedliche Arten von Fehlern stoßen, z. b. wenn das Netzwerk ausfällt, der Webdienst nicht verfügbar ist oder eine Ausnahme zurückgegeben wird. Glücklicherweise ermöglichen JavaScript-Proxy Objekte, die vom ScriptManager generiert werden, dass mehrere Rückrufe definiert werden, um Fehler und Fehler zusätzlich zu dem zuvor gezeigten Erfolgs Rückruf zu behandeln. Eine Fehler Rückruffunktion kann direkt nach der Standard Rückruffunktion im-Befehl der Webmethode definiert werden, wie in der Liste 14 dargestellt.
 
-**Codebeispiel 14. Definieren eine Fehlerrückruf-Funktion, und Anzeigen von Fehlern.**
+**Codebeispiel 14. Definieren einer Fehler Rückruffunktion und Anzeigen von Fehlern.**
 
 [!code-javascript[Main](understanding-asp-net-ajax-web-services/samples/sample18.js)]
 
-Fehler, die auftreten, wenn der Webdienst aufgerufen wird, löst die OnWSRequestFailed() Callback-Funktion, um aufgerufen werden akzeptiert ein Objekt, das den Fehler als einen Parameter darstellt. Die Error-Objekt macht mehrere verschiedene Funktionen, um die Ursache des Fehlers zu bestimmen, sowie davon, ob für das Timeout des Aufrufs. Codebeispiel 14 zeigt ein Beispiel mit den anderen Fehlerfunktionen und Abbildung 2 zeigt ein Beispiel der Ausgabe von den Funktionen generiert.
+Alle Fehler, die auftreten, wenn der Webdienst aufgerufen wird, veranlassen, dass die onwsrequestfailed ()-Rückruffunktion aufgerufen wird, die ein Objekt akzeptiert, das den Fehler als Parameter darstellt. Das Error-Objekt stellt mehrere verschiedene Funktionen zur Verfügung, um die Ursache des Fehlers zu ermitteln, und gibt an, ob der-Timeout abgebrochen wurde. In der Liste 14 wird ein Beispiel für die Verwendung der verschiedenen Fehlerfunktionen veranschaulicht, und Abbildung 2 zeigt ein Beispiel für die Ausgabe, die von den Funktionen generiert wird.
 
+[![Ausgabe, die durch Aufrufen von ASP.NET AJAX-Fehlerfunktionen generiert wird.](understanding-asp-net-ajax-web-services/_static/image5.png)](understanding-asp-net-ajax-web-services/_static/image4.png)
 
-[![Die Ausgabe von Aufrufen von Funktionen für ASP.NET AJAX-Fehler generiert.](understanding-asp-net-ajax-web-services/_static/image5.png)](understanding-asp-net-ajax-web-services/_static/image4.png)
+**Abbildung 2**: Ausgabe, die durch den Aufruf von ASP.NET AJAX-Fehlerfunktionen generiert wird.  ([Klicken Sie, um das Bild in voller Größe anzuzeigen](understanding-asp-net-ajax-web-services/_static/image6.png))
 
-**Abbildung 2**: Die Ausgabe von Aufrufen von Funktionen für ASP.NET AJAX-Fehler generiert.  ([Klicken Sie, um das Bild in voller Größe anzeigen](understanding-asp-net-ajax-web-services/_static/image6.png))
+## <a name="handling-xml-data-returned-from-a-web-service"></a>Verarbeiten von von einem Webdienst zurückgegebenen XML-Daten
 
+Früher haben Sie gesehen, wie eine Webmethode unformatierte XML-Daten zurückgeben kann, indem das ScriptMethod-Attribut zusammen mit der Response Format-Eigenschaft verwendet wird. Wenn Response Format auf ResponseFormat.Xml festgelegt ist, werden vom Webdienst zurückgegebene Daten als XML und nicht als JSON serialisiert. Dies kann hilfreich sein, wenn XML-Daten für die Verarbeitung mithilfe von JavaScript oder XSLT direkt an den Client übermittelt werden müssen. Zum aktuellen Zeitpunkt stellt Internet Explorer 5 oder höher das beste Client seitige Objektmodell zum Durchsuchen und Filtern von XML-Daten aufgrund der integrierten Unterstützung für MSXML bereit.
 
-## <a name="handling-xml-data-returned-from-a-web-service"></a>Behandeln von einem Webdienst zurückgegebene XML-Daten
+Das Abrufen von XML-Daten von einem Webdienst unterscheidet sich nicht vom Abrufen anderer Datentypen. Starten Sie, indem Sie den JavaScript-Proxy aufrufen, um die entsprechende Funktion aufzurufen und eine Rückruffunktion zu definieren. Nachdem der Rückruf zurückgegeben wurde, können Sie die Daten in der Rückruffunktion verarbeiten.
 
-Zuvor haben Sie erfahren, wie eine Webmethode unformatierte XML-Daten zurückgeben kann, mit dem ScriptMethod-Attribut zusammen mit seiner ResponseFormat-Eigenschaft. Wenn ResponseFormat ResponseFormat.Xml festgelegt ist, werden vom Webdienst zurückgegebene Daten als XML-und nicht in JSON serialisiert. Dies kann nützlich sein, wenn XML-Daten direkt an den Client übergeben werden, für die Verarbeitung von JavaScript oder XSLT. Zum aktuellen Zeitpunkt stellt InternetExplorer 5 oder höher das beste clientseitige Objektmodell zum Analysieren und Filtern von XML-Daten aufgrund der integrierten Unterstützung für MSXML bereit.
+In der Liste 15 wird ein Beispiel für den Aufruf einer Webmethode namens getrssfeed () gezeigt, die ein XmlElement-Objekt zurückgibt. Getrssfeed () akzeptiert einen einzelnen Parameter, der die URL für den abzurufenden RSS-Feed darstellt.
 
-Abrufen von XML-Daten von einem Webdienst unterscheidet sich nicht als das Abrufen von anderen Datentypen. Starten Sie durch den JavaScript-Proxy, um die entsprechende Funktion aufrufen, und definieren eine Callback-Funktion aufrufen. Nach der Rückgabe des Aufrufs können Sie dann die Daten in der Rückruffunktion verarbeiten.
-
-Codebeispiel 15 zeigt ein Beispiel für das Aufrufen einer Web-Methode, die mit dem Namen GetRssFeed(), die ein XmlElement-Objekt zurückgibt. GetRssFeed() akzeptiert einen einzelnen Parameter, die URL des RSS-feed, um das Abrufen von darstellt.
-
-**Codebeispiel 15. Arbeiten mit XML-Daten, die von einem Webdienst zurückgegeben.**
+**Codebeispiel 15. Arbeiten mit XML-Daten, die von einem Webdienst zurückgegeben werden.**
 
 [!code-html[Main](understanding-asp-net-ajax-web-services/samples/sample19.html)]
 
-In diesem Beispiel übergibt eine URL an einen RSS-feed und verarbeitet die zurückgegebene XML-Daten in der OnWSRequestComplete()-Funktion. OnWSRequestComplete() überprüft zuerst, um festzustellen, ob der Browser Internet Explorer ist, um festzustellen, ob die MSXML-Parser verfügbar ist. Wenn es sich handelt, wird eine XPath-Anweisung verwendet, um alle zu finden &lt;Element&gt; -Tags innerhalb der RSS-feed. Jedes Element wird dann durchlaufen und den zugehörigen &lt;Titel&gt; und &lt;Link&gt; Tags gespeichert und verarbeitet werden, um die entsprechenden Daten anzuzeigen. Abbildung 3 zeigt ein Beispiel der Ausgabe generiert eine ASP.NET AJAX-Aufrufen durch eine JavaScript-Proxy an die Webmethode GetRssFeed() vornehmen.
+In diesem Beispiel wird eine URL an einen RSS-Feed weitergeleitet, und die zurückgegebenen XML-Daten werden in der onwsrequestcomplete ()-Funktion verarbeitet. Onwsrequestcomplete () prüft zunächst, ob der Browser Internet Explorer ist, um zu ermitteln, ob der MSXML-Parser verfügbar ist. Wenn dies der Fall ist, wird eine XPath-Anweisung verwendet, um alle &lt; Element &gt; Tags im RSS-Feed zu suchen. Jedes Element wird dann durchlaufen, und die zugeordneten &lt; Titel und Verknüpfungs &gt; &lt; &gt; Tags werden gefunden und verarbeitet, um die Daten jedes Elements anzuzeigen. Abbildung 3 zeigt ein Beispiel für die Ausgabe, die bei einem ASP.NET AJAX-Aufrufe über einen JavaScript-Proxy zur getrssfeed ()-Webmethode generiert wurde.
 
-## <a name="handling-complex-types"></a>Behandlung von komplexen Typen
+## <a name="handling-complex-types"></a>Behandeln komplexer Typen
 
-Komplexe Typen akzeptiert oder von einem Webdienst zurückgegeben werden automatisch über einen JavaScript-Proxy verfügbar gemacht. Geschachtelte komplexe Typen sind jedoch nicht direkt zugegriffen werden kann, auf der Clientseite, es sei denn, mit dem Dienst das GenerateScriptType-Attribut angewendet wird, wie bereits erwähnt. Warum sollten Sie sich mit einem geschachtelten komplexen Typ auf der Clientseite?
+Komplexe Typen, die von einem Webdienst akzeptiert oder zurückgegeben werden, werden automatisch über einen JavaScript-Proxy verfügbar gemacht. Es ist jedoch nicht möglich, auf die auf der Clientseite basierenden komplexen Typen direkt zu zugreifen, es sei denn, das GenerateScriptType-Attribut wird wie zuvor erläutert auf den Dienst angewendet. Warum möchten Sie einen geschosteten komplexen Typ auf der Clientseite verwenden?
 
-Um diese Frage zu beantworten, wird davon ausgegangen Sie, dass eine ASP.NET AJAX-Seite zeigt die Daten der Kunden an und ermöglicht Endbenutzern die Adresse eines Kunden zu aktualisieren. Wenn der Webdienst gibt an, dass der Adresstyp (einem komplexen Typ innerhalb einer Klasse CustomerDetails definiert) an den Client gesendet werden kann, kann der Update-Vorgang in separate Funktionen für eine bessere Wiederverwendungsrate für Code unterteilt werden.
+Um diese Frage zu beantworten, gehen Sie davon aus, dass eine ASP.NET AJAX-Seite Kundendaten anzeigt und es Endbenutzern ermöglicht, die Adresse eines Kunden zu aktualisieren. Wenn der Webdienst angibt, dass der Adresstyp (ein komplexer Typ, der in einer customerdetails-Klasse definiert ist) an den Client gesendet werden kann, kann der Aktualisierungsprozess in separate Funktionen aufgeteilt werden, um die Wiederverwendung des Codes zu verbessern.
 
+[![Ausgabe aus dem Aufrufen eines Webdiensts, der RSS-Daten zurückgibt.](understanding-asp-net-ajax-web-services/_static/image8.png)](understanding-asp-net-ajax-web-services/_static/image7.png)
 
-[![Ausgabe erstellen, die von Aufrufen eines Webdiensts, die RSS-Daten zurückgibt.](understanding-asp-net-ajax-web-services/_static/image8.png)](understanding-asp-net-ajax-web-services/_static/image7.png)
+**Abbildung 3**: Ausgabe aus dem Aufrufen eines Webdiensts, der RSS-Daten zurückgibt.  ([Klicken Sie, um das Bild in voller Größe anzuzeigen](understanding-asp-net-ajax-web-services/_static/image9.png))
 
-**Abbildung 3**: Ausgabe erstellen, die von Aufrufen eines Webdiensts, die RSS-Daten zurückgibt.  ([Klicken Sie, um das Bild in voller Größe anzeigen](understanding-asp-net-ajax-web-services/_static/image9.png))
+Codebeispiel 16 zeigt ein Beispiel für Client seitigen Code, der ein Adress Objekt aufruft, das in einem Modell Namespace definiert ist, es mit aktualisierten Daten füllt und es der Address-Eigenschaft eines customerdetails-Objekts zuweist. Das customerdetails-Objekt wird dann zur Verarbeitung an den Webdienst weitergegeben.
 
-
-Codebeispiel 16 zeigt ein Beispiel für Client-Side-Code, der eine Adressobjekt, das in einem Modellnamespace definierten aufruft füllt diese mit aktualisierten Daten und Address-Eigenschaft des Objekts ein CustomerDetails zugewiesen. Die CustomerDetails-Objekt wird dann zur Verarbeitung an den Webdienst übergeben.
-
-**Codebeispiel 16. Verwenden von geschachtelten komplexen Typen**
+**Codebeispiel 16. Verwenden von komplexen komplexen Typen**
 
 [!code-javascript[Main](understanding-asp-net-ajax-web-services/samples/sample20.js)]
 
-## <a name="creating-and-using-page-methods"></a>Erstellen und Verwenden von Seitenmethoden
+## <a name="creating-and-using-page-methods"></a>Erstellen und Verwenden von Seiten Methoden
 
-Webdienste bieten eine hervorragende Möglichkeit, aktionsentwicklung Dienste mit einer Vielzahl von Clients, einschließlich ASP.NET AJAX-Seiten verfügbar zu machen. Allerdings gibt es möglicherweise Fälle, in denen eine Seite Daten abzurufen, die nicht einmal verwendet oder von anderen Seiten gemeinsam verwendet werden muss. In diesem Fall mag erstellen eine ASMX-Datei, um die Seite für den Datenzugriff zu ermöglichen etwas aufgebladen klingen, da der Dienst nur von einer einzelnen Seite verwendet wird.
+Webdienste stellen eine hervorragende Möglichkeit dar, wiederverwendbare Dienste für eine Vielzahl von Clients verfügbar zu machen, einschließlich ASP.NET AJAX-Seiten. Es gibt jedoch Fälle, in denen eine Seite Daten abrufen muss, die nie von anderen Seiten verwendet oder freigegeben werden. In diesem Fall scheint eine ASMX-Datei so zu sein, dass die Seite auf die Daten zugreifen kann, da der Dienst nur von einer einzelnen Seite verwendet wird.
 
-ASP.NET AJAX bietet es sich um einen anderen Mechanismus zum Ausführen von Web Service-ähnlichen Aufrufe ohne das Erstellen von eigenständigen ASMX-Dateien. Dies erfolgt mithilfe einer Technik, die als "Seitenmethoden" bezeichnet. Seitenmethoden werden statische (freigegebene in VB.NET) direkt in eine Seite oder Code-beside-Datei eingebettet, die das WebMethod-Attribut angewendet werden. Durch Anwenden des WebMethod-Attributs können sie aufgerufen werden mit einem speziellen JavaScript-Objekt, das mit dem Namen PageMethods, die zur Laufzeit dynamisch erstellt wird. Das PageMethods-Objekt fungiert als Proxy, der Sie aus dem JSON-Serialisierung/Deserialisierung Prozess schützt. Beachten Sie, um das PageMethods-Objekt verwenden Sie das ScriptModes EnablePageMethods-Eigenschaft auf "true" festlegen müssen.
+ASP.NET AJAX bietet einen weiteren Mechanismus zum Erstellen von Webdienst ähnlichen aufrufen, ohne eigenständige ASMX-Dateien zu erstellen. Dies erfolgt mithilfe einer Technik, die als "Seiten Methoden" bezeichnet wird. Seiten Methoden sind statische (Shared in VB.net) Methoden, die direkt in eine Seite oder eine Code neben Datei eingebettet sind, auf die das WebMethod-Attribut angewendet wird. Durch Anwenden des WebMethod-Attributs können Sie mithilfe eines speziellen JavaScript-Objekts namens PageMethods aufgerufen werden, das zur Laufzeit dynamisch erstellt wird. Das PageMethods-Objekt fungiert als Proxy, der Sie vor dem JSON-Serialisierungs-/Deserialisierungsprozess schützt. Beachten Sie, dass Sie die EnablePageMethods-Eigenschaft von ScriptManager auf true festlegen müssen, damit Sie das PageMethods-Objekt verwenden können.
 
 [!code-aspx[Main](understanding-asp-net-ajax-web-services/samples/sample21.aspx)]
 
-Auflisten von 17 zeigt ein Beispiel der Definition von zwei Seitenmethoden in einer ASP.NET Code-beside-Klasse. Diese Methoden Abrufen von Daten aus einer Geschäftsklasse-Ebene befindet sich in der App\_Ordner "Code" der Website.
+In der Liste 17 finden Sie ein Beispiel für die Definition von zwei Seiten Methoden in einer ASP.NET-Code-neben Klasse. Diese Methoden rufen Daten von einer Geschäfts Schicht Klasse ab, die sich im APP- \_ Code Ordner der Website befindet.
 
-**Auflisten von 17. Definieren Seitenmethoden.**
+**Codebeispiel 17. Definieren von Seiten Methoden**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample22.cs)]
 
-Bei ScriptManager das Vorhandensein von Webmethoden auf der Seite erkennt, generiert einen dynamischen Verweis auf das zuvor erwähnten PageMethods-Objekt. Aufrufen einer Web-Methode erfolgt durch Verweisen auf die PageMethods-Klasse, gefolgt vom Namen der Methode und Parameter, der Daten, die übergeben werden sollen. Auflisten von 18 zeigt Beispiele für die zwei zuvor gezeigten Seitenmethoden aufrufen.
+Wenn ScriptManager das vorhanden sein von Webmethoden auf der Seite erkennt, generiert es einen dynamischen Verweis auf das zuvor erwähnte PageMethods-Objekt. Der Aufruf einer Webmethode erfolgt durch Verweisen auf die PageMethods-Klasse, gefolgt vom Namen der Methode und allen erforderlichen Parameterdaten, die übergeben werden sollten. In der Liste 18 werden Beispiele für das Aufrufen der zuvor gezeigten zwei Seiten Methoden veranschaulicht.
 
-**Auflisten von 18. Aufrufen von Seitenmethoden mit den PageMethods-JavaScript-Objekt.**
+**Codebeispiel 18. Aufrufen von Seiten Methoden mit dem PageMethods JavaScript-Objekt.**
 
 [!code-javascript[Main](understanding-asp-net-ajax-web-services/samples/sample23.js)]
 
-Mit dem PageMethods-Objekt ist ein JavaScript-Proxyobjekt mit sehr ähnlich. Sie zuerst angeben aller Parameter, die an die Methode der Seite übergeben werden sollte, und definieren Sie dann auf die Callback-Funktion, die aufgerufen werden soll, wenn der asynchrone Aufruf zurückgegeben. Failure-Rückruf kann auch angegeben werden (siehe Codebeispiel 14 ein Beispiel für die Behandlung von Fehlern).
+Die Verwendung des PageMethods-Objekts ähnelt sehr der Verwendung eines JavaScript-Proxy Objekts. Sie geben zuerst alle Parameterdaten an, die an die Seiten Methode übergeben werden sollen, und definieren dann die Rückruffunktion, die aufgerufen werden soll, wenn der asynchrone Aufruf zurückgegeben wird. Ein Fehler Rückruf kann auch angegeben werden (in der Liste 14 finden Sie ein Beispiel für das Behandeln von Fehlern).
 
-## <a name="the-autocompleteextender-and-the-aspnet-ajax-toolkit"></a>Die AutoCompleteExtender und das ASP.NET AJAX-Toolkit
+## <a name="the-autocompleteextender-and-the-aspnet-ajax-toolkit"></a>AutoCompleteExtender und das ASP.NET AJAX-Toolkit
 
-Das ASP.NET AJAX-Toolkit (verfügbar über [ http://ajax.asp.net ](http://ajax.asp.net)) bietet mehrere Steuerelemente, die zum Zugriff auf Webdienste verwendet werden können. Insbesondere enthält das Toolkit ein nützlich Steuerelement namens `AutoCompleteExtender` , Webdienste aufrufen und Anzeigen von Daten in Seiten ohne das Schreiben von Javascriptcode überhaupt verwendet werden kann.
+Das ASP.NET AJAX Toolkit (verfügbar [http://ajax.asp.net](http://ajax.asp.net) über) bietet mehrere Steuerelemente, die für den Zugriff auf Webdienste verwendet werden können. Insbesondere enthält das Toolkit ein nützliches Steuerelement mit dem Namen `AutoCompleteExtender` , das verwendet werden kann, um Webdienste aufzurufen und Daten auf Seiten anzuzeigen, ohne JavaScript-Code schreiben zu müssen.
 
-Die AutoCompleteExtender-Steuerelement kann verwendet werden, erweitern vorhandene Funktionalität eines Textfelds aus, und unterstützen von Benutzern, die weitere Daten leicht zu finden, die sie suchen. Wie sie in ein Textfeld eingeben, wird das Steuerelement kann zum Abfragen von einem Webdienst verwendet werden, und zeigt dynamisch die Ergebnisse unterhalb des Textfelds. Abbildung 4 zeigt ein Beispiel für das AutoCompleteExtender-Steuerelement zum Anzeigen der Kunden-Ids für eine Anwendung unterstützt. Wie der Benutzer verschiedene Zeichen in das Textfeld eingibt, werden verschiedene Elemente unter sie basierend auf ihrer Eingabe angezeigt. Benutzer können dann die gewünschten Kunden-Id auswählen.
+Das AutoCompleteExtender-Steuerelement kann verwendet werden, um vorhandene Funktionen eines Textfelds zu erweitern und Benutzern das Auffinden von Daten zu erleichtern, nach denen Sie suchen. Beim eingeben in ein Textfeld kann das Steuerelement verwendet werden, um einen Webdienst abzufragen und die Ergebnisse unter dem Textfeld dynamisch anzuzeigen. Abbildung 4 zeigt ein Beispiel für die Verwendung des AutoCompleteExtender-Steuer Elements, um Kunden-IDs für eine Support Anwendung anzuzeigen. Wenn der Benutzer unterschiedliche Zeichen in das Textfeld eingibt, werden unterschiedliche Elemente basierend auf der Eingabe angezeigt. Benutzer können dann die gewünschte Kunden-ID auswählen.
 
-Verwenden die AutoCompleteExtender innerhalb einer ASP.NET AJAX-Seite erfordert, dass die Assembly AjaxControlToolkit.dll Bin-Ordner der Website hinzugefügt werden. Nachdem die Assembly Toolkit hinzugefügt wurde, sollten Sie sie in "Web.config" verweisen, sodass die darin enthaltenen Steuerelemente für alle Seiten in einer Anwendung zur Verfügung stehen. Dies ist möglich durch das Hinzufügen der folgenden Tags in "Web.config" des &lt;Steuerelemente&gt; Tag:
+Die Verwendung von AutoCompleteExtender innerhalb einer ASP.NET AJAX-Seite erfordert, dass die AjaxControlToolkit.dll-Assembly dem Ordner "bin" der Website hinzugefügt wird. Nachdem die Toolkit-Assembly hinzugefügt wurde, möchten Sie in web.config darauf verweisen, sodass die darin enthaltenen Steuerelemente für alle Seiten in einer Anwendung verfügbar sind. Dies kann durch Hinzufügen des folgenden Tags innerhalb des Tags der web.config Steuerelemente erreicht werden &lt; &gt; :
 
 [!code-xml[Main](understanding-asp-net-ajax-web-services/samples/sample24.xml)]
 
-In Fällen, in dem lediglich die Verwendung des Steuerelements in einer bestimmten Seite, können Sie sie verweisen, durch die Reference-Direktive am Anfang einer Seite hinzufügen, siehe nächsten anstelle Datei "Web.config" wird aktualisiert:
+In Fällen, in denen Sie nur das-Steuerelement auf einer bestimmten Seite verwenden müssen, können Sie darauf verweisen, indem Sie die Reference-Direktive am oberen Rand einer Seite hinzufügen, anstatt web.config zu aktualisieren:
 
 [!code-aspx[Main](understanding-asp-net-ajax-web-services/samples/sample25.aspx)]
 
+[![Verwenden des AutoCompleteExtender-Steuer Elements.](understanding-asp-net-ajax-web-services/_static/image11.png)](understanding-asp-net-ajax-web-services/_static/image10.png)
 
-[![Verwenden des AutoCompleteExtender-Steuerelements.](understanding-asp-net-ajax-web-services/_static/image11.png)](understanding-asp-net-ajax-web-services/_static/image10.png)
+**Abbildung 4**: Verwenden des AutoCompleteExtender-Steuer Elements  ([Klicken Sie, um das Bild in voller Größe anzuzeigen](understanding-asp-net-ajax-web-services/_static/image12.png))
 
-**Abbildung 4**: Verwenden des AutoCompleteExtender-Steuerelements.  ([Klicken Sie, um das Bild in voller Größe anzeigen](understanding-asp-net-ajax-web-services/_static/image12.png))
+Nachdem die Website für die Verwendung des ASP.NET AJAX-Toolkits konfiguriert wurde, kann der Seite ein AutoCompleteExtender-Steuerelement hinzugefügt werden, ähnlich wie Sie ein reguläres ASP.NET-Server Steuerelement hinzufügen. In der Liste 19 wird ein Beispiel für die Verwendung des-Steuer Elements zum Abrufen eines Webdiensts gezeigt.
 
-
-Nach die Website für die Verwendung der ASP.NET AJAX-Toolkit konfiguriert wurde, kann ein AutoCompleteExtender-Steuerelement auf der Seite viel hinzugefügt werden, wie Sie ein reguläre ASP.NET-Serversteuerelement hinzufügen würden. Auflisten von 19 zeigt ein Beispiel für das Steuerelement auf einen Webdienst aufzurufen.
-
-**Auflisten von 19. Verwenden des ASP.NET AJAX-Toolkit AutoCompleteExtender-Steuerelements.**
+**Codebeispiel 19. Verwenden des ASP.NET AJAX Toolkit AutoCompleteExtender-Steuer Elements.**
 
 [!code-aspx[Main](understanding-asp-net-ajax-web-services/samples/sample26.aspx)]
 
-Die AutoCompleteExtender verfügt über mehrere verschiedene Eigenschaften, einschließlich der standard-ID und Runat Eigenschaften, die auf Serversteuerelemente gefunden. Außerdem können Sie definieren, wie viele Zeichen, die einem Endbenutzer-Typen, bevor der Webdienst wird für Daten abgefragt. Auflisten von 19 gezeigt MinimumPrefixLength-Eigenschaft bewirkt, dass den Dienst jedes Mal aufgerufen, wenn ein Zeichen in das Textfeld eingegeben wurde. Sie sollten darauf achten, dass das Festlegen dieses Werts, da jedes Mal der Benutzer ein Zeichen des Webdiensts gibt aufgerufen wird, um die Suche nach Werten, die die Zeichen in das Textfeld entsprechen. Den Webdienst aufrufen, als auch das Ziel Webmethode werden jeweils mit die ServicePath und ServiceMethod-Eigenschaft definiert. Schließlich gibt die TargetControlID-Eigenschaft der Textbox, um das Steuerelement AutoCompleteExtender verknüpfen.
+Der AutoCompleteExtender verfügt über verschiedene Eigenschaften, einschließlich der Standard-ID und der runat-Eigenschaften, die auf Server Steuerelementen gefunden werden. Darüber hinaus können Sie mit dieser Option definieren, wie viele Zeichen ein Endbenutzer eingibt, bevor der Webdienst Daten abgefragt. Die in der Liste 19 angezeigte MinimumPrefixLength-Eigenschaft bewirkt, dass der Dienst jedes Mal aufgerufen wird, wenn ein Zeichen in das Textfeld eingegeben wird. Sie sollten darauf achten, diesen Wert festzulegen, da der Benutzer jedes Mal ein Zeichen eingibt, dass der Webdienst nach Werten sucht, die mit den Zeichen im Textfeld verglichen werden. Der aufzurufende Webdienst und die Ziel-Webmethode werden mithilfe der servicepath-bzw. ServiceMethod-Eigenschaften definiert. Schließlich gibt die TargetControlID-Eigenschaft an, an welches Textfeld das AutoCompleteExtender-Steuerelement gebunden werden soll.
 
-Der Webdienst aufgerufen wird, müssen das ScriptService-Attribut angewendet wird, wie bereits erwähnt, und das Ziel Webmethode akzeptieren zwei Parameter namens "PrefixText" und "Count. Der PrefixText Parameter darstellt, die vom Endbenutzer eingegebenen Zeichen und der Count-Parameter darstellt, wie viele Elemente zurückgeben (der Standardwert ist 10). Auflisten von 20 zeigt ein Beispiel der Webmethode GetCustomerIDs wird von den weiter oben in der Auflistung 19 AutoCompleteExtender-Steuerelement aufgerufen. Die Web-Methode ruft eine Business-Ebene-Methode, die wiederum Aufrufe einer Methode Schicht, die verarbeitet werden, die Daten filtern und die übereinstimmenden Ergebnisse zurückgegeben. Der Code für die Data-Layer-Methode wird in auflisten 21 dargestellt.
+Für den aufgerufenen Webdienst muss das ScriptService-Attribut wie bereits erläutert angewendet werden, und die Ziel-Webmethode muss zwei Parameter mit den Namen "PrefixText" und "count" akzeptieren. Der PrefixText-Parameter stellt die vom Endbenutzer eingegebenen Zeichen dar, und der count-Parameter gibt an, wie viele Elemente zurückgegeben werden sollen (der Standardwert ist 10). In der Liste 20 wird ein Beispiel für die getcustomerids-Webmethode angezeigt, die vom AutoCompleteExtender-Steuerelement aufgerufen wird, das zuvor in der Liste 19 Die Webmethode Ruft eine Geschäfts Schicht Methode auf, die wiederum eine datenebenenmethode aufruft, die das Filtern der Daten und das Zurückgeben der übereinstimmenden Ergebnisse behandelt. Der Code für die Datenschicht Methode wird in der Liste 21 angezeigt.
 
-**Auflisten von 20. Filtern von Daten aus dem AutoCompleteExtender-Steuerelement gesendet.**
+**Auflistung 20. Filtern von Daten, die vom AutoCompleteExtender-Steuerelement gesendet werden.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample27.cs)]
 
-**Auflisten von 21. Filtern der Ergebnisse basierend auf Benutzereingaben End.**
+**Codebeispiel 21. Filtern von Ergebnissen basierend auf der Eingabe von Endbenutzern.**
 
 [!code-csharp[Main](understanding-asp-net-ajax-web-services/samples/sample28.cs)]
 
-## <a name="conclusion"></a>Schlussbemerkung
+## <a name="conclusion"></a>Zusammenfassung
 
-ASP.NET AJAX bietet exzellente Unterstützung für das Aufrufen von Webdiensten ohne das Schreiben umfangreichen benutzerdefinierten JavaScript-Code, der Anforderung und Antwort-Nachrichten zu verarbeiten. In diesem Artikel haben Sie erfahren wie AJAX-Aktivierung .NET Web Services, um sie zum Verarbeiten von JSON-Nachrichten und zum Definieren von JavaScript-Proxys, die über das ScriptManager-Steuerelement zu aktivieren. Sie haben auch gesehen, wie JavaScript-Proxys verwendet werden können, zum Aufrufen von Webdiensten, kümmern sich um einfache und komplexe Typen und Fehler behandeln. Schließlich haben Sie gelernt, wie Seitenmethoden verwendet werden können, um den Prozess des Erstellens und Aufrufe des Webdiensts zu vereinfachen und wie das Steuerelement AutoCompleteExtender Hilfe für Endbenutzer homophone bereitstellen kann. Obwohl das Steuerelement der Wahl für viele AJAX-Programmierer aufgrund seiner Einfachheit sicherlich von UpdatePanel in ASP.NET AJAX verfügbar sein wird, kann das wissen, wie das Aufrufen von Webdiensten über JavaScript-Proxys in vielen Anwendungen nützlich sein.
+ASP.NET AJAX bietet hervorragende Unterstützung für das Aufrufen von Webdiensten, ohne viel benutzerdefinierten JavaScript-Code zum Verarbeiten der Anforderungs-und Antwort Nachrichten zu schreiben. In diesem Artikel haben Sie erfahren, wie Sie .NET-Webdienste mit AJAX aktivieren, damit sie JSON-Nachrichten verarbeiten und JavaScript-Proxys mit dem ScriptManager-Steuerelement definieren können. Sie haben auch gesehen, wie JavaScript-Proxys verwendet werden können, um Webdienste aufzurufen, einfache und komplexe Typen zu verarbeiten und Fehler zu behandeln. Schließlich haben Sie gesehen, wie Seiten Methoden verwendet werden können, um den Prozess der Erstellung und Erstellung von Webdienst aufrufen zu vereinfachen, und wie das AutoCompleteExtender-Steuerelement den Endbenutzern bei der Eingabehilfe zur Verfügung stellen kann. Obwohl das in ASP.NET AJAX verfügbare Update Panel sicherlich die Wahl für viele AJAX-Programmierer ist, ist dies aufgrund seiner Einfachheit von Bedeutung. das wissen, wie Webdienste über JavaScript-Proxys aufgerufen werden können, kann in vielen Anwendungen nützlich sein.
 
-## <a name="bio"></a>Bio
+## <a name="bio"></a>Basierten
 
-Dan Wahlin (Microsoft Most Valuable Professional für ASP.NET und XML Web Services) ist eine Entwicklung "Instructor" und Architektur .NET-Berater auf technische Schulungen-Schnittstelle ([http://www.interfacett.com](http://www.interfacett.com)). Dan gegründet wurde, den XML-Code für ASP.NET Entwickler-Website ([www.XMLforASP.NET](http://www.XMLforASP.NET)), befindet sich auf die INETA-Sprecher Bureau und hält Vorträge auf Konferenzen. Dan Co-Autor Professional Windows DNA (Wrox), ASP.NET: Tipps, Tutorials und Code (Sams), ASP.NET 1.1-Insider-Lösungen, Professional ASP.NET 2.0 AJAX (Wrox), ASP.NET 2.0-MVP-Hacks und erstellte XML für ASP.NET-Entwickler (Sams). Wenn er nicht Code, Artikel oder Bücher schreiben wird, profitiert Dan schreiben und Musik Aufzeichnung und Wiedergabe Golf und Basketball mit seiner Frau und Kinder an.
+Dan Wahlin (Microsoft Most Valuable Professional für ASP.net und XML Web Services) ist ein .net-Entwicklungs Dozenten und-architekturberater bei Interface Technical Training ( [http://www.interfacett.com](http://www.interfacett.com) ). Dan gründete die XML for ASP.NET Developers-Website ([www.XMLforASP.net](http://www.XMLforASP.NET)), ist im Büro des INETA-Referenten und spricht auf mehreren Konferenzen. Dan hat eine professionelle Windows-DNA (Wrox), ASP.net: Tipps, Tutorials und Code (Sams), ASP.NET 1,1 Insider Solutions, Professional ASP.NET 2,0 AJAX (Wrox), ASP.NET 2,0 MVP-Hacks und erstellte XML for ASP.NET Developers (Sams) verfasst. Beim Schreiben von Code, Artikeln oder Büchern hat Dan das Schreiben und Aufzeichnen von Musik und das Spielen von Golf und Basketball mit seiner Frau und ihren Kindern.
 
-Scott Cate arbeitet mit Microsoft-Web-Technologien seit 1997 und ist Vorsitzender der myKB.com ([www.myKB.com](http://www.myKB.com)), in dem er spezialisiert sich auf das Schreiben von ASP.NET basierende Anwendungen, die mit dem Schwerpunkt Knowledge Base-softwarelösungen. Scott hergestellt werden kann, per e-Mail unter [ scott.cate@myKB.com ](mailto:scott.cate@myKB.com) oder seinen Blog unter [ScottCate.com](http://ScottCate.com)
+Scott Cate arbeitet seit 1997 mit Microsoft-Webtechnologien und ist der Präsident von myKB.com ([www.myKB.com](http://www.myKB.com)), wo er sich darauf spezialisiert hat, ASP.NET basierte Anwendungen zu schreiben, die sich auf die Software Lösungen der Wissensdatenbank konzentrieren. Scott kann per e-Mail unter oder in [scott.cate@myKB.com](mailto:scott.cate@myKB.com) seinem Blog unter [ScottCate.com](http://ScottCate.com) kontaktiert werden.
 
 > [!div class="step-by-step"]
 > [Zurück](understanding-asp-net-ajax-localization.md)
