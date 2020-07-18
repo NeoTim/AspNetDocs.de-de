@@ -8,27 +8,29 @@ ms.date: 12/18/2012
 ms.assetid: 71ee4c78-c500-4d1c-b761-b4e161a291b5
 msc.legacyurl: /web-api/overview/security/integrated-windows-authentication
 msc.type: authoredcontent
-ms.openlocfilehash: e4f31f191f3c0fabff308ea5dadb0f1d9ce7d448
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: c5fe57c4a20e28fa434659a75484e3a4c37195f8
+ms.sourcegitcommit: 000cbcd1de66fe8a766f203ef2d6f009e4435f53
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78504207"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86424791"
 ---
 # <a name="integrated-windows-authentication"></a>Integrierte Windows-Authentifizierung
 
 von [Mike Wasson](https://github.com/MikeWasson)
 
-Die integrierte Windows-Authentifizierung ermöglicht es Benutzern, sich mit Ihren Windows-Anmelde Informationen mithilfe von Kerberos oder NTLM anzumelden. Der Client sendet Anmelde Informationen im Autorisierungs Header. Die Windows-Authentifizierung eignet sich am besten für eine Intranetumgebung. Weitere Informationen finden Sie unter [Windows-Authentifizierung](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
+Die integrierte Windows-Authentifizierung ermöglicht es Benutzern, sich mit Ihren Windows-Anmelde Informationen mithilfe von Kerberos oder NTLM anzumelden. Der Client sendet Anmelde Informationen im Autorisierungs Header. Die Windows-Authentifizierung ist für Intranetumgebungen am besten geeignet. Weitere Informationen finden Sie unter [Windows-Authentifizierung](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
 
 | Vorteile | Nachteile |
 | --- | --- |
-| : In IIS integriert. : Sendet die Anmelde Informationen des Benutzers nicht in der Anforderung. -Wenn der Client Computer zur Domäne gehört (z. b. Intranetanwendung), muss der Benutzer keine Anmelde Informationen eingeben. | -Wird für Internet Anwendungen nicht empfohlen. -Erfordert die Kerberos-oder NTLM-Unterstützung auf dem Client. -Client muss in der Active Directory Domäne sein. |
+| In IIS integriert. | Wird nicht für Internet Anwendungen empfohlen. | 
+| Die Benutzer Anmelde Informationen werden nicht in der Anforderung gesendet. | Erfordert die Kerberos-oder NTLM-Unterstützung auf dem Client. |
+| Wenn der Client Computer zur Domäne gehört (z. b. Intranetanwendung), muss der Benutzer keine Anmelde Informationen eingeben. | Der Client muss sich in der Active Directory Domäne befinden. |
 
 > [!NOTE]
 > Wenn Ihre Anwendung in Azure gehostet wird und Sie über eine lokale Active Directory Domäne verfügen, sollten Sie den Verbund Ihres lokalen AD mit Azure Active Directory in Erwägung gezogen. Auf diese Weise können sich Benutzer mit Ihren lokalen Anmelde Informationen anmelden, die Authentifizierung erfolgt jedoch Azure AD. Weitere Informationen finden Sie unter [Azure-Authentifizierung](../../../visual-studio/overview/2012/windows-azure-authentication.md).
 
-Um eine Anwendung zu erstellen, die die integrierte Windows-Authentifizierung verwendet, wählen Sie die Vorlage "Intranetanwendung" im MVC 4-Projekt-Assistenten aus. Diese Projektvorlage legt die folgende Einstellung in der Datei "Web. config" ab:
+Um eine Anwendung zu erstellen, die die integrierte Windows-Authentifizierung verwendet, wählen Sie die Vorlage "Intranetanwendung" im MVC 4-Projekt-Assistenten aus. Mit dieser Projektvorlage wird die folgende Einstellung in die Web.config Datei eingefügt:
 
 [!code-xml[Main](integrated-windows-authentication/samples/sample1.xml)]
 
