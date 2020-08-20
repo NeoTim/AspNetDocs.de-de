@@ -10,10 +10,10 @@ ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
 ms.openlocfilehash: d7cc83a5b78a60f575f5c3065079679189296a0c
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2020
+ms.lasthandoff: 08/20/2020
 ms.locfileid: "86188693"
 ---
 # <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Tutorial: Informationen zu erweiterten EF-Szenarios für eine MVC 5-Web-App
@@ -41,13 +41,13 @@ Außerdem erfahren Sie mehr über:
 > * Entity Framework Power Tools
 > * Entity Framework Quellcode
 
-## <a name="prerequisite"></a>Voraussetzungen
+## <a name="prerequisite"></a>Voraussetzung
 
 * [Implementieren von Vererbung](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## <a name="perform-raw-sql-queries"></a>Durchführen unformatierter SQL-Abfragen
 
-Die Entity Framework Code First-API umfasst Methoden, die es Ihnen ermöglichen, SQL-Befehle direkt an die Datenbank zu übergeben. Sie haben folgende Optionen:
+Die Entity Framework Code First-API umfasst Methoden, die es Ihnen ermöglichen, SQL-Befehle direkt an die Datenbank zu übergeben. Folgende Optionen stehen zur Auswahl:
 
 - Verwenden Sie die [dbset. sqlQuery](https://msdn.microsoft.com/library/system.data.entity.dbset.sqlquery.aspx) -Methode für Abfragen, die Entitäts Typen zurückgeben. Die zurückgegebenen Objekte müssen vom Typ sein, der vom-Objekt erwartet wird `DbSet` , und Sie werden automatisch vom Daten Bank Kontext nachverfolgt, es sei denn, Sie deaktivieren die Nachverfolgung. (Informationen zur [asnotracking](https://msdn.microsoft.com/library/system.data.entity.dbextensions.asnotracking.aspx) -Methode finden Sie im folgenden Abschnitt.)
 - Verwenden Sie die [Database. sqlQuery](https://msdn.microsoft.com/library/system.data.entity.database.sqlquery.aspx) -Methode für Abfragen, die Typen zurückgeben, die keine Entitäten sind. Die zurückgegebenen Daten werden nicht vom Datenbankkontext nachverfolgt, auch wenn Sie diese Methode zum Abrufen von Entitätstypen verwenden.
@@ -282,7 +282,7 @@ Eine Möglichkeit, diesen Fehler zu erhalten, besteht darin, mehrere Kopien der 
 
 Fehlermeldung:
 
-> Ein netzwerkbezogener oder instanzspezifischer Fehler beim Herstellen einer Verbindung mit SQL Server. Der Server wurde nicht gefunden oder es konnte nicht auf ihn zugegriffen werden. Stellen Sie sicher, dass der Instanzname richtig und SQL Server so konfiguriert ist, das Remoteverbindungen zulässig sind. (Anbieter: SQL-Netzwerkschnittstellen, Fehler: 26: Fehler beim Suchen des angegebenen Servers/der angegebenen Instanz)
+> Ein netzwerkbezogener oder instanzspezifischer Fehler beim Herstellen einer Verbindung mit SQL Server. Der Server wurde nicht gefunden, oder auf ihn kann nicht zugegriffen werden. Stellen Sie sicher, dass der Instanzname richtig und SQL Server so konfiguriert ist, das Remoteverbindungen zulässig sind. (Anbieter: SQL-Netzwerkschnittstellen, Fehler: 26: Fehler beim Suchen des angegebenen Servers/der angegebenen Instanz)
 
 Lösung
 

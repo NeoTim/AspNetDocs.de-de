@@ -9,10 +9,10 @@ ms.assetid: 64906a1d-f734-41cf-9615-ee95f8740996
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
 ms.openlocfilehash: f8f079f6d8ea663c6888456be422a2bae93a4b87
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2020
+ms.lasthandoff: 08/20/2020
 ms.locfileid: "86163485"
 ---
 # <a name="advanced-entity-framework-scenarios-for-an-mvc-web-application-10-of-10"></a>Erweiterte Entity Framework Szenarien für eine MVC-Webanwendung (10 von 10)
@@ -47,7 +47,7 @@ Um eine Abfrage ohne Nachverfolgung zu verwenden, fügen Sie der Bearbeitungssei
 
 ## <a name="performing-raw-sql-queries"></a>Ausführen von RAW-SQL-Abfragen
 
-Die Entity Framework Code First-API umfasst Methoden, die es Ihnen ermöglichen, SQL-Befehle direkt an die Datenbank zu übergeben. Sie haben folgende Optionen:
+Die Entity Framework Code First-API umfasst Methoden, die es Ihnen ermöglichen, SQL-Befehle direkt an die Datenbank zu übergeben. Folgende Optionen stehen zur Auswahl:
 
 - Verwenden Sie die `DbSet.SqlQuery`-Methode für Abfragen, die Entitätstypen zurückgeben. Die zurückgegebenen Objekte müssen vom Typ sein, der vom-Objekt erwartet wird `DbSet` , und Sie werden automatisch vom Daten Bank Kontext nachverfolgt, es sei denn, Sie deaktivieren die Nachverfolgung. (Informationen zur-Methode finden Sie im folgenden Abschnitt `AsNoTracking` .)
 - Verwenden Sie die `Database.SqlQuery` Methode für Abfragen, die Typen zurückgeben, die keine Entitäten sind. Die zurückgegebenen Daten werden nicht vom Datenbankkontext nachverfolgt, auch wenn Sie diese Methode zum Abrufen von Entitätstypen verwenden.
@@ -103,7 +103,7 @@ Erstellen Sie im Ordner *dal* *CourseRepository.cs* , und ersetzen Sie den vorha
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cs)]
 
-Ändern Sie in *UnitOfWork.cs*den `Course` Repository-Typ von `GenericRepository<Course>` in.`CourseRepository:`
+Ändern Sie in *UnitOfWork.cs*den `Course` Repository-Typ von `GenericRepository<Course>` in. `CourseRepository:`
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.cs)]
 
@@ -287,7 +287,7 @@ Fehlermeldung:
 
 *Das Erstellen/Schatten kopieren von "dotnetopenauth. OpenID" ist nicht möglich, wenn diese Datei bereits vorhanden ist.*
 
-Projektmappe:
+Lösung:
 
 Warten Sie einige Sekunden, und aktualisieren Sie die Seite.
 
@@ -297,7 +297,7 @@ Fehlermeldung:
 
 *Der Begriff "Update-Database" wird nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt. Überprüfen Sie die Schreibweise des Namens, oder überprüfen Sie, ob der Pfad korrekt ist, und versuchen Sie es noch mal.* (Über den *`Update-Database`* Befehl in der PMC)
 
-Projektmappe:
+Lösung:
 
 Beenden Sie Visual Studio. Öffnen Sie das Projekt erneut, und versuchen Sie es
 
@@ -307,7 +307,7 @@ Fehlermeldung:
 
 *Fehler bei der Überprüfung für mindestens eine Entität. Weitere Informationen finden Sie unter der Eigenschaft "entityvalidationerrors".* (Über den *`Update-Database`* Befehl in der PMC)
 
-Projektmappe:
+Lösung:
 
 Eine Ursache für dieses Problem sind Validierungs Fehler, wenn die-Methode ausgeführt wird `Seed` . Tipps zum Debuggen der-Methode finden Sie unter [Seeding und Debuggen Entity Framework (EF)-DSB](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) `Seed` .
 
@@ -317,7 +317,7 @@ Fehlermeldung:
 
 *HTTP-Fehler 500,19-interner Server Fehler: auf die angeforderte Seite kann nicht zugegriffen werden, da die zugehörigen Konfigurationsdaten für die Seite ungültig sind.*
 
-Projektmappe:
+Lösung:
 
 Eine Möglichkeit, diesen Fehler zu erhalten, besteht darin, mehrere Kopien der Lösung zu verwenden, von denen jeder dieselbe Portnummer verwendet. Sie können dieses Problem in der Regel beheben, indem Sie alle Instanzen von Visual Studio beenden und dann das Projekt neu starten, an dem Sie arbeiten. Wenn dies nicht funktioniert, versuchen Sie, die Portnummer zu ändern. Klicken Sie mit der rechten Maustaste auf die Projektdatei und dann auf Eigenschaften. Wählen Sie die Registerkarte **Web** aus, und ändern Sie dann die Portnummer im Textfeld **Projekt-URL** .
 
@@ -327,7 +327,7 @@ Fehlermeldung:
 
 *Netzwerk bezogener oder Instanzspezifischer Fehler beim Herstellen einer Verbindung mit SQL Server. Der Server wurde nicht gefunden oder war nicht zugänglich. Überprüfen Sie, ob der Instanzname richtig ist und SQL Server für die Verwendung von Remote Verbindungen konfiguriert ist. (Anbieter: SQL-Netzwerkschnittstellen, Fehler: 26-Fehler beim Suchen des angegebenen Servers/der angegebenen Instanz)*
 
-Projektmappe:
+Lösung:
 
 Verbindungs Zeichenfolge überprüfen. Wenn Sie die Datenbank manuell gelöscht haben, ändern Sie den Namen der Datenbank in der Konstruktions Zeichenfolge.
 
