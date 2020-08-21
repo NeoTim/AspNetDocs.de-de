@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 58e2d62da2181108f34bbf3e1e948977241e1dee
-ms.sourcegitcommit: b3c0e67bb231dbb0db9e8dfccd51cf715481edcc
+ms.openlocfilehash: 9eebe0e52af2a0fca967a51afb58c7db174d9fdb
+ms.sourcegitcommit: feb88edfb01b32f6fc9488f0f0ddb3c5b34e6ff0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88161356"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88702919"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft AJAX Content Delivery Network
 
@@ -84,8 +84,8 @@ Wenn Sie die JavaScript-Bibliothek übermitteln möchten, und Ihre Bibliothek is
 
 Das CDN, das verwendet wurde, um den Microsoft.com-Domänen Namen zu verwenden und wurde geändert, um den Domänen Namen aspnetcdn.com zu verwenden Diese Änderung wurde vorgenommen, um die Leistung zu verbessern, weil ein Browser, auf den die Microsoft.com-Domäne verwiesen hat, alle Cookies von dieser Domäne über die Verbindung mit jeder Anforderung senden würde. Durch das Umbenennen in einen anderen Domänen Namen als Microsoft.com kann die Leistung um bis zu 25% gesteigert werden. Beachten Sie, dass AJAX.Microsoft.com weiterhin funktionsfähig ist, aber AJAX.aspnetcdn.com empfohlen wird.
 
-- Altes Format:https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
-- Neues Format:https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
+- Altes Format: https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
+- Neues Format: https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
 
 <a id="Visual_Studio_vsdoc_Support_19"></a>
 
@@ -830,6 +830,21 @@ Die folgenden Releases von [Antworten](https://github.com/scottjehl/Respond "Rea
 ### <a name="bootstrap-releases-on-the-cdn"></a>Bootstrap-Releases im CDN
 
 Die folgenden Versionen von [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") Bootstrap werden im CDN gehostet:
+
+#### <a name="bootstrap-version-452"></a>Bootstrap-Version 4.5.2
+
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.bundle.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css.map
 
 #### <a name="bootstrap-version-450"></a>Bootstrap-Version 4.5.0
 

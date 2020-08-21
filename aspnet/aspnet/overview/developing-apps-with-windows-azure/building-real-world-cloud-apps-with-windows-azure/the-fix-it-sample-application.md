@@ -1,398 +1,398 @@
 ---
 uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application
-title: 'Anhang: Die Fix It-Beispielanwendung (Erstellen von Real-World Cloud-Apps mit Azure) | Microsoft Docs'
+title: 'Anhang: die Anwendung zum Beheben von IT-Beispielen (entwickeln realer Cloud-apps mit Azure) | Microsoft-Dokumentation'
 author: MikeWasson
-description: Das Building Real World Cloud Apps mit Azure E-Book basiert auf einer Präsentation, die von Scott Guthrie entwickelt wurde. Es erklärt 13 Muster und Praktiken, die er...
+description: Das e-Book zur Entwicklung realer Cloud-apps mit Azure basiert auf einer Präsentation von Scott Guthrie. Es werden 13 Muster und Vorgehensweisen erläutert, für die er...
 ms.author: riande
 ms.date: 06/12/2014
 ms.assetid: 1bc333c5-f096-4ea7-b170-779accc21c1a
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application
 msc.type: authoredcontent
-ms.openlocfilehash: 896196bdb6a6b0d12a6c798ead510e37dd38a9fc
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.openlocfilehash: 549d1513279190ae5abe87c59a48e1caa1cfa5f7
+ms.sourcegitcommit: feb88edfb01b32f6fc9488f0f0ddb3c5b34e6ff0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80675634"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88702932"
 ---
-# <a name="appendix-the-fix-it-sample-application-building-real-world-cloud-apps-with-azure"></a>Anhang: Die Fix It-Beispielanwendung (Erstellen von Real-World Cloud-Apps mit Azure)
+# <a name="appendix-the-fix-it-sample-application-building-real-world-cloud-apps-with-azure"></a>Anhang: die Anwendung zum Beheben von IT-Beispielen (entwickeln realer Cloud-apps mit Azure)
 
-von [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://twitter.com/RickAndMSFT), Tom [Dykstra](https://github.com/tdykstra)
+von [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra)
 
-[The Fix It Project herunterladen](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4)
+[Herunterladen des Projekts zum Reparieren von IT](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4)
 
-> Das **Building Real World Cloud Apps mit Azure** E-Book basiert auf einer Präsentation, die von Scott Guthrie entwickelt wurde. Es werden 13 Muster und Vorgehensweisen erläutert, die Ihnen bei der erfolgreichen Entwicklung von Web-Apps für die Cloud helfen können. Informationen zum E-Book finden Sie [im ersten Kapitel](introduction.md).
+> Das e-Book zur Entwicklung **realer Cloud-apps mit Azure** basiert auf einer Präsentation von Scott Guthrie. Es werden 13 Muster und Verfahren erläutert, die Ihnen bei der Entwicklung von Web-Apps für die Cloud helfen können. Informationen zum e-Book finden Sie [im ersten Kapitel](introduction.md).
 
-Dieser Anhang zum E-Book Building Real World Cloud Apps with Azure enthält die folgenden Abschnitte, die zusätzliche Informationen zur Fix It-Beispielanwendung enthalten, die Sie herunterladen können:
+In diesem Anhang im e-book erstellen realer Cloud-apps mit Azure sind die folgenden Abschnitte enthalten, die zusätzliche Informationen zur Lösung zum Beheben von IT-Beispielen enthalten, die Sie herunterladen können:
 
 - [Bekannte Probleme](#knownissues)
 - [bewährten Methoden](#bestpractices)
-- [So führen Sie die App von Visual Studio aus auf Ihrem lokalen Computer aus](#run-in-vs)
-- [Bereitstellen der Basis-App in Azure App Service-Web-Apps mithilfe der Windows PowerShell-Skripts](#deploybase)
-- [Fehlerbehebung bei windows PowerShell-Skripts](#troubleshooting)
-- [Bereitstellen der App mit Warteschlangenverarbeitung in Azure App Service-Web-Apps und einem Azure Cloud Service](#deployqueues)
+- [Ausführen der APP aus Visual Studio auf dem lokalen Computer](#run-in-vs)
+- [Bereitstellen der Basis-app zum Azure App Service von Web-Apps mithilfe der Windows PowerShell-Skripts](#deploybase)
+- [Problembehandlung bei Windows PowerShell-Skripts](#troubleshooting)
+- [Bereitstellen der APP mit Warteschlangen Verarbeitung zum Azure App Service von Web-Apps und einem Azure-clouddienst](#deployqueues)
 
 <a id="knownissues"></a>
 ## <a name="known-issues"></a>Bekannte Probleme
 
-Die Fix It App wurde ursprünglich entwickelt, um einige der in diesem E-Book vorgestellten Muster so einfach wie möglich zu veranschaulichen. Da es im E-Book jedoch um das Erstellen von realen Apps geht, haben wir den Fix It-Code einem Überprüfungs- und Testprozess unterzogen, ähnlich dem, was wir für veröffentlichte Software tun würden. Wir fanden eine Reihe von Problemen, und wie bei jeder realen Anwendung, einige von ihnen haben wir behoben und einige von ihnen haben wir auf eine spätere Veröffentlichung verschoben.
+Die Korrektur der IT-App wurde ursprünglich entwickelt, um so einfach wie möglich einige der in diesem e-book dargestellten Muster zu veranschaulichen. Da es sich bei dem e-Book jedoch um das entwickeln realer apps handelt, haben wir den Korrektur-IT-Code einem Überprüfungs-und Testprozess unterzogen, ähnlich wie bei der veröffentlichten Software. Wir haben eine Reihe von Problemen erkannt, und wie bei jeder realen Anwendung wurden einige von Ihnen korrigiert, und einige davon haben wir auf eine spätere Version zurückgestellt.
 
-Die folgende Liste enthält Probleme, die in einer Produktionsanwendung behandelt werden sollten, aber aus dem einen oder anderen Grund haben wir uns entschieden, in der ersten Version der Fix It-Beispielanwendung nicht zu behandeln.
+In der folgenden Liste finden Sie Probleme, die in einer Produktionsanwendung behoben werden sollten. aus einem Grund oder einem anderen Grund haben wir uns entschieden, sich in der ersten Version der Anwendung zum Beheben von IT-Beispielen nicht zu beheben.
 
 ### <a name="security"></a>Sicherheit
 
-- Stellen Sie sicher, dass Sie einem nicht vorhandenen Besitzer keine Aufgabe zuweisen können.
-- Stellen Sie sicher, dass Sie nur Aufgaben anzeigen und ändern können, die Sie erstellt haben oder Ihnen zugewiesen sind.
-- Verwenden Sie HTTPS für Anmeldeseiten und Authentifizierungscookies.
-- Geben Sie ein Zeitlimit für Authentifizierungscookies an.
+- Stellen Sie sicher, dass eine Aufgabe nicht einem nicht vorhandenen Besitzer zugewiesen werden kann.
+- Stellen Sie sicher, dass Sie nur Aufgaben anzeigen und ändern können, die Sie erstellt oder Ihnen zugewiesen haben.
+- Verwenden Sie HTTPS für Anmelde Seiten und Authentifizierungs Cookies.
+- Geben Sie ein Zeitlimit für Authentifizierungs Cookies an.
 
 ### <a name="input-validation"></a>Eingabeüberprüfung
 
-Im Allgemeinen würde eine Produktions-App mehr Eingabeüberprüfung als die Fix It-App. Beispielsweise sollte die Bildgröße / Bilddateigröße, die für den Upload zulässig ist, begrenzt werden.
+Im Allgemeinen führt eine Produktions-app mehr Eingabevalidierung durch als die Korrektur der IT-app. Beispielsweise sollte die Größe der Image Größe/Bild Datei, die für den Upload zulässig ist, eingeschränkt sein.
 
-### <a name="administrator-functionality"></a>Administratorfunktionalität
+### <a name="administrator-functionality"></a>Administrator Funktionalität
 
-Ein Administrator sollte in der Lage sein, den Besitz für vorhandene Aufgaben zu ändern. Beispielsweise kann der Ersteller einer Aufgabe das Unternehmen verlassen, sodass niemand über die Berechtigung verfügt, die Aufgabe zu verwalten, es sei denn, der Administratorzugriff ist aktiviert.
+Ein Administrator sollte in der Lage sein, den Besitz vorhandener Aufgaben zu ändern. Beispielsweise könnte der Ersteller eines Tasks das Unternehmen verlassen und nicht mehr mit der Berechtigung, die Aufgabe aufrechtzuerhalten, wenn der administrative Zugriff aktiviert ist.
 
-### <a name="queue-message-processing"></a>Warteschlangen-Nachrichtenverarbeitung
+### <a name="queue-message-processing"></a>Verarbeitung von Warteschlangen Nachrichten
 
-Die Warteschlangennachrichtenverarbeitung in der Fix It-App wurde so konzipiert, dass sie einfach ist, um das warteschlangenzentrierte Arbeitsmuster mit einer minimalen Menge an Code zu veranschaulichen. Dieser einfache Code wäre für eine tatsächliche Produktionsanwendung nicht ausreichend.
+Die Verarbeitung von Warteschlangen Nachrichten in der Korrektur, dass Sie einfach ist, um das Warteschlangen zentrierte Arbeitsmuster mit einer minimalen Menge an Code zu veranschaulichen. Dieser einfache Code ist für eine tatsächliche Produktionsanwendung nicht ausreichend.
 
-- Der Code garantiert nicht, dass jede Warteschlangennachricht höchstens einmal verarbeitet wird. Wenn Sie eine Nachricht aus der Warteschlange erhalten, gibt es einen Timeoutzeitraum, in dem die Nachricht für andere Listener unsichtbar ist. Wenn das Timeout abläuft, bevor die Nachricht gelöscht wird, wird die Nachricht wieder sichtbar. Wenn eine Workerrolleninstanz eine lange Zeit mit der Verarbeitung einer Nachricht verbringt, ist es theoretisch möglich, dass dieselbe Nachricht zweimal verarbeitet wird, was zu einer doppelten Aufgabe in der Datenbank führt. Weitere Informationen zu diesem Problem finden Sie unter [Verwenden von Azure Storage Queues](https://msdn.microsoft.com/library/ff803365.aspx#sec7).
-- Die Warteschlangenabfragelogik könnte kostengünstiger sein, indem sie den Nachrichtenabruf mit batching. Jedes Mal, wenn Sie [CloudQueue.GetMessageAsync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessageasync.aspx)aufrufen, entstehen Transaktionskosten. Stattdessen können Sie [CloudQueue.GetMessagesAsync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessagesasync.aspx) (beachten Sie den Plural 's') aufrufen, der mehrere Nachrichten in einer einzigen Transaktion abruft. Die Transaktionskosten für Azure Storage Queues sind sehr gering, sodass die Auswirkungen auf die Kosten in den meisten Szenarien nicht erheblich sind.
-- Die enge Schleife im Warteschlangen-Nachrichtenverarbeitungscode verursacht EINE CPU-Affinität, die Multi-Core-VMs nicht effizient nutzt. Ein besseres Design würde die Taskparallelität verwenden, um mehrere asynchrone Aufgaben parallel auszuführen.
-- Die Warteschlangennachrichtenverarbeitung verfügt nur über eine rudimentäre Ausnahmebehandlung. Der Code verarbeitet z. B. keine [Giftnachrichten](https://msdn.microsoft.com/library/ms789028.aspx). (Wenn die Nachrichtenverarbeitung eine Ausnahme verursacht, müssen Sie den Fehler protokollieren und die Nachricht löschen, oder die Workerrolle versucht, sie erneut zu verarbeiten, und die Schleife wird auf unbestimmte Zeit fortgesetzt.)
+- Der Code garantiert nicht, dass jede Warteschlangen Nachricht höchstens einmal verarbeitet wird. Wenn Sie eine Nachricht aus der Warteschlange erhalten, gibt es einen Timeout Zeitraum, in dem die Nachricht für andere Warteschlangen Listener unsichtbar ist. Wenn das Timeout abläuft, bevor die Nachricht gelöscht wird, wird die Nachricht wieder sichtbar. Wenn eine workerrolleninstanz viel Zeit für die Verarbeitung einer Nachricht benötigt, ist es theoretisch möglich, dass dieselbe Nachricht zweimal verarbeitet wird, was zu einer doppelten Aufgabe in der Datenbank führt. Weitere Informationen zu diesem Problem finden Sie unter [Verwenden von Azure Storage Warteschlangen](https://msdn.microsoft.com/library/ff803365.aspx#sec7).
+- Die Warteschlangen-Abruf Logik könnte kostengünstiger sein, indem der Nachrichten Abruf für die Batch Verarbeitung durch die Batch Verarbeitung durch Jedes Mal, wenn Sie [cloudqueue. getmessageasync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessageasync.aspx)aufrufen, fallen Transaktionskosten an. Stattdessen können Sie [cloudqueue. getmessagesasync](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.queue.cloudqueue.getmessagesasync.aspx) aufrufen (Beachten Sie den Plural '), mit dem mehrere Nachrichten in einer einzelnen Transaktion abgerufen werden. Die Transaktionskosten für Azure Storage Warteschlangen sind sehr gering, sodass die Auswirkung auf die Kosten in den meisten Szenarien nicht beträchtlich ist.
+- Die enge Schleife im Nachrichten Verarbeitungs Code der Warteschlange bewirkt eine CPU-Affinität, bei der virtuelle Computer mit mehreren Kernen nicht effizient genutzt werden. Ein besseres Design wäre die Task Parallelität, um mehrere asynchrone Aufgaben parallel auszuführen.
+- Warteschlangen Nachrichten-Verarbeitung weist nur die rudimentäre Ausnahmebehandlung auf. Der Code verarbeitet z. b. keine nicht verarbeitbaren [Nachrichten](https://msdn.microsoft.com/library/ms789028.aspx). (Wenn die Nachrichtenverarbeitung eine Ausnahme auslöst, müssen Sie den Fehler protokollieren und die Nachricht löschen, oder die workerrolle versucht, Sie erneut zu verarbeiten, und die Schleife wird unbegrenzt fortgesetzt.)
 
-### <a name="sql-queries-are-unbounded"></a>SQL-Abfragen sind ungebunden
+### <a name="sql-queries-are-unbounded"></a>SQL-Abfragen sind unbegrenzt
 
-Der aktuelle Fix It-Code setzt keine Begrenzung, wie viele Zeilen die Abfragen für Indexseiten zurückgeben können. Wenn eine große Anzahl von Aufgaben in die Datenbank eingegeben wird, kann die Größe der resultierenden empfangenen Listen Leistungsprobleme verursachen. Die Lösung besteht darin, Paging zu implementieren. Ein Beispiel finden Sie unter [Sortieren, Filtern und Paging mit entity Framework in einer ASP.NET MVC-Anwendung](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md).
+Aktueller Korrektur: der IT-Code gibt keine Beschränkung für die Anzahl der Zeilen an, die die Abfragen für Index Seiten zurückgeben können. Wenn eine große Anzahl von Tasks in die Datenbank eingegeben wird, kann dies zu Leistungsproblemen führen. Die Lösung besteht darin, Paging zu implementieren. Ein Beispiel finden Sie unter [Sortieren, Filtern und Paging mit dem Entity Framework in einer ASP.NET MVC-Anwendung](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md).
 
-### <a name="view-models-recommended"></a>Modelle anzeigen empfohlen
+### <a name="view-models-recommended"></a>Empfohlene Modelle anzeigen
 
-Die Fix It-App verwendet die FixItTask-Entitätsklasse, um Informationen zwischen dem Controller und der Ansicht zu übergeben. Eine bewährte Methode besteht darin, Ansichtsmodelle zu verwenden. Das Domänenmodell (z. B. die FixItTask-Entitätsklasse) basiert auf dem, was für die Datenpersistenz erforderlich ist, während ein Ansichtsmodell für die Datendarstellung entworfen werden kann. Weitere Informationen finden Sie unter [12 ASP.NET MVC Best Practices](https://codeclimber.net.nz/archive/2009/10/27/12-asp.net-mvc-best-practices.aspx).
+Die Korrektur der IT-App verwendet die fixttask-Entitäts Klasse, um Informationen zwischen dem Controller und der Ansicht zu übergeben. Eine bewährte Vorgehensweise ist die Verwendung von Ansichts Modellen. Das Domänen Modell (z. b. die fixttask-Entitäts Klasse) ist um das, was für die Daten Persistenz erforderlich ist, entworfen, während ein Ansichts Modell für die Datendarstellung entworfen werden kann. Weitere Informationen finden Sie unter [12 ASP.net bewährte Methoden für MVC](https://codeclimber.net.nz/archive/2009/10/27/12-asp.net-mvc-best-practices.aspx).
 
-### <a name="secure-image-blob-recommended"></a>Sicheres Bildblob empfohlen
+### <a name="secure-image-blob-recommended"></a>Sicheres Abbild-BLOB empfohlen
 
-Die Fix It App speichert hochgeladene Bilder als öffentlich, was bedeutet, dass jeder, der die URL findet, auf die Bilder zugreifen kann. Die Bilder konnten statt öffentlich gesichert werden.
+Die Korrektur der IT-App speichert hochgeladene Images als öffentlich, was bedeutet, dass jeder, der die URL findet, auf die Bilder zugreifen kann. Die Images können anstelle von Public gesichert werden.
 
-### <a name="no-powershell-automation-scripts-for-queues"></a>Keine PowerShell-Automatisierungsskripts für Warteschlangen
+### <a name="no-powershell-automation-scripts-for-queues"></a>Keine PowerShell-Automatisierungs Skripts für Warteschlangen
 
-PowerShell-Automatisierungsskripts wurden nur für die Basisversion von Fix It geschrieben, die vollständig in Azure App Service Web Apps ausgeführt wird. Wir haben keine Skripts zum Einrichten und Bereitstellen in der Web-App sowie zur Cloud Service-Umgebung bereitgestellt, die für die Warteschlangenverarbeitung erforderlich ist.
+PowerShell-Beispiel Skripts wurden nur für die Basisversion von Problembehebung geschrieben, die vollständig in Azure App Service Web-Apps ausgeführt wird. Wir haben keine Skripts zum Einrichten und Bereitstellen der Web-App sowie der clouddienstumgebung bereitgestellt, die für die Warteschlangen Verarbeitung erforderlich ist
 
-### <a name="special-handling-for-html-codes-in-user-input"></a>Spezielle Handhabung von HTML-Codes in der Benutzereingabe
+### <a name="special-handling-for-html-codes-in-user-input"></a>Spezielle Behandlung von HTML-Codes in Benutzereingaben
 
-ASP.NET verhindert automatisch viele Möglichkeiten, wie böswillige Benutzer siteübergreifende Skriptangriffe versuchen können, indem sie Skripts in Benutzereingabetextfelder eingeben. Und der `DisplayFor` MVC-Helfer, der zum Anzeigen von Aufgabentiteln verwendet wird, und Notizen automatisch HTML-kodiert Werte, die er an den Browser sendet. Aber in einer Produktions-App sollten Sie zusätzliche Maßnahmen ergreifen. Weitere Informationen finden Sie unter [Anforderungsvalidierung in ASP.NET](https://msdn.microsoft.com/library/hh882339.aspx).
+ASP.net verhindert automatisch eine Vielzahl von Methoden, mit denen böswillige Benutzer Website übergreifende Skript Angriffe durch Eingabe von Skripts in Benutzereingabe-Textfeldern durchführen können. Und das MVC-Hilfsprogramm `DisplayFor` , das zum Anzeigen von Aufgaben Titeln und Notizen verwendet wird, werden Werte, die an den Browser gesendet werden, automatisch codiert. In einer Produktions-APP möchten Sie jedoch möglicherweise zusätzliche Maßnahmen ergreifen. Weitere Informationen finden Sie unter [Anforderungs Validierung in ASP.net](https://msdn.microsoft.com/library/hh882339.aspx).
 
 <a id="bestpractices"></a>
 ## <a name="best-practices"></a>Bewährte Methoden
 
-Im Folgenden sind einige Probleme, die behoben wurden, nachdem sie in der Codeüberprüfung und testen der ursprünglichen Version der Fix It-App entdeckt wurden. Einige wurden dadurch verursacht, dass der ursprüngliche Programmierer keine Kenntnis von einer bestimmten Best Practice hatte, andere einfach, weil der Code schnell geschrieben wurde und nicht für veröffentlichte Software gedacht war. Wir listen die Probleme hier auf, falls es etwas gibt, das wir aus dieser Überprüfung und Tests gelernt haben, das für andere hilfreich sein könnte, die auch Web-Apps entwickeln.
+Im folgenden finden Sie einige Probleme, die behoben wurden, nachdem Sie in Code Review erkannt und die ursprüngliche Version der behobene IT-App getestet wurden. Einige sind darauf zurückzuführen, dass der ursprüngliche Programmierer eine bestimmte bewährte Vorgehensweise nicht beachtet hat, etwas einfach, weil der Code schnell geschrieben wurde und nicht für freigegebene Software gedacht war. Hier werden die Probleme aufgelistet, wenn es etwas gibt, das wir aus dieser Überprüfung und den Tests kennengelernt haben, die für andere Benutzer hilfreich sein können, die auch Web-Apps entwickeln.
 
-### <a name="dispose-the-database-repository"></a>Entsorgen des Datenbank-Repositorys
+### <a name="dispose-the-database-repository"></a>Löschen des Datenbankrepository
 
-Die `FixItTaskRepository` Klasse muss die `DbContext` Entity Framework-Instanz entsorgen. Wir haben dies `FixItTaskRepository` getan, indem wir in der Klasse implementiert `IDisposable` haben:
+Die- `FixItTaskRepository` Klasse muss die Entity Framework `DbContext` Instanz verwerfen. Hierzu haben Sie `IDisposable` in der- `FixItTaskRepository` Klasse implementiert:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample1.cs)]
 
-Beachten Sie, dass AutoFac die `FixItTaskRepository` Instance automatisch entsorgt, sodass wir sie nicht explizit entsorgen müssen.
+Beachten Sie, dass die Instanz automatisch von autofac verworfen wird `FixItTaskRepository` , sodass Sie Sie nicht explizit verwerfen müssen.
 
-Eine weitere Möglichkeit `DbContext` besteht darin, die Membervariable aus `FixItTaskRepository`zu entfernen und stattdessen eine lokale `DbContext` Variable innerhalb jeder Repository-Methode innerhalb einer `using` Anweisung zu erstellen. Beispiel:
+Eine andere Möglichkeit besteht darin, die Element `DbContext` Variable aus zu entfernen `FixItTaskRepository` und stattdessen eine lokale `DbContext` Variable innerhalb der einzelnen Repository-Methoden in einer-Anweisung zu erstellen `using` . Beispiel:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample2.cs)]
 
-### <a name="register-singletons-as-such-with-di"></a>Singletons als solche mit DI registrieren
+### <a name="register-singletons-as-such-with-di"></a>Registrieren von Singletons bei di
 
-Da nur eine `PhotoService` Instanz `Logger` der Klasse und Klasse erforderlich ist, sollten diese Klassen [als einzelne Instanzen für die Abhängigkeitsinjektion](https://code.google.com/p/autofac/wiki/InstanceScope) in *DependenciesConfig.cs*registriert werden:
+Da nur eine Instanz der `PhotoService` Klasse und der `Logger` Klasse benötigt wird, sollten diese Klassen [als einzelne Instanzen für die Abhängigkeitsinjektion](https://code.google.com/p/autofac/wiki/InstanceScope) in *DependenciesConfig.cs*registriert werden:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample3.cs?highlight=1,3)]
 
-### <a name="security-dont-show-error-details-to-users"></a>Sicherheit: Keine Fehlerdetails für Benutzer anzeigen
+### <a name="security-dont-show-error-details-to-users"></a>Sicherheit: Fehlerdetails für Benutzer nicht anzeigen
 
-Die ursprüngliche Fix It-App hatte keine generische Fehlerseite und ließ einfach alle Ausnahmen auf die Benutzeroberfläche blasen, sodass einige Ausnahmen, wie z. B. Datenbankverbindungsfehler, dazu führen können, dass eine vollständige Stapelablaufverfolgung im Browser angezeigt wird. Detaillierte Fehlerinformationen können manchmal Angriffe böswilliger Benutzer erleichtern. Die Lösung besteht darin, die Ausnahmedetails zu protokollieren und dem Benutzer eine Fehlerseite anzuzeigen, die keine Fehlerdetails enthält. Die Fix It-App wurde bereits protokolliert, und um `<customErrors mode=On>` eine Fehlerseite anzuzeigen, haben wir in der Datei Web.config hinzugefügt.
+Die ursprüngliche Fehlerbehebung für die IT-App verfügte nicht über eine generische Fehlerseite, sodass alle Ausnahmen auf die Benutzeroberfläche hochskalieren können. einige Ausnahmen, wie z. b. Daten bankverbindungs Fehler, können dazu führen, dass eine vollständige Stapel Überwachung im Browser angezeigt wird Ausführliche Fehlerinformationen können manchmal Angriffe durch böswillige Benutzer ermöglichen. Die Lösung besteht darin, die Ausnahme Details zu protokollieren und dem Benutzer eine Fehlerseite anzuzeigen, die keine Fehlerdetails enthält. Die Korrektur, dass die IT-App bereits protokolliert wurde, und um eine Fehlerseite anzuzeigen, wurde `<customErrors mode=On>` in der Web.config-Datei hinzugefügt.
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample4.xml?highlight=2)]
 
-Standardmäßig wird dadurch *die Ansicht s.Shared-Error.cshtml* für Fehler angezeigt. Sie können *Error.cshtml* anpassen oder eine eigene `defaultRedirect` Fehlerseitenansicht erstellen und ein Attribut hinzufügen. Sie können auch verschiedene Fehlerseiten für bestimmte Fehler angeben.
+Standardmäßig bewirkt dies, dass " *views\shared\error.cshtml* " für Fehler angezeigt wird. Sie können *Error. cshtml* anpassen oder eine eigene Fehlerseiten Ansicht erstellen und ein- `defaultRedirect` Attribut hinzufügen. Sie können auch unterschiedliche Fehlerseiten für bestimmte Fehler angeben.
 
-### <a name="security-only-allow-a-task-to-be-edited-by-its-creator"></a>Sicherheit: Nur zulassen, dass eine Aufgabe von ihrem Ersteller bearbeitet wird
+### <a name="security-only-allow-a-task-to-be-edited-by-its-creator"></a>Sicherheit: erlauben Sie nur, dass eine Aufgabe vom Ersteller bearbeitet wird.
 
-Auf der Seite Dashboardindex werden nur Vom angemeldeten Benutzer erstellte Aufgaben angezeigt, aber ein böswilliger Benutzer kann eine URL mit einer ID für die Aufgabe eines anderen Benutzers erstellen. Wir haben Code in *DashboardController.cs* hinzugefügt, um in diesem Fall eine 404 zurückzugeben:
+Auf der Seite Index Index werden nur die vom angemeldeten Benutzer erstellten Aufgaben angezeigt, aber ein böswilliger Benutzer könnte eine URL mit einer ID für die Aufgabe eines anderen Benutzers erstellen. Wir haben Code in *DashboardController.cs* hinzugefügt, um 404 in diesem Fall zurückzugeben:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample5.cs?highlight=9-14,24-29)]
 
-### <a name="dont-swallow-exceptions"></a>Schlucken Sie keine Ausnahmen
+### <a name="dont-swallow-exceptions"></a>Ausnahmen nicht schlucken
 
-Die ursprüngliche Fix It-App hat gerade null zurückgegeben, nachdem eine Ausnahme protokolliert wurde, die aus einer SQL-Abfrage resultierte:
+Die ursprüngliche Korrektur der IT-APP hat nach dem Protokollieren einer Ausnahme, die aus einer SQL-Abfrage resultiert, lediglich NULL zurückgegeben
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample6.cs?highlight=4)]
 
-Dadurch wird es für den Benutzer so aussehen, als ob die Abfrage erfolgreich war, aber einfach keine Zeilen zurückgegeben hat. Die Lösung besteht darin, die Ausnahme nach dem Abfangen und Protokollieren erneut auszulösen:
+Dadurch wird der Benutzer so aussehen, als wäre die Abfrage erfolgreich, aber es wurden keine Zeilen zurückgegeben. Die Lösung besteht darin, die Ausnahme nach abfangen und Protokollierung erneut auszulösen:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample7.cs)]
 
-### <a name="catch-all-exceptions-in-worker-roles"></a>Alle Ausnahmen in Workerrollen abfangen
+### <a name="catch-all-exceptions-in-worker-roles"></a>Alle Ausnahmen in workerrollen abfangen
 
-Alle nicht behandelten Ausnahmen in einer Workerrolle führen dazu, dass die VM wiederverwendet wird, sodass Sie alles, was Sie tun, in einem Try-Catch-Block umschließen und alle Ausnahmen behandeln möchten.
+Alle nicht behandelten Ausnahmen in einer workerrolle bewirken, dass der virtuelle Computer wieder verwendet wird, sodass Sie alles, was Sie in einem try-catch-Block ausführen, umschließen und alle Ausnahmen behandeln möchten.
 
-### <a name="specify-length-for-string-properties-in-entity-classes"></a>Länge für Zeichenfolgeneigenschaften in Entitätsklassen angeben
+### <a name="specify-length-for-string-properties-in-entity-classes"></a>Angeben der Länge für Zeichen folgen Eigenschaften in Entitäts Klassen
 
-Um einfachen Code anzuzeigen, hat die ursprüngliche Version der Fix It-App keine Längen für die Felder der FixItTask-Entität angegeben, und als Ergebnis wurden sie in der Datenbank als varchar(max) definiert. Infolgedessen würde die Benutzeroberfläche fast jede Menge von Eingaben akzeptieren. Durch das Festlegen von Längen werden Grenzwerte festgelegt, die sowohl für Benutzereingaben in der Webseite als auch für die Spaltengröße in der Datenbank gelten:
+Zum Anzeigen von einfachem Code wurde in der ursprünglichen Version der IT-App für die Korrektur keine Längenangabe für die Felder der fixttask-Entität angegeben. Daher wurden Sie als varchar (max) in der Datenbank definiert. Folglich würde die Benutzeroberfläche fast jede Menge an Eingaben akzeptieren. Durch Angeben von Längen werden Grenzwerte festgelegt, die sowohl für Benutzereingaben auf der Webseite als auch für die Spaltengröße in der Datenbank gelten:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample8.cs?highlight=4,7,10,12,14)]
 
-### <a name="mark-private-members-as-readonly-when-they-arent-expected-to-change"></a>Markieren Sie private Mitglieder als schreibgeschützt, wenn keine Änderung erwartet wird
+### <a name="mark-private-members-as-readonly-when-they-arent-expected-to-change"></a>Private Member als schreibgeschützt markieren, wenn die Änderungen nicht erwartet werden
 
-In der `DashboardController` Klasse wird z. B. eine Instanz von `FixItTaskRepository` erstellt und es wird nicht erwartet, dass sie sich ändert, daher haben wir sie als [schreibgeschützt](https://msdn.microsoft.com/library/acdd6hb7.aspx)definiert.
+In der `DashboardController` -Klasse wird z. b. eine Instanz von `FixItTaskRepository` erstellt, und es wird nicht erwartet, dass Sie [readonly](https://msdn.microsoft.com/library/acdd6hb7.aspx)geändert wird, daher haben wir Sie als schreibgeschützt definiert.
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample9.cs?highlight=3)]
 
-### <a name="use-listany-instead-of-listcount-gt-0"></a>Liste verwenden. Any() statt Liste. Zählen() &gt; 0
+### <a name="use-listany-instead-of-listcount-gt-0"></a>Verwenden Sie die Liste. Any () anstelle der Liste. Count () &gt; 0
 
-Wenn Ihnen nur wichtig ist, ob ein oder mehrere Elemente in einer Liste den angegebenen Kriterien entsprechen, verwenden Sie die `Count` Any-Methode, da sie zurückgegeben wird, sobald ein Element gefunden wird, das den Kriterien entspricht, während die Methode immer jedes Element durchlaufen muss. [Any](https://msdn.microsoft.com/library/bb534972.aspx) Die Datei Dashboard *Index.cshtml* hatte ursprünglich folgenden Code:
+Wenn Sie sich nur für ein oder mehrere Elemente in einer Liste mit den angegebenen Kriterien interessieren, verwenden Sie die [any](https://msdn.microsoft.com/library/bb534972.aspx) -Methode, da Sie zurückgibt, sobald ein Element gefunden wird, das die Kriterien erfüllt, während die `Count` Methode immer alle Elemente durchlaufen muss. Die Datei "Dashboard *Index. cshtml* " enthielt ursprünglich den folgenden Code:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample10.cshtml)]
 
-Wir haben es geändert:
+Wir haben Folgendes geändert:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample11.cshtml?highlight=1)]
 
 ### <a name="generate-urls-in-mvc-views-using-mvc-helpers"></a>Generieren von URLs in MVC-Ansichten mithilfe von MVC-Hilfsprogrammen
 
-Für die Schaltfläche **"Fix It erstellen"** auf der Startseite hat die Fix It-App ein Ankerelement hart codiert:
+Für die Schaltfläche **Fix erstellen** auf der Startseite können Sie die Korrektur der IT-App als Anker Element hart codieren:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample12.cshtml)]
 
-Für View/Action-Links wie diesen ist es besser, den [URL.Action](https://msdn.microsoft.com/library/system.web.mvc.urlhelper.action.aspx) HTML-Helfer zu verwenden, zum Beispiel:
+Für Ansichts-/Aktionslinks wie diese empfiehlt es sich, das HTML-Hilfsprogramm [URL. Action](https://msdn.microsoft.com/library/system.web.mvc.urlhelper.action.aspx) zu verwenden, z. b.:
 
 [!code-cshtml[Main](the-fix-it-sample-application/samples/sample13.cshtml)]
 
-### <a name="use-taskdelay-instead-of-threadsleep-in-worker-role"></a>Verwenden von Task.Delay anstelle von Thread.Sleep in der Workerrolle
+### <a name="use-taskdelay-instead-of-threadsleep-in-worker-role"></a>Verwenden Sie Task. Delay anstelle von Thread. Sleep in der workerrolle.
 
-Die Vorlage für `Thread.Sleep` das neue Projekt fügt den Beispielcode für eine Workerrolle ein, aber wenn der Thread in den Ruhezustand versetzt wird, kann der Threadpool zusätzliche unnötige Threads auslösen. Sie können dies vermeiden, indem Sie stattdessen [Task.Delay](https://msdn.microsoft.com/library/hh139096.aspx) verwenden.
+Mit der Vorlage "New-Project" `Thread.Sleep` wird der Beispielcode für eine workerrolle eingefügt, aber der Thread kann dazu führen, dass der Thread Pool zusätzliche unnötige Threads erzeugt. Sie können dies vermeiden, indem Sie stattdessen " [Task. Delay](https://msdn.microsoft.com/library/hh139096.aspx) " verwenden.
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample14.cs?highlight=11)]
 
-### <a name="avoid-async-void"></a>Vermeiden Sie asynchrone Void
+### <a name="avoid-async-void"></a>Vermeiden Sie Async void.
 
-Wenn eine async-Methode keinen Wert zurückgeben muss, geben Sie einen `Task` Typ anstelle `void`von zurück.
+Wenn eine Async-Methode keinen Wert zurückgeben muss, geben Sie anstelle von einen- `Task` Typ zurück `void` .
 
-Dieses Beispiel stammt `FixItQueueManager` aus der Klasse:
+Dieses Beispiel ist aus der- `FixItQueueManager` Klasse:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample15.cs)]
 
-Sie sollten `async void` nur für Ereignishandler der obersten Ebene verwendet werden. Wenn Sie eine `async void`Methode als definieren, kann der Aufrufer nicht auf die Methode **warten** oder Ausnahmen abfangen, die die Methode auslöst. Weitere Informationen finden Sie unter [Best Practices in Asynchrone Programmierung](https://msdn.microsoft.com/magazine/jj991977.aspx).
+Sie sollten `async void` nur für Ereignishandler der obersten Ebene verwenden. Wenn Sie eine Methode als definieren `async void` , kann der Aufrufer nicht auf die Methode **warten** oder Ausnahmen abfangen, die von der Methode ausgelöst werden. Weitere Informationen finden Sie unter [bewährte Methoden bei der asynchronen Programmierung](https://msdn.microsoft.com/magazine/jj991977.aspx).
 
-### <a name="use-a-cancellation-token-to-break-from-worker-role-loop"></a>Verwenden eines Abbruchtokens zum Unterbrechen der Workerrollenschleife
+### <a name="use-a-cancellation-token-to-break-from-worker-role-loop"></a>Verwenden eines Abbruch Tokens, um die workerrollenschleife zu unterbrechen
 
-In der Regel enthält die **Run-Methode** für eine Workerrolle eine Endlosschleife. Wenn die Workerrolle beendet wird, wird die [RoleEntryPoint.OnStop-Methode](https://msdn.microsoft.com/library/windowsazure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) aufgerufen. Sie sollten diese Methode verwenden, um die Arbeit, die innerhalb der **Run-Methode** ausgeführt wird, abzubrechen und ordnungsgemäß zu beenden. Andernfalls kann der Prozess mitten in einem Vorgang beendet werden.
+In der Regel enthält die **Run** -Methode für eine workerrolle eine Endlosschleife. Wenn die workerrolle angehalten wird, wird die [RoleEntrypoint. OnStop](https://msdn.microsoft.com/library/windowsazure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) -Methode aufgerufen. Verwenden Sie diese Methode, um die Arbeit abzubrechen, die in der **Run** -Methode ausgeführt wird, und ordnungsgemäß zu beenden. Andernfalls kann der Prozess in der Mitte eines Vorgangs beendet werden.
 
-### <a name="opt-out-of-automatic-mime-sniffing-procedure"></a>Opt-out von automatischem MIME-Sniffing-Verfahren
+### <a name="opt-out-of-automatic-mime-sniffing-procedure"></a>Automatisches Ausführen von MIME-Sniffing-Prozeduren ablehnen
 
-In einigen Fällen meldet Internet Explorer einen MIME-Typ, der sich von dem vom Webserver angegebenen Typ unterscheidet. Wenn Internet Explorer beispielsweise HTML-Inhalte in einer Datei findet, die mit dem HTTP-Antwortheader Content-Type: text/plain übermittelt wird, bestimmt Internet Explorer, dass der Inhalt als HTML gerendert werden soll. Leider kann dieses "MIME-Sniffing" auch zu Sicherheitsproblemen für Server führen, die nicht vertrauenswürdige Inhalte hosten. Um dieses Problem zu bekämpfen, hat Internet Explorer 8 eine Reihe von Änderungen am MIME-Typ-Bestimmungscode vorgenommen und ermöglicht es Anwendungsentwicklern, [sich von MIME-Sniffing abzumelden.](https://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx) Der folgende Code wurde der Datei *Web.config* hinzugefügt.
+In einigen Fällen meldet Internet Explorer einen anderen MIME-Typ als den vom Webserver angegebenen Typ. Wenn Internet Explorer beispielsweise HTML-Inhalt in einer Datei findet, die mit dem HTTP-Antwortheader Content-Type: Text/Plain geliefert wird, legt Internet Explorer fest, dass der Inhalt als HTML gerendert werden soll. Leider kann diese "MIME-Sniffing" auch zu Sicherheitsproblemen für Server führen, die nicht vertrauenswürdigen Inhalt hosten. Um dieses Problem zu beheben, hat Internet Explorer 8 eine Reihe von Änderungen am Code der MIME-Typbestimmung vorgenommen und ermöglicht Anwendungsentwicklern, die [MIME-Sniffing](https://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx)zu abonnieren. Der folgende Code wurde der *Web.config* Datei hinzugefügt.
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample16.xml?highlight=2-7)]
 
-### <a name="enable-bundling-and-minification"></a>Bündelung und Minierung ermöglichen
+### <a name="enable-bundling-and-minification"></a>Bündelung und Minimierung aktivieren
 
-Wenn Visual Studio ein neues Webprojekt erstellt, ist die Bündelung und Minifizierung von JavaScript-Dateien standardmäßig nicht aktiviert. Wir haben eine Codezeile in BundleConfig.cs hinzugefügt:
+Wenn Visual Studio ein neues Webprojekt erstellt, ist das bündeln und minimieren von JavaScript-Dateien standardmäßig nicht aktiviert. In BundleConfig.cs wurde eine Codezeile hinzugefügt:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample17.cs?highlight=9)]
 
-### <a name="set-an-expiration-time-out-for-authentication-cookies"></a>Festlegen eines Ablauftimeouts für Authentifizierungscookies
+### <a name="set-an-expiration-time-out-for-authentication-cookies"></a>Festlegen eines Ablauf Timeouts für Authentifizierungs Cookies
 
-Standardmäßig laufen Authentifizierungscookies in zwei Wochen ab. Eine kürzere Zeit ist sicherer. Sie können diese Einstellung in *StartupAuth.cs*ändern:
+Standardmäßig laufen Authentifizierungs Cookies in zwei Wochen ab. Eine kürzere Zeit ist sicherer. Sie können diese Einstellung in *StartupAuth.cs*ändern:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample18.cs?highlight=4-5)]
 
 <a id="run-in-vs"></a>
-## <a name="how-to-run-the-app-from-visual-studio-on-your-local-computer"></a>So führen Sie die App von Visual Studio aus auf Ihrem lokalen Computer aus
+## <a name="how-to-run-the-app-from-visual-studio-on-your-local-computer"></a>Ausführen der APP aus Visual Studio auf dem lokalen Computer
 
-Es gibt zwei Möglichkeiten, die Fix It-App auszuführen:
+Es gibt zwei Möglichkeiten, die Korrektur der IT-App auszuführen:
 
-- Führen Sie die Basisanwendung aus, die neue Aufgaben direkt in die SQL-Datenbank schreibt.
-- Führen Sie die Anwendung mit einer Warteschlange plus einem Back-End-Dienst aus, um Aufgaben zu erstellen. Das Warteschlangenmuster wird im Kapitel [Queue-Centric Work Pattern](queue-centric-work-pattern.md)beschrieben.
+- Führen Sie die Basisanwendung aus, die neue Tasks direkt in die SQL-Datenbank schreibt.
+- Ausführen der Anwendung mithilfe einer Warteschlange und eines Back-End-Dienstanbieter zum Erstellen von Aufgaben Das Warteschlangen Muster wird im Kapitel [Queue-zentriertes Arbeitsmuster](queue-centric-work-pattern.md)beschrieben.
 
 <a id="runbase"></a>
 ### <a name="run-the-base-application"></a>Ausführen der Basisanwendung
 
 1. Installieren Sie [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017).
-2. Installieren Sie das [Azure SDK für .NET für Visual Studio](https://azure.microsoft.com/downloads/).
+2. Installieren Sie das [Azure SDK für .net für Visual Studio](https://azure.microsoft.com/downloads/).
 3. Laden Sie die ZIP-Datei aus der [MSDN Code Gallery](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4)herunter.
-4. Klicken Sie im Datei-Explorer mit der rechten Maustaste auf die ZIP-Datei, und klicken Sie auf Eigenschaften, und klicken Sie dann im Eigenschaftenfenster auf Entsperren.
-5. Entpacken Sie die Datei.
-6. Doppelklicken Sie auf die .sln-Datei, um Visual Studio zu starten.
-7. Klicken Sie im Menü **Extras** auf **NuGet Package Manager**und dann auf **Package Manager Console**.
-8. Klicken Sie in der Package Manager Console (PMC) auf Wiederherstellen.
+4. Klicken Sie im Datei-Explorer mit der rechten Maustaste auf die ZIP-Datei, und klicken Sie auf Eigenschaften, und klicken Sie dann im Eigenschaftenfenster auf Sperre entsperren.
+5. Entzippen Sie die Datei.
+6. Doppelklicken Sie auf die SLN-Datei, um Visual Studio zu starten.
+7. Klicken Sie **im Menü** Extras auf **nuget-Paket-Manager**und dann auf Paket-Manager- **Konsole**.
+8. Klicken Sie in der Paket-Manager-Konsole (PMC) auf Wiederherstellen.
 9. Beenden Sie Visual Studio.
-10. Starten Sie den [Azure-Speicheremulator](/azure/storage/common/storage-use-emulator).
-11. Starten Sie Visual Studio neu, und öffnen Sie die Projektmappendatei, die Sie im vorherigen Schritt geschlossen haben.
-12. Stellen Sie sicher, dass das FixIt-Projekt als Startprojekt festgelegt ist, und drücken Sie dann STRG+F5, um das Projekt auszuführen.
+10. Starten Sie den [Azure Storage Emulator](/azure/storage/common/storage-use-emulator).
+11. Starten Sie Visual Studio neu, und öffnen Sie die Projektmappendatei, die Sie im vorherigen Schritt geschlossen haben
+12. Stellen Sie sicher, dass das Projekt "Projektname" als Startprojekt festgelegt ist, und drücken Sie dann STRG + F5, um das Projekt auszuführen.
 
 <a id="queueslocal"></a>
-### <a name="run-the-application-with-queue-processing"></a>Ausführen der Anwendung mit Warteschlangenverarbeitung
+### <a name="run-the-application-with-queue-processing"></a>Ausführen der Anwendung mit Warteschlangen Verarbeitung
 
-1. Folgen Sie den Anweisungen zum [Ausführen der Basisanwendung](#runbase), schließen Sie dann den Browser, und schließen Sie Visual Studio.
-2. Starten Sie Visual Studio mit Administratorrechten. (Sie verwenden den Azure-Computeemulator, und das erfordert Administratorrechte.)
-3. Ändern Sie in der Datei *Web.config* im *MyFixIt-Projekt* `appSettings/UseQueues` (dem Webprojekt) den Wert von "true":
+1. Befolgen Sie die Anweisungen zum [Ausführen der Basisanwendung](#runbase), und schließen Sie dann den Browser, und schließen Sie Visual Studio.
+2. Starten Sie Visual Studio mit Administratorrechten. (Sie verwenden den Azure-Server Emulator, für den Administratorrechte erforderlich sind.)
+3. Ändern Sie in der Datei "Application *Web.config* " im Projekt " *mymexit* " (dem Webprojekt) den Wert von `appSettings/UseQueues` in "true":
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample19.cmd?highlight=3)]
-4. Wenn der [Azure-Speicheremulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx) noch nicht ausgeführt wird, starten Sie ihn erneut.
-5. Führen Sie das FixIt-Webprojekt und das MyFixItCloudService-Projekt gleichzeitig aus.
+4. Wenn der [Azure Storage Emulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx) noch nicht ausgeführt wird, starten Sie ihn erneut.
+5. Führen Sie das Webprojekt und das Projekt myfixitcloudservice gleichzeitig aus.
 
     Verwenden von Visual Studio:
 
-   1. Drücken Sie **F5,** um das FixIt-Projekt auszuführen.
-   2. Klicken Sie im **Projektmappen-Explorer**mit der rechten Maustaste auf das MyFixItCloudService-Projekt, und klicken Sie dann auf Neue**Instanz starten** **debuggen** > .
+   1. Drücken Sie **F5** , um das Projekt "Projekt" auszuführen.
+   2. Klicken Sie in **Projektmappen-Explorer**mit der rechten Maustaste auf das Projekt myfixitcloudservice, und klicken Sie dann auf **Debuggen**  >  **neue Instanz starten**.
 
     Verwenden von Visual Studio 2013 Express für Web:
 
-   3. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf die FixIt-Lösung, und wählen Sie **Eigenschaften**aus.
-   4. Wählen Sie **Mehrere Startprojekte**aus.
-   5. Wählen Sie in der Dropdown-Liste **Aktion** unter MyFixIt und MyFixItCloudService die Option **Start**aus.
+   3. Klicken Sie in Projektmappen-Explorer mit der rechten Maustaste auf die Projekt Mappe, und wählen Sie **Eigenschaften**aus.
+   4. Wählen Sie **mehrere Start Projekte**aus.
+   5. Wählen Sie in der Dropdown Liste **Aktion** unter myfxit und myfixitcloudservice die Option **Start**aus.
    6. Klicken Sie auf **OK**.
    7. Drücken Sie **F5**, um beide Projekte auszuführen.
 
-      Wenn Sie das MyFixItCloudService-Projekt ausführen, startet Visual Studio den Azure-Computeemulator. Je nach Firewallkonfiguration müssen Sie den Emulator möglicherweise über die Firewall zulassen.
+      Wenn Sie das Projekt myfixitcloudservice ausführen, startet Visual Studio den Azure-Server Emulator. Abhängig von ihrer Firewallkonfiguration müssen Sie den Emulator möglicherweise durch die Firewall zulassen.
 
 <a id="deploybase"></a>
-## <a name="how-to-deploy-the-base-app-to-azure-app-service-web-apps-by-using-the-windows-powershell-scripts"></a>Bereitstellen der Basis-App in Azure App Service-Web-Apps mithilfe der Windows PowerShell-Skripts
+## <a name="how-to-deploy-the-base-app-to-azure-app-service-web-apps-by-using-the-windows-powershell-scripts"></a>Bereitstellen der Basis-app zum Azure App Service von Web-Apps mithilfe der Windows PowerShell-Skripts
 
-Zur Veranschaulichung des [Musters "Alles automatisieren"](automate-everything.md) wird die Fix It-App mit Skripts bereitgestellt, die eine Umgebung in Azure einrichten und das Projekt in der neuen Umgebung bereitstellen. In den folgenden Anweisungen wird erläutert, wie die Skripts verwendet werden.
+Zur Veranschaulichung des Musters " [Alles automatisieren](automate-everything.md) " wird die Korrektur der IT-App mit Skripts bereitgestellt, die eine Umgebung in Azure einrichten und das Projekt in der neuen Umgebung bereitstellen. In den folgenden Anweisungen wird erläutert, wie die Skripts verwendet werden.
 
-Wenn Sie in Azure ohne Warteschlangen ausgeführt werden möchten und die Änderungen vorgenommen haben, um lokal mit Warteschlangen ausgeführt zu werden, stellen Sie sicher, dass Sie den Wert UseQueues appSetting wieder auf false setzen, bevor Sie mit den folgenden Anweisungen fortfahren.
+Wenn Sie in Azure ohne Verwendung von Warteschlangen ausführen möchten und die Änderungen für die lokale Ausführung mit Warteschlangen vorgenommen haben, stellen Sie sicher, dass Sie den Wert für die usequeues-appSetting auf false zurücksetzen, bevor Sie mit den folgenden Anweisungen fortfahren.
 
-In diesen Anweisungen wird davon ausgegangen, dass Sie die Fix It-Lösung bereits lokal heruntergeladen und ausgeführt haben und dass Sie über ein Azure-Konto oder ein Azure-Abonnement verfügen, für das Sie berechtigt sind.
+Bei diesen Anweisungen wird vorausgesetzt, dass Sie die Lösung zum Beheben von Lösungen bereits heruntergeladen und ausgeführt haben und dass Sie über ein Azure-Konto verfügen oder über ein Azure-Abonnement verfügen, das Sie zur Verwaltung autorisiert haben.
 
-1. Installieren Sie die **Azure PowerShell-Konsole.** Anweisungen hierzu finden Sie unter [Installieren und Konfigurieren von Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-4.3.1).
+1. Installieren Sie die **Azure PowerShell** -Konsole. Anweisungen hierzu finden Sie unter [Installieren und Konfigurieren von Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-4.3.1).
 
-    Diese angepasste Konsole ist für die Arbeit mit Ihrem Azure-Abonnement konfiguriert. Das Azure-Modul wird im *Verzeichnis "Programmdateien"* installiert und bei jeder Verwendung der Azure PowerShell-Konsole automatisch importiert.
+    Diese angepasste Konsole ist für die Zusammenarbeit mit Ihrem Azure-Abonnement konfiguriert. Das Azure-Modul ist im Verzeichnis " *Programme* " installiert und wird bei jeder Verwendung der Azure PowerShell Konsole automatisch importiert.
 
-    Wenn Sie lieber in einem anderen Hostprogramm arbeiten möchten, z. B. Windows PowerShell ISE, verwenden Sie das [Cmdlet Import-Modul,](https://go.microsoft.com/fwlink/?LinkID=141553) um das Azure-Modul zu importieren, oder verwenden Sie einen Befehl im Azure-Modul, um den automatischen Import des Moduls auszulösen.
-2. Starten Sie Azure PowerShell mit der Option **Als Administrator ausführen.**
-3. Führen Sie das [Cmdlet Set-ExecutionPolicy](https://go.microsoft.com/fwlink/p/?linkid=293941) aus, `RemoteSigned`um die Azure PowerShell-Ausführungsrichtlinie auf festzulegen. Geben Sie **Y** (für Ja) ein, um die Richtlinienänderung abzuschließen.
+    Wenn Sie lieber in einem anderen Host Programm arbeiten möchten, z. b. Windows PowerShell ISE, verwenden Sie das [Import-Module-](https://go.microsoft.com/fwlink/?LinkID=141553) Cmdlet, um das Azure-Modul zu importieren, oder verwenden Sie einen Befehl im Azure-Modul, um den automatischen Import des Moduls zu initiieren.
+2. Starten Sie Azure PowerShell mit der Option **als Administrator ausführen** .
+3. Führen Sie das [Set-ExecutionPolicy](https://go.microsoft.com/fwlink/p/?linkid=293941) -Cmdlet aus, um die Azure PowerShell Ausführungs Richtlinie auf festzulegen `RemoteSigned` . Geben Sie **Y** (für ja) ein, um die Richtlinien Änderung abzuschließen.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample20.cmd)]
 
-    Mit dieser Einstellung können Sie lokale Skripts ausführen, die nicht digital signiert sind. (Sie können die Ausführungsrichtlinie auch auf `Unrestricted`festlegen, wodurch der Schritt "Entsperren" später entfallen würde, dies wird jedoch aus Sicherheitsgründen nicht empfohlen.)
-4. Führen `Add-AzureAccount` Sie das Cmdlet aus, um PowerShell mit Anmeldeinformationen für Ihr Konto einzurichten.
+    Diese Einstellung ermöglicht es Ihnen, lokale Skripts auszuführen, die nicht digital signiert sind. (Sie können auch die Ausführungs Richtlinie auf festlegen `Unrestricted` , wodurch der Blockierung-Schritt später nicht mehr erforderlich ist. Dies wird jedoch aus Sicherheitsgründen nicht empfohlen.)
+4. Führen Sie das- `Add-AzureAccount` Cmdlet aus, um PowerShell mit Anmelde Informationen für Ihr Konto einzurichten.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample21.cmd)]
 
-    Diese Anmeldeinformationen laufen nach einer gewissen Zeit ab `Add-AzureAccount` und Sie müssen das Cmdlet erneut ausführen. Da dieses E-Book geschrieben wird, beträgt die Frist bis zum Ablauf der Anmeldeinformationen 12 Stunden.
-5. Wenn Sie über mehrere Abonnements verfügen, geben Sie mit dem Cmdlet Select-AzureSubscription das Abonnement an, in dem Sie die Testumgebung erstellen möchten.
-6. Importieren Sie ein Verwaltungszertifikat für dasselbe Azure-Abonnement mithilfe von `Get-AzurePublishSettingsFile` und `Import-AzurePublishSettingsFile` cmdlets. Das erste dieser Cmdlets lädt eine Zertifikatdatei herunter, und in der zweiten geben Sie den Speicherort dieser Datei an, um sie zu importieren. > [!IMPORTANT]
-   > Bewahren Sie die heruntergeladene Datei an einem sicheren Speicherort auf, oder löschen Sie sie, wenn Sie damit fertig sind, da sie ein Zertifikat enthält, das zum Verwalten Ihrer Azure-Dienste verwendet werden kann.
+    Diese Anmelde Informationen laufen nach einem bestimmten Zeitraum ab, und Sie müssen das `Add-AzureAccount` Cmdlet erneut ausführen. Da dieses e-book geschrieben wird, beträgt das Zeitlimit vor Ablauf der Anmelde Informationen 12 Stunden.
+5. Wenn Sie über mehrere Abonnements verfügen, verwenden Sie das Cmdlet Select-azureabonnement, um das Abonnement anzugeben, in dem Sie die Testumgebung erstellen möchten.
+6. Importieren Sie ein Verwaltungs Zertifikat für das gleiche Azure-Abonnement, indem Sie die `Get-AzurePublishSettingsFile` `Import-AzurePublishSettingsFile` Cmdlets und verwenden. Das erste dieser Cmdlets lädt eine Zertifikatsdatei herunter, und in der zweiten Datei geben Sie den Speicherort dieser Datei an, um Sie zu importieren. > [!IMPORTANT]
+   > Behalten Sie die heruntergeladene Datei an einem sicheren Speicherort bei, oder löschen Sie Sie, wenn Sie fertig sind, da Sie ein Zertifikat enthält, das zum Verwalten Ihrer Azure-Dienste verwendet werden kann.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample22.cmd)]
 
-    Das Zertifikat wird für einen REST-API-Aufruf verwendet, der die IP-Adresse des Entwicklungscomputers erkennt, um eine Firewallregel auf dem SQL-Datenbankserver festzulegen.
-7. Führen Sie das [Cmdlet Set-Location](https://go.microsoft.com/fwlink/p/?linkid=293912) (Aliase sind `cd`, `chdir`, und `sl`) aus, um zu dem Verzeichnis zu navigieren, das die Skripts enthält. (Sie befinden sich im *Ordner "Automatisierung"* im Ordner Fix It-Lösung.) Setzen Sie den Pfad in Anführungszeichen, wenn einer der Verzeichnisnamen Leerzeichen enthält. Um beispielsweise zum `c:\Sample Apps\FixIt\Automation` Verzeichnis zu navigieren, können Sie den folgenden Befehl eingeben:
+    Das Zertifikat wird für einen Rest-API-Rückruf verwendet, der die IP-Adresse des Entwicklungs Computers erkennt, um eine Firewallregel auf dem SQL-Datenbankserver festzulegen.
+7. Führen Sie das Cmdlet " [Set-Location](https://go.microsoft.com/fwlink/p/?linkid=293912) " (Aliase sind `cd` , `chdir` und) aus, `sl` um zu dem Verzeichnis zu navigieren, das die Skripts enthält. (Sie befinden sich im Ordner *Automation* im Ordner Lösung für die IT-Lösung.) Fügen Sie den Pfad in Anführungszeichen ein, wenn einer der Verzeichnisnamen Leerzeichen enthält. Um zum Verzeichnis zu navigieren, können Sie z. b. `c:\Sample Apps\FixIt\Automation` den folgenden Befehl eingeben:
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample23.cmd)]
-8. Damit Windows PowerShell diese Skripts ausführen kann, verwenden Sie das Cmdlet ["Unblock-File".](https://go.microsoft.com/fwlink/p/?linkid=294021) (Die Skripts werden blockiert, weil sie aus dem Internet heruntergeladen wurden.)
+8. Damit Windows PowerShell diese Skripts ausführen kann, verwenden Sie das [Unblock-File-](https://go.microsoft.com/fwlink/p/?linkid=294021) Cmdlet. (Die Skripts werden blockiert, da Sie aus dem Internet heruntergeladen wurden.)
 
     > [!WARNING]
-    > Sicherheit: Bevor `Unblock-File` Sie für ein Skript oder eine ausführbare Datei ausgeführt werden, öffnen Sie die Datei in Notepad, überprüfen Sie die Befehle, und stellen Sie sicher, dass sie keinen schädlichen Code enthalten.
+    > Sicherheit: bevor `Unblock-File` Sie in einem Skript oder einer ausführbaren Datei ausgeführt werden, öffnen Sie die Datei im Editor, untersuchen Sie die Befehle, und vergewissern Sie sich, dass Sie keinen bösartigen Code enthalten.
 
-    Der folgende Befehl führt `Unblock-File` z. B. das Cmdlet für alle Skripts im aktuellen Verzeichnis aus.
+    Der folgende Befehl führt z `Unblock-File` . b. das Cmdlet für alle Skripts im aktuellen Verzeichnis aus.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample24.cmd)]
-9. Um die Web-App für die Basis zu erstellen (keine Warteschlangenverarbeitung) Fix It-App, führen Sie das Skript zum Erstellen der Umgebung aus.
+9. Um die Web-App für die Basis (keine Warteschlangen Verarbeitung) zu erstellen, führen Sie das Skript zur Erstellung der Umgebung aus.
 
-    Der `Name` erforderliche Parameter gibt den Namen der Datenbank an und wird auch für das Speicherkonto verwendet, das das Skript erstellt. Der Name muss innerhalb der azurewebsites.net-Domäne global eindeutig sein. Wenn Sie einen Namen angeben, der nicht eindeutig ist, z. B. Fixit `New-AzureWebsite` oder Test (oder sogar wie im Beispiel fixitdemo), schlägt das Cmdlet mit einem internen Fehler fehl, der einen Konflikt meldet. Das Skript konvertiert den Namen in alle Kleinbuchstaben, um die Namensanforderungen für Web-Apps, Speicherkonten und Datenbanken zu erfüllen.
+    Der erforderliche `Name` -Parameter gibt den Namen der Datenbank an und wird auch für das Speicherkonto verwendet, das vom Skript erstellt wird. Der Name muss innerhalb der azurewebsites.net-Domäne global eindeutig sein. Wenn Sie einen Namen angeben, der nicht eindeutig ist, wie z. b. "fxit" oder "Test" (oder auch wie im Beispiel "fixitdemo"), `New-AzureWebsite` schlägt das Cmdlet mit einem internen Fehler fehl, der einen Konflikt meldet. Das Skript konvertiert den Namen in Kleinbuchstaben, um die namens Anforderungen für Web-Apps, Speicher Konten und Datenbanken zu erfüllen.
 
-    Der `SqlDatabasePassword` erforderliche Parameter gibt das Kennwort für das Administratorkonto an, das für SQL-Datenbank erstellt wird. Schließen Sie keine speziellen XML-Zeichen&amp; &lt; &gt; in das Kennwort ein (;). Dies ist eine Einschränkung der Art und Weise, wie die Skripts geschrieben wurden, und keine Einschränkung von Azure.
+    Der erforderliche `SqlDatabasePassword` Parameter gibt das Kennwort für das Administrator Konto an, das für die SQL-Datenbank erstellt wird. Fügen Sie keine speziellen XML-Zeichen im Kennwort ( &amp; &lt; &gt; ;) ein. Dies ist eine Einschränkung der Art und Weise, in der Skripts geschrieben wurden, nicht die Einschränkung von Azure.
 
-    Wenn Sie beispielsweise eine Web-App mit dem Namen "fixitdemo" erstellen und ein SQL Server-Administratorkennwort von "Passw0rd1" verwenden möchten, können Sie den folgenden Befehl eingeben:
+    Wenn Sie z. b. eine Web-App mit dem Namen "fixitdemo" erstellen und ein SQL Server Administrator Kennwort "Passw0rd1" verwenden möchten, können Sie den folgenden Befehl eingeben:
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample25.cmd)]
 
-    Der Name muss in der azurewebsites.net Domäne eindeutig sein, und das Kennwort muss die SQL-Datenbankanforderungen für die Kennwortkomplexität erfüllen. (Das Beispiel Passw0rd1 erfüllt die Anforderungen.)
+    Der Name muss in der azurewebsites.net-Domäne eindeutig sein, und das Kennwort muss den Anforderungen der SQL-Datenbank hinsichtlich der Kenn Wort Komplexität entsprechen. (Das Beispiel Passw0rd1 erfüllt die Anforderungen.)
 
-    Beachten Sie, dass der Befehl mit ". \". Um böswillige Ausführung von Skripts zu verhindern, erfordert Windows PowerShell, dass Sie beim Ausführen eines Skripts den vollqualifizierten Pfad zur Skriptdatei angeben. Sie können einen Punkt verwenden, um\"das aktuelle Verzeichnis anzugeben (". ) oder stellen Sie den vollqualifizierten Pfad bereit, z. B.:
+    Beachten Sie, dass der Befehl mit ". \" . Um die böswillige Ausführung von Skripts zu verhindern, erfordert Windows PowerShell, dass Sie den voll qualifizierten Pfad zur Skriptdatei angeben, wenn Sie ein Skript ausführen. Sie können einen Punkt verwenden, um das aktuelle Verzeichnis (".)" anzugeben. \" oder geben Sie den voll qualifizierten Pfad an, z. b.:
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample26.cmd)]
 
-    Weitere Informationen zum Skript finden `Get-Help` Sie im Cmdlet.
+    Weitere Informationen zum Skript finden Sie unter Verwenden des `Get-Help` Cmdlets.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample27.cmd)]
 
-    Sie können `Detailed`die `Full` `Parameters`Parameter `Examples` , , und Parameter des Get-Help-Cmdlets verwenden, um die zurückgegebene Hilfe zu filtern.
+    Sie können die `Detailed` -, `Full` -, `Parameters` -und- `Examples` Parameter des Cmdlets "Get-Help" verwenden, um die zurückgegebene Hilfe zu filtern.
 
-    Wenn das Skript fehlschlägt oder Fehler generiert, z. B. "New-AzureWebsite : Call Set-AzureSubscription und Select-AzureSubscription first", haben Sie die Konfiguration von Azure PowerShell möglicherweise nicht abgeschlossen.
+    Wenn das Skript fehlschlägt oder Fehler generiert, z. b. "New-azurewebsite: Set-azureabonnement und SELECT-azureabonnement First", ist die Konfiguration von Azure PowerShell möglicherweise nicht abgeschlossen.
 
-    Nachdem das Skript abgeschlossen ist, können Sie das Azure-Verwaltungsportal verwenden, um die Ressourcen anzuzeigen, die erstellt wurden, wie im Kapitel ["Alles automatisieren"](automate-everything.md) gezeigt.
-10. Verwenden Sie das *AzureWebsite.ps1-Skript,* um das FixIt-Projekt in der neuen Azure-Umgebung bereitzustellen. Beispiel:
+    Nachdem das Skript abgeschlossen wurde, können Sie das Azure-Verwaltungsportal verwenden, um die erstellten Ressourcen anzuzeigen, wie im Kapitel [Automatisieren von allem](automate-everything.md) gezeigt.
+10. Verwenden Sie das *AzureWebsite.ps1* Skript, um das-Projekt in der neuen Azure-Umgebung bereitzustellen. Beispiel:
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample28.cmd)]
 
-    Wenn die Bereitstellung abgeschlossen ist, wird der Browser geöffnet, wobei Fix It in Azure ausgeführt wird.
+    Wenn die Bereitstellung abgeschlossen ist, wird der Browser geöffnet, und der Browser wird in Azure ausgeführt.
 
 <a id="troubleshooting"></a>
-## <a name="troubleshooting-the-windows-powershell-scripts"></a>Fehlerbehebung bei windows PowerShell-Skripts
+## <a name="troubleshooting-the-windows-powershell-scripts"></a>Problembehandlung bei Windows PowerShell-Skripts
 
-Die häufigsten Fehler beim Ausführen dieser Skripts beziehen sich auf Berechtigungen. Stellen Sie `Add-AzureAccount` `Import-AzurePublishSettingsFile` sicher, dass und waren erfolgreich, und dass Sie sie für dasselbe Azure-Abonnement verwendet haben. Selbst `Add-AzureAccount` wenn sie erfolgreich war, müssen Sie es möglicherweise erneut ausführen. Die durch `Add-AzureAccount` Ablauf in 12 Stunden hinzugefügten Berechtigungen.
+Die häufigsten Fehler, die beim Ausführen dieser Skripts aufgetreten sind, beziehen sich auf Berechtigungen. Stellen Sie sicher, dass `Add-AzureAccount` und `Import-AzurePublishSettingsFile` erfolgreich waren und dass Sie für dasselbe Azure-Abonnement verwendet wurden. Auch wenn `Add-AzureAccount` erfolgreich war, müssen Sie ihn möglicherweise erneut ausführen. Die durch hinzugefügten Berechtigungen `Add-AzureAccount` laufen in 12 Stunden ab.
 
 ### <a name="object-reference-not-set-to-an-instance-of-an-object"></a>Objektverweis nicht auf eine Instanz eines Objekts festgelegt.
 
-Wenn das Skript Fehler zurückgibt, z. B. "Objektreferenz ist nicht auf eine Instanz eines Objekts festgelegt", was bedeutet, `Add-AzureAccount` dass Windows PowerShell kein zu verarbeitendes Objekt finden kann (dies ist eine Nullverweisausnahme), führen Sie das Cmdlet aus, und versuchen Sie es erneut.
+Wenn das Skript Fehler zurückgibt, wie z. b. "Objekt Verweis ist nicht auf eine Instanz eines Objekts festgelegt", was bedeutet, dass Windows PowerShell kein zu verarbeitende Objekt finden kann (Dies ist eine NULL-Verweis Ausnahme), führen `Add-AzureAccount` Sie das Cmdlet aus, und versuchen Sie es erneut.
 
 [!code-console[Main](the-fix-it-sample-application/samples/sample29.cmd)]
 
-### <a name="internalerror-the-server-encountered-an-internal-error"></a>InternalError: Auf dem Server ist ein interner Fehler aufgetreten.
+### <a name="internalerror-the-server-encountered-an-internal-error"></a>InternalError: auf dem Server ist ein interner Fehler aufgetreten.
 
-Das `New-AzureWebsite` Cmdlet gibt einen internen Fehler zurück, wenn der Name in der Domäne azurewebsites.net nicht eindeutig ist. Um den Fehler zu beheben, verwenden Sie einen anderen Wert für den Namen, der sich im Name-Parameter *von New-AzureWebsiteEnv.ps1*befindet.
+Das- `New-AzureWebsite` Cmdlet gibt einen internen Fehler zurück, wenn der Name in der azurewebsites.net-Domäne nicht eindeutig ist. Um den Fehler zu beheben, verwenden Sie einen anderen Wert für den Namen, der im Name-Parameter von *New-AzureWebsiteEnv.ps1*vorliegt.
 
 [!code-console[Main](the-fix-it-sample-application/samples/sample30.cmd)]
 
-### <a name="restarting-the-script"></a>Neustart des Skripts
+### <a name="restarting-the-script"></a>Neustarten des Skripts
 
-Wenn Sie das Skript *New-AzureWebsiteEnv.ps1* neu starten müssen, weil es fehlgeschlagen ist, bevor es die Meldung "Skript ist abgeschlossen" gedruckt hat, können Sie Ressourcen löschen, die das Skript vor dem Beenden erstellt hat. Wenn das Skript beispielsweise bereits die ContosoFixItDemo-Web-App erstellt hat und Sie das Skript erneut mit demselben Namen ausführen, schlägt das Skript fehl, da der Name verwendet wird.
+Wenn Sie die *New-AzureWebsiteEnv.ps1* Skripts neu starten müssen, weil ein Fehler aufgetreten ist, bevor Sie die Meldung "Skript ist fertiggestellt" ausgegeben haben, können Sie Ressourcen löschen, die vom Skript erstellt wurden, bevor es angehalten wurde. Wenn das Skript z. b. die Web-App condesofixitdemo bereits erstellt hat und Sie das Skript erneut mit dem gleichen Namen ausführen, schlägt das Skript fehl, da der Name bereits verwendet wird.
 
-Um zu bestimmen, welche Ressourcen das Skript vor dem Stopp erstellt hat, verwenden Sie die folgenden Cmdlets:
+Verwenden Sie die folgenden Cmdlets, um zu bestimmen, welche Ressourcen vom Skript erstellt wurden, bevor es angehalten wurde:
 
 - `Get-AzureWebsite`
 - `Get-AzureSqlDatabaseServer`
-- `Get-AzureSqlDatabase`: Um dieses Cmdlet auszuführen, leiten `Get-AzureSqlDatabase`Sie den Datenbankservernamen an:`Get-AzureSqlDatabaseServer | Get-AzureSqlDatabase.`
+- `Get-AzureSqlDatabase`: Um dieses Cmdlet auszuführen, übergeben Sie den Namen des Datenbankservers an Folgendes `Get-AzureSqlDatabase` :   `Get-AzureSqlDatabaseServer | Get-AzureSqlDatabase.`
 
-Um diese Ressourcen zu löschen, verwenden Sie die folgenden Befehle. Beachten Sie, dass Sie beim Löschen des Datenbankservers automatisch die datenbanken löschen, die dem Server zugeordnet sind.
+Verwenden Sie die folgenden Befehle, um diese Ressourcen zu löschen. Beachten Sie, dass beim Löschen des Datenbankservers automatisch die dem Server zugeordneten Datenbanken gelöscht werden.
 
 - `Get-AzureWebsite -Name <WebsiteName> | Remove-AzureWebsite`
 - `Get-AzureSqlDatabase -Name <DatabaseName> -ServerName <DatabaseServerName> | Remove-SqlAzureDatabase`
 - `Get-AzureSqlDatabaseServer | Remove-AzureSqlDatabaseServer`
 
 <a id="deployqueues"></a>
-## <a name="how-to-deploy-the-app-with-queue-processing-to-azure-app-service-web-apps-and-an-azure-cloud-service"></a>Bereitstellen der App mit Warteschlangenverarbeitung in Azure App Service-Web-Apps und einem Azure Cloud Service
+## <a name="how-to-deploy-the-app-with-queue-processing-to-azure-app-service-web-apps-and-an-azure-cloud-service"></a>Bereitstellen der APP mit Warteschlangen Verarbeitung zum Azure App Service von Web-Apps und einem Azure-clouddienst
 
-Um Warteschlangen zu aktivieren, nehmen Sie die folgende Änderung in der Datei MyFixIt-Web.config vor. Unter `appSettings`ändern Sie `UseQueues` den Wert von in "true":
+Um Warteschlangen zu aktivieren, nehmen Sie die folgende Änderung in der MyFixIt\Web.config-Datei vor. `appSettings`Ändern Sie unter den Wert von `UseQueues` in "true":
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample31.xml)]
 
-Stellen Sie dann die MVC-Anwendung in einer Web-App in Azure App Service bereit, wie [zuvor](#deploybase)beschrieben .
+Stellen Sie die MVC-Anwendung dann wie [zuvor](#deploybase)beschrieben für eine Web-App in Azure App Service bereit.
 
-Erstellen Sie als Nächstes einen neuen Azure-Clouddienst. Die in der Fix It-App enthaltenen Skripts erstellen oder stellen den Clouddienst nicht bereit, daher müssen Sie dafür das Azure-Portal verwenden. Klicken Sie im Portal auf **Neue** -- **Berechnung** – Cloud**Service-Schnellerstellung** **Cloud Service** -- , und geben Sie dann eine URL und einen Rechenzentrumsspeicherort ein. Verwenden Sie dasselbe Rechenzentrum, in dem Sie die Web-App bereitgestellt haben.
+Erstellen Sie als nächstes einen neuen Azure-clouddienst. Die Skripts, die in der Fix-it-App enthalten sind, erstellen oder stellen den clouddienst nicht bereit, sodass Sie Azure-Portal hierfür verwenden müssen. Klicken Sie im Portal auf **neu**  --  **Compute** – **clouddienst**  --  **schneller**Fassung, und geben Sie dann eine URL und einen Speicherort für den Daten Center ein. Verwenden Sie das gleiche Rechenzentrum, in dem Sie die Web-App bereitgestellt haben.
 
 ![](the-fix-it-sample-application/_static/image1.png)
 
-Bevor Sie den Clouddienst bereitstellen können, müssen Sie einige der Konfigurationsdateien aktualisieren.
+Bevor Sie den clouddienst bereitstellen können, müssen Sie einige der Konfigurationsdateien aktualisieren.
 
-Ersetzen Sie unter `connectionStrings`unter den Wert der `appdb` Verbindungszeichenfolge durch die tatsächliche Verbindungszeichenfolge für die SQL-Datenbank. Sie können die Verbindungszeichenfolge aus dem Portal abrufen. Klicken Sie im Portal auf **SQL-Datenbanken** - **appdb** - **SQL-Datenbankverbindungszeichenfolgen für ADO .Net, ODBC, PHP und JDBC**anzeigen. Kopieren Sie die ADO.NET Verbindungszeichenfolge, und fügen Sie den Wert in die Datei app.config ein. Ersetzen Sie\_das\_Kennwort "-Ihr-Kennwort hier" durch Ihr Datenbankkennwort. (Angenommen, Sie haben die Skripts zum Bereitstellen der MVC-App verwendet, geben Sie das Datenbankkennwort im `SqlDatabasePassword` Skriptparameter an.)
+Ersetzen Sie in MyFixIt.WorkerRole\app.config `connectionStrings` den Wert der `appdb` Verbindungs Zeichenfolge durch die tatsächliche Verbindungs Zeichenfolge für die SQL-Datenbank. Sie können die Verbindungs Zeichenfolge aus dem Portal erhalten. Klicken Sie im Portal auf **SQL-Datenbanken**  -  **appdb**  -  **View SQL Database Connection Strings for ADO .net, ODBC, PHP und JDBC**. Kopieren Sie die Verbindungs Zeichenfolge ADO.net, und fügen Sie den Wert in die app.config Datei ein. Ersetzen Sie "{Your \_ password \_ here}" durch ihr Daten Bank Kennwort. (Wenn Sie die Skripts zum Bereitstellen der MVC-App verwendet haben, haben Sie das Daten Bank Kennwort im `SqlDatabasePassword` Skript Parameter angegeben.)
 
 Das Ergebnis sollte wie folgt aussehen:
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample32.xml)]
 
-Ersetzen Sie unter `appSettings`die beiden Platzhalterwerte für das Azure-Speicherkonto.
+Ersetzen Sie in der gleichen MyFixIt.WorkerRole\app.config Datei unter die `appSettings` beiden Platzhalter Werte für das Azure-Speicherkonto.
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample33.xml?highlight=2-3)]
 
-Sie können den Zugriffsschlüssel über das Portal abrufen. Weitere Informationen [zum Verwalten von Speicherkonten](https://docs.microsoft.com/azure/storage/common/storage-create-storage-account).
+Sie können den Zugriffsschlüssel aus dem Portal abrufen. Weitere Informationen finden [Sie unter Verwalten von Speicher Konten](https://docs.microsoft.com/azure/storage/common/storage-create-storage-account).
 
-Ersetzen Sie in MyFixItCloudService-ServiceConfiguration.Cloud.cscfg dieselben zwei Platzhalterwerte für das Azure-Speicherkonto.
+Ersetzen Sie in MyFixItCloudService\ServiceConfiguration.Cloud.cscfg die gleichen beiden Platzhalter Werte für das Azure-Speicherkonto.
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample34.xml?highlight=3)]
 
-Jetzt können Sie den Clouddienst bereitstellen. Klicken Sie in Lösungsumgebung mit der rechten Maustaste auf das MyFixItCloudService-Projekt, und wählen Sie **Veröffentlichen**aus. Weitere Informationen finden Sie unter["Bereitstellen der Anwendung in Azure](https://www.windowsazure.com/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", der in Teil 2 dieses [Tutorials](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36)enthalten ist.
+Nun können Sie den clouddienst bereitstellen. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt myfixitcloudservice, und wählen Sie **veröffentlichen** Weitere Informationen finden Sie unter "bereitstellen[der Anwendung in Azure](https://www.windowsazure.com/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)" in Teil 2 [dieses Tutorials](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36).
 
 > [!div class="step-by-step"]
 > [Zurück](more-patterns-and-guidance.md)
