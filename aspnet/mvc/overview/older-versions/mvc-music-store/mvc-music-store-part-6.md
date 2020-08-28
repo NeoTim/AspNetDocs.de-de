@@ -8,14 +8,14 @@ ms.date: 04/21/2011
 ms.assetid: b3193d33-2d0b-4d98-9712-58bd897c62ec
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
 msc.type: authoredcontent
-ms.openlocfilehash: bc031dd5be61cc6707c522f85f6af77a420c8b31
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 24d3f028a9a720e5b526518624c9c1c2ce2c37d4
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78433533"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044947"
 ---
-# <a name="part-6-using-data-annotations-for-model-validation"></a>Teil 6: Verwenden von Daten Anmerkungen für die Modell Validierung
+# <a name="part-6-using-data-annotations-for-model-validation"></a>Teil 6: Modellüberprüfung mithilfe von Datenanmerkungen
 
 von [Jon Galloway](https://github.com/jongalloway)
 
@@ -40,7 +40,7 @@ Wir verwenden die folgenden Daten Anmerkungen-Attribute:
 - **Bind** – listet Felder auf, die beim Binden von Parameter-oder Formular Werten an Modell Eigenschaften ausgeschlossen oder eingeschlossen werden sollen.
 - **Gerüst Column** – ermöglicht das Ausblenden von Feldern aus Editor Formularen
 
-*Hinweis: Weitere Informationen zur Modell Validierung mithilfe von Attributen für die Daten Anmerkung finden Sie in der MSDN-Dokumentation unter* [`https://go.microsoft.com/fwlink/?LinkId=159063`](https://go.microsoft.com/fwlink/?LinkId=159063)
+*Hinweis: Weitere Informationen zur Modell Validierung mithilfe von Attributen für die Daten Anmerkung finden Sie in der MSDN-Dokumentation unter.*[`https://go.microsoft.com/fwlink/?LinkId=159063`](https://go.microsoft.com/fwlink/?LinkId=159063)
 
 Öffnen Sie die Album-Klasse, und fügen Sie die folgenden *using* -Anweisungen am Anfang hinzu.
 

@@ -8,12 +8,12 @@ ms.date: 04/20/2010
 ms.assetid: 69a8d6f8-4b10-4602-8822-2d6c05fc432b
 msc.legacyurl: /whitepapers/what-is-new-in-aspnet-mvc
 msc.type: content
-ms.openlocfilehash: 1a0a29241d8afecd295b11013b27621b21c9ed52
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ecc840c33714aa04bebcd9e413cb548eca8cc058
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "86162706"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045038"
 ---
 # <a name="whats-new-in-aspnet-mvc-2"></a>Neue Funktionen in ASP.NET MVC 2
 
@@ -37,10 +37,10 @@ ms.locfileid: "86162706"
 [Neue hiddeninputattribute-Klasse für auf Vorlagen basierende Hilfsprogramme](#_TOC3_13)   
 [Die HTML. ValidationSummary-Hilfsmethode kann Fehler auf Modell Ebene anzeigen.](#_TOC3_14)   
 [T4-Vorlagen in Visual Studio generieren Code, der für die Ziel Version der .NET Framework](#_TOC3_15)[API-Verbesserungen](#_TOC4) spezifisch ist.  
-[Aktuelle Änderungen](#_TOC5)  
+[Wichtige Änderungen](#_TOC5)  
 [Haftungsausschluss](#_TOC6)  
 
-## <a name="introduction"></a><a id="_TOC1"></a>Einführung
+## <a name="introduction"></a><a id="_TOC1"></a>  Einführung
 
 ASP.NET MVC 2 baut auf ASP.NET MVC 1,0 auf und führt einen großen Satz von Erweiterungen und Features ein, die sich auf die Steigerung der Produktivität konzentrieren. Diese Version ist mit ASP.NET MVC 1,0 kompatibel, sodass Ihre Kenntnisse, Kenntnisse, Code und Erweiterungen für ASP.NET MVC 1,0 weiterhin angewendet werden.
 
@@ -50,19 +50,19 @@ Weitere Informationen zu ASP.NET MVC finden Sie in den folgenden Ressourcen:
 - [Die ASP.NET-MVC-Website](https://asp.net/mvc/)
 - [Die ASP.NET-MVC-Foren](https://forums.asp.net/1146.aspx)
 
-## <a name="upgrading-an-aspnet-mvc-10-project-to-aspnet-mvc-2"></a><a id="_TOC2"></a>Aktualisieren eines ASP.NET MVC 1,0-Projekts auf ASP.NET MVC 2
+## <a name="upgrading-an-aspnet-mvc-10-project-to-aspnet-mvc-2"></a><a id="_TOC2"></a>  Aktualisieren eines ASP.NET MVC 1,0-Projekts auf ASP.NET MVC 2
 
 ASP.NET MVC 2 kann parallel zu ASP.NET MVC 1,0 auf dem gleichen Server installiert werden, was Anwendungsentwicklern Flexibilität bei der Wahl bietet, wann eine ASP.NET MVC 1,0-Anwendung auf ASP.NET MVC 2 aktualisiert werden soll. Weitere Informationen zum Upgrade finden Sie im Dokument [Aktualisieren einer ASP.NET MVC 1,0-Anwendung auf ASP.NET MVC 2](https://go.microsoft.com/fwlink/?LinkID=185459).
 
-## <a name="new-features"></a><a id="_TOC3"></a>Neue Features
+## <a name="new-features"></a><a id="_TOC3"></a>  Neue Features
 
 In diesem Abschnitt werden die Funktionen beschrieben, die in der MVC 2-Version eingeführt wurden.
 
-### <a name="templated-helpers"></a><a id="_TOC3_1"></a>Auf Vorlagen basierende Hilfsprogramme
+### <a name="templated-helpers"></a><a id="_TOC3_1"></a>  Auf Vorlagen basierende Hilfsprogramme
 
 Mit Vorlagen basierten Hilfsprogrammen können Sie automatisch HTML-Elemente für die Bearbeitung und Anzeige von Datentypen zuordnen. Wenn z. b. Daten vom Typ System. DateTime in einer Ansicht angezeigt werden, kann ein Benutzeroberflächen Element für die Datumsauswahl automatisch gerendert werden. Dies ähnelt der Funktionsweise von Feld Vorlagen in ASP.net-dynamische Daten. Weitere Informationen finden Sie unter [Verwenden von Vorlagen Hilfen zum Anzeigen von Daten](https://go.microsoft.com/fwlink/?LinkId=159062) auf der MSDN-Website.
 
-### <a name="areas"></a><a id="_TOC3_2"></a>Felder
+### <a name="areas"></a><a id="_TOC3_2"></a>  Felder
 
 Mit Bereichen können Sie ein umfangreiches Projekt in mehreren kleineren Abschnitten organisieren, um die Komplexität einer großen Webanwendung zu verwalten. Jeder Abschnitt ("Bereich") stellt in der Regel einen separaten Abschnitt einer großen Website dar und dient zum Gruppieren verwandter Gruppen von Controllern und Ansichten. Weitere Informationen finden Sie unter Exemplarische Vorgehensweise [: Organisieren einer ASP.NET MVC-Anwendung nach Bereichen](https://go.microsoft.com/fwlink/?LinkId=158978) auf der MSDN-Website.
 
@@ -82,15 +82,15 @@ Die Standard Projektvorlage für ASP.NET MVC 2 enthält einen aufzurufenden Befe
 
 Wenn Sie den Namespace nicht in der RegisterArea-Methode angeben, indem Sie den Kontext aufrufen. Namespaces. Add-Methode, der Namespace der Registrierungs Klasse wird standardmäßig verwendet.
 
-### <a name="support-for-asynchronous-controllers"></a><a id="_TOC3_3"></a>Unterstützung für asynchrone Controller
+### <a name="support-for-asynchronous-controllers"></a><a id="_TOC3_3"></a>  Unterstützung für asynchrone Controller
 
 ASP.NET MVC 2 ermöglicht es Controllern nun, Anforderungen asynchron zu verarbeiten. Dies kann zu Leistungssteigerungen führen, indem Server, die häufig blockierende Vorgänge (z. b. Netzwerk Anforderungen) aufzurufen, anstelle von nicht blockierenden Gegenstücken aufgerufen werden. Weitere Informationen finden Sie im Thema [using an Asynchronous Controller in ASP.NET MVC](https://msdn.microsoft.com/library/ee728598(v=VS.100).aspx) auf MSDN.
 
-### <a name="support-for-defaultvalueattribute-in-action-method-parameters"></a><a id="_TOC3_4"></a>Unterstützung für DefaultValueAttribute in Action-Method-Parametern
+### <a name="support-for-defaultvalueattribute-in-action-method-parameters"></a><a id="_TOC3_4"></a>  Unterstützung für DefaultValueAttribute in Action-Method-Parametern
 
 Die System. ComponentModel. DefaultValueAttribute-Klasse ermöglicht es, einen Standardwert für den Argument Parameter an eine Aktionsmethode bereitzustellen. Nehmen Sie beispielsweise an, dass die folgende Standardroute definiert ist:
 
-[!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.json)]
+[!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.txt)]
 
 Nehmen Sie auch an, dass der folgende Controller und die folgende Aktionsmethode definiert sind:
 
@@ -108,7 +108,7 @@ Wenn Ihr Code in Visual Basic 2010 oder Visual c# 2010 geschrieben ist, können 
 
 [!code-vb[Main](what-is-new-in-aspnet-mvc/samples/sample5.vb)]
 
-### <a name="support-for-binding-binary-data-with-model-binders"></a><a id="_TOC3_5"></a>Unterstützung für das Binden von Binärdaten mit Modell Binder
+### <a name="support-for-binding-binary-data-with-model-binders"></a><a id="_TOC3_5"></a>  Unterstützung für das Binden von Binärdaten mit Modell Binder
 
 Es gibt zwei neue über Ladungen des HTML. Hidden-Hilfsobjekts, das binäre Werte als Base-64-codierte Zeichen folgen codiert:
 
@@ -132,7 +132,7 @@ Dieses Formular kann an eine Aktionsmethode gesendet werden, die ein Argument vo
 
 In der Action-Methode wird die Timestamp-Eigenschaft ordnungsgemäß aufgefüllt, da die gepostete Base-64-codierte Zeichenfolge in ein Bytearray konvertiert wird.
 
-### <a name="modelmetadata-and-modelmetadataprovider-classes"></a><a id="_TOC3_6"></a>Modelmetadata-und ModelMetadataProvider-Klassen
+### <a name="modelmetadata-and-modelmetadataprovider-classes"></a><a id="_TOC3_6"></a>  Modelmetadata-und ModelMetadataProvider-Klassen
 
 Die ModelMetadataProvider-Klasse stellt eine Abstraktion zum Abrufen von Metadaten für das Modell in einer Ansicht bereit. MVC 2 enthält einen Standardanbieter, der die Metadaten verfügbar macht, die von den Attributen im System. ComponentModel. DataAnnotations-Namespace verfügbar gemacht werden. Metadatenanbieter, die Metadaten aus anderen Daten speichern bereitstellen, z. b. Datenbanken oder XML-Dateien, können erstellt werden.
 
@@ -140,29 +140,29 @@ Die viewdatadictionary-Klasse macht ein modelmetadata-Objekt verfügbar, das die
 
 Weitere Informationen finden Sie in der Dokumentation für die [modelmetadata](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) -und [ModelMetadataProvider](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) -Klassen.
 
-### <a name="support-for-dataannotations-attributes"></a><a id="_TOC3_7"></a>Unterstützung für DataAnnotations-Attribute
+### <a name="support-for-dataannotations-attributes"></a><a id="_TOC3_7"></a>  Unterstützung für DataAnnotations-Attribute
 
 ASP.NET MVC 2 unterstützt die Verwendung der Validierungs Attribute "RangeAttribute", "Requirements dattribute", "StringLengthAttribute" und "regexattribute" (definiert im System. ComponentModel. DataAnnotations-Namespace), wenn eine Bindung an ein Modell erfolgt, um die Eingabevalidierung bereitzustellen.
 
 Weitere Informationen finden Sie unter Gewusst wie: Überprüfen von [Modelldaten mithilfe von DataAnnotations-Attributen](https://go.microsoft.com/fwlink/?LinkId=159063) auf der MSDN-Website. Ein Beispiel Projekt, das die Verwendung dieser Attribute veranschaulicht, finden Sie unter [https://go.microsoft.com/fwlink/?LinkId=157753](https://go.microsoft.com/fwlink/?LinkId=157753) .
 
-### <a name="model-validator-providers"></a><a id="_TOC3_8"></a>Modell Validierungs Steuerelement-Anbieter
+### <a name="model-validator-providers"></a><a id="_TOC3_8"></a>  Modell Validierungs Steuerelement-Anbieter
 
 Die Anbieter Klasse Modell Validierung stellt eine Abstraktion dar, die Validierungs Logik für das Modell bereitstellt. ASP.NET MVC enthält einen Standardanbieter auf der Grundlage von Validierungs Attributen, die im System. ComponentModel. DataAnnotations-Namespace enthalten sind. Sie können auch eigene Validierungs Anbieter erstellen, die benutzerdefinierte Validierungsregeln und benutzerdefinierte Zuordnungen von Validierungsregeln für das Modell definieren. Weitere Informationen finden Sie in der Dokumentation zur [modelvalidatorprovider](https://msdn.microsoft.com/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx) -Klasse.
 
-### <a name="client-side-validation"></a><a id="_TOC3_9"></a>Client seitige Validierung
+### <a name="client-side-validation"></a><a id="_TOC3_9"></a>  Client seitige Validierung
 
 Die Model-Validator Provider-Klasse macht Validierungs Metadaten für den Browser in Form von JSON-serialisierten Daten verfügbar, die von einer Client seitigen Validierungs Bibliothek genutzt werden können. ASP.NET MVC 2 enthält eine clientvalidierungs Bibliothek und einen Adapter, der die zuvor notierten Attribute der DataAnnotations-Namespace Validierung unterstützt. Die Anbieter Klasse ermöglicht es Ihnen auch, andere Client Validierungs Bibliotheken zu verwenden, indem Sie einen Adapter schreiben, der die JSON-Daten verarbeitet und die Alternative Bibliothek aufruft.
 
-### <a name="new-code-snippets-for-visual-studio-2010"></a><a id="_TOC3_10"></a>Neue Code Ausschnitte für Visual Studio 2010
+### <a name="new-code-snippets-for-visual-studio-2010"></a><a id="_TOC3_10"></a>  Neue Code Ausschnitte für Visual Studio 2010
 
 Eine Reihe von HTML-Code Ausschnitten für ASP.NET MVC 2 wird mit Visual Studio 2010 installiert. Klicken Sie im Menü Extras auf Code Ausschnitt-Manager, um eine Liste dieser Ausschnitte anzuzeigen. Wählen Sie für die Sprache die Option HTML aus, und wählen Sie unter Speicherort die Option ASP.NET MVC 2 aus. Weitere Informationen zur Verwendung von Code Ausschnitten finden Sie in der Visual Studio-Dokumentation.
 
-### <a name="new-requirehttpsattribute-action-filter"></a><a id="_TOC3_11"></a>Neuer Requirements httpsattribute-Aktions Filter
+### <a name="new-requirehttpsattribute-action-filter"></a><a id="_TOC3_11"></a>  Neuer Requirements httpsattribute-Aktions Filter
 
 ASP.NET MVC 2 enthält eine neue Klasse "Requirements httpsattribute", die auf Aktionsmethoden und Controller angewendet werden kann. Standardmäßig leitet der Filter eine nicht-SSL (http)-Anforderung an die SSL-aktivierte (HTTPS)-Entsprechung um.
 
-### <a name="overriding-the-http-method-verb"></a><a id="_TOC3_12"></a>Überschreiben des HTTP-Methoden Verbs
+### <a name="overriding-the-http-method-verb"></a><a id="_TOC3_12"></a>  Überschreiben des HTTP-Methoden Verbs
 
 Wenn Sie eine Website mit dem Rest-Architekturstil erstellen, werden HTTP-Verben verwendet, um zu bestimmen, welche Aktion für eine Ressource ausgeführt werden soll. Rest erfordert, dass Anwendungen den vollständigen Bereich der allgemeinen HTTP-Verben unterstützen, einschließlich get, Put, Post und DELETE.
 
@@ -188,7 +188,7 @@ Das verborgene Eingabe Element hat den Namen X-http-Method-override, und sein We
 
 Die außer Kraft Setzung kann nur verwendet werden, wenn die tatsächliche Anforderung eine Post-Anforderung ist. Der Überschreibungs Wert wird bei Anforderungen ignoriert, die ein anderes HTTP-Verb verwenden.
 
-### <a name="new-hiddeninputattribute-class-for-templated-helpers"></a><a id="_TOC3_13"></a>Neue hiddeninputattribute-Klasse für auf Vorlagen basierende Hilfsprogramme
+### <a name="new-hiddeninputattribute-class-for-templated-helpers"></a><a id="_TOC3_13"></a>  Neue hiddeninputattribute-Klasse für auf Vorlagen basierende Hilfsprogramme
 
 Sie können das neue hiddeninputattribute-Attribut auf eine Modell Eigenschaft anwenden, um anzugeben, ob ein verborgenes Eingabe Element gerendert werden soll, wenn das Modell in einer Editor Vorlage angezeigt wird. (Das-Attribut legt einen impliziten UIHint-Wert von hiddeninput fest). Mithilfe der displayvalue-Eigenschaft des Attributs können Sie angeben, ob der Wert im Editor-und Anzeigemodus angezeigt wird. Wenn displayvalue auf false festgelegt ist, wird nichts angezeigt, nicht sogar das HTML-Markup, das normalerweise ein Feld umgibt. Der Standardwert für "displayvalue" ist "true".
 
@@ -211,15 +211,15 @@ Wenn das-Attribut auf false festgelegt ist, geschieht Folgendes:
 - In Anzeige Vorlagen wird für dieses Feld nichts gerendert.
 - In Editor-Vorlagen wird keine Bezeichnung gerendert, und der Wert wird in einem verborgenen Eingabe Element gerendert.
 
-### <a name="htmlvalidationsummary-helper-method-can-display-model-level-errors"></a><a id="_TOC3_14"></a>Die HTML. ValidationSummary-Hilfsmethode kann Fehler auf Modell Ebene anzeigen.
+### <a name="htmlvalidationsummary-helper-method-can-display-model-level-errors"></a><a id="_TOC3_14"></a>  Die HTML. ValidationSummary-Hilfsmethode kann Fehler auf Modell Ebene anzeigen.
 
 Anstatt immer alle Validierungs Fehler anzuzeigen, verfügt die HTML. ValidationSummary-Hilfsmethode über eine neue Option, mit der nur Fehler auf Modell Ebene angezeigt werden. Dies ermöglicht das Anzeigen von Fehlern auf Modell Ebene in der Validierungs Zusammenfassung und feldspezifischen Fehlern, die neben den einzelnen Feldern angezeigt werden.
 
-### <a name="t4-templates-in-visual-studio-generate-code-that-is-specific-to-the-target-version-of-the-net-framework"></a><a id="_TOC3_15"></a>T4-Vorlagen in Visual Studio generieren Code, der spezifisch für die Ziel Version des .NET Framework
+### <a name="t4-templates-in-visual-studio-generate-code-that-is-specific-to-the-target-version-of-the-net-framework"></a><a id="_TOC3_15"></a>  T4-Vorlagen in Visual Studio generieren Code, der spezifisch für die Ziel Version des .NET Framework
 
 Eine neue Eigenschaft ist für T4-Dateien über den ASP.NET MVC T4-Host verfügbar, der die Version der .NET Framework angibt, die von der Anwendung verwendet wird. Dies ermöglicht T4-Vorlagen das Generieren von Code und Markup, das für eine Version der .NET Framework spezifisch ist. In Visual Studio 2008 lautet der Wert immer .NET 3,5. In Visual Studio 2010 ist der Wert entweder .NET 3,5 oder .NET 4.
 
-## <a name="api-improvements"></a><a id="_TOC4"></a>API-Verbesserungen
+## <a name="api-improvements"></a><a id="_TOC4"></a>  API-Verbesserungen
 
 In diesem Abschnitt werden die Änderungen an vorhandenen ASP.NET MVC-Typen und-Membern beschrieben.
 
@@ -233,7 +233,7 @@ In diesem Abschnitt werden die Änderungen an vorhandenen ASP.NET MVC-Typen und-
 - In der AuthorizationContext-Klasse wurde eine Aktions Deskriptor-Eigenschaft hinzugefügt.
 - Ein urlparameter. Optionales Token, das verwendet werden kann, um Probleme beim Binden an ein Modell zu umgehen, das eine ID-Eigenschaft enthält, wenn die Eigenschaft in einem Formular Beitrag fehlt. Ausführlichere Informationen finden Sie im Eintrag [ASP.NET MVC 2 optionale URL Parameters](http://haacked.com/archive/2010/02/12/asp-net-mvc-2-optional-url-parameters.aspx) on Phil Haack es Blog.
 
-## <a name="breaking-changes"></a><a id="_TOC5"></a>Wichtige Änderungen
+## <a name="breaking-changes"></a><a id="_TOC5"></a>  Wichtige Änderungen
 
 Die folgenden Änderungen können Fehler in vorhandenen ASP.NET MVC 1,0-Anwendungen verursachen.
 
@@ -284,7 +284,7 @@ Die Zeichenfolge "Area" in den Routen Werten hat nun eine besondere Bedeutung in
 
 Wenn Sie die Bereichs Funktion verwenden, stellen Sie sicher, dass Sie {Area} nicht als Teil Ihrer Routen-URL verwenden.
 
-## <a name="disclaimer"></a><a id="_TOC6"></a>ERS
+## <a name="disclaimer"></a><a id="_TOC6"></a>  ERS
 
 Dies ist ein vorläufiges Dokument, das vor der kommerziellen Veröffentlichung der beschriebenen Software ggf. erheblich geändert wird.
 

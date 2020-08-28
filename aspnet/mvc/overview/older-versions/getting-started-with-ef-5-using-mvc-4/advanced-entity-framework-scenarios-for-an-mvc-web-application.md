@@ -8,12 +8,12 @@ ms.date: 07/30/2013
 ms.assetid: 64906a1d-f734-41cf-9615-ee95f8740996
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: f8f079f6d8ea663c6888456be422a2bae93a4b87
-ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
+ms.openlocfilehash: 85dd59016d904a9f654c438db977b5ae2c0187d2
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "86163485"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045051"
 ---
 # <a name="advanced-entity-framework-scenarios-for-an-mvc-web-application-10-of-10"></a>Erweiterte Entity Framework Szenarien für eine MVC-Webanwendung (10 von 10)
 
@@ -191,7 +191,7 @@ Ersetzen Sie in *Controllers/coursecontroller die-* `Index` Methode durch den fo
 
 Legen Sie nun in *GenericRepository.cs* einen Haltepunkt für die `return query.ToList();` -Anweisungen und die-Anweisung der- `return orderBy(query).ToList();` Methode fest `Get` . Führen Sie das Projekt im Debugmodus aus, und wählen Sie die Kursindex Seite aus. Wenn der Code den Breakpoint erreicht, untersuchen Sie die `query` Variable. Die Abfrage, die an SQL Server gesendet wird, wird angezeigt. Dabei handelt es sich um eine einfache `Select` Anweisung:
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.sql)]
 
 ![](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image12.png)
 
@@ -219,7 +219,7 @@ Wenn die Breakpoints in der-Klasse noch festgelegt `GenericRepository` sind, fü
 
 Dieses Mal wird der erste Breakpoint für die Abfrage der Abteilungen für die Dropdown Liste angezeigt. Überspringen Sie, und `query` zeigen Sie die Variable an, wenn der Code das nächste Mal den Breakpoint erreicht, um zu sehen, `Course` wie die Abfrage nun aussieht. Folgendes wird angezeigt:
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.sql)]
 
 Sie können sehen, dass es sich bei der Abfrage um eine Abfrage handelt, `JOIN` die `Department` Daten zusammen mit den `Course` Daten lädt und eine- `WHERE` Klausel enthält.
 

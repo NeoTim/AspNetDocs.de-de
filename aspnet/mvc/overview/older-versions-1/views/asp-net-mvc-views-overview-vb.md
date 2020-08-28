@@ -8,12 +8,12 @@ ms.date: 02/16/2008
 ms.assetid: c28ba88d-3a93-47f5-a306-049bd766714d
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
 msc.type: authoredcontent
-ms.openlocfilehash: f02728ed248f29b09d654e509977ed43889cbb83
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: a07d15cb14e9ef90b62c5a8702dee53f1a0a6032
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78435273"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044665"
 ---
 # <a name="aspnet-mvc-views-overview-vb"></a>ASP.NET MVC-Ansichten – Übersicht (VB)
 
@@ -81,15 +81,15 @@ Beachten Sie, dass der Text der HTML-Seite in der Liste 2 das folgende Skript en
 
 &lt;% Response. Write (DateTime. Now)%&gt;
 
-Sie verwenden die Skript Trennzeichen &lt;% und%&gt;, um den Anfang und das Ende eines Skripts zu markieren. Dieses Skript ist in Visual Basic geschrieben. Es zeigt das aktuelle Datum und die aktuelle Uhrzeit durch Aufrufen der Response. Write ()-Methode zum Rendering von Inhalten im Browser an. Die Skript Trennzeichen &lt;% und%&gt; können verwendet werden, um eine oder mehrere-Anweisungen auszuführen.
+Sie verwenden die Skript &lt; Trennzeichen% und% &gt; , um den Anfang und das Ende eines Skripts zu markieren. Dieses Skript ist in Visual Basic geschrieben. Es zeigt das aktuelle Datum und die aktuelle Uhrzeit durch Aufrufen der Response. Write ()-Methode zum Rendering von Inhalten im Browser an. Die Skript Trennzeichen &lt; % und% &gt; können verwendet werden, um eine oder mehrere-Anweisungen auszuführen.
 
-Da Sie "Response. Write ()" so oft aufrufen, stellt Microsoft Ihnen eine Verknüpfung zum Aufrufen der Response. Write ()-Methode zur Verfügung. Die Ansicht in der Liste 3 verwendet die Trennzeichen &lt;% = und%&gt; als Verknüpfung zum Aufrufen von Response. Write ().
+Da Sie "Response. Write ()" so oft aufrufen, stellt Microsoft Ihnen eine Verknüpfung zum Aufrufen der Response. Write ()-Methode zur Verfügung. Die Ansicht in der Liste 3 verwendet die Trennzeichen &lt; % = und% &gt; als Verknüpfung zum Aufrufen von Response. Write ().
 
 **Codebeispiel 3: views\home\index2.aspx**
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample3.aspx)]
 
-Sie können eine beliebige .NET-Sprache verwenden, um dynamischen Inhalt in einer Ansicht zu generieren. Normalerweise verwenden Sie entweder Visual Basic .net oder C# zum Schreiben von Controllern und Ansichten.
+Sie können eine beliebige .NET-Sprache verwenden, um dynamischen Inhalt in einer Ansicht zu generieren. Normalerweise verwenden Sie entweder Visual Basic .net oder c# zum Schreiben von Controllern und Ansichten.
 
 ## <a name="using-html-helpers-to-generate-view-content"></a>Verwenden von HTML-Hilfsprogrammen zum Generieren von Ansichts Inhalten
 
@@ -101,13 +101,13 @@ Die Ansicht in der Liste 4 nutzt beispielsweise drei HTML-Hilfsprogramme: die Be
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample4.aspx)]
 
-[![des Dialog Felds "Neues Projekt"](asp-net-mvc-views-overview-vb/_static/image1.jpg)](asp-net-mvc-views-overview-vb/_static/image1.png)
+[![Dialogfeld „New Project“ (Neues Projekt)](asp-net-mvc-views-overview-vb/_static/image1.jpg)](asp-net-mvc-views-overview-vb/_static/image1.png)
 
 **Abbildung 01**: ein Standard Anmeldeformular ([Klicken Sie, um das Bild in voller Größe anzuzeigen](asp-net-mvc-views-overview-vb/_static/image2.png))
 
 Alle HTML-Hilfsmethoden werden in der HTML-Eigenschaft der Ansicht aufgerufen. Beispielsweise können Sie ein Textfeld durch Aufrufen der HTML. TextBox ()-Methode Rendering.
 
-Beachten Sie, dass Sie die Skript Trennzeichen &lt;% = und%&gt; verwenden, wenn Sie sowohl die HTML. TextBox ()-als auch die HTML. Password ()-Hilfsprogramme aufrufen. Diese Hilfsprogramme geben einfach eine Zeichenfolge zurück. Sie müssen Response. Write () aufzurufen, um die Zeichenfolge im Browser zu erzeugen.
+Beachten Sie, dass Sie die Skript Trennzeichen &lt; % = und% verwenden, &gt; Wenn Sie sowohl die HTML. TextBox ()-als auch die HTML. Password ()-Hilfsprogramme aufrufen. Diese Hilfsprogramme geben einfach eine Zeichenfolge zurück. Sie müssen Response. Write () aufzurufen, um die Zeichenfolge im Browser zu erzeugen.
 
 Die Verwendung von HTML-Hilfsmethoden ist optional. Dadurch wird das Leben vereinfacht, indem die Menge an HTML und Skript reduziert wird, die Sie schreiben müssen. Die Ansicht in Auflistung 5 rendert genau dasselbe Formular wie die Ansicht in der Ansicht 4, ohne HTML-Hilfsprogramme zu verwenden.
 
@@ -133,9 +133,9 @@ Die Ansicht in der Liste 7 Ruft die Nachricht aus den Ansichts Daten ab und rend
 
 [!code-aspx[Main](asp-net-mvc-views-overview-vb/samples/sample7.aspx)]
 
-Beachten Sie, dass die-Sicht beim Rendern der Nachricht die HTML. Encode ()-HTML-Hilfsmethode nutzt. Das HTML-Hilfsprogramm HTML. Encode () codiert Sonderzeichen, z. b. &lt; und &gt; in Zeichen, die auf einer Webseite sicher angezeigt werden können. Wenn Sie Inhalte, die von einem Benutzer an eine Website übermittelt werden, wiederzugeben, sollten Sie den Inhalt codieren, um JavaScript Injection-Angriffe zu verhindern.
+Beachten Sie, dass die-Sicht beim Rendern der Nachricht die HTML. Encode ()-HTML-Hilfsmethode nutzt. Das HTML-Hilfsprogramm HTML. Encode () codiert Sonderzeichen &lt; &gt; , z. b. und, in Zeichen, die auf einer Webseite sicher angezeigt werden können. Wenn Sie Inhalte, die von einem Benutzer an eine Website übermittelt werden, wiederzugeben, sollten Sie den Inhalt codieren, um JavaScript Injection-Angriffe zu verhindern.
 
-(Da wir die Nachricht selbst in ProductController erstellt haben, müssen wir die Nachricht wirklich codieren. Es ist jedoch eine gute Gewohnheit, immer die HTML. Encode ()-Methode aufzurufen, wenn Inhalte angezeigt werden, die aus Sicht Daten innerhalb einer Ansicht abgerufen werden.)
+(Da wir die Nachricht selbst in ProductController erstellt haben, müssen wir die Nachricht nicht codieren. Es ist jedoch eine gute Gewohnheit, immer die HTML. Encode ()-Methode aufzurufen, wenn Inhalte angezeigt werden, die aus Sicht Daten innerhalb einer Ansicht abgerufen werden.)
 
 In der Liste 7 haben wir die Anzeigedaten genutzt, um eine einfache Zeichen folgen Nachricht von einem Controller an eine Ansicht zu übergeben. Sie können auch Daten anzeigen verwenden, um andere Datentypen, z. b. eine Sammlung von Datenbankdaten Sätzen, von einem Controller an eine Ansicht zu übergeben. Wenn Sie z. b. den Inhalt der Datenbanktabelle "Products" in einer Ansicht anzeigen möchten, übergeben Sie die Sammlung der Datenbankdaten Sätze in "Daten anzeigen".
 

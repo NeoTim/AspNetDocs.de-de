@@ -8,38 +8,38 @@ ms.date: 03/26/2015
 ms.assetid: f1d2a916-626c-4a54-8df4-77e6b9fff355
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods
 msc.type: authoredcontent
-ms.openlocfilehash: da06815b5c1d76a939fdfb77ce11774081dfb881
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 9c4e66454d6995bd750b62ef8b461bcfbdfb4b4f
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78470589"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045090"
 ---
 # <a name="examining-the-details-and-delete-methods"></a>Untersuchen der Methoden „Details“ und „Delete“
 
 von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [Tutorial Note](index.md)]
+[!INCLUDE [consider RP](~/includes/razor.md)]
 
-In diesem Teil des Tutorials untersuchen Sie die automatisch generierten `Details` und `Delete` Methoden.
+In diesem Teil des Tutorials überprüfen Sie die automatisch generierten `Details` `Delete` Methoden und.
 
 ## <a name="examining-the-details-and-delete-methods"></a>Untersuchen der Methoden „Details“ und „Delete“
 
-Öffnen Sie den `Movie` Controller, und untersuchen Sie die `Details`-Methode.
+Öffnen Sie den `Movie` Controller, und untersuchen Sie die `Details` Methode.
 
 ![](examining-the-details-and-delete-methods/_static/image1.png)
 
 [!code-csharp[Main](examining-the-details-and-delete-methods/samples/sample1.cs)]
 
-Die MVC-Gerüstbau-Engine, die diese Aktionsmethode erstellt hat, fügt einen Kommentar hinzu, der eine HTTP-Anforderung anzeigt, die In diesem Fall handelt es sich um eine `GET` Anforderung mit drei URL-Segmenten, dem `Movies` Controller, der `Details`-Methode und einem `ID` Wert.
+Die MVC-Gerüstbau-Engine, die diese Aktionsmethode erstellt hat, fügt einen Kommentar hinzu, der eine HTTP-Anforderung anzeigt, die In diesem Fall handelt es sich `GET` um eine Anforderung mit drei URL-Segmenten, dem `Movies` Controller, der `Details` Methode und einem `ID` Wert.
 
-Code First erleichtert die Suche nach Daten mithilfe der `Find`-Methode. Ein wichtiges Sicherheits Feature, das in die-Methode integriert ist, besteht darin, dass der Code überprüft, ob die `Find`-Methode einen Film gefunden hat, bevor der Code versucht, etwas zu tun. Ein Hacker könnte z. b. Fehler in die Website einfügen, indem er die von den Verknüpfungen erstellte URL von `http://localhost:xxxx/Movies/Details/1` in etwas wie `http://localhost:xxxx/Movies/Details/12345` (oder einen anderen Wert, der keinen eigentlichen Film repräsentiert) ändert. Wenn Sie nicht auf einen NULL-Film geprüft haben, führt ein NULL-Film zu einem Datenbankfehler.
+Code First erleichtert die Suche nach Daten mithilfe der- `Find` Methode. Ein wichtiges Sicherheits Feature, das in die-Methode integriert ist, besteht darin, dass der Code überprüft, ob die `Find` Methode einen Film gefunden hat, bevor der Code versucht, etwas zu tun. Ein Hacker könnte z. b. Fehler in die Website einfügen, indem er die von den Links erstellte URL von `http://localhost:xxxx/Movies/Details/1` in etwas ähnliches `http://localhost:xxxx/Movies/Details/12345` (oder einen anderen Wert, der keinen eigentlichen Film repräsentiert) ändert. Wenn Sie nicht auf einen NULL-Film geprüft haben, führt ein NULL-Film zu einem Datenbankfehler.
 
 Untersuchen Sie die Methoden `Delete` und `DeleteConfirmed`.
 
 [!code-csharp[Main](examining-the-details-and-delete-methods/samples/sample2.cs?highlight=17)]
 
-Beachten Sie, dass die HTTP Get `Delete`-Methode den angegebenen Film nicht löscht, sondern eine Ansicht des Films zurückgibt, in der Sie den Löschvorgang übermitteln können (`HttpPost`). Das Ausführen eines Löschvorgangs als Reaktion auf eine GET-Anforderung (oder eigentlich eines Bearbeitungs-, Erstellungs- oder sonstigen Vorgangs, der Daten ändern) stellt eine Sicherheitslücke dar. Weitere Informationen hierzu finden Sie im Blogeintrag von Stephen Walther [ASP.NET MVC Tip #46 – verwenden Sie keine Lösch Links, da Sie Sicherheitslücken erstellen](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx).
+Beachten Sie, dass die HTTP Get- `Delete` Methode den angegebenen Film nicht löscht, sondern eine Ansicht des Films zurückgibt, in die Sie den Löschvorgang übermitteln können ( `HttpPost` ). Das Ausführen eines Löschvorgangs als Reaktion auf eine GET-Anforderung (oder eigentlich eines Bearbeitungs-, Erstellungs- oder sonstigen Vorgangs, der Daten ändern) stellt eine Sicherheitslücke dar. Weitere Informationen hierzu finden Sie im Blogeintrag von Stephen Walther [ASP.NET MVC Tip #46 – verwenden Sie keine Lösch Links, da Sie Sicherheitslücken erstellen](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx).
 
 Die `HttpPost`-Methode, die die Daten löscht, heißt `DeleteConfirmed`, um der HTTP-POST-Methode eine eindeutige Signatur bzw. einen eindeutigen Namen zu geben. Die beiden Methodensignaturen werden nachstehend gezeigt:
 
@@ -47,9 +47,9 @@ Die `HttpPost`-Methode, die die Daten löscht, heißt `DeleteConfirmed`, um der 
 
 Die Common Language Runtime (CLR) erfordert überladene Methoden, um eine eindeutige Parametersignatur zu erhalten (selber Methodenname, aber unterschiedliche Liste von Parametern). Hier benötigen Sie jedoch zwei Delete-Methoden: einen für "Get" und einen für "Post", die beide die gleiche Parameter Signatur aufweisen. (Beide müssen eine einzelne ganze Zahl als Parameter akzeptieren.)
 
-Um dies zu sortieren, können Sie einige Dinge tun. Eine Möglichkeit besteht darin, den Methoden andere Namen zuzuweisen. Dafür das der Gerüstbaumechanismus im vorherigen Beispiel gesorgt. Dies bringt jedoch ein kleines Problem mit sich: ASP.NET ordnet Segmente einer URL anhand des Namens zu Aktionsmethoden zu. Wenn Sie die Methode umbenennen sollten, ist das Routing normalerweise nicht in der Lage, diese Methode zu finden. Die Lösung besteht (wie im Beispiel) im Hinzufügen des `ActionName("Delete")`-Attributs zur `DeleteConfirmed`-Methode. Dadurch wird die Zuordnung für das Routing System effektiv durchführt, sodass eine URL, die */Delete/* für eine Post-Anforderung enthält, die `DeleteConfirmed`-Methode findet.
+Um dies zu sortieren, können Sie einige Dinge tun. Eine Möglichkeit besteht darin, den Methoden andere Namen zuzuweisen. Dafür das der Gerüstbaumechanismus im vorherigen Beispiel gesorgt. Dies bringt jedoch ein kleines Problem mit sich: ASP.NET ordnet Segmente einer URL anhand des Namens zu Aktionsmethoden zu. Wenn Sie die Methode umbenennen sollten, ist das Routing normalerweise nicht in der Lage, diese Methode zu finden. Die Lösung besteht (wie im Beispiel) im Hinzufügen des `ActionName("Delete")`-Attributs zur `DeleteConfirmed`-Methode. Dadurch wird die Zuordnung für das Routing System effektiv durchführt, sodass eine URL, die */Delete/* für eine Post-Anforderung enthält, die `DeleteConfirmed` Methode findet.
 
-Eine andere gängige Methode, um ein Problem mit Methoden zu vermeiden, die identische Namen und Signaturen aufweisen, besteht darin, die Signatur der Post-Methode künstlich zu ändern, sodass Sie einen nicht verwendeten Parameter enthält. Einige Entwickler fügen beispielsweise einen Parametertyp `FormCollection` hinzu, der an die Post-Methode übergeben wird, und verwenden dann einfach nicht den Parameter:
+Eine andere gängige Methode, um ein Problem mit Methoden zu vermeiden, die identische Namen und Signaturen aufweisen, besteht darin, die Signatur der Post-Methode künstlich zu ändern, sodass Sie einen nicht verwendeten Parameter enthält. Einige Entwickler fügen beispielsweise einen Parametertyp hinzu, `FormCollection` der an die Post-Methode übergeben wird, und verwenden dann einfach nicht den Parameter:
 
 [!code-csharp[Main](examining-the-details-and-delete-methods/samples/sample4.cs)]
 
@@ -69,4 +69,4 @@ Feedback ist willkommen.
 – [Scott Hanselman](http://www.hanselman.com/blog/) Twitter: [@shanselman](https://twitter.com/shanselman)
 
 > [!div class="step-by-step"]
-> [Previous](adding-validation.md)
+> [Zurück](adding-validation.md)

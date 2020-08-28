@@ -8,16 +8,16 @@ ms.date: 01/17/2019
 ms.assetid: df001954-18bf-4550-b03d-43911a0ea186
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-search
 msc.type: authoredcontent
-ms.openlocfilehash: f6d6d32a648fed453be924790a1b55698c9cf209
-ms.sourcegitcommit: 0d583ed9253103f3e50b6d729276e667591cdd41
+ms.openlocfilehash: be4e4d13e574b0fcb77d2d0fb8c6f58041b1ece2
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86211473"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044865"
 ---
 # <a name="search"></a>Suchen,
 
-[!INCLUDE [Tutorial Note](index.md)]
+[!INCLUDE [consider RP](~/includes/razor.md)]
 
 ## <a name="adding-a-search-method-and-search-view"></a>Hinzufügen einer Suchmethode und einer Such Ansicht
 
@@ -62,7 +62,7 @@ Führen Sie die Anwendung aus, und navigieren Sie zu */Movies/Index*. Fügen Sie
 
 Wenn Sie die Signatur der `Index` Methode so ändern, dass Sie einen Parameter mit dem Namen hat `id` , `id` entspricht der Parameter dem `{id}` Platzhalter für die Standardrouten, die in der Datei *App \_ start\routeconfig.cs* festgelegt sind.
 
-[!code-json[Main](adding-search/samples/sample4.json)]
+[!code-json[Main](adding-search/samples/sample4.txt)]
 
 Die ursprüngliche `Index` Methode sieht wie folgt aus:
 
