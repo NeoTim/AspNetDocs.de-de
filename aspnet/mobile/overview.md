@@ -8,22 +8,24 @@ ms.date: 01/28/2011
 ms.assetid: 1febce65-cdd4-47da-bdb5-1e6022ccd20a
 msc.legacyurl: /mobile
 msc.type: content
-ms.openlocfilehash: 769484ee505599eef48ff4a106ddd4f7ec7d99af
-ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
+ms.openlocfilehash: 41cf393f307808e457e0ab2529129ca8ecbc3b5d
+ms.sourcegitcommit: dfd3ce87ffc9e3a7076f8252abb5d5d6b991333b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240730"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449703"
 ---
 # <a name="mobile-apps--sites-with-aspnet"></a>Mobile Apps & Sites mit ASP.net
 
 ## <a name="develop-mobile-apps"></a>Entwickeln Mobile Apps
 
-### <a name="cloud-connected-mobile-apps---create-a-web-service-with-azure-web-apps-and-webjobspart-1"></a>[Mit der Cloud verbundene Mobile Apps: Erstellen eines Webdiensts mit Azure-Web-Apps und webjobs](https://msdn.microsoft.com/magazine/mt185572)(Teil 1)
+### <a name="cloud-connected-mobile-apps"></a>Mit der Cloud verbundene Mobile Apps
+
+[Teil 1: Erstellen eines Webdiensts mit Azure-Web-Apps und webjobs](https://msdn.microsoft.com/magazine/mt185572)
 
 Im ersten Teil eines zweiteiligen Artikels untersuchen die Autoren einige der Probleme beim Erstellen eines Cloud-Back-Ends, das Daten aggregiert und verarbeitet und für mobile Clients bedient.
 
-### <a name="cloud-connected-mobile-apps---build-a-xamarin-app-with-authentication-and-offline-supportpart-2"></a>[Mit der Cloud verbundene Mobile Apps: Erstellen einer xamarin-App mit Authentifizierung und Offline Unterstützung](https://msdn.microsoft.com/magazine/mt422581.aspx)(Teil 2)
+[Teil 2: Erstellen einer xamarin-App mit Authentifizierung und Offline Unterstützung](https://msdn.microsoft.com/magazine/mt422581.aspx)
 
 Im zweiten Artikel ihrer Reihe wird erläutert, wie Sie xamarin verwenden, um mehrere Mobile Client Plattformen als Ziel zu verwenden. Außerdem wird erläutert, wie Sie die Authentifizierung implementieren und einen synchronisierten Client seitigen Cache der Daten aufrechterhalten.
 
