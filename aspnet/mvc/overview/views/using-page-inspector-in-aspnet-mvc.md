@@ -8,12 +8,12 @@ ms.date: 08/15/2012
 ms.assetid: c7e4e1ab-4932-4614-9f53-aaf7c706d498
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc
 msc.type: authoredcontent
-ms.openlocfilehash: 5da3e142c52a770f59222c21d9f9a53cbbdbf498
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 42d5683ce75467a159c9d13edf302bd6bf24a11d
+ms.sourcegitcommit: 45754124123403520b9fa2e706a4d1292494159b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78432453"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89643697"
 ---
 # <a name="using-page-inspector-in-aspnet-mvc"></a>Verwenden der Seitenprüfung in ASP.NET MVC
 
@@ -27,7 +27,7 @@ von Tim Ammann
 > 
 > Das Tutorial enthält die folgenden Abschnitte:
 > 
-> - [Erforderliche Komponenten](#_1_prerequisites)
+> - [Voraussetzungen](#_1_prerequisites)
 > - [Erstellen einer Webanwendung](#_2_creating_a)
 > - [Verwenden Sie Seitenprüfung, um zu einer Ansicht zu navigieren.](#_3_using_page)
 > - [Aktivieren von Überprüfungsmodus](#_4_inspection_mode)
@@ -53,7 +53,7 @@ Seitenprüfung ist mit Microsoft Web Developer Tools gebündelt. Die neueste Ver
 
 ## <a name="create-a-web-application"></a>Erstellen einer Webanwendung
 
-Erstellen Sie zunächst eine Webanwendung, die Sie mit Seitenprüfung verwenden werden. Wählen Sie in Visual Studio **Datei** &gt; **Neues Projekt**aus. Erweitern Sie auf der linken **Seite C#Visualisierung** , wählen Sie **Web**aus, und wählen Sie dann **ASP.net MVC4 Webanwendung**aus.
+Erstellen Sie zunächst eine Webanwendung, die Sie mit Seitenprüfung verwenden werden. Klicken Sie in Visual Studio auf **Datei** &gt; **Neues Projekt**. Erweitern Sie auf der linken Seite **Visual c#**, wählen Sie **Web**aus, und wählen Sie dann **ASP.net MVC4 Webanwendung**aus.
 
 ![Neue ASP.NET-MVC-Anwendung](using-page-inspector-in-aspnet-mvc/_static/image2.png)
 
@@ -111,23 +111,23 @@ Mit Seitenprüfung können Sie Markup suchen, dessen Speicherort möglicherweise
 
 Um dies zu sehen, klicken Sie auf über **prüfen** , und Scrollen Sie dann im Seitenprüfung Fenster zum unteren Rand der Seite.
 
-Wenn Sie den Mauszeiger in den Footerbereich bewegen, öffnet Seitenprüfung die Datei \_Layout. cshtml und hebt den Abschnitt der Layoutseite hervor, die Sie ausgewählt haben. Wie Sie sehen, wird der Fußzeile in der Layoutdatei und nicht in der Ansicht selbst definiert.
+Wenn Sie den Mauszeiger in den Footerbereich bewegen, öffnet Seitenprüfung die \_ Datei "Layout. cshtml" und hebt den Abschnitt der ausgewählten Layoutseite hervor. Wie Sie sehen können, wird der Footerbereich in der Layoutdatei und nicht in der Ansicht selbst definiert.
 
 ![Fußzeile](using-page-inspector-in-aspnet-mvc/_static/image16.png)
 
-Bewegen Sie nun den Mauszeiger über die Zeile mit dem <a id="a"> </a>Urheberrechts Hinweis. Auf der Seite \_Layout. cshtml wird die entsprechende Zeile hervorgehoben.
+Bewegen Sie nun den Mauszeiger über die Zeile mit dem Urheberrechts <a id="a"></a> Hinweis. Auf der \_ Seite "Layout. cshtml" wird die entsprechende Zeile hervorgehoben.
 
 ![Vorder-und-Fußzeile hervorgehoben](using-page-inspector-in-aspnet-mvc/_static/image18.png)
 
-Fügen Sie am Ende der Zeile in der Datei \_Layout. cshtml Text hinzu.
+Fügen Sie am Ende der Zeile in der \_ Datei "Layout. cshtml" Text hinzu.
 
-&lt;p&gt;&amp;kopieren; @DateTime.Now.Year-My ASP.NET MVC-Anwendungs Felsen!&lt;/p&gt;
+&lt;p &gt; &amp; Copy; @DateTime.Now.Year -My ASP.NET MVC Application Rocks! &lt; /p&gt;
 
 Drücken Sie nun Strg + Alt + Eingabe, oder klicken Sie auf die Update Leiste, um die Ergebnisse im Seitenprüfung Browserfenster anzuzeigen.
 
 ![My ASP.NET Application Rocks!](using-page-inspector-in-aspnet-mvc/_static/image20.png)
 
-Sie haben vielleicht schon einmal gedacht, dass der Fußzeile in der Datei "index. cshtml" definiert ist, sich jedoch im \_"Layout. cshtml" befunden hat und Seitenprüfung ihn für Sie gefunden hat.
+Sie haben vielleicht schon gedacht, dass der Fußzeile in der Datei "Layout. cshtml" definiert ist, sich aber in der Datei " \_ Layout. cshtml" befunden und Seitenprüfung für Sie gefunden hat.
 
 <a id="_inspection_mode_and_1"></a><a id="_6_inspection_mode"></a>
 
@@ -143,7 +143,7 @@ Bewegen Sie nun den Mauszeiger auf das **HTML** -Fenster. Wenn Sie den Mauszeige
 
 ![HTML-Fenster](using-page-inspector-in-aspnet-mvc/_static/image22.png)
 
-Wie zuvor öffnet Seitenprüfung die Datei "\_Layout. cshtml" für Sie auf einer temporären Registerkarte. Klicken Sie auf die Registerkarte "\_Layout. cshtml", und das entsprechende Markup wird im Abschnitt &lt;Header&gt; für Sie hervorgehoben:
+Wie zuvor öffnet Seitenprüfung die \_ Datei "Layout. cshtml" für Sie auf einer temporären Registerkarte. Klicken Sie auf die \_ temporäre Registerkarte "Layout. cshtml", und das entsprechende Markup wird im &lt; Header &gt; Abschnitt für Sie hervorgehoben:
 
 ![Hervorgehobene Markup](using-page-inspector-in-aspnet-mvc/_static/image24.png)
 
@@ -196,7 +196,7 @@ Im Fenster **Stile** werden alle CSS-Regeln für dieses Element angezeigt. Scrol
 
 Der CSS-Editor in Visual Studio 2012 verfügt über eine Farbauswahl, mit der Farben leicht ausgewählt und eingefügt werden können. Die Farbauswahl enthält eine Standardpalette von Farben, unterstützt Standardfarben, Hashcodes, RGB-, RGBA-, HSL-und HSLA-Farben und verwaltet eine Liste der Farben, die Sie zuletzt im Dokument verwendet haben.
 
-Im vorherigen Abschnitt haben Sie den Wert der `background-color`-Eigenschaft geändert. Um die Farbauswahl aufzurufen, platzieren Sie die Einfügemarke nach dem Eigenschaftsnamen, und geben Sie **#** oder **RGB (** ein.
+Im vorherigen Abschnitt haben Sie den Wert der-Eigenschaft geändert `background-color` . Um die Farbauswahl aufzurufen, platzieren Sie die Einfügemarke nach dem Eigenschaftsnamen und-Typ **#** oder **RGB (**.
 
 ![Die CSS-Farbauswahl Leiste](using-page-inspector-in-aspnet-mvc/_static/image36.png)
 
@@ -236,7 +236,7 @@ Ab Version 1,3 können Seitenprüfung Elemente, die der Seite dynamisch hinzugef
 > [!NOTE]
 > Die Spa-Vorlage erfordert das Update [ASP.net and Web Tools 2012,2](https://go.microsoft.com/fwlink/?LinkId=282650) .
 
-Wählen Sie in Visual Studio **Datei** &gt; **Neues Projekt**aus. Erweitern Sie auf der linken **Seite C#Visualisierung** , wählen Sie **Web**aus, und wählen Sie dann **ASP.net MVC4 Webanwendung**aus. Klicken Sie auf **OK**.
+Klicken Sie in Visual Studio auf **Datei** &gt; **Neues Projekt**. Erweitern Sie auf der linken Seite **Visual c#**, wählen Sie **Web**aus, und wählen Sie dann **ASP.net MVC4 Webanwendung**aus. Klicken Sie auf **OK**.
 
 Wählen Sie im Dialogfeld **Neues ASP.NET MVC 4-Projekt** die Option **Single-Page-Anwendung**aus.
 
