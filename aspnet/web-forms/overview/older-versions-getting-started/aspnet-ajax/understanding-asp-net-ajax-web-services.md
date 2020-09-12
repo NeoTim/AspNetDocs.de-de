@@ -9,10 +9,10 @@ ms.assetid: 3332d6e7-e2e1-4144-b805-e71d51e7e415
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
 msc.type: authoredcontent
 ms.openlocfilehash: eac3d53fd871d0cb5a2870488ce752c057cc5b1a
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: 45754124123403520b9fa2e706a4d1292494159b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 09/12/2020
 ms.locfileid: "86162807"
 ---
 # <a name="understanding-aspnet-ajax-web-services"></a>Grundlegendes zu Webdiensten von ASP.NET AJAX
@@ -289,7 +289,7 @@ Für den aufgerufenen Webdienst muss das ScriptService-Attribut wie bereits erl�
 
 ASP.NET AJAX bietet hervorragende Unterstützung für das Aufrufen von Webdiensten, ohne viel benutzerdefinierten JavaScript-Code zum Verarbeiten der Anforderungs-und Antwort Nachrichten zu schreiben. In diesem Artikel haben Sie erfahren, wie Sie .NET-Webdienste mit AJAX aktivieren, damit sie JSON-Nachrichten verarbeiten und JavaScript-Proxys mit dem ScriptManager-Steuerelement definieren können. Sie haben auch gesehen, wie JavaScript-Proxys verwendet werden können, um Webdienste aufzurufen, einfache und komplexe Typen zu verarbeiten und Fehler zu behandeln. Schließlich haben Sie gesehen, wie Seiten Methoden verwendet werden können, um den Prozess der Erstellung und Erstellung von Webdienst aufrufen zu vereinfachen, und wie das AutoCompleteExtender-Steuerelement den Endbenutzern bei der Eingabehilfe zur Verfügung stellen kann. Obwohl das in ASP.NET AJAX verfügbare Update Panel sicherlich die Wahl für viele AJAX-Programmierer ist, ist dies aufgrund seiner Einfachheit von Bedeutung. das wissen, wie Webdienste über JavaScript-Proxys aufgerufen werden können, kann in vielen Anwendungen nützlich sein.
 
-## <a name="bio"></a>Basierten
+## <a name="bio"></a>Biografie
 
 Dan Wahlin (Microsoft Most Valuable Professional für ASP.net und XML Web Services) ist ein .net-Entwicklungs Dozenten und-architekturberater bei Interface Technical Training ( [http://www.interfacett.com](http://www.interfacett.com) ). Dan gründete die XML for ASP.NET Developers-Website ([www.XMLforASP.net](http://www.XMLforASP.NET)), ist im Büro des INETA-Referenten und spricht auf mehreren Konferenzen. Dan hat eine professionelle Windows-DNA (Wrox), ASP.net: Tipps, Tutorials und Code (Sams), ASP.NET 1,1 Insider Solutions, Professional ASP.NET 2,0 AJAX (Wrox), ASP.NET 2,0 MVP-Hacks und erstellte XML for ASP.NET Developers (Sams) verfasst. Beim Schreiben von Code, Artikeln oder Büchern hat Dan das Schreiben und Aufzeichnen von Musik und das Spielen von Golf und Basketball mit seiner Frau und ihren Kindern.
 
