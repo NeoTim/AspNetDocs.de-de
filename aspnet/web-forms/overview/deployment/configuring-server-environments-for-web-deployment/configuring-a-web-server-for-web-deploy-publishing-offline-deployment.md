@@ -8,12 +8,12 @@ ms.date: 05/04/2012
 ms.assetid: ba92788f-9f03-44b1-b6b2-af8413e6a35d
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment
 msc.type: authoredcontent
-ms.openlocfilehash: f93cf11085fb19afb97b71aca8f638bd88fe658b
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ed11720e6ea00df22f58d9afd32ccce95a5d1a60
+ms.sourcegitcommit: 4ed0b65ae32d9f35e42ee6296b877747e063df4d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78440823"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90609662"
 ---
 # <a name="configuring-a-web-server-for-web-deploy-publishing-offline-deployment"></a>Konfigurieren eines Webservers für die Web Deploy-Veröffentlichung (Offlinebereitstellung)
 
@@ -23,7 +23,7 @@ von [Jason Lee](https://github.com/jrjlee)
 
 > In diesem Thema wird beschrieben, wie Sie einen IIS-Webserver für die Unterstützung der Offline Veröffentlichung und-Bereitstellung konfigurieren.
 > 
-> Wenn Sie mit Internetinformationsdienste (IIS)-Webbereitstellungs Tool (Web deploy) 2,0 oder höher arbeiten, gibt es drei Hauptansätze, die Sie verwenden können, um Ihre Anwendungen oder Websites auf einen Webserver zu übernehmen. Sie haben folgende Möglichkeiten:
+> Wenn Sie mit Internetinformationsdienste (IIS)-Webbereitstellungs Tool (Web deploy) 2,0 oder höher arbeiten, gibt es drei Hauptansätze, die Sie verwenden können, um Ihre Anwendungen oder Websites auf einen Webserver zu übernehmen. Sie können:
 > 
 > - Verwenden Sie den *Web deploy Remote-Agent-Dienst*. Diese Vorgehensweise erfordert eine geringere Konfiguration des Webservers, aber Sie müssen die Anmelde Informationen eines lokalen Server Administrators bereitstellen, um alles auf dem Server bereitzustellen.
 > - Verwenden Sie den *Web deploy Handler*. Diese Vorgehensweise ist weitaus komplexer und erfordert mehr Aufwand für die Einrichtung des Webservers. Wenn Sie diesen Ansatz verwenden, können Sie jedoch IIS so konfigurieren, dass Benutzer, die nicht Administratoren sind, die Bereitstellung durchführen können. Der Web deploy Handler ist nur in IIS, Version 7 oder höher, verfügbar.
@@ -31,7 +31,7 @@ von [Jason Lee](https://github.com/jrjlee)
 > 
 > Weitere Informationen zu den wichtigsten Features, Vorteilen und Nachteile dieser Ansätze finden [Sie unter Auswählen des richtigen Ansatzes für die Webbereitstellung](choosing-the-right-approach-to-web-deployment.md).
 
-Ja, wenn die Netzwerkinfrastruktur oder Sicherheitseinschränkungen die Remote Bereitstellung verhindern. Dies ist höchstwahrscheinlich der Fall in Produktionsumgebungen mit Internet Zugriff, bei denen die Webserver entweder physisch oder durch&#x2014;Firewalls und Subnetze&#x2014;von der restlichen Serverinfrastruktur isoliert sind.
+Ja, wenn die Netzwerkinfrastruktur oder Sicherheitseinschränkungen die Remote Bereitstellung verhindern. Dies ist höchstwahrscheinlich der Fall in Produktionsumgebungen mit Internet Zugriff, bei denen die Webserver&#x2014;physisch oder durch Firewalls und Subnetze isoliert sind, die von der restlichen Serverinfrastruktur&#x2014;werden.
 
 Diese Vorgehensweise wird natürlich weniger wünschenswert, wenn Ihre Webanwendungen regelmäßig aktualisiert werden. Wenn Ihre Infrastruktur dies zulässt, sollten Sie die Aktivierung der Remote Bereitstellung in Erwägung ziehen, indem Sie entweder den Web deploy Handler oder den Web deploy Remote-Agent-Dienst verwenden.
 
@@ -66,7 +66,7 @@ In diesem Fall müssen Sie Folgendes installieren:
 
 - **Empfohlene Konfiguration für IIS 7**. Dadurch wird die Rolle " **Webserver (IIS)** " auf dem Webserver aktiviert und der Satz von IIS-Modulen und-Komponenten installiert, die Sie benötigen, um eine ASP.NET-Anwendung zu hosten.
 - **.NET Framework 4,0**. Dies ist erforderlich, um Anwendungen auszuführen, die auf dieser Version des .NET Framework erstellt wurden.
-- **Webbereitstellungs Tool 2,1 oder**höher. Dadurch wird Web deploy (und die zugrunde liegende ausführbare Datei msbereitstellung. exe) auf dem Server installiert. Web deploy in IIS integriert und ermöglicht es Ihnen, Webpakete zu importieren und zu exportieren.
+- **Webbereitstellungs Tool 2,1 oder**höher. Hierdurch werden Web deploy (und die zugrunde liegende ausführbare Datei MSDeploy.exe) auf dem Server installiert. Web deploy in IIS integriert und ermöglicht es Ihnen, Webpakete zu importieren und zu exportieren.
 - **ASP.NET MVC 3**. Dadurch werden die Assemblys installiert, die Sie zum Ausführen von MVC 3-Anwendungen benötigen
 
 > [!NOTE]
@@ -91,13 +91,13 @@ In diesem Fall müssen Sie Folgendes installieren:
 7. Klicken Sie im Navigationsbereich auf **Server**.
 8. Klicken Sie in der Zeile mit der **empfohlenen IIS 7-Konfiguration** auf **Hinzufügen**.
 9. Klicken Sie in der Zeile **Webbereitstellungs Tool 2,1** auf **Hinzufügen**.
-10. Klicken Sie auf **Installieren**. Der Webplattform-Installer zeigt eine Liste der Produkte&#x2014;zusammen mit allen zugehörigen Abhängigkeiten&#x2014;an, die installiert werden müssen, und fordert Sie auf, die Lizenzbedingungen zu akzeptieren.
+10. Klicken Sie auf **Installieren**. Im Webplattform-Installer wird eine Liste der Produkte angezeigt, die&#x2014;zusammen mit den zugehörigen Abhängigkeiten&#x2014;die installiert werden müssen, und Sie werden aufgefordert, die Lizenzbedingungen zu akzeptieren.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-offline-deployment/_static/image2.png)
 11. Lesen Sie die Lizenzbedingungen, und klicken Sie auf **akzeptieren**, wenn Sie den Bedingungen zustimmen.
 12. Wenn die Installation abgeschlossen ist, klicken Sie auf **Fertig**stellen, und schließen Sie dann das Fenster **Webplattform-Installer 3,0** .
 
-Wenn Sie den .NET Framework 4,0 vor der Installation von IIS installiert haben, müssen Sie das [ASP.NET IIS-Registrierungs Tool](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (ASPNET\_regiis. exe) ausführen, um die neueste Version von ASP.net bei IIS zu registrieren. Wenn Sie dies nicht tun, werden Sie feststellen, dass IIS statische Inhalte (z. b. HTML-Dateien) ohne Probleme bereitstellt, aber der **HTTP-Fehler 404,0 – nicht gefunden** wird, wenn Sie versuchen, zu ASP.net-Inhalt zu navigieren. Sie können das nächste Verfahren verwenden, um sicherzustellen, dass ASP.NET 4,0 registriert ist.
+Wenn Sie den .NET Framework 4,0 vor der Installation von IIS installiert haben, müssen Sie das [ASP.NET IIS-Registrierungs Tool](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (ASPNET \_regiis.exe) ausführen, um die neueste Version von ASP.net bei IIS zu registrieren. Wenn Sie dies nicht tun, werden Sie feststellen, dass IIS statische Inhalte (z. b. HTML-Dateien) ohne Probleme bereitstellt, aber der **HTTP-Fehler 404,0 – nicht gefunden** wird, wenn Sie versuchen, zu ASP.net-Inhalt zu navigieren. Sie können das nächste Verfahren verwenden, um sicherzustellen, dass ASP.NET 4,0 registriert ist.
 
 **So registrieren Sie ASP.NET 4,0 mit IIS**
 
@@ -144,8 +144,8 @@ Obwohl es nichts hindert, Inhalte auf der Standard Website in IIS bereitzustelle
 
     > [!NOTE]
     > In einer Produktionsumgebung möchten Sie wahrscheinlich Ihre Website auf Port 80 hosten und einen Host Header sowie übereinstimmende DNS-Einträge konfigurieren. Weitere Informationen zum Konfigurieren von Host Headern in IIS 7 finden Sie unter [Konfigurieren eines Host Headers für eine Website (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). Weitere Informationen zur DNS-Server Rolle in Windows Server 2008 R2 finden Sie unter [Übersicht über DNS-Server](https://technet.microsoft.com/library/cc770392.aspx) und [DNS-Server](https://technet.microsoft.com/windowsserver/dd448607).
-9. Klicken Sie im **Aktions** Bereich unter **Website bearbeiten**auf **Bindungen**.
-10. Klicken Sie im Dialogfeld **Site Bindungen** auf **Hinzufügen**.
+9. Klicken Sie im Bereich **Aktionen** unter **Site bearbeiten**auf **Bindungen**.
+10. Klicken Sie im Dialogfeld **Sitebindungen** auf **Hinzufügen**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-offline-deployment/_static/image5.png)
 11. Legen Sie im Dialogfeld **Site Bindung hinzufügen** die **IP-Adresse** und den **Port** entsprechend der vorhandenen Standort Konfiguration fest.
@@ -154,9 +154,9 @@ Obwohl es nichts hindert, Inhalte auf der Standard Website in IIS bereitzustelle
     ![](configuring-a-web-server-for-web-deploy-publishing-offline-deployment/_static/image6.png)
 
     > [!NOTE]
-    > Mit der ersten Site Bindung können Sie mithilfe der IP-Adresse und des Ports oder `http://localhost:85`lokal auf die Website zugreifen. Die zweite Site Bindung ermöglicht den Zugriff auf die Website von anderen Computern in der Domäne mithilfe des Computer namens (z. b. http://proweb1:85).
-13. Klicken Sie im Dialogfeld **Site Bindungen** auf **Schließen**.
-14. Klicken Sie im Bereich **Verbindungen** auf **Anwendungs Pools**.
+    > Mit der ersten Site Bindung können Sie lokal auf die Website zugreifen, indem Sie die IP-Adresse und den Port oder verwenden `http://localhost:85` . Die zweite Site Bindung ermöglicht den Zugriff auf die Website von anderen Computern in der Domäne mithilfe des Computer namens (z. b http://proweb1:85) .).
+13. Klicken Sie im Dialogfeld **Sitebindungen** auf **Schließen**.
+14. Klicken Sie im Bereich **Verbindungen** auf **Anwendungspools**.
 15. Klicken Sie im Bereich **Anwendungs Pools** mit der rechten Maustaste auf den Namen des Anwendungs Pools, und klicken Sie dann auf **Grundeinstellungen**. Standardmäßig entspricht der Name Ihres Anwendungs Pools dem Namen Ihrer Website (z. b. **Demosite**).
 16. Wählen Sie in der Liste **.NET Framework Version** **.NET Framework v 4.0.30319**aus, und klicken Sie dann auf **OK**.
 
@@ -165,14 +165,14 @@ Obwohl es nichts hindert, Inhalte auf der Standard Website in IIS bereitzustelle
     > [!NOTE]
     > Die Beispiellösung erfordert .NET Framework 4,0. Dies ist keine Voraussetzung für Web deploy im Allgemeinen.
 
-Damit Ihre Website Inhalte bereitstellen kann, muss die Anwendungs Pool Identität über Leseberechtigungen für den lokalen Ordner verfügen, in dem der Inhalt gespeichert wird. In IIS 7,5 werden Anwendungs Pools standardmäßig mit einer eindeutigen Anwendungs Pool Identität ausgeführt (im Gegensatz zu früheren Versionen von IIS, bei denen Anwendungs Pools in der Regel mit dem Netzwerkdienst Konto ausgeführt werden). Die Anwendungs Pool Identität ist kein echtes Benutzerkonto und wird nicht in einer Liste von Benutzern oder Gruppen&#x2014;angezeigt. Sie wird automatisch erstellt, wenn der Anwendungs Pool gestartet wird. Jede Anwendungs Pool Identität wird der lokalen IIS- **\_IUSRS** -Sicherheitsgruppe als ausgeblendetes Element hinzugefügt.
+Damit Ihre Website Inhalte bereitstellen kann, muss die Anwendungs Pool Identität über Leseberechtigungen für den lokalen Ordner verfügen, in dem der Inhalt gespeichert wird. In IIS 7,5 werden Anwendungs Pools standardmäßig mit einer eindeutigen Anwendungs Pool Identität ausgeführt (im Gegensatz zu früheren Versionen von IIS, bei denen Anwendungs Pools in der Regel mit dem Netzwerkdienst Konto ausgeführt werden). Die Anwendungs Pool Identität ist kein echtes Benutzerkonto und wird nicht in einer Liste von Benutzern oder Gruppen angezeigt&#x2014;stattdessen wird Sie dynamisch erstellt, wenn der Anwendungs Pool gestartet wird. Jede Anwendungs Pool Identität wird der lokalen IIS- ** \_ IUSRS** -Sicherheitsgruppe als ausgeblendetes Element hinzugefügt.
 
 Zum Erteilen von Berechtigungen für eine Anwendungs Pool Identität in einer Datei oder einem Ordner haben Sie zwei Möglichkeiten:
 
-- Weisen Sie der Anwendungs Pool Identität direkt Berechtigungen zu, und verwenden Sie dabei das Format <strong>IIS AppPool\</strong ><em>[Anwendungs Pool Name]</em>(z. b. <strong>IIS apppool\demosite</strong>).
-- Weisen Sie der **IIS-\_ius RS** -Gruppe Berechtigungen zu.
+- Weisen Sie der Anwendungs Pool Identität direkt unter Verwendung des Formats **IIS AppPool \( Application Pool Name** die Berechtigungen zu (z. b. **IIS apppool\demosite**).
+- Weisen Sie der **IIS- \_ ius RS** -Gruppe Berechtigungen zu.
 
-Der gängigste Ansatz besteht darin, der lokalen IIS- **\_ihirs** -Gruppe Berechtigungen zuzuweisen, da Sie mit diesem Ansatz Anwendungs Pools ändern können, ohne die Dateisystem Berechtigungen neu zu konfigurieren. Im nächsten Verfahren wird dieser Gruppenbasierte Ansatz verwendet.
+Der gängigste Ansatz besteht darin, der lokalen IIS- ** \_ ius RS** -Gruppe Berechtigungen zuzuweisen, da Sie mit diesem Ansatz Anwendungs Pools ändern können, ohne die Dateisystem Berechtigungen neu zu konfigurieren. Im nächsten Verfahren wird dieser Gruppenbasierte Ansatz verwendet.
 
 > [!NOTE]
 > Weitere Informationen zu Anwendungs Pool Identitäten in IIS 7,5 finden Sie unter [Anwendungs Pool Identitäten](https://go.microsoft.com/?linkid=9805123).
@@ -180,14 +180,14 @@ Der gängigste Ansatz besteht darin, der lokalen IIS- **\_ihirs** -Gruppe Berech
 **So konfigurieren Sie Ordner Berechtigungen für eine IIS-Website**
 
 1. Navigieren Sie in Windows-Explorer zum Speicherort des lokalen Ordners.
-2. Klicken Sie mit der rechten Maustaste auf den Ordner, und klicken Sie auf **Eigenschaften**.
-3. Klicken Sie auf der Registerkarte **Sicherheit** auf **Bearbeiten**, und klicken Sie dann auf **Hinzufügen**.
+2. Klicken Sie mit der rechten Maustaste auf den Ordner, und klicken Sie anschließend auf **Eigenschaften**.
+3. Klicken Sie auf der Registerkarte **Security** auf **Edit** und dann auf **Add**.
 4. Klicken Sie auf **Standorte**. Wählen Sie im Dialogfeld Speicher **Orte** den lokalen Server aus, und klicken Sie dann auf **OK**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-offline-deployment/_static/image8.png)
-5. Geben Sie im Dialogfeld **Benutzer oder Gruppen auswählen** **IIS\_ius RS**ein, klicken Sie auf **Namen überprüfen**, und klicken Sie dann auf **OK**.
-6. Beachten Sie im Dialogfeld <strong>Berechtigungen für</strong><em>[Ordnername]</em> , dass der neuen Gruppe standardmäßig die Berechtigungen <strong>Lesen &amp; ausführen</strong>, <strong>Ordner Inhalt auflisten</strong>und <strong>Lesen</strong> zugewiesen wurden. Bleiben Sie unverändert, und klicken Sie auf <strong>OK</strong>.
-7. Klicken Sie auf <strong>OK</strong> , um das Dialogfeld <em>[Ordnername]</em><strong>Eigenschaften</strong> zu schließen.
+5. Geben Sie im Dialogfeld **Benutzer oder Gruppen auswählen** **IIS \_ ius RS**ein, klicken Sie auf **Namen überprüfen**, und klicken Sie dann auf **OK**.
+6. Beachten Sie im Dialogfeld **Berechtigungen für (Ordnername)** , dass der neuen Gruppe standardmäßig die Berechtigungen **Lesen & ausführen**, **Ordner Inhalt auflisten**und **Lesen** zugewiesen wurden. Bleiben Sie unverändert, und klicken Sie auf **OK**.
+7. Klicken Sie auf **OK** , um das Dialogfeld **Eigenschaften von (Ordnername)** zu schließen.
 
 ## <a name="disable-the-remote-agent-service"></a>Remote-Agent-Dienst deaktivieren
 
@@ -200,7 +200,7 @@ Sie können einen Dienst auf verschiedene Weise mit verschiedenen Befehlszeilen 
 
 **So wird der Remote-Agent-Dienst beendet und deaktiviert**
 
-1. Zeigen Sie im **Startmenü** auf **Verwaltung**, und klicken Sie dann auf **Dienste**.
+1. Zeigen Sie im Menü **Start** auf **Verwaltung**, und klicken Sie dann auf **Dienste**.
 2. Suchen Sie in der Dienste-Konsole die Zeile **Web Deployment Agent-Dienst** .
 
     ![](configuring-a-web-server-for-web-deploy-publishing-offline-deployment/_static/image9.png)
