@@ -10,10 +10,10 @@ ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
 ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.sourcegitcommit: 4ed0b65ae32d9f35e42ee6296b877747e063df4d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2020
+ms.lasthandoff: 10/05/2020
 ms.locfileid: "86188621"
 ---
 # <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>Unterstützen von odata-Abfrage Optionen in ASP.net-Web-API 2
@@ -42,7 +42,7 @@ Lesen Sie vor dem Aktivieren der Abfrage Optionen das Thema [odata-Sicherheits L
 
 Die Web-API unterstützt die folgenden odata-Abfrage Optionen:
 
-| Option | Beschreibung |
+| Option | BESCHREIBUNG |
 | --- | --- |
 | $expand | Erweitert Verwandte Entitäten Inline. |
 | $filter | Filtert die Ergebnisse basierend auf einer booleschen Bedingung. |
@@ -81,12 +81,12 @@ Die $Top-Option gibt die maximale Anzahl von Einträgen an, die zurückgegeben w
 
 Die Option $Filter ermöglicht einem Client das Filtern der Ergebnisse durch Anwenden eines booleschen Ausdrucks. Die Filter Ausdrücke sind sehr leistungsstark. Dazu zählen logische und arithmetische Operatoren, Zeichen folgen Funktionen und Datumsfunktionen.
 
-| Gibt alle Produkte zurück, deren Kategorie "Toys" entspricht. | `http://localhost/Products?$filter=Category`EQ ' Toys ' |
+| Gibt alle Produkte zurück, deren Kategorie "Toys" entspricht. | `http://localhost/Products?$filter=Category` EQ ' Toys ' |
 | --- | --- |
-| Gibt alle Produkte zurück, deren Preis kleiner als 10 ist. | `http://localhost/Products?$filter=Price`lt 10 |
-| Logische Operatoren: gibt alle Produkte zurück, bei denen Price >= 5 und Price <= 15 ist. | `http://localhost/Products?$filter=Price`ge 5 und Preis Le 15 |
+| Gibt alle Produkte zurück, deren Preis kleiner als 10 ist. | `http://localhost/Products?$filter=Price` lt 10 |
+| Logische Operatoren: gibt alle Produkte zurück, bei denen Price >= 5 und Price <= 15 ist. | `http://localhost/Products?$filter=Price` ge 5 und Preis Le 15 |
 | Zeichen folgen Funktionen: gibt alle Produkte mit "zz" im Namen zurück. | `http://localhost/Products?$filter=substringof('zz',Name)` |
-| Datumsfunktionen: gibt alle Produkte mit ReleaseDate nach 2005 zurück. | `http://localhost/Products?$filter=year(ReleaseDate)`gt 2005 |
+| Datumsfunktionen: gibt alle Produkte mit ReleaseDate nach 2005 zurück. | `http://localhost/Products?$filter=year(ReleaseDate)` gt 2005 |
 
 **Sortieren**
 
@@ -130,7 +130,7 @@ Hier ist ein Beispiel für eine JSON-Antwort:
 <a id="limiting_query_options"></a>
 ## <a name="limiting-the-query-options"></a>Einschränken der Abfrage Optionen
 
-Die Abfrage Optionen sorgen für eine hohe Kontrolle über die Abfrage, die auf dem Server ausgeführt wird. In einigen Fällen möchten Sie möglicherweise die verfügbaren Optionen aus Sicherheits-oder Leistungsgründen einschränken. Das **[quervable]** -Attribut verfügt über einige integrierte Eigenschaften für diesen. Die folgende Auflistung enthält einige Beispiele:
+Die Abfrage Optionen sorgen für eine hohe Kontrolle über die Abfrage, die auf dem Server ausgeführt wird. In einigen Fällen möchten Sie möglicherweise die verfügbaren Optionen aus Sicherheits-oder Leistungsgründen einschränken. Das **[quervable]** -Attribut verfügt über einige integrierte Eigenschaften für diesen. Hier einige Beispiele.
 
 Nur $Skip und $Top zulassen, um das Paging zu unterstützen, und nichts anderes:
 
