@@ -2,17 +2,17 @@
 uid: mvc/overview/deployment/docker-aspnetmvc
 title: Migrieren von ASP.NET MVC-Anwendungen zu Windows-Containern
 description: Erfahren Sie, wie Sie eine vorhandene ASP.NET MVC-Anwendung in einem Windows Docker-Container ausführen können.
-keywords: Windows-Container,Docker,ASP.NET MVC
+keywords: Windows-Container, Docker, ASP. NET MVC
 author: BillWagner
 ms.author: wiwagn
 ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
-ms.openlocfilehash: 2c3aefab16673f4d4dd28c74319903fbd25a9e7e
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.openlocfilehash: 1c5e6af79c87123891ddd4d30c60e3a427910e9d
+ms.sourcegitcommit: 09a34635ed0e74d6c2625f6a485c78f201c689ee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80675193"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91763492"
 ---
 # <a name="migrating-aspnet-mvc-applications-to-windows-containers"></a>Migrieren von ASP.NET MVC-Anwendungen zu Windows-Containern
 
@@ -31,11 +31,11 @@ Das Verschieben Ihrer Anwendung umfasst folgenden Schritte:
 1. [Starten eines Docker-Containers, der das Image ausführt](#start-a-container)
 1. [Überprüfen der Anwendung mit Ihrem Browser](#verify-in-the-browser)
 
-Die [fertige Anwendung](https://github.com/dotnet/samples/tree/master/framework/docker/MVCRandomAnswerGenerator) finden Sie auf GitHub.
+Die [fertige Anwendung](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/mvc/overview/deployment/docker-aspnetmvc/samples/MVCRandomAnswerGenerator) finden Sie auf GitHub.
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
-Die Entwicklungsmaschine muss über die folgende Software verfügen:
+Auf dem Entwicklungs Computer muss die folgende Software vorhanden sein:
 
 - [Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (oder höher) oder [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (oder höher)
 - [Docker für Windows](https://docs.docker.com/docker-for-windows/) -Version Stable 1.13.0 oder 1.12 Beta 26 (oder neuere Versionen)
@@ -60,18 +60,18 @@ Sammeln Sie alle Ressourcen, die Sie in ein Docker-Image laden müssen, an einem
 
 ![Veröffentlichungsverbindung][publish-connection]
 
-Öffnen Sie den Abschnitt **Dateiveröffentlichungsoptionen** auf der Registerkarte **Einstellungen.** Wählen Sie **vorkompilieren während**der Veröffentlichung aus. Diese Optimierung bedeutet, dass Sie beim Kompilieren von Ansichten im Docker-Container die vorkompilierten Ansichten kopieren.
+Öffnen Sie den Abschnitt **Datei Veröffentlichungs Optionen** der Registerkarte **Einstellungen** . Wählen Sie **während der Veröffentlichung Vorkompilieren**. Diese Optimierung bedeutet, dass Sie beim Kompilieren von Ansichten im Docker-Container die vorkompilierten Ansichten kopieren.
 
-![Veröffentlichungseinstellungen][publish-settings]
+![Veröffentlichungs Einstellungen][publish-settings]
 
 Klicken Sie auf **Veröffentlichen**, und Visual Studio kopiert alle erforderlichen Objekte in den Zielordner.
 
 ## <a name="build-the-image"></a>Erstellen des Image
 
-Erstellen Sie eine neue Datei mit dem Namen *Dockerfile,* um Ihr Docker-Image zu definieren. *Dockerfile* enthält Anweisungen zum Erstellen des endgültigen Abbilds und enthält alle Basisbildnamen, erforderliche Komponenten, die App, die Sie ausführen möchten, und andere Konfigurationsabbilder. *Dockerfile* ist die `docker build` Eingabe für den Befehl, der das Abbild erstellt.
+Erstellen Sie eine neue Datei namens *dockerfile* , um Ihr docker-Image zu definieren. Die *dockerfile-Datei* enthält Anweisungen zum Erstellen des endgültigen Bilds und enthält alle Basis Image Namen, erforderlichen Komponenten, die APP, die Sie ausführen möchten, und andere Konfigurations Images. *Dockerfile* ist die Eingabe für den `docker build` Befehl, der das Image erstellt.
 
-Für diese Übung erstellen Sie ein `microsoft/aspnet` Image basierend auf dem Image auf [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
-Das Basisimage `microsoft/aspnet` ist ein Windows Server-Image. Es enthält Windows Server Core, IIS und ASP.NET 4.7.2. Wenn Sie dieses Image im Container ausführen, werden IIS und die installierten Websites automatisch gestartet.
+In dieser Übung erstellen Sie ein Image, das auf dem Image basiert, das `microsoft/aspnet` sich auf dem [docker-Hub](https://hub.docker.com/r/microsoft/aspnet/)befindet.
+Das Basisimage `microsoft/aspnet` ist ein Windows Server-Image. Sie enthält Windows Server Core, IIS und ASP.NET 4.7.2. Wenn Sie dieses Image im Container ausführen, werden IIS und die installierten Websites automatisch gestartet.
 
 Die Dockerfile-Datei, die das Image erstellt, sieht folgendermaßen aus:
 
@@ -85,15 +85,15 @@ FROM microsoft/aspnet
 COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 ```
 
-In dieser Dockerfile-Datei ist kein `ENTRYPOINT`-Befehl enthalten. Ein solcher Befehl ist nicht erforderlich. Beim Ausführen von Windows Server mit IIS ist der IIS-Prozess der Einstiegspunkt, der so konfiguriert ist, dass er im Aspnet-Basisabbild gestartet wird.
+In dieser Dockerfile-Datei ist kein `ENTRYPOINT`-Befehl enthalten. Ein solcher Befehl ist nicht erforderlich. Bei der Ausführung von Windows Server mit IIS ist der IIS-Prozess der Einstiegspunkt, der für den Start im ASPNET-Basis Image konfiguriert ist.
 
-Führen Sie den Docker-Erstellungsbefehl aus, um das Image zu erstellen, über das die ASP.NET-Anwendung ausgeführt wird. Öffnen Sie dazu ein PowerShell-Fenster im Verzeichnis Ihres Projekts, und geben Sie den folgenden Befehl in das Projektmappenverzeichnis ein:
+Führen Sie den Docker-Erstellungsbefehl aus, um das Image zu erstellen, über das die ASP.NET-Anwendung ausgeführt wird. Öffnen Sie zu diesem Zweck ein PowerShell-Fenster im Verzeichnis des Projekts, und geben Sie den folgenden Befehl in das Projektmappenverzeichnis ein:
 
 ```console
 docker build -t mvcrandomanswers .
 ```
 
-Dieser Befehl erstellt das neue Image unter Verwendung der Anweisungen in Ihrer Dockerfile und nennt das Image als mvcrandomanswers. Dies kann beinhalten, dass Sie das Basisimage aus [Docker Hub](http://hub.docker.com) abrufen und dann Ihre Anwendung zu diesem Image hinzufügen müssen.
+Mit diesem Befehl wird das neue Image mithilfe der Anweisungen in ihrer dockerfile-Datei erstellt, wobei das Image als "mvcrandomanswers" benannt wird. Dies kann beinhalten, dass Sie das Basisimage aus [Docker Hub](http://hub.docker.com) abrufen und dann Ihre Anwendung zu diesem Image hinzufügen müssen.
 
 Nach Abschluss dieses Befehls können Sie den `docker images`-Befehl ausführen, um Informationen über das neue Image anzuzeigen:
 
@@ -114,7 +114,7 @@ docker run -d --name randomanswers mvcrandomanswers
 
 Das `-d`-Argument weist Docker an, das Image im getrennten Modus zu starten. Das bedeutet, dass das Docker-Image getrennt von der aktuellen Shell ausgeführt wird.
 
-In vielen Docker-Beispielen sehen Sie möglicherweise -p, um die Container- und Hostports zuzuordnen. Das standardmäßige aspnet-Image hat den Container bereits so konfiguriert, dass er Port 80 abhört und verfügbar macht.
+In vielen docker-Beispielen kann-p angezeigt werden, um den Container und die Hostports zuzuordnen. Das standardmäßige ASPNET-Image hat den Container bereits so konfiguriert, dass er an Port 80 lauscht und ihn verfügbar macht.
 
 `--name randomanswers` gibt dem ausgeführten Container einen Namen. Sie können diesen Namen in den meisten Befehlen anstelle der Container-ID verwenden.
 
@@ -122,7 +122,7 @@ In vielen Docker-Beispielen sehen Sie möglicherweise -p, um die Container- und 
 
 ## <a name="verify-in-the-browser"></a>Überprüfen im Browser
 
-Sobald der Container gestartet wird, `http://localhost` stellen Sie eine Verbindung mit dem ausgeführten Container her, indem Sie im gezeigten Beispiel verwenden. Wenn Sie diese URL in Ihren Browser eingeben, sollte die ausgeführte Website angezeigt werden.
+Nachdem der Container gestartet wurde, stellen Sie eine Verbindung mit dem laufenden Container her, indem Sie `http://localhost` im gezeigten Beispiel verwenden. Wenn Sie diese URL in Ihren Browser eingeben, sollte die ausgeführte Website angezeigt werden.
 
 > [!NOTE]
 > Manche VPN- oder Proxysoftware könnte Ihren Wechsel zu Ihrer Website verhindern.
@@ -134,7 +134,7 @@ Das Beispielverzeichnis auf GitHub enthält ein [PowerShell-Skript](https://gith
 ./run.ps1
 ```
 
-Der Obige Befehl erstellt das Bild, zeigt die Liste der Bilder auf Ihrem Computer an und startet einen Container.
+Der obige Befehl erstellt das Image, zeigt die Liste der Images auf dem Computer an und startet einen Container.
 
 Um den Container zu stoppen, geben Sie einen `docker stop`-Befehl ein:
 
@@ -150,4 +150,4 @@ docker rm randomanswers
 
 [windows-container]: media/aspnetmvc/SwitchContainer.png "Wechseln zu Windows-Container"
 [publish-connection]: media/aspnetmvc/PublishConnection.png "Im Dateisystem veröffentlichen"
-[publish-settings]: media/aspnetmvc/PublishSettings.png "Veröffentlichungseinstellungen"
+[publish-settings]: media/aspnetmvc/PublishSettings.png "Veröffentlichungs Einstellungen"
